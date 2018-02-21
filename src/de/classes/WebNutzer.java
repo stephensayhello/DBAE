@@ -58,7 +58,7 @@ public class WebNutzer {
  * @return erfolgreich ja / nein.
  */
 	public boolean loginIn() {
-		if(this.getBenutzername() == this.getPasswort()) {
+		if((this.getBenutzername()).equals(passwort)) {
 			return true;
 		} else {
 			return false;

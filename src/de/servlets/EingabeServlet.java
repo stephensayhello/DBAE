@@ -1,11 +1,15 @@
 package de.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import de.classes.WebNutzer;
 
 /**
  * Servlet implementation class EingabeServlet
@@ -32,10 +36,25 @@ public class EingabeServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Diese Methode prüft anhand einer Instanz des WebNutzer, ob der Login richtig war.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String bname = request.getParameter("bname");
+		String passwort = request.getParameter("passwort");
+		WebNutzer nutzer = new WebNutzer(bname, passwort);
+		nutzer.loginIn();
+		PrintWriter out = response.getWriter();
+		String ausgabe ="Hallo.";
+		
+		if(nutzer.loginIn()== true) {
+			ausgabe +="herzlichen Willkommen. " + nutzer.getBenutzername();
+		} else {
+			ausgabe += "Der Login ist fehl geschlagen";
+		}
+		out.append(ausgabe);
+		
+		request.getRequestDispatcher("index.jsp").include(request, response);
+		
 	}
 
 }
