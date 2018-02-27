@@ -30,8 +30,7 @@ public class EingabeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 	}
 
 	/**
@@ -42,7 +41,7 @@ public class EingabeServlet extends HttpServlet {
 		String bname = request.getParameter("bname");
 		String passwort = request.getParameter("passwort");
 		WebNutzer nutzer = new WebNutzer(bname, passwort);
-		nutzer.loginIn();
+		
 		PrintWriter out = response.getWriter();
 		String ausgabe ="Hallo.";
 		

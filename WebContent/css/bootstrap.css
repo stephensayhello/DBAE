@@ -17,12 +17,31 @@ aside,
 details,
 figcaption,
 figure,
-footer,
+footer {
+	
+	position: fixed;
+    left: 25%;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    border-color: red;
+    border: 1px;
+    color: white;
+    text-align: center;
+    text-color: blue;	
+	
+}
 header,
 hgroup,
 main,
 menu,
-nav,
+nav {
+	vertical-align: middle;	
+	 position: relative;
+  	min-height: 50px;
+  	margin-bottom: 20px;
+  	border: 1px solid transparent;
+}
 section,
 summary {
   display: block;
@@ -240,6 +259,7 @@ th {
   }
   .navbar {
     display: none;
+    vertical-align: middle;
   }
   .btn > .caret,
   .dropup > .btn > .caret {
@@ -4020,18 +4040,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-left: -1px;
 }
 .nav {
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
+  min-height: 100px;
 }
 .nav > li {
-  position: relative;
-  display: block;
+  min-height: 100px;
 }
 .nav > li > a {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
+  line-height: 50px; 
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -4104,12 +4119,21 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   left: auto;
 }
 @media (min-width: 768px) {
-  .nav-tabs.nav-justified > li {
-    display: table-cell;
-    width: 1%;
+  .navbar {
+  padding-top: 15px;
   }
-  .nav-tabs.nav-justified > li > a {
-    margin-bottom: 0;
+ 
+  .navbar > ul {
+  display: table-row;
+  padding-top: 48px;
+  }
+ 
+  .navbar > ul > li {
+  display: table-cell;
+  float: none;
+  vertical-align: middle;
+ 
+  text-align: center;
   }
 }
 .nav-tabs.nav-justified > li > a {
@@ -4370,11 +4394,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-nav {
   margin: 7.5px -15px;
+  
 }
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
-  line-height: 20px;
+  line-height: 50px;
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {

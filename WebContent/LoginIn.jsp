@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="nav" uri="/WEB-INF/tag.tld" %>  
+<%@ taglib prefix="a" uri="/WEB-INF/tag.tld" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,8 +9,10 @@
 </head>
 <body>
 <h1>WebShop</h1>
-<nav:navigation />
-<p>Herzlichen Willkommen. Hier können Sie sich als neukunde regestieren lassen.</p>
+<a:logo />
+<a:navigation></a:navigation>
+
+<h2>Herzlichen Willkommen. Hier können Sie sich als Neukunde regestieren lassen.</h2>
 <form action="NeuKundeAnmeldung" method="post">
 <label for="Name">Name:</label><input type="text" name="name"><br />
 <label for="Adresse">Adresse:</label><input type="text" name="adresse"><br />

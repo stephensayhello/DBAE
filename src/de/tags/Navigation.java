@@ -8,7 +8,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  * @author Paul Blanke.
  *
  */
-public class Navigation  extends TagSupport{
+public class Navigation extends TagSupport{
 	/**
 	 * 
 	 */
@@ -25,17 +25,24 @@ public class Navigation  extends TagSupport{
 	
 	
 	private String getNavBar() {
-		String nav = "<ul style='list-style-type: none; margin: 0; padding: 0; overflow: hidden; background-color: #333;'>"
-				+ "<li style='float: left;'><a style='display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; border-right: 1px solid #ADACAB; width: 50px;' href='index.jsp'>Startseite</a></li>"
-				+ "<li style='float: left;'><a style='display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; border-right: 1px solid #ADACAB; width: 50px;' href='Artikeluebersicht.jsp'>Artikeluebersicht</a></li>"
-				+ "<li style='float: left;'><a style='display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; border-right: 1px solid #ADACAB; width: 50px;' href='Suche.jsp'>Suche</a></li>"
-				+ "<li style='float: right;'><a style='display: block; color: white; background-color: #005883; text-align: center; padding: 14px 16px; text-decoration: none; width: 50px;' href='LoginIn.jsp'>LogIn</a></li>"
-			+ "</ul>";
+		String nav = "<nav class='navbar navbar-inverse bg-faded navbar-collapse navbar-toggleable-md navbar-light'  >"
+		// Links		
+		+ "<div class='container-fluid'><div class='navbar-header'><a class='nav-brand' href='index.jsp'>Startseite</a>"
+		+ "</div><ul class='nav navbar'><li class='active'><a href='index.jsp'>Home</a></li> "
+		+ "<li><a href='Artikeluebersicht.jsp'>Produktübersicht</a></li></ul>"
+		// Suche
+		+ "<form class='navabar-form navbar-left' action='Suche.jsp'><div class= 'form-group'>"
+		+ "<input type='text' class='form-control' placeholder='Suchen'></div><button type='submit' class='btn btn-default'>Submit</button>"
+		+ "</form"
+		// LogIN
+		+ "<ul class='nav navbar-nav navbar-right'><li><a href='LoginIn.jsp'><span class='glyphicon glyphicon-user'></span>Sign Up</a></li> "
+		+ "<li><a href='LoginIn.jsp'><span class='glyphicon glyphicon-log-in'></span>Login</a></li></ul>"
 		
-		
+		+ "</div></nav>";	
 		return nav;
 		
 	}
+	
 	
 
 }
