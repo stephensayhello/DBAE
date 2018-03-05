@@ -23,7 +23,7 @@
 <br/>
 <br/>
 <br />
-<!-- Achtung eine Nav bar mit Bootstrap -->
+
 
 <b:navigation></b:navigation>
 
