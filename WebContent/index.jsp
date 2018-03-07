@@ -20,12 +20,12 @@
 </head>
 <body>
 <a:logo></a:logo>
+<b:navigation></b:navigation>
 <br/>
 <br/>
 <br />
 
 
-<b:navigation></b:navigation>
 
 
 <form action="EingabeServlet" method="post" id="formLogin" >
