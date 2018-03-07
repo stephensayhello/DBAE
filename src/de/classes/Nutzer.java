@@ -1,4 +1,13 @@
 package de.classes;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import de.datenbank.DBConnection;
+
+
 /**
  * Diese Klasse repräsentiert den Nutzer.
  * @author paul4
