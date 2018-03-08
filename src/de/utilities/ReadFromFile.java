@@ -1,5 +1,5 @@
 package de.utilities;
-
+// https://stackoverflow.com/questions/12035316/reading-entire-html-file-to-string
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
