@@ -3,42 +3,13 @@
 <taglib>
 <tlib-version>1.0</tlib-version>
 <jsp-version>2.0</jsp-version>
-<!-- Navigation Tag -->
-<short-name>Navigation Tags</short-name>
+<short-name>Partial Tags</short-name>
 <tag>
 	<name>navigation</name>
 	<tag-class>de.tags.Navigation</tag-class>
 </tag>
-<!-- Logo -->
-<short-name>Logo Tag</short-name>
 <tag>
-	<name>logo</name>
-	<tag-class>de.tags.LogoShow</tag-class>	
+	<name>bootstrap</name>
+	<tag-class>de.tags.Bootstrap</tag-class>
 </tag>
-<!-- Fussleiste -->
-<short-name>Footer</short-name>
-	<tag>
-		<name>fussleiste</name>
-		<tag-class>de.tags.Footer</tag-class>
-	</tag>
-
-<!-- Login In ? -->
-<short-name>LoginIn</short-name>
-	<tag>
-		<name>Loginin</name>
-		<tag-class>de.tags.LoginIn</tag-class>
-	</tag>
-	
-<short-name>Javascript Code</short-name>
-	<tag>
-		<tag>javascript</tag>
-		<tag-class>de.tags.JavaScriptCode</tag-class>
-	</tag>	
-
-<short-name>Nav TestCode</short-name>
-<tag>
-	<tag>test</tag>
-	<tag-class>de.tags.NavTest</tag-class>
-	</tag>
-	
 </taglib>
