@@ -6,7 +6,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import de.utilities.ReadFromFile;
 
 
-public class Navigation extends TagSupport {
+public class Bootstrap extends TagSupport {
 	private static final long serialVersionUID = 1L;
 
 	public int doStartTag() {
@@ -19,7 +19,7 @@ public class Navigation extends TagSupport {
 	}
 
 	private String getNavBar() throws IOException {
-		String nav = ReadFromFile.readContentFromFile(pageContext, "navigation.html");
+		String nav = ReadFromFile.readContentFromFile(pageContext, "bootstrap.html");
 		
 		return nav;
 	}

@@ -1,0 +1,30 @@
+
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand"><img src="img/Logo.png" alt="Dispute Bills">
+        </a>
+      </div>
+      <div id="navbar3">
+        <ul class="nav navbar-nav">
+          <li><a href="index.jsp">Startseite</a></li>
+          <li><a href="artikeluebersicht.jsp">Artikelübersicht</a></li>
+          <li><a href="tagesangebot.jsp">Tagesangebot</a></li>
+          <li><a href="contact.jsp">Kontakt</a></li>
+          
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+      <li><a href="signup.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+      </div>
+    </div>
+  </nav>
+
+<script>
+$(document).ready(function() {
+	var pathname = window.location.pathname;
+	var pagename = pathname.substring(pathname.lastIndexOf("/")+1);
+	$('a[href="'+pagename+'"]').parent().addClass('active');
+})
+</script>
