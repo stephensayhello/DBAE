@@ -9,17 +9,16 @@ import de.classes.Kunde;
 import de.classes.Nutzer;
 import de.datenbank.DBConnection;
 
-public class Nutzeroperations {
+public class NutzerOperations {
 
-	final String Nutzeranlegen = "INSERT INTO nutzer VALUES (?, ?, ?)";
+	public final static String Nutzeranlegen = "INSERT INTO nutzer VALUES (?, ?, ?)";
 	
 
-	public void anlegen(Nutzer nutzer) {
+	public static void anlegen(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
 
 		try {
 			PreparedStatement pst = con.prepareStatement(Nutzeranlegen);
-			
 			pst.setInt(1, nutzer.getNutzer_id());
 			pst.setString(2, nutzer.getEmail());
 			pst.setString(3, nutzer.getPasswort());
@@ -32,7 +31,7 @@ public class Nutzeroperations {
 		}
 	}
 
-	public int hoechsteID() {
+	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id= 0;
 		try {

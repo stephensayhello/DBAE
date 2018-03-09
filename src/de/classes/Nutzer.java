@@ -24,15 +24,11 @@ public class Nutzer {
 
 	private int nutzer_id;
 
-	
-
 	public Nutzer(int nutzerid, String email, String passwort) {
-		
 
 		this.nutzer_id = nutzerid;
 		this.email = email;
 		this.passwort = passwort;
-		
 
 	}
 

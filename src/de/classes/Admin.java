@@ -7,7 +7,7 @@ package de.classes;
 public class Admin extends Nutzer {
 
 	public Admin(int nutzer_id, String email, String passwort) {
-		super( email, passwort);
+		super( nutzer_id, email, passwort);
 		// TODO Auto-generated constructor stub
 	}
 
