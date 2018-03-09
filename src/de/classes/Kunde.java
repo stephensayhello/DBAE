@@ -23,9 +23,14 @@ public class Kunde extends Nutzer {
 	 */
 	private boolean neukunde;
 
-	private String adresse;
+	private Adresse adresse;
 
-	private String lieferadresse;
+	private Adresse lieferadresse;
+	
+	private String vorname;
+	private String nachname;
+	private String passwort;
+	
 
 	// get und set Methoden.
 
@@ -47,7 +52,39 @@ public class Kunde extends Nutzer {
 
 	// konstruktor
 
-	public Kunde(int knr, String name, String adresse, String email, Zahlung zahlung, boolean neukunde) {
+	public String getVorname() {
+		return vorname;
+	}
+
+	public void setVorname(String vorname) {
+		this.vorname = vorname;
+	}
+
+	public String getNachname() {
+		return nachname;
+	}
+
+	public void setNachname(String nachname) {
+		this.nachname = nachname;
+	}
+
+	public String getPasswort() {
+		return passwort;
+	}
+
+	public void setPasswort(String passwort) {
+		this.passwort = passwort;
+	}
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
+	}
+
+	public Kunde(int knr, String name, Adresse adresse, String email, Zahlung zahlung, boolean neukunde) {
 
 		this.setKundennr(knr);
 		this.setName(name);
@@ -56,5 +93,9 @@ public class Kunde extends Nutzer {
 		this.setZahlung(zahlung);
 		this.neukunde = true;
 
+	}
+
+	public Kunde() {
+		// TODO Auto-generated constructor stub
 	}
 }

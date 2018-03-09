@@ -35,13 +35,6 @@ abstract class Nutzer {
 		this.name = name;
 	}
 
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
 
 	public String getEmail() {
 		return email;

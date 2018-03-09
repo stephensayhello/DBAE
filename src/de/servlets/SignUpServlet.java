@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.classes.Adresse;
+import de.classes.Kunde;
+
 /**
- * Servlet implementation class ProductServlet
+ * Servlet implementation class SignUpServlet
  */
-@WebServlet("/ProductServlet")
-public class ProductServlet extends HttpServlet {
+@WebServlet("/SignUpServlet")
+public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductServlet() {
+    public SignUpServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +37,26 @@ public class ProductServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String vorname = (String) request.getAttribute("vorname");
+		String nachname = (String) request.getAttribute("nachname");
+		String passwort = (String) request.getAttribute("psw");
+		String strasse = (String) request.getAttribute("strasse");
+		String plz = (String) request.getAttribute("postleitzahl");
+		String hausnr = (String) request.getAttribute("hausnummer");
+		String ort = (String) request.getAttribute("ort");
+		
+		Adresse adresse = new Adresse(strasse, hausnr, plz, ort );
+		
+		Kunde kunde = new Kunde();
+		kunde.setVorname(vorname);
+		kunde.setNachname(nachname);
+		kunde.setPasswort(passwort);
+		kunde.setAdresse(adresse);
+		
+		
+		
+		
+		
 	}
 
 }

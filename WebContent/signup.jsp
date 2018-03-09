@@ -12,7 +12,7 @@
 <body>
 	<a:navigation></a:navigation>
 
-	<form action="/action_page.php" style="border: 1px solid #ccc">
+	<form action="SignUpServlet" method="post" style="border: 1px solid #ccc">
 		<div class="container">
 			<h1>Sign Up</h1>
 			<p>Please fill in this form to create an account.</p>
@@ -35,6 +35,9 @@
 					placeholder="Hausnummer" name="hausnummer" required size=3>
 				<label for="postleitzahl"><b>Postleitzahl</b></label> <input
 					type="text" placeholder="Postleitzahl" name="postleitzahl" required
+					size=3>
+					<label for="ort"><b>Ort</b></label> <input
+					type="text" placeholder="Ort" name="ort" required
 					size=3>
 			</div>
 			<div class="pw">
