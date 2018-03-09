@@ -22,7 +22,7 @@ public class KundenOperations {
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(anlegenKunde);
-			pst.setString(1, "");
+			pst.setInt(1, kunde.getKundennr());
 			
 			
 		} catch (SQLException e) {

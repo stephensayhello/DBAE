@@ -17,23 +17,11 @@ abstract class Nutzer {
 	/**
 	 *@param Der Name des Nutzers.
 	 */
-	private String name;
-	/**
-	 *@param Die Adresse des Nutzers. 
-	 */
-	private String adresse;
-	/**
-	 *@param Die Email Adresse. 
-	 */
 	private String email;
+	
+	private String passwort;
+	
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 
 	public String getEmail() {
@@ -42,6 +30,14 @@ abstract class Nutzer {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPasswort() {
+		return passwort;
+	}
+
+	public void setPasswort(String passwort) {
+		this.passwort = passwort;
 	}
 	
 	

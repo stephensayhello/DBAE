@@ -25,7 +25,7 @@ public class Admin extends Nutzer {
 	}
 	
 	public Admin(String name, String email, int adminkennung) {
-		this.setName(name);
+		
 		this.setEmail(email);
 		this.setAdminkennung(adminkennung);
 		

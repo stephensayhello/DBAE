@@ -29,7 +29,7 @@ public class Kunde extends Nutzer {
 	
 	private String vorname;
 	private String nachname;
-	private String passwort;
+
 	
 
 	// get und set Methoden.
@@ -68,13 +68,6 @@ public class Kunde extends Nutzer {
 		this.nachname = nachname;
 	}
 
-	public String getPasswort() {
-		return passwort;
-	}
-
-	public void setPasswort(String passwort) {
-		this.passwort = passwort;
-	}
 
 	public Adresse getAdresse() {
 		return adresse;
@@ -84,10 +77,9 @@ public class Kunde extends Nutzer {
 		this.adresse = adresse;
 	}
 
-	public Kunde(int knr, String name, Adresse adresse, String email, Zahlung zahlung, boolean neukunde) {
+	public Kunde(int knr, Adresse adresse, String email, Zahlung zahlung, boolean neukunde) {
 
 		this.setKundennr(knr);
-		this.setName(name);
 		this.setAdresse(adresse);
 		this.setEmail(email);
 		this.setZahlung(zahlung);

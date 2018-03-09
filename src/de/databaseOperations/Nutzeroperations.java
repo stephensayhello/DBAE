@@ -1,14 +1,38 @@
 package de.databaseOperations;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import de.classes.Kunde;
+import de.datenbank.DBConnection;
+
 public class Nutzeroperations {
-	final String Nutzeranlegen = "";
+	static int counter = 0;
+	final String Nutzeranlegen = "INSERT INTO nutzer VALUES ?, ?, ?";
 
 	public Nutzeroperations() {
-		// TODO Auto-generated constructor stub
+		counter++;
 	}
 
-	public void anlegen() {
+	public void anlegen(Kunde kunde) {
+		Connection con = DBConnection.getConnection();
 		
+		try {
+			PreparedStatement pst = con.prepareStatement(Nutzeranlegen);
+			pst.setInt(1, counter);
+			kunde.setKundennr(counter);
+			pst.setString(2, kunde.getEmail() );
+			pst.setString(3, kunde.getPasswort());
+			
+			pst.executeQuery();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
