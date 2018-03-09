@@ -2,6 +2,7 @@ package testpackage;
 
 import de.classes.Adresse;
 import de.classes.Kunde;
+import de.classes.Nutzer;
 import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
@@ -23,6 +24,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 		erstelleTestKunde();
+		
 	}
 
 //	public static void main(String[] args) {

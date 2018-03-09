@@ -11,6 +11,8 @@ import de.datenbank.DBConnection;
 public class KundenOperations {
 
 	public final static String anlegenKunde = "INSERT INTO kunde VALUES (?,?,?,?)";
+	
+	
 
 	public static void anlegen(Kunde kunde) {
 

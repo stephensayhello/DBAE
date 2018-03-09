@@ -13,6 +13,8 @@ public class NutzerOperations {
 
 	public final static String Nutzeranlegen = "INSERT INTO nutzer VALUES (?, ?, ?)";
 	
+	public final static String Passwortabfragen = "SELECT passwort FROM nutzer WHERE email= ?";
+	
 
 	public static void anlegen(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
@@ -24,11 +26,14 @@ public class NutzerOperations {
 			pst.setString(3, nutzer.getPasswort());
 
 			pst.execute();
+			con.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+
 	}
 
 	public static int hoechsteID() {
@@ -52,5 +57,43 @@ public class NutzerOperations {
 		System.out.println(id);
 		return id;
 	}
+	/**
+	 * 
+	 * Diese Methode überprüft das Passwort des Nutzers beim Login.
+	 * @param nutzer der zu prüfende Nutzer.
+	 * @return das Passwort ist richtig / oder falsch.
+	 */
+	
+	public  static boolean login( Nutzer nutzer) {
+		boolean passwortabfrage = false;
+		String passwort = "";
+		Connection con = DBConnection.getConnection();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(Passwortabfragen);
+			pst.setString(1, nutzer.getEmail());
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				passwort = rs.getString(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if( nutzer.getPasswort().contains(passwort)) {
+			passwortabfrage = true;
+		} else {
+			// Tue nichts.
+		}
+		return passwortabfrage;
+	}
+	
+	
+	
+	
+	
 	
 }
