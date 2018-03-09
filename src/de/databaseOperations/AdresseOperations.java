@@ -2,6 +2,7 @@ package de.databaseOperations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import de.classes.Adresse;
@@ -22,13 +23,30 @@ public class AdresseOperations {
 			pst.setInt(3, adresse.getHausnummer());
 			pst.setInt(4, adresse.getPlz());
 			pst.setString(5, adresse.getOrt());
-			
+
 			pst.execute();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static int hoechsteID() {
+		Connection con = DBConnection.getConnection();
+		int id = 0;
+		try {
+			PreparedStatement pst = con.prepareStatement("SELECT MAX(adress_id) FROM adresse");
+
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			id = rs.getInt(1);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		id++;
+		return id;
 	}
 
 }

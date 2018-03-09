@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import de.databaseOperations.AdresseOperations;
 import de.datenbank.DBConnection;
 
 public class Adresse {
@@ -16,7 +17,7 @@ public class Adresse {
 	private int adress_id;
 	
 	public Adresse(String strasse, int hausnummer, int Plz, String ort) {
-		this.adress_id = hoechsteID();
+		this.adress_id = AdresseOperations.hoechsteID();
 		this.strasse = strasse;
 		this.hausnummer = hausnummer;
 		this.plz = Plz;
@@ -61,22 +62,7 @@ public class Adresse {
 		this.ort = ort;
 	}
 
-	public static int hoechsteID() {
-		Connection con = DBConnection.getConnection();
-		int id = 0;
-		try {
-			PreparedStatement pst = con.prepareStatement("SELECT MAX(adress_id) FROM adresse");
-
-			ResultSet rs = pst.executeQuery();
-			rs.next();
-			id = rs.getInt(1);
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		id++;
-		return id;
-	}
+	
 
 	public int getAdress_id() {
 		return adress_id;

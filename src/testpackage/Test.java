@@ -13,7 +13,7 @@ public class Test {
 	
 		Adresse adresse = new Adresse("strasse", 88, 1111, "einort");
 		
-		Kunde kunde = new Kunde(NutzerOperations.hoechsteID() ,"email", "passwort", adresse, "vorname", "nachname");
+		Kunde kunde = new Kunde("email", "passwort", adresse, "vorname", "nachname");
 		
 		KundenOperations.anlegen(kunde);
 		

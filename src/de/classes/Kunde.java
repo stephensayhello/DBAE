@@ -1,5 +1,8 @@
 package de.classes;
 
+import de.databaseOperations.KundenOperations;
+import de.databaseOperations.NutzerOperations;
+
 public class Kunde extends Nutzer {
 
 	private Adresse adresse;
@@ -8,6 +11,12 @@ public class Kunde extends Nutzer {
 
 	public Kunde(int kundennr, String passwort, String email, Adresse adresse, String vorname, String nachname) {
 		super(kundennr, email, passwort);
+		this.adresse = adresse;
+		this.vorname = vorname;
+		this.nachname = nachname;
+	}
+	public Kunde( String passwort, String email, Adresse adresse, String vorname, String nachname) {
+		super(NutzerOperations.hoechsteID(), email, passwort);
 		this.adresse = adresse;
 		this.vorname = vorname;
 		this.nachname = nachname;

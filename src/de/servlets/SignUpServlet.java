@@ -45,7 +45,7 @@ public class SignUpServlet extends HttpServlet {
 		String hausnr = (String) request.getAttribute("hausnummer");
 		String ort = (String) request.getAttribute("ort");
 		
-		Adresse adresse = new Adresse(strasse, hausnr, plz, ort );
+		
 		
 	
 		
