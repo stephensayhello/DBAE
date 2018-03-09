@@ -10,7 +10,7 @@ public class Warenkorb {
 	/**
 	 * Der Account, der den Warenkorb bestellt.
 	 */
-	private Account account;
+	private Kunde kunde;
 	
 	public List<Produkte> getInhalt() {
 		return inhalt;
@@ -20,12 +20,7 @@ public class Warenkorb {
 		this.inhalt = inhalt;
 	}
 
-	public Account getAccount() {
-		return account;
-	}
+	
 
-	public void setAccount(Account account) {
-		this.account = account;
-	}
 
 }

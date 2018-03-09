@@ -6,7 +6,7 @@ public class Bestellung {
 	
 	private Zahlung zahung;
 	
-	private Account account;
+	private Kunde kunde;
 
 	public Bestellung() {
 		// TODO Auto-generated constructor stub
