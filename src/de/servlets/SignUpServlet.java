@@ -47,11 +47,7 @@ public class SignUpServlet extends HttpServlet {
 		
 		Adresse adresse = new Adresse(strasse, hausnr, plz, ort );
 		
-		Kunde kunde = new Kunde();
-		kunde.setVorname(vorname);
-		kunde.setNachname(nachname);
-		kunde.setPasswort(passwort);
-		kunde.setAdresse(adresse);
+	
 		
 		
 		

@@ -2,38 +2,56 @@ package de.databaseOperations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import de.classes.Kunde;
+import de.classes.Nutzer;
 import de.datenbank.DBConnection;
 
 public class Nutzeroperations {
-	static int counter = 0;
-	final String Nutzeranlegen = "INSERT INTO nutzer VALUES ?, ?, ?";
 
-	public Nutzeroperations() {
-		counter++;
-	}
+	final String Nutzeranlegen = "INSERT INTO nutzer VALUES (?, ?, ?)";
+	
 
-	public void anlegen(Kunde kunde) {
+	public void anlegen(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
-		
+
 		try {
 			PreparedStatement pst = con.prepareStatement(Nutzeranlegen);
-			pst.setInt(1, counter);
-			kunde.setKundennr(counter);
-			pst.setString(2, kunde.getEmail() );
-			pst.setString(3, kunde.getPasswort());
 			
-			pst.executeQuery();
-			
-			
-			
+			pst.setInt(1, nutzer.getNutzer_id());
+			pst.setString(2, nutzer.getEmail());
+			pst.setString(3, nutzer.getPasswort());
+
+			pst.execute();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
+	public int hoechsteID() {
+		Connection con = DBConnection.getConnection();
+		int id= 0;
+		try {
+			PreparedStatement pst = con.prepareStatement("SELECT MAX(nutzer_id) FROM nutzer");
+			
+			  ResultSet rs  = pst.executeQuery();
+			  rs.next();
+			  id= rs.getInt(1);
+			  
+			  
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(id);
+		id++;
+		System.out.println(id);
+		return id;
+	}
 	
 }

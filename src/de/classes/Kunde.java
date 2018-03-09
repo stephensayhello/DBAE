@@ -7,6 +7,11 @@ package de.classes;
  *
  */
 public class Kunde extends Nutzer {
+	public Kunde(int nutzer_id, String email, String passwort) {
+		super( email, passwort);
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * @param kundenr:
 	 *            Die Kundennr.
@@ -77,17 +82,7 @@ public class Kunde extends Nutzer {
 		this.adresse = adresse;
 	}
 
-	public Kunde(int knr, Adresse adresse, String email, Zahlung zahlung, boolean neukunde) {
+	
 
-		this.setKundennr(knr);
-		this.setAdresse(adresse);
-		this.setEmail(email);
-		this.setZahlung(zahlung);
-		this.neukunde = true;
-
-	}
-
-	public Kunde() {
-		// TODO Auto-generated constructor stub
-	}
+	
 }

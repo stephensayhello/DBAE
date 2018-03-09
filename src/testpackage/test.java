@@ -1,13 +1,19 @@
 package testpackage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
-import de.datenbank.DBConnection;
+
+import de.classes.Nutzer;
+import de.databaseOperations.Nutzeroperations;
+
 
 public class test {
 
 	public static void main(String[] args) {
-		Nutzer nutzer = new nutzer();
+		Nutzeroperations nutzeroperation = new Nutzeroperations();
+		int id = nutzeroperation.hoechsteID();
+		Nutzer nutzer = new Nutzer( id, "arsch@yahoo.de", "blablabla");
+		
+		
+		nutzeroperation.anlegen(nutzer);
+	}
 }
