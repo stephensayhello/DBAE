@@ -55,7 +55,7 @@ hr {
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .signupbtn {
 	float: left;
-	width: 25%;
+	width: auto;
 	margin: 5px;
 	color: white;
 	
