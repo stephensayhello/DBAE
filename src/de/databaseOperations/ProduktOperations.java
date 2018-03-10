@@ -3,7 +3,10 @@ package de.databaseOperations;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+<<<<<<< HEAD
 import java.sql.ResultSetMetaData;
+=======
+>>>>>>> 2a9bd7d58f12804d652f9e2ac743024d48b03fd7
 import java.sql.SQLException;
 
 
@@ -27,8 +30,14 @@ public class ProduktOperations {
 			pst.setInt(2, produkt.getMenge());
 			pst.setString(3, produkt.getName());
 			pst.setString(4, produkt.getBeschreibung());
+<<<<<<< HEAD
 			pst.setInt(5, id);
 			pst.setString(6, produkt.getKategorie());
+=======
+			//set produkt_id
+			pst.setInt(5, produkt.getProdukt_id());
+			pst.setString(6, produkt.getArt());
+>>>>>>> 2a9bd7d58f12804d652f9e2ac743024d48b03fd7
 
 			pst.execute();
 			con.close();
@@ -40,6 +49,28 @@ public class ProduktOperations {
 		
 
 	}
+	
+//	public static int hoechsteID() {
+//		Connection con = DBConnection.getConnection();
+//		int id= 0;
+//		try {
+//			PreparedStatement pst = con.prepareStatement("SELECT MAX(produkt_id) FROM produkte");
+//			
+//			  ResultSet rs  = pst.executeQuery();
+//			  rs.next();
+//			  id= rs.getInt(1);
+//			  
+//			  
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println(id);
+//		id++;
+//		System.out.println(id);
+//		return id;
+//	}
 
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
