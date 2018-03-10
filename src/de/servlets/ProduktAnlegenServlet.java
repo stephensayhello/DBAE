@@ -1,6 +1,11 @@
 package de.servlets;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import de.classes.Adresse;
 import de.classes.Kunde;
 import de.classes.Produkte;
+import de.datenbank.DBConnection;
+import de.databaseOperations.*;
 
 /**
  * Servlet implementation class ProduktAnlegenServlet
@@ -41,12 +48,34 @@ public class ProduktAnlegenServlet extends HttpServlet {
 		String art = (String) request.getAttribute("p_art");
 		int groesse = Integer.parseInt((String) request.getAttribute("p_groesse"));
 		
+		int produkt_id = 1;
 		
-		Produkte produkt = new Produkte(art, name, beschreibung, preis, groesse, menge );
-		
+		Produkte produkt = new Produkte(art, name, beschreibung, preis, groesse, menge, produkt_id);
 		
 		
 	}
+//
+//	public static int hoechsteID() {
+//		Connection con = DBConnection.getConnection();
+//		int id= 0;
+//		try {
+//			PreparedStatement pst = con.prepareStatement("SELECT MAX(produkt_id) FROM produkt");
+//			
+//			  ResultSet rs  = pst.executeQuery();
+//			  rs.next();
+//			  id= rs.getInt(1);
+//			  
+//			  
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println(id);
+//		id++;
+//		System.out.println(id);
+//		return id;
+//	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

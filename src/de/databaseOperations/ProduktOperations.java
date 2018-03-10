@@ -2,6 +2,7 @@ package de.databaseOperations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -22,6 +23,7 @@ public class ProduktOperations {
 			pst.setString(3, produkt.getName());
 			pst.setString(4, produkt.getBeschreibung());
 			//set produkt_id
+			pst.setInt(5, produkt.getProdukt_id());
 			pst.setString(6, produkt.getArt());
 
 			pst.execute();
@@ -34,6 +36,28 @@ public class ProduktOperations {
 		
 
 	}
+	
+//	public static int hoechsteID() {
+//		Connection con = DBConnection.getConnection();
+//		int id= 0;
+//		try {
+//			PreparedStatement pst = con.prepareStatement("SELECT MAX(produkt_id) FROM produkte");
+//			
+//			  ResultSet rs  = pst.executeQuery();
+//			  rs.next();
+//			  id= rs.getInt(1);
+//			  
+//			  
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println(id);
+//		id++;
+//		System.out.println(id);
+//		return id;
+//	}
 
 	public ProduktOperations() {
 		// TODO Auto-generated constructor stub

@@ -123,11 +123,28 @@ public class Produkte {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public int getProdukt_id() {
+		return produkt_id;
+	}
 
+	public void setProdukt_id(int produkt_id) {
+		this.produkt_id = produkt_id;
+	}
 	// Konstruktoren.
 
-	public Produkte(String art2, String name2, String beschreibung2, double preis2, int groesse2, int menge2) {
+	
 
+	public Produkte(String art, String name, String beschreibung, double preis, int groesse, int menge, int produkt_id) {
+
+		this.art=art;
+		this.name=name;
+		this.beschreibung=beschreibung;
+		this.preis=preis;
+		this.groesse=groesse;
+		this.menge=menge;
+		this.produkt_id=produkt_id;
+		
 	}
 
 	// Methoden
