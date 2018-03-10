@@ -19,8 +19,8 @@
 		s2.innerHTML = "";
 		if (s1.value == "shirt") {
 			//array besteht aus "value|label" die dann ins slct2 eingefügt werden
-			var optionArray = [ "|", "xs|XS", "s|S", "m|M", "l|L", "xl|XL",
-					"xxl|XXL" ];
+			var optionArray = [ "|", "40|42", "44|46 ", "48|50", " 52|54 ", "56|58",
+					" 60|62" ];
 		} else if (s1.value == "hose") {
 			var optionArray = [ "|", "28|28", "30|30", "32|32", "34|34",
 					"36|36", "38|38" ];
@@ -46,7 +46,7 @@
 
 	<div class="name">
 
-		<form action="ProduktAnlegenServlet" method="get">
+		<form action="ProduktAnlegenServlet" method="post">
 			<h1>Produkt hinzufügen</h1>
 			<p>bitte ausfüllen um produkt hinzuzufügen</p>
 			<hr>

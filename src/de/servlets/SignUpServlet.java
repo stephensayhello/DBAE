@@ -37,7 +37,7 @@ public class SignUpServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String vorname = (String) request.getAttribute("vorname");
+		String vorname =  (String) request.getAttribute("vorname");
 		String nachname = (String) request.getAttribute("nachname");
 		String passwort = (String) request.getAttribute("psw");
 		String strasse = (String) request.getAttribute("strasse");
@@ -45,7 +45,7 @@ public class SignUpServlet extends HttpServlet {
 		String hausnr = (String) request.getAttribute("hausnummer");
 		String ort = (String) request.getAttribute("ort");
 		
-		
+		System.out.println(vorname);
 		
 	
 		

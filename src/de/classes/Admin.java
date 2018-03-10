@@ -67,12 +67,4 @@ public class Admin extends Nutzer {
 	public Produkte anedereDaten(Produkte produkte) {
 		return produkte;
 	}
-	
-	/**
-	 * Diese Methode legte ein neues Produkt p an.
-	 * @return das neue Produkt.
-	 */
-	public Produkte neuPrdoukt() {
-		return new Produkte();
-	}
 }

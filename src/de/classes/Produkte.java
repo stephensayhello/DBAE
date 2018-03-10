@@ -8,16 +8,12 @@ package de.classes;
  */
 public class Produkte {
 	// Attribute
-	/**
-	 * @param ean:
-	 *            Die Produktnummer.
-	 */
-	private int produkt_id;
+
 	/**
 	 * @param art:
 	 *            Produktart.
 	 */
-	private String art;
+	private String kategorie;
 	/**
 	 * @param name:
 	 *            Produktname.
@@ -58,14 +54,14 @@ public class Produkte {
 	 *            der Produktstatus zB. nicht lieferbar.
 	 */
 	private String status;
-	
-
-	public String getArt() {
-		return art;
+	// get und set
+	public void setKathegorie(String kathegorie) {
+		this.kategorie = kathegorie;
 	}
-
-	public void setArt(String art) {
-		this.art = art;
+	
+	
+	public String getKategorie() {
+		return kategorie;
 	}
 
 	public String getName() {
@@ -126,8 +122,13 @@ public class Produkte {
 
 	// Konstruktoren.
 
-	public Produkte(String art2, String name2, String beschreibung2, double preis2, int groesse2, int menge2) {
-
+	public Produkte(String name, String beschreibung, String kategorie, double preis, int groesse, int menge) {
+		this.name= name;
+		this.beschreibung = beschreibung;
+		this.kategorie = kategorie;
+		this.preis = preis;
+		this.groesse = groesse;
+		this.menge = menge;
 	}
 
 	// Methoden

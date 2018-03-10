@@ -1,15 +1,16 @@
 package de.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import de.classes.Adresse;
-import de.classes.Kunde;
 import de.classes.Produkte;
+import de.databaseOperations.ProduktOperations;
 
 /**
  * Servlet implementation class ProduktAnlegenServlet
@@ -31,19 +32,6 @@ public class ProduktAnlegenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String name = (String) request.getAttribute("p_name");
-		String beschreibung = (String) request.getAttribute("p_bezeichnung");
-		
-		String s_preis=(String) request.getAttribute("p_preis");
-		double preis = Double.parseDouble(s_preis);
-		
-		int menge = Integer.parseInt( (String) request.getAttribute("p_menge"));
-		String art = (String) request.getAttribute("p_art");
-		int groesse = Integer.parseInt((String) request.getAttribute("p_groesse"));
-		
-		
-		Produkte produkt = new Produkte(art, name, beschreibung, preis, groesse, menge );
-		
 		
 		
 	}
@@ -52,8 +40,25 @@ public class ProduktAnlegenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String name = request.getParameter("p_name");
+		String beschreibung = request.getParameter("p_bezeichnung");
+		
+		String s_preis= request.getParameter("p_preis");
+		 double preis = Double.parseDouble(s_preis);
+		
+		int menge =  Integer.parseInt(request.getParameter("p_menge"));
+		String art =  request.getParameter("p_art");
+		int groesse = Integer.parseInt( request.getParameter("p_groesse"));
+		PrintWriter out = response.getWriter();
+		String ausgabe = "Das Produkt wurde erfolgreich angelegt.";
+		// Die Übergabe der Kathegorie funktioniert nicht.
+		Produkte produkt = new Produkte(art, name, beschreibung, 19.90, groesse, menge );
+		produkt.setKathegorie("Mimi");
+		ProduktOperations.anlegen(produkt);
+		
+		request.getRequestDispatcher("produkt_anlegen.jsp").include(request, response);
+		
+		
 	}
 
 }
