@@ -3,7 +3,7 @@ package de.classes;
 /**
  * Die Klasse bildet das Produkt p ab.
  * 
- * @author Paul Blanke
+ * @author Paul Blanke, stephen Galla
  *
  */
 public class Produkte {
@@ -13,6 +13,11 @@ public class Produkte {
 	 *            Die Produktnummer.
 	 */
 	private int produkt_id;
+	/**
+	 * @param art:
+	 *            Produktart.
+	 */
+	private String art;
 	/**
 	 * @param name:
 	 *            Produktname.
@@ -25,7 +30,7 @@ public class Produkte {
 	private String beschreibung;
 	/**
 	 * @param pfad:
-	 *            absoluter Pfad für ein späteres Produkt Bild.
+	 *            absoluter Pfad fï¿½r ein spï¿½teres Produkt Bild.
 	 */
 
 	/**
@@ -35,7 +40,7 @@ public class Produkte {
 	private double preis;
 	/**
 	 * @param groesse:
-	 *            Die Produktgröße bzw. l, 44 etc.
+	 *            Die Produktgrï¿½ï¿½e bzw. l, 44 etc.
 	 */
 	private int groesse;
 	/**
@@ -53,6 +58,15 @@ public class Produkte {
 	 *            der Produktstatus zB. nicht lieferbar.
 	 */
 	private String status;
+	
+
+	public String getArt() {
+		return art;
+	}
+
+	public void setArt(String art) {
+		this.art = art;
+	}
 
 	public String getName() {
 		return name;
@@ -112,16 +126,16 @@ public class Produkte {
 
 	// Konstruktoren.
 
-	public Produkte() {
+	public Produkte(String art2, String name2, String beschreibung2, double preis2, int groesse2, int menge2) {
 
 	}
 
 	// Methoden
 	/**
-	 * Die Methode verändert den Produktstatus
+	 * Die Methode verï¿½ndert den Produktstatus
 	 * 
 	 * @param wechsel:
-	 *            Indikator für Wechsel.
+	 *            Indikator fï¿½r Wechsel.
 	 * @return der neue Status.
 	 */
 	public String getStatus(int wechsel) {
@@ -129,7 +143,7 @@ public class Produkte {
 		if (wechsel == 1) {
 			this.setStatus("lieferbar");
 		} else if (wechsel == 2) {
-			this.setStatus("Vorübergehendend nicht verfügbar.");
+			this.setStatus("Vorï¿½bergehendend nicht verfï¿½gbar.");
 		} else if (wechsel == 3) {
 			this.setStatus("Zur zeit nicht lieferbar.");
 		}
