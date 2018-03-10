@@ -120,16 +120,9 @@ public class Produkte {
 		this.status = status;
 	}
 	
-	public int getProdukt_id() {
-		return produkt_id;
-	}
-
-	public void setProdukt_id(int produkt_id) {
-		this.produkt_id = produkt_id;
-	}
 	// Konstruktoren.
 
-<<<<<<< HEAD
+
 	public Produkte(String name, String beschreibung, String kategorie, double preis, int groesse, int menge) {
 		this.name= name;
 		this.beschreibung = beschreibung;
@@ -137,20 +130,11 @@ public class Produkte {
 		this.preis = preis;
 		this.groesse = groesse;
 		this.menge = menge;
-=======
 	
 
-	public Produkte(String art, String name, String beschreibung, double preis, int groesse, int menge, int produkt_id) {
 
-		this.art=art;
-		this.name=name;
-		this.beschreibung=beschreibung;
-		this.preis=preis;
-		this.groesse=groesse;
-		this.menge=menge;
-		this.produkt_id=produkt_id;
 		
->>>>>>> 2a9bd7d58f12804d652f9e2ac743024d48b03fd7
+
 	}
 
 	// Methoden
