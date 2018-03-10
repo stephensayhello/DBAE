@@ -33,11 +33,14 @@ public class ProduktAnlegenServlet extends HttpServlet {
 		
 		String name = (String) request.getAttribute("p_name");
 		String beschreibung = (String) request.getAttribute("p_bezeichnung");
-		double preis = (double) request.getAttribute("p_preis");
-		int menge = (int) request.getAttribute("p_menge");
+		
+		String s_preis=(String) request.getAttribute("p_preis");
+		double preis = Double.parseDouble(s_preis);
+		
+		int menge = Integer.parseInt( (String) request.getAttribute("p_menge"));
 		String art = (String) request.getAttribute("p_art");
-		int groesse = (int) request.getAttribute("p_groesse");
-		//String ort = (String) request.getAttribute("ort");
+		int groesse = Integer.parseInt((String) request.getAttribute("p_groesse"));
+		
 		
 		Produkte produkt = new Produkte(art, name, beschreibung, preis, groesse, menge );
 		
