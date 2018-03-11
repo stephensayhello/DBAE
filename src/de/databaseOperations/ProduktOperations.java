@@ -73,7 +73,7 @@ public class ProduktOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(ANLEGEN_SCHUHE);
+			PreparedStatement pst = con.prepareStatement(ANLEGEN_HOSE);
 			pst.setInt(1, ((Produkt) hose).getID());
 			pst.setInt(2, hose.getGroesse());
 
@@ -90,10 +90,7 @@ public class ProduktOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			System.out.println("HOSE:");
-			System.out.println(((Produkt) shirt).getID());
-			System.out.println(shirt.getGroesse());
-			PreparedStatement pst = con.prepareStatement(ANLEGEN_SCHUHE);
+			PreparedStatement pst = con.prepareStatement(ANLEGEN_SHIRT);
 			pst.setInt(1, ((Produkt) shirt).getID());
 			pst.setString(2, shirt.getGroesse());
 			pst.execute();
