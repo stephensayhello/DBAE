@@ -61,10 +61,7 @@ hr {
 	
 }
 
-/* Add padding to container elements */
-.container {
-	padding: 16px;
-}
+
 
 /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
