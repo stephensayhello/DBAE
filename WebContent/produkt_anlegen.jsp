@@ -9,36 +9,34 @@
 <title>Insert title here</title>
 <a:bootstrap></a:bootstrap>
 
-<script>
-	// auswahl funktion
-	function auswahl(s1, s2) {
-		var s1 = document.getElementById(s1);
-		var s2 = document.getElementById(s2);
 
-		//initialisierung von der größenauswahl als leer
-		s2.innerHTML = "";
-		if (s1.value == "shirt") {
-			//array besteht aus "value|label" die dann ins slct2 eingefügt werden
-			var optionArray = [ "|", "40|42", "44|46 ", "48|50", " 52|54 ", "56|58",
-					" 60|62" ];
-		} else if (s1.value == "hose") {
-			var optionArray = [ "|", "28|28", "30|30", "32|32", "34|34",
-					"36|36", "38|38" ];
-		} else if (s1.value == "schuhe") {
-			var optionArray = [ "|", "36|36", "37|37", "38|38", "39|39",
-					"40|40", "41|41", "42|42", "43|43", "44|44", "45|45",
-					"46|46", "47|47" ];
+<script type="text/javascript">
+	function adjustSizeForProduct(kategorie) {
+		var specificSizes = [];
+
+		if (kategorie == 1) {
+			specificSizes = [ "S", "M", "L", "XL", "XXL" ];
+		} else if (kategorie == 2) {
+			specificSizes = [ 28, 30, 32, 34, 36, 38, 40, 42 ];
+		} else {
+			for (var i = 38; i < 46; i++) {
+				specificSizes.push(i);
+			}
 		}
-		//"VALUE|label" mit split an der stelle | aufteilen und in array setzen 
-		for ( var option in optionArray) {
-			var pair = optionArray[option].split("|");
-			var newOption = document.createElement("option");
-			newOption.value = pair[0];
-			newOption.innerHTML = pair[1];
-			s2.options.add(newOption);
+		
+		document.getElementById('p_groesse').options.length = 0;
+
+		var sel = document.getElementById('p_groesse');
+		for (var i = 0; i < specificSizes.length; i++) {
+			var opt = document.createElement('option');
+			opt.innerHTML = specificSizes[i];
+			opt.value = specificSizes[i];
+			sel.appendChild(opt);
 		}
 	}
 </script>
+
+
 
 </head>
 <body>
@@ -50,35 +48,27 @@
 			<h1>Produkt hinzufügen</h1>
 			<p>bitte ausfüllen um produkt hinzuzufügen</p>
 			<hr>
-			<div >
-				<label >Bezeichnung</label> <input type="text" name="p_name">
+			<div>
+				<label>Bezeichnung</label> <input type="text" name="p_name">
 
-				<label >Beschreibung</label> <input type="text" name="p_beschreibung">
+				<label>Beschreibung</label> <input type="text" name="p_beschreibung">
+				<label>Preis</label> <input type="number" step="0.01" name="p_preis">
+				<label>Menge</label> <input type="number" name="p_menge">
 
-				<label>Preis</label> 
-				<input type="number" step="0.01" name="p_preis">
-				
-				<label>Menge</label>
-				<input type="number" name="p_menge">
-				
-<div>
-				<!-- select box für produkte: abhören der auswahl und weiterleitung in auswahl() funktionen -->
-				<label>Kathegorie</label> <select id="p_art" name="p_art"
-					onchange="auswahl(this.id,'p_groesse')">
-					<option value=""></option>
-					<option value="shirt">Shirt</option>
-					<option value="hose">Hose</option>
-					<option value="schuhe">Schuhe</option>
-				</select>
+				<div>
+					<label>Kategorie</label> <select name="p_kategorie"
+						onchange="adjustSizeForProduct(this.value)">
+						<option value=0></option>
+						<option value=1>Shirt</option>
+						<option value=2>Hose</option>
+						<option value=3>Schuhe</option>
+					</select> <label>größe</label> <select id="p_groesse" name="p_groesse"></select>
+				</div>
 
-				<!-- select box für größen -->
-				<label>größe</label> <select id="p_groesse" name="p_groesse"></select>
-</div>
-
-<div>
-				<button type="reset" class="signupbtn">Eingabe löschen</button>
-				<button type="submit" class="signupbtn">Produkt hinzufügen</button>
-</div>
+				<div>
+					<button type="reset" class="signupbtn">Eingabe löschen</button>
+					<button type="submit" class="signupbtn">Produkt hinzufügen</button>
+				</div>
 
 			</div>
 		</form>

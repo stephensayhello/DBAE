@@ -6,17 +6,17 @@ public class Warenkorb {
 	/**
 	 * Eine Liste von Produkten im Warenkorb.
 	 */
-	private List<Produkte> inhalt;
+	private List<Produkt> inhalt;
 	/**
 	 * Der Account, der den Warenkorb bestellt.
 	 */
 	private Kunde kunde;
 	
-	public List<Produkte> getInhalt() {
+	public List<Produkt> getInhalt() {
 		return inhalt;
 	}
 
-	public void setInhalt(List<Produkte> inhalt) {
+	public void setInhalt(List<Produkt> inhalt) {
 		this.inhalt = inhalt;
 	}
 

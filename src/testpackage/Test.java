@@ -3,7 +3,7 @@ package testpackage;
 import de.classes.Adresse;
 import de.classes.Kunde;
 import de.classes.Nutzer;
-import de.classes.Produkte;
+import de.classes.Produkt;
 import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
@@ -27,7 +27,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 
-		mail.SendMailTLS("benjamin.gajewski@yahoo.de", "blabla", "bloblobo");
+		mail.SendMailTLS("benjamin.gajewski@yahoo.de", "blabla", "testtesttest");
 		
 		
 	}

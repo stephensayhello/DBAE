@@ -55,7 +55,7 @@ public class Admin extends Nutzer {
 	 *  Diese Methode loescht ein Produkt.
 	 * @param produkte: das Produkt.
 	 */
-	public void loescheProdukte(Produkte produket) {
+	public void loescheProdukte(Produkt produket) {
 		
 	}
 	/**
@@ -64,7 +64,7 @@ public class Admin extends Nutzer {
 	 * @param produkte: Das ändere Produkt.
 	 * @return das fertige Produkt.
 	 */
-	public Produkte anedereDaten(Produkte produkte) {
+	public Produkt anedereDaten(Produkt produkte) {
 		return produkte;
 	}
 }
