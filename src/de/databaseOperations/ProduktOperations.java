@@ -21,7 +21,7 @@ public class ProduktOperations {
 	
 	public static void anlegen(Produkte produkt) {
 		Connection con = DBConnection.getConnection();
-		int id = hoechsteID();
+		
 
 		try {
 			PreparedStatement pst = con.prepareStatement(anlegenProdukt);
@@ -30,7 +30,7 @@ public class ProduktOperations {
 			pst.setString(3, produkt.getName());
 			pst.setString(4, produkt.getBeschreibung());
 
-			pst.setInt(5, id);
+			pst.setInt(5, produkt.getID());
 			pst.setString(6, produkt.getKategorie());
 
 			pst.execute();

@@ -1,5 +1,7 @@
 package de.classes;
 
+import de.databaseOperations.ProduktOperations;
+
 /**
  * Die Klasse bildet das Produkt p ab.
  * 
@@ -8,7 +10,7 @@ package de.classes;
  */
 public class Produkte {
 	// Attribute
-
+    private int produkt_id; 
 	/**
 	 * @param art:
 	 *            Produktart.
@@ -54,12 +56,36 @@ public class Produkte {
 	 *            der Produktstatus zB. nicht lieferbar.
 	 */
 	private String status;
+	// konstruktor fürs holen aus der db oder anlengen mit id
+	public Produkte(int produkt_id ,String name, String beschreibung, String kategorie, double preis, int groesse, int menge) {
+		
+		this.produkt_id = produkt_id;
+		this.name = name;
+		this.beschreibung = beschreibung;
+		this.kategorie = kategorie;
+		this.preis = preis;
+		this.groesse = groesse;
+		this.menge = menge;
+
+	}
+	// konstruktor fürs anlegen eines produkts
+public Produkte(String name, String beschreibung, String kategorie, double preis, int groesse, int menge) {
+		
+		this.produkt_id = ProduktOperations.hoechsteID();
+		this.name = name;
+		this.beschreibung = beschreibung;
+		this.kategorie = kategorie;
+		this.preis = preis;
+		this.groesse = groesse;
+		this.menge = menge;
+
+	}
+
 	// get und set
 	public void setKathegorie(String kathegorie) {
 		this.kategorie = kathegorie;
 	}
-	
-	
+
 	public String getKategorie() {
 		return kategorie;
 	}
@@ -119,25 +145,10 @@ public class Produkte {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+    public int getID(){
+    	return produkt_id;
+    }
 	
-	// Konstruktoren.
-
-
-	public Produkte(String name, String beschreibung, String kategorie, double preis, int groesse, int menge) {
-		this.name= name;
-		this.beschreibung = beschreibung;
-		this.kategorie = kategorie;
-		this.preis = preis;
-		this.groesse = groesse;
-		this.menge = menge;
-	
-
-
-		
-
-	}
-
-	// Methoden
 	/**
 	 * Die Methode verï¿½ndert den Produktstatus
 	 * 
