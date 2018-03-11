@@ -8,6 +8,7 @@ import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 import de.databaseOperations.ProduktOperations;
+import de.utilities.mail;
 
 public class Test {
 	
@@ -26,7 +27,7 @@ public class Test {
 	
 	public static void main(String[] args) {
 
-		
+		mail.SendMailTLS("benjamin.gajewski@yahoo.de", "blabla", "bloblobo");
 		
 		
 	}

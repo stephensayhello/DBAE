@@ -18,8 +18,8 @@ import javax.mail.internet.MimeMessage;
  */
 public class mail {
 
-	private static final String USERNAME = "username@gmail.com";
-	private static final String PASSWORD = "password";
+	private static final String USERNAME = "sportweb233@gmail.com";
+	private static final String PASSWORD = "Sportweb123";
 
 	public static void SendMailTLS(String recipient, String subject, String text) {
 
