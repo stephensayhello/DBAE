@@ -6,7 +6,7 @@ public class Regex {
 
 	private final static String HAUSNUMMER_REGEX = "[0-9][0-9][0-9a-zA-Z]?|([0-9][0-9a-zA-Z]?)";
 	private final static String POSTLEITZAHL_REGEX = "[0-9][0-9][0-9][0-9][0-9]";
-	private final static String EMAIL_REGEX = "[0-9a-zA-Z]*[@][0-9a-zA-Z][.][a-z][a-z][a-z]?";
+	private final static String EMAIL_REGEX = "[0-9a-zA-Z.]*[@][0-9a-zA-Z][.][a-z][a-z][a-z]?";
 	private final static String PASSWORT_REGEX = "([a-zA-Z_0-9?!]){8,12}";
 	
 

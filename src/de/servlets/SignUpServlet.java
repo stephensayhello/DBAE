@@ -13,6 +13,7 @@ import de.classes.Kunde;
 import de.databaseOperations.KundenOperations;
 import de.logik.Regex;
 import de.utilities.SaltedHash;
+import de.utilities.mail;
 
 /**
  * Servlet implementation class SignUpServlet
@@ -43,6 +44,12 @@ public class SignUpServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -54,7 +61,7 @@ public class SignUpServlet extends HttpServlet {
 		String hausnr = request.getParameter("hausnummer");
 		String ort = request.getParameter("ort");
 		String email = request.getParameter("email");
-		
+		String text = " Herzlich Willkommen bei SportWeb! Sie sind nun registriert.";
 		
 		if (!Regex.pruefeRegexPasswort(passwort)) {
 			request.setAttribute("fehlermeldungPasswort", "Bitte passwort neu eingeben!");
@@ -84,12 +91,15 @@ public class SignUpServlet extends HttpServlet {
 				String saltedHashPassword = SaltedHash.getSaltedHash(passwort);
 				Kunde kunde = new Kunde(saltedHashPassword, email, adresse, vorname, nachname);
 				KundenOperations.anlegen(kunde);
+				mail.SendMailTLS(kunde.getEmail(),"Ihre Regsitrierung bei SportWeb" , text);
 			} catch (Exception e) {
 
 				e.printStackTrace();
 			}
 
 		}
+		
+		
 		request.getRequestDispatcher("signup.jsp").forward(request, response);
 
 	}
