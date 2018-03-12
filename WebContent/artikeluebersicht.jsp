@@ -5,6 +5,8 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="css/generalLayout.css">
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Insert title here</title>
@@ -15,7 +17,7 @@
 
 <div class="clearfix">
 <form action="produkt_anlegen.jsp">
-    <button type="submit" class="signupbtn">produkt anlegen</button> 
+    <button type="submit" class="button-dbae">produkt anlegen</button> 
 </form>
 </div>
 </body>

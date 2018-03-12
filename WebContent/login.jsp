@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/generalLayout.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <a:bootstrap></a:bootstrap>
@@ -17,13 +18,13 @@
 			<p>Please fill in this form to Login.</p>
 			<hr>
 			<div class="login">
-				<label for="nachname"><b>E-mail:</b></label> <input type="text"
+				<label for="nachname"><b>E-mail:</b></label> <input class="input-dbae" type="text"
 					placeholder="E-mail" name="email" required > <label
-					for="psw"><b>Password:</b></label> <input type="password"
+					for="psw"><b>Password:</b></label> <input class="input-dbae" type="password"
 					placeholder="Enter Password" name="psw" required>
 					<div class="clearfix">
 
-				<button type="submit" class="signupbtn">Login</button>
+				<button type="submit" class="button-dbae">Login</button>
 			</div>
 			</div>
 
