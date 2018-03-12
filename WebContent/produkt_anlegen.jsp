@@ -4,9 +4,10 @@
 <!DOCTYPE html >
 <html>
 <head>
-<link rel="stylesheet" href="css/signup.css">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>produkte_anlegen</title>
+<link rel="stylesheet" href="css/produkt_anlegen.css">
 <a:bootstrap></a:bootstrap>
 
 
@@ -23,7 +24,7 @@
 				specificSizes.push(i);
 			}
 		}
-		
+
 		document.getElementById('p_groesse').options.length = 0;
 
 		var sel = document.getElementById('p_groesse');
@@ -48,29 +49,37 @@
 			<h1>Produkt hinzufügen</h1>
 			<p>bitte ausfüllen um produkt hinzuzufügen</p>
 			<hr>
-			<div>
-				<label>Bezeichnung</label> <input type="text" name="p_name">
-
-				<label>Beschreibung</label> <input type="text" name="p_beschreibung">
-				<label>Preis</label> <input type="number" step="0.01" name="p_preis">
-				<label>Menge</label> <input type="number" name="p_menge">
-
-				<div>
-					<label>Kategorie</label> <select name="p_kategorie"
-						onchange="adjustSizeForProduct(this.value)">
-						<option value=0></option>
-						<option value=1>Shirt</option>
-						<option value=2>Hose</option>
-						<option value=3>Schuhe</option>
-					</select> <label>größe</label> <select id="p_groesse" name="p_groesse"></select>
-				</div>
-
-				<div>
-					<button type="reset" class="signupbtn">Eingabe löschen</button>
-					<button type="submit" class="signupbtn">Produkt hinzufügen</button>
-				</div>
+			<div class = "prod0">
+				<label for="p_name">Bezeichnung</label> <input type="text"
+					name="p_name" size=3> <label for="p_beschreibung">Beschreibung</label>
+				<input type="text" name="p_beschreibung" size=3>
+				
 
 			</div>
+			<div class = "prod1">
+
+
+				<label for="p_preis">Preis</label> <input type="number" step="0.01"
+					name="p_preis" size=3> <label for="p_menge">Menge</label> <input
+					type="number" name="p_menge" size=3>
+
+			</div>
+			<div class= "prod3">
+				<label for = "p_kategorie">Kategorie</label> <select name="p_kategorie"
+					onchange="adjustSizeForProduct(this.value)">
+					<option value=0></option>
+					<option value=1>Shirt</option>
+					<option value=2>Hose</option>
+					<option value=3>Schuhe</option>
+				</select> <label>größe</label> <select id="p_groesse" name="p_groesse"></select>
+			</div>
+
+			<div>
+				<button type="reset" class="signupbtn">Eingabe löschen</button>
+				<button type="submit" class="signupbtn">Produkt hinzufügen</button>
+			</div>
+
+
 		</form>
 	</div>
 </body>

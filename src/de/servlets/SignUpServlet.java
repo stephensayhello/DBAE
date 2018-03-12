@@ -54,6 +54,8 @@ public class SignUpServlet extends HttpServlet {
 		String hausnr = request.getParameter("hausnummer");
 		String ort = request.getParameter("ort");
 		String email = request.getParameter("email");
+		
+		
 		if (!Regex.pruefeRegexPasswort(passwort)) {
 			request.setAttribute("fehlermeldungPasswort", "Bitte passwort neu eingeben!");
 		} // hier machen wir noch was geiles, ist eher zu testzwecken
