@@ -22,6 +22,8 @@
 					placeholder="Vorname" name="vorname" required size=3> <label
 					for="nachname"><b>Nachname</b></label> <input type="text"
 					placeholder="Nachname" name="nachname" required size=3>
+					 <label	for="email"><b>Email</b></label> <input type="text"
+					placeholder="Email" name="email" required size=3>
 					<label for="psw"><b>Password</b></label> <input type="password"
 					placeholder="Enter Password" name="psw" required> <label
 					for="psw-repeat"><b>Repeat Password</b></label> <input
@@ -51,7 +53,12 @@
 						style="color: dodgerblue">Terms & Privacy</a>.
 				</p>
 			</div>
-
+            <div>
+            ${fehlermeldungPasswort}
+            ${fehlermeldungEmail}
+            ${fehlermeldungHausnr}
+            ${fehlermeldungplz}
+            </div>
 
 			<div class="clearfix">
 				<button type="button" class="cancelbtn">Cancel</button>

@@ -22,8 +22,8 @@ public class NutzerOperations {
 		try {
 			PreparedStatement pst = con.prepareStatement(Nutzeranlegen);
 			pst.setInt(1, nutzer.getNutzer_id());
-			pst.setString(2, nutzer.getEmail());
-			pst.setString(3, nutzer.getPasswort());
+			pst.setString(2, nutzer.getPasswort());
+			pst.setString(3, nutzer.getEmail());
 
 			pst.execute();
 			con.close();

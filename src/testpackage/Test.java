@@ -8,16 +8,17 @@ import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 import de.databaseOperations.ProduktOperations;
+import de.utilities.SaltedHash;
 import de.utilities.mail;
 
 public class Test {
 	
 	
-	private static void erstelleTestKunde(){
-	
+	private static void erstelleTestKunde() throws Exception{
+	String saltedhash = SaltedHash.getSaltedHash("passwort");
 		Adresse adresse = new Adresse("strasse", 88, 1111, "einort");
 		
-		Kunde kunde = new Kunde("email", "passwort", adresse, "vorname", "nachname");
+		Kunde kunde = new Kunde(saltedhash, "email", adresse, "vorname", "nachname");
 		
 		KundenOperations.anlegen(kunde);
 		
@@ -27,7 +28,12 @@ public class Test {
 	
 	public static void main(String[] args) {
 
-		mail.SendMailTLS("benjamin.gajewski@yahoo.de", "blabla", "testtesttest");
+		try {
+			erstelleTestKunde();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
