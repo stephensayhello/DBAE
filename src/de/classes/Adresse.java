@@ -1,30 +1,24 @@
 package de.classes;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import de.databaseOperations.AdresseOperations;
-import de.datenbank.DBConnection;
 
 public class Adresse {
 
 	private String strasse;
-	private int hausnummer;
+	private String hausnummer;
 	private int plz;
 	private String ort;
 	private int adress_id;
 	
-	public Adresse(String strasse, int hausnummer, int Plz, String ort) {
+	public Adresse(String strasse, String hausnr, int Plz, String ort) {
 		this.adress_id = AdresseOperations.hoechsteID();
 		this.strasse = strasse;
-		this.hausnummer = hausnummer;
+		this.hausnummer = hausnr;
 		this.plz = Plz;
 		this.ort = ort;
 	}
 	
-	public Adresse(int adress_id, String strasse, int hausnummer, int Plz, String ort) {
+	public Adresse(int adress_id, String strasse, String hausnummer, int Plz, String ort) {
 		this.adress_id = adress_id;
 		this.strasse = strasse;
 		this.hausnummer = hausnummer;
@@ -41,7 +35,7 @@ public class Adresse {
 		this.strasse = strasse;
 	}
 
-	public int getHausnummer() {
+	public String getHausnummer() {
 		return hausnummer;
 	}
 

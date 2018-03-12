@@ -20,9 +20,9 @@ public class AdresseOperations {
 			PreparedStatement pst = con.prepareStatement(Adresse_anlegen);
 			pst.setInt(1, adresse.getAdress_id());
 			pst.setString(2, adresse.getStrasse());
-			pst.setInt(3, adresse.getHausnummer());
-			pst.setInt(4, adresse.getPlz());
-			pst.setString(5, adresse.getOrt());
+			pst.setInt(3, adresse.getPlz());
+			pst.setString(4, adresse.getOrt());
+			pst.setString(5, adresse.getHausnummer());
 
 			pst.execute();
 

@@ -8,6 +8,7 @@ import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 import de.databaseOperations.ProduktOperations;
+import de.logik.Regex;
 import de.utilities.SaltedHash;
 import de.utilities.mail;
 
@@ -16,11 +17,11 @@ public class Test {
 	
 	private static void erstelleTestKunde() throws Exception{
 	String saltedhash = SaltedHash.getSaltedHash("passwort");
-		Adresse adresse = new Adresse("strasse", 88, 1111, "einort");
+		Adresse adresse = new Adresse("strasse", "88", 1111, "einort");
 		
 		Kunde kunde = new Kunde(saltedhash, "email", adresse, "vorname", "nachname");
 		
-		KundenOperations.anlegen(kunde);
+		//KundenOperations.anlegen(kunde);
 		
 	}
 	
@@ -28,21 +29,10 @@ public class Test {
 	
 	public static void main(String[] args) {
 
-		try {
-			erstelleTestKunde();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 		
 		
 	}
 
-//	public static void main(String[] args) {
-//		NutzerOperations nutzeroperation = new NutzerOperations();
-//		int id = nutzeroperation.hoechsteID();
-//		Nutzer nutzer = new Nutzer(id, "arsch@yahoo.de", "blablabla");
-//
-//		nutzeroperation.anlegen(nutzer);
-//	}
+	
 }
