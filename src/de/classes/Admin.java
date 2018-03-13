@@ -6,21 +6,17 @@ package de.classes;
  */
 public class Admin extends Nutzer {
 
-	public Admin(int nutzer_id, String email, String passwort) {
+	
+	private String name;
+	
+	
+	
+	public Admin(int nutzer_id, String email, String passwort,String name) {
 		super( nutzer_id, email, passwort);
-		// TODO Auto-generated constructor stub
+		this.name = name;
+		
 	}
 
-	private int adminkennung;
-	
-	
-	public int getAdminkennung() {
-		return adminkennung;
-	}
-
-	public void setAdminkennung(int adminkennung) {
-		this.adminkennung = adminkennung;
-	}
 
 // Konstruktoren.	
 	

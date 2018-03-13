@@ -1,6 +1,8 @@
 package de.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import de.classes.Admin;
+import de.classes.Kunde;
 import de.classes.Nutzer;
+import de.databaseOperations.AdminOperations;
+import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 import de.utilities.SaltedHash;
 
@@ -46,20 +53,37 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("psw");
-
+		session = request.getSession();
 		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen(email);
+		List<String> messages = new ArrayList<>();
+		request.setAttribute("messages", messages);
 		if (nutzer != null) {
 			if (!SaltedHash.isPwdEqual(password, nutzer.getPasswort())) {
 				// hier fehlt noch was
 				String fehler = "passwort falsch";
+				messages.add(fehler);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 			if (NutzerOperations.nutzeristKunde(nutzer)) {
-				session = request.getSession();
-				session.setAttribute("kundeeingeloggt", nutzer);
+				
+				
+				Kunde kunde = KundenOperations.kundeausdbholen(nutzer) ;
+				
+				session.setAttribute("kundeeingeloggt", kunde);
 				session.setAttribute("emailadresse", email);
 			}
+			if(NutzerOperations.nutzeristAdmin(nutzer)){
+				Admin admin = AdminOperations.holeAdminausDB(nutzer);
+			
+				
+				session.setAttribute("admineingeloggt", admin );
+			}
 
+		}else{
+			
+			String falschernutzername = "Name falsch";
+			messages.add(falschernutzername);
+			
 		}
 
 	}

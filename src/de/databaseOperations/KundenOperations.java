@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import de.classes.Adresse;
 import de.classes.Kunde;
 import de.classes.Nutzer;
 import de.datenbank.DBConnection;
@@ -13,7 +14,8 @@ public class KundenOperations {
 
 	public final static String ANLEGEN_KUNDE = "INSERT INTO kunde VALUES (?,?,?,?)";
 	public final static String MAIL_KUNDE_VERGLEICH = "SELECT email FROM nutzer WHERE email = ?;";
-
+	public final static String KUNDENABFRAGE = "SELECT * FROM nutzer WHERE kundennr = ?;";
+    
 	public static void anlegen(Kunde kunde) {
 
 		NutzerOperations.anlegen(kunde);
@@ -59,6 +61,34 @@ public class KundenOperations {
 
 		return true;
 
+	}
+	
+	public static Kunde kundeausdbholen (Nutzer nutzer){
+
+		Connection con = DBConnection.getConnection();
+
+		try {
+			PreparedStatement pst = con.prepareStatement(KUNDENABFRAGE);
+			pst.setInt(1, nutzer.getNutzer_id());
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				int adress_id = rs.getInt(2);
+				String vorname = rs.getString(3);
+				String nachname= rs.getString(4);
+			    Adresse adresse = AdresseOperations.adresseAusDbHolen(adress_id);
+				Kunde kunde = new Kunde(nutzer.getNutzer_id(), nutzer.getPasswort(), nutzer.getEmail(), null, nachname, nachname);
+				return kunde;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		return null;
+		
+		
 	}
 
 }
