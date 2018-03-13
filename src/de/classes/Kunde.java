@@ -10,13 +10,13 @@ public class Kunde extends Nutzer {
 	private String nachname;
 
 	public Kunde(int kundennr, String passwort, String email, Adresse adresse, String vorname, String nachname) {
-		super(kundennr, email, passwort);
+		super(kundennr, passwort, email);
 		this.adresse = adresse;
 		this.vorname = vorname;
 		this.nachname = nachname;
 	}
 	public Kunde( String passwort, String email, Adresse adresse, String vorname, String nachname) {
-		super(NutzerOperations.hoechsteID(), email, passwort);
+		super(NutzerOperations.hoechsteID(), passwort, email);
 		this.adresse = adresse;
 		this.vorname = vorname;
 		this.nachname = nachname;

@@ -12,7 +12,7 @@ import de.datenbank.DBConnection;
 public class AdresseOperations {
 
 	public final static String ADRESSE_ANLEGEN = "INSERT INTO adresse VALUES (?, ?, ?, ?, ?);";
-	public final static String ADRESSEAUSDBHOLEN = "SELECT * FROM adresse WHERE adress_id = ?;";
+	public final static String ADRESSE_AUS_DBHOLEN = "SELECT * FROM adresse WHERE adress_id = ?;";
 
 	public static void anlegen(Adresse adresse) {
 
@@ -56,7 +56,7 @@ public class AdresseOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(ADRESSEAUSDBHOLEN);
+			PreparedStatement pst = con.prepareStatement(ADRESSE_AUS_DBHOLEN);
 			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {

@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("psw");
 		session = request.getSession();
 		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen(email);
+		System.out.println(nutzer);
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
 		if (nutzer != null) {
@@ -67,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 			if (NutzerOperations.nutzeristKunde(nutzer)) {
 
 				Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
-
+                System.out.println(kunde);
 				session.setAttribute("kundeeingeloggt", kunde);
 				session.setAttribute("emailadresse", email);
 				messages.add("Erfolgreicher login");

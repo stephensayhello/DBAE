@@ -22,7 +22,7 @@ public class ProduktOperations {
 	public final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
 	public final static String ANLEGEN_SHIRT = "INSERT INTO shirt VALUES (?,?)";
 
-	public final static String Produktzeigen = "SELECT * FROM produkt WHERE  name = ?";
+	public final static String PRODUKT_ZEIGEN = "SELECT * FROM produkt WHERE  name = ?";
 
 	public static void anlegen(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
@@ -131,7 +131,7 @@ public class ProduktOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(Produktzeigen);
+			PreparedStatement pst = con.prepareStatement(PRODUKT_ZEIGEN);
 			pst.setString(1, produkt.getName());
 
 			ResultSet rs = pst.executeQuery();

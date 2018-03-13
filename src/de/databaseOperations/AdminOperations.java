@@ -10,13 +10,13 @@ import de.classes.Nutzer;
 import de.datenbank.DBConnection;
 
 public class AdminOperations {
-	public static final String ADMINAUSDBHOLEN = "SELECT * FROM admin WHERE admin_id = ?;";
+	public static final String ADMIN_AUS_DB_HOLEN = "SELECT * FROM admin WHERE admin_id = ?;";
 
 	public static Admin holeAdminausDB(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(ADMINAUSDBHOLEN);
+			PreparedStatement pst = con.prepareStatement(ADMIN_AUS_DB_HOLEN);
 			pst.setInt(1, nutzer.getNutzer_id());
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {

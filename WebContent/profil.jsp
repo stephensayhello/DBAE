@@ -5,6 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="css/generalLayout.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <a:bootstrap></a:bootstrap>
@@ -12,6 +13,19 @@
 <body>
 <a:navigation></a:navigation>
 <a:modal messages="${messages}"></a:modal>
-adolf
+<form action="ProfilServlet" method="post" style="border: 1px solid #ccc">
+		<div class="container">
+			<h1>Profil</h1>
+			<p>Btte geben Sie ihr Passwort ein, um ihr Profil einzusehen.</p>
+			<hr>
+			<div class="login">
+				 <label
+					for="psw"><b>Password:</b></label> <input class="input-dbae"
+					type="password" placeholder="Enter Password" name="psw" required>
+				<div class="clearfix">
+
+					<button type="submit" class="button-dbae">Login</button>
+				</div>
+			</div>
 </body>
 </html>

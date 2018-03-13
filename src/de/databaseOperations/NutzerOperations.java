@@ -11,21 +11,21 @@ import de.datenbank.DBConnection;
 
 public class NutzerOperations {
 
-	public final static String NUTZERANLEGEN = "INSERT INTO nutzer VALUES (?, ?, ?)";
+	public final static String NUTZER_ANLEGEN = "INSERT INTO nutzer VALUES (?, ?, ?)";
 
-	public final static String PASSWORTABFRAGE = "SELECT passwort FROM nutzer WHERE email= ?";
+	public final static String PASSWORT_ABFRAGE = "SELECT passwort FROM nutzer WHERE email= ?;";
 
-	public final static String NUTZERABFRAGE = "SELECT * FROM nutzer WHERE email = ?";
+	public final static String NUTZER_ABFRAGE = "SELECT * FROM nutzer WHERE email = ?;";
 
-	public final static String KUNDENABFRAGENACHKUNDENNNR = "SELECT * FROM kunde WHERE kundennr = ?";
+	public final static String KUNDEN_ABFRAGE_NACH_KUNDENNNR = "SELECT * FROM kunde WHERE kundennr = ?;";
 	
-	public final static String ADMINABFRGAENACHADMINID ="SELECT * FROM admin WHERE admin_id = ?";
+	public final static String ADMIN_ABFRGAE_NACH_ADMINID ="SELECT * FROM admin WHERE admin_id = ?;";
 
 	public static void anlegen(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(NUTZERANLEGEN);
+			PreparedStatement pst = con.prepareStatement(NUTZER_ANLEGEN);
 			pst.setInt(1, nutzer.getNutzer_id());
 			pst.setString(2, nutzer.getPasswort());
 			pst.setString(3, nutzer.getEmail());
@@ -75,7 +75,7 @@ public class NutzerOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(PASSWORTABFRAGE);
+			PreparedStatement pst = con.prepareStatement(PASSWORT_ABFRAGE);
 			pst.setString(1, nutzer.getEmail());
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
@@ -100,7 +100,7 @@ public class NutzerOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(NUTZERABFRAGE);
+			PreparedStatement pst = con.prepareStatement(NUTZER_ABFRAGE);
 			pst.setString(1, email);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
@@ -129,7 +129,7 @@ public class NutzerOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(KUNDENABFRAGENACHKUNDENNNR);
+			PreparedStatement pst = con.prepareStatement(KUNDEN_ABFRAGE_NACH_KUNDENNNR);
 			pst.setInt(1, nutzer.getNutzer_id());
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
@@ -155,7 +155,7 @@ public class NutzerOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(ADMINABFRGAENACHADMINID);
+			PreparedStatement pst = con.prepareStatement(ADMIN_ABFRGAE_NACH_ADMINID);
 			pst.setInt(1, nutzer.getNutzer_id());
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {

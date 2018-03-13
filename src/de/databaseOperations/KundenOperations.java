@@ -14,7 +14,7 @@ public class KundenOperations {
 
 	public final static String ANLEGEN_KUNDE = "INSERT INTO kunde VALUES (?,?,?,?)";
 	public final static String MAIL_KUNDE_VERGLEICH = "SELECT email FROM nutzer WHERE email = ?;";
-	public final static String KUNDENABFRAGE = "SELECT * FROM nutzer WHERE kundennr = ?;";
+	public final static String KUNDEN_ABFRAGE = "SELECT * FROM kunde WHERE kundennr = ?;";
     
 	public static void anlegen(Kunde kunde) {
 
@@ -68,7 +68,7 @@ public class KundenOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(KUNDENABFRAGE);
+			PreparedStatement pst = con.prepareStatement(KUNDEN_ABFRAGE);
 			pst.setInt(1, nutzer.getNutzer_id());
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
@@ -76,7 +76,7 @@ public class KundenOperations {
 				String vorname = rs.getString(3);
 				String nachname= rs.getString(4);
 			    Adresse adresse = AdresseOperations.adresseAusDbHolen(adress_id);
-				Kunde kunde = new Kunde(nutzer.getNutzer_id(), nutzer.getPasswort(), nutzer.getEmail(), null, nachname, nachname);
+				Kunde kunde = new Kunde(nutzer.getNutzer_id(), nutzer.getPasswort(), nutzer.getEmail(), adresse, nachname, nachname);
 				return kunde;
 			}
 

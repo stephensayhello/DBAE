@@ -27,7 +27,7 @@ public class Test {
 	public static void main(String[] args) {
 		String email = "benjamin.gajewski@yahoo.de";
 		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen(email);
-		System.out.println(NutzerOperations.nutzeristKunde(nutzer));
+		System.out.println(nutzer.getPasswort());
 		
 	
 
