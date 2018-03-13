@@ -59,10 +59,6 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("kundeeingeloggt", nutzer);
 				session.setAttribute("emailadresse", email);
 			}
-			
-			if(NutzerOperations.nutzeristAdmin(nutzer)){
-				
-			}
 
 		}
 
