@@ -13,26 +13,24 @@ import de.utilities.SaltedHash;
 import de.utilities.mail;
 
 public class Test {
-	
-	
-	private static void erstelleTestKunde() throws Exception{
-	String saltedhash = SaltedHash.getSaltedHash("passwort");
+
+	private static void erstelleTestKunde() throws Exception {
+		String saltedhash = SaltedHash.getSaltedHash("passwort");
 		Adresse adresse = new Adresse("strasse", "88", 1111, "einort");
-		
+
 		Kunde kunde = new Kunde(saltedhash, "email", adresse, "vorname", "nachname");
-		
-		//KundenOperations.anlegen(kunde);
-		
+
+		// KundenOperations.anlegen(kunde);
+
 	}
-	
-	
-	
+
 	public static void main(String[] args) {
-
+		String email = "benjamin.gajewski@yahoo.de";
+		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen(email);
+		System.out.println(NutzerOperations.nutzeristKunde(nutzer));
+		
 	
-		
-		
+
 	}
 
-	
 }

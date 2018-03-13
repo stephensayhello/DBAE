@@ -18,7 +18,7 @@
 			<p>Please fill in this form to Login.</p>
 			<hr>
 			<div class="login">
-				<label for="nachname"><b>E-mail:</b></label> <input class="input-dbae" type="text"
+				<label for="email"><b>E-mail:</b></label> <input class="input-dbae" type="text"
 					placeholder="E-mail" name="email" required > <label
 					for="psw"><b>Password:</b></label> <input class="input-dbae" type="password"
 					placeholder="Enter Password" name="psw" required>
