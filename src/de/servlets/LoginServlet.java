@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("kundeeingeloggt", kunde);
 				session.setAttribute("emailadresse", email);
 				messages.add("Erfolgreicher login");
-				request.getRequestDispatcher("profil.jsp").forward(request, response);
+				request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 			}
 			if (NutzerOperations.nutzeristAdmin(nutzer)) {
 				Admin admin = AdminOperations.holeAdminausDB(nutzer);

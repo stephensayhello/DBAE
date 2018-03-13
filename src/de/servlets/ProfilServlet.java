@@ -20,7 +20,6 @@ import de.utilities.SaltedHash;
 @WebServlet("/ProfilServlet")
 public class ProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -48,14 +47,19 @@ public class ProfilServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String password = request.getParameter("psw");
-		
 		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
-        System.out.println(kunde);
+
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
+		if (kunde == null) {
+			String bitteinloggen = "Bitte loggen Sie sich ein, um ihr Profil sehen zu können.";
+			messages.add(bitteinloggen);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+
+		}
 		System.out.println(kunde.getPasswort());
 		if (SaltedHash.isPwdEqual(password, kunde.getPasswort())) {
-			
+
 			session.setAttribute("kundeeingeloggt", kunde);
 			System.out.println("blabla");
 			request.getRequestDispatcher("profilinfos.jsp").forward(request, response);
@@ -64,7 +68,5 @@ public class ProfilServlet extends HttpServlet {
 			messages.add(fehlermeldung);
 			request.getRequestDispatcher("profil.jsp").forward(request, response);
 		}
-
 	}
-
 }
