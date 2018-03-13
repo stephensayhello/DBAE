@@ -65,25 +65,26 @@ public class LoginServlet extends HttpServlet {
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 			if (NutzerOperations.nutzeristKunde(nutzer)) {
-				
-				
-				Kunde kunde = KundenOperations.kundeausdbholen(nutzer) ;
-				
+
+				Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
+
 				session.setAttribute("kundeeingeloggt", kunde);
 				session.setAttribute("emailadresse", email);
+				messages.add("Erfolgreicher login");
+				request.getRequestDispatcher("profil.jsp").forward(request, response);
 			}
-			if(NutzerOperations.nutzeristAdmin(nutzer)){
+			if (NutzerOperations.nutzeristAdmin(nutzer)) {
 				Admin admin = AdminOperations.holeAdminausDB(nutzer);
-			
-				
-				session.setAttribute("admineingeloggt", admin );
+
+				session.setAttribute("admineingeloggt", admin);
 			}
 
-		}else{
-			
+		} else {
+
 			String falschernutzername = "Name falsch";
 			messages.add(falschernutzername);
-			
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+
 		}
 
 	}
