@@ -2,15 +2,24 @@
 <!DOCTYPE xml>
 
 <taglib>
-<tlib-version>1.0</tlib-version>
-<jsp-version>2.0</jsp-version>
-<short-name>Partial Tags</short-name>
-<tag>
-	<name>navigation</name>
-	<tag-class>de.tags.Navigation</tag-class>
-</tag>
-<tag>
-	<name>bootstrap</name>
-	<tag-class>de.tags.Bootstrap</tag-class>
-</tag>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>Partial Tags</short-name>
+	<tag>
+		<name>navigation</name>
+		<tag-class>de.tags.Navigation</tag-class>
+	</tag>
+	<tag>
+		<name>bootstrap</name>
+		<tag-class>de.tags.Bootstrap</tag-class>
+	</tag>
+	<tag>
+		<name>modal</name>
+		<tag-class>de.tags.Modal</tag-class>
+		<attribute>
+			<name>messages</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>
