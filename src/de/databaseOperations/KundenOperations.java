@@ -76,7 +76,7 @@ public class KundenOperations {
 				String vorname = rs.getString(3);
 				String nachname= rs.getString(4);
 			    Adresse adresse = AdresseOperations.adresseAusDbHolen(adress_id);
-				Kunde kunde = new Kunde(nutzer.getNutzer_id(), nutzer.getPasswort(), nutzer.getEmail(), adresse, nachname, nachname);
+				Kunde kunde = new Kunde(nutzer.getNutzer_id(), nutzer.getPasswort(), nutzer.getEmail(), adresse, vorname, nachname);
 				return kunde;
 			}
 

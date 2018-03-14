@@ -70,7 +70,8 @@ public class LoginServlet extends HttpServlet {
 				Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
                 System.out.println(kunde);
 				session.setAttribute("kundeeingeloggt", kunde);
-				session.setAttribute("emailadresse", email);
+				
+				session.setAttribute("kundenadresse", kunde.getAdresse());
 				messages.add("Erfolgreicher login");
 				request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 			}

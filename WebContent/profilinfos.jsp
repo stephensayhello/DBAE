@@ -13,10 +13,22 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-<a:navigation></a:navigation>
-<div id = "container">
-<a:profilnav></a:profilnav>
-${kundeeingeloggt.vorname}
-</div>
+	<a:navigation></a:navigation>
+	<div id="container">
+		<a:profilnav></a:profilnav>
+		<h1>Hallo ${kundeeingeloggt.vorname}! Hier sind ihre
+			Profilinformationen.</h1>
+		<ul>
+			<li>Vorname: ${kundeeingeloggt.vorname}</li>
+			<li>Nachname: ${kundeeingeloggt.nachname}</li>
+			<li>Emailadresse: ${kundeeingeloggt.email}</li>
+			<li>Anschrift: ${kundenadresse.strasse}
+				${kundenadresse.hausnummer}</li>
+			<li>Postleitzahl: ${kundenadresse.plz} Ort: ${kundenadresse.ort}</li>
+		
+
+
+		</ul>
+	</div>
 </body>
 </html>
