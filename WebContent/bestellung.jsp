@@ -6,7 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/generalLayout.css">
-<link rel="stylesheet" href="css/provilnav.css">
+<link rel="stylesheet" href="css/profilnav.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Insert title here</title>
@@ -18,5 +18,7 @@
 <a:profilnav></a:profilnav>
 ${kundeeingeloggt.vorname}
 </div>
+
+
 </body>
 </html>

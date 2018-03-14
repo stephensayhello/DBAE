@@ -64,7 +64,7 @@ public class ProfilServlet extends HttpServlet {
 			System.out.println("blabla");
 			request.getRequestDispatcher("profilinfos.jsp").forward(request, response);
 		} else {
-			String fehlermeldung = "Das eingegebene Passwort ist nicht falsch!";
+			String fehlermeldung = "Das eingegebene Passwort ist  falsch!";
 			messages.add(fehlermeldung);
 			request.getRequestDispatcher("profil.jsp").forward(request, response);
 		}

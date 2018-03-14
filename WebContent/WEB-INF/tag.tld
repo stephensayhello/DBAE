@@ -14,6 +14,10 @@
 		<tag-class>de.tags.Bootstrap</tag-class>
 	</tag>
 	<tag>
+		<name>profilnav</name>
+		<tag-class>de.tags.Profilnav</tag-class>
+	</tag>
+	<tag>
 		<name>modal</name>
 		<tag-class>de.tags.Modal</tag-class>
 		<attribute>
