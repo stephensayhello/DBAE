@@ -26,4 +26,13 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+		<tag>
+		<name>artikel</name>
+		<tag-class>de.tags.ArtikelView</tag-class>
+		<attribute>
+			<name>produkt</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 </taglib>

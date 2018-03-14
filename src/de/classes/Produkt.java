@@ -55,7 +55,7 @@ public class Produkt {
 	// konstruktor fürs holen aus der db oder anlengen mit id
 	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge) {
 
-		this.produkt_id = produkt_id;
+		this.setProdukt_id(produkt_id);
 		this.name = name;
 		this.beschreibung = beschreibung;
 		this.preis = preis;
@@ -66,7 +66,7 @@ public class Produkt {
 	// konstruktor fürs anlegen eines produkts
 	public Produkt(String name, String beschreibung, double preis, int menge) {
 
-		this.produkt_id = ProduktOperations.hoechsteID();
+		this.setProdukt_id(ProduktOperations.hoechsteID());
 		this.name = name;
 		this.beschreibung = beschreibung;
 		this.preis = preis;
@@ -121,9 +121,6 @@ public class Produkt {
 		this.status = status;
 	}
 
-	public int getID() {
-		return produkt_id;
-	}
 
 	/**
 	 * Die Methode verï¿½ndert den Produktstatus
@@ -143,6 +140,14 @@ public class Produkt {
 		}
 
 		return this.status;
+	}
+
+	public int getProdukt_id() {
+		return produkt_id;
+	}
+
+	public void setProdukt_id(int produkt_id) {
+		this.produkt_id = produkt_id;
 	}
 
 }

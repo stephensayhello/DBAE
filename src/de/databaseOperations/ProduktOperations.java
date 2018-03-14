@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.classes.Hose;
 import de.classes.Produkt;
@@ -21,6 +23,7 @@ public class ProduktOperations {
 	public final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
 	public final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
 	public final static String ANLEGEN_SHIRT = "INSERT INTO shirt VALUES (?,?)";
+	public final static String LADE_PRODUKTE = "SELECT * FROM produkt;";
 
 	public final static String PRODUKT_ZEIGEN = "SELECT * FROM produkt WHERE  name = ?";
 
@@ -33,7 +36,7 @@ public class ProduktOperations {
 			pst.setInt(2, produkt.getMenge());
 			pst.setString(3, produkt.getName());
 			pst.setString(4, produkt.getBeschreibung());
-			pst.setInt(5, produkt.getID());
+			pst.setInt(5, produkt.getProdukt_id());
 
 			pst.execute();
 			con.close();
@@ -57,7 +60,7 @@ public class ProduktOperations {
 
 		try {
 			PreparedStatement pst = con.prepareStatement(ANLEGEN_SCHUHE);
-			pst.setInt(1, ((Produkt) schuhe).getID());
+			pst.setInt(1, ((Produkt) schuhe).getProdukt_id());
 			pst.setInt(2, schuhe.getGroesse());
 
 			pst.execute();
@@ -74,7 +77,7 @@ public class ProduktOperations {
 
 		try {
 			PreparedStatement pst = con.prepareStatement(ANLEGEN_HOSE);
-			pst.setInt(1, ((Produkt) hose).getID());
+			pst.setInt(1, ((Produkt) hose).getProdukt_id());
 			pst.setInt(2, hose.getGroesse());
 
 			pst.execute();
@@ -91,7 +94,7 @@ public class ProduktOperations {
 
 		try {
 			PreparedStatement pst = con.prepareStatement(ANLEGEN_SHIRT);
-			pst.setInt(1, ((Produkt) shirt).getID());
+			pst.setInt(1, ((Produkt) shirt).getProdukt_id());
 			pst.setString(2, shirt.getGroesse());
 			pst.execute();
 			con.close();
@@ -151,6 +154,34 @@ public class ProduktOperations {
 			e.printStackTrace();
 		}
 		return produkt;
+	}
+
+	public static List<Produkt> ladeProdukteAusDatenbank() {
+
+		Connection con = DBConnection.getConnection();
+		List<Produkt> produkte = new ArrayList<Produkt>();
+
+		try {
+			PreparedStatement pst = con.prepareStatement(LADE_PRODUKTE);
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+
+			while (rs.next()) {
+				double preis = rs.getDouble(1);
+				int menge = rs.getInt(2);
+				String name = rs.getString(3);
+				String beschreibung = rs.getString(4);
+				int id = rs.getInt(5);
+				produkte.add(new Produkt(id, name, beschreibung, preis, menge));
+			}
+
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return produkte;
 	}
 
 }
