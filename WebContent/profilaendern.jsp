@@ -16,7 +16,7 @@
 <a:navigation></a:navigation>
 <div id = "container">
 <a:profilnav></a:profilnav>
-${kundeeingeloggt.vorname}
+<form action=""></form>
 </div>
 </body>
 </html>
