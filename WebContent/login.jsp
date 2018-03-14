@@ -31,9 +31,6 @@
 			</div>
 			<a:modal messages="${messages}"></a:modal>
 
-
-
-
 		</div>
 	</form>
 </body>

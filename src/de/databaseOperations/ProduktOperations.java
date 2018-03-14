@@ -26,6 +26,8 @@ public class ProduktOperations {
 	public final static String LADE_PRODUKTE = "SELECT * FROM produkt;";
 
 	public final static String PRODUKT_ZEIGEN = "SELECT * FROM produkt WHERE  name = ?";
+	
+	public static String PRODUKT_ANZAHL = "SELECT COUNT(*) FROM ";
 
 	public static void anlegen(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
@@ -110,7 +112,7 @@ public class ProduktOperations {
 		int id = 0;
 		try {
 			PreparedStatement pst = con.prepareStatement("SELECT MAX(produkt_id) FROM produkt");
-
+			
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
@@ -130,7 +132,7 @@ public class ProduktOperations {
 	 * @param produkt
 	 * @return
 	 */
-	public Produkt zeigeProdukt(Produkt produkt) {
+	public  static Produkt zeigeProdukt(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
 
 		try {
@@ -154,6 +156,33 @@ public class ProduktOperations {
 			e.printStackTrace();
 		}
 		return produkt;
+	}
+	
+	
+	public  static int zeigeAnzahlProdukte(String kathegorie) {
+		
+		Connection con = DBConnection.getConnection();
+		int anzahl = 0;
+		String select = "SELECT COUNT(*) FROM " + kathegorie;
+		try {
+			PreparedStatement pst = con.prepareStatement(select);
+			
+			ResultSet rs = pst.executeQuery();
+			
+			if(!rs.next()) {
+				anzahl = rs.getInt(0);
+			} else {
+				anzahl = 0;
+			}
+			
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return anzahl;
 	}
 
 	public static List<Produkt> ladeProdukteAusDatenbank() {
