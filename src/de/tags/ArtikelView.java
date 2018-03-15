@@ -28,6 +28,9 @@ public class ArtikelView extends TagSupport {
 
 	private String getArtikelView() throws IOException {
 		String artikelview = ReadFromFile.readContentFromFile(pageContext, "artikel.html");
+		int counter = 1;
+		String countalsString = Integer.toString(counter);
+		artikelview = artikelview.replace("PLATZHALTER0",countalsString );
 		artikelview = artikelview.replace("PLATZHALTER1", produkt.getName());
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
 		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getProdukt_id()));
@@ -43,7 +46,7 @@ public class ArtikelView extends TagSupport {
 			artikelview = artikelview.replace("PLATZHALTERGROESSE7", "");
 			artikelview = artikelview.replace("PLATZHALTERGROESSE8", "");
 			artikelview = artikelview.replace("PLATZHALTERGROESSE9", "");
-System.out.println("test1");
+			System.out.println("test1");
 		}
 		if (produkt instanceof Schuhe) {
 			artikelview = artikelview.replace("PLATZHALTERGROESSE1", "<option value=38>38</option>");
@@ -69,7 +72,7 @@ System.out.println("test1");
 			artikelview = artikelview.replace("PLATZHALTERGROESSE9", "");
 			System.out.println("test111");
 		}
-
+		counter++;
 		return artikelview;
 	}
 
