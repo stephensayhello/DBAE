@@ -25,7 +25,8 @@ import de.databaseOperations.ProduktOperations;
 @WebServlet("/Artikeluebersicht")
 public class Artikeluebersicht extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-HttpSession session;
+	HttpSession session;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -53,40 +54,38 @@ HttpSession session;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-        Kunde kunde =(Kunde) session.getAttribute("kundeeingeloggt");
+		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
+		List<Produkt> produkte = (List<Produkt>) session.getAttribute("produkte");
+
 		int produkt_id = Integer.parseInt(request.getParameter("produkt_id"));
 		int menge = Integer.parseInt(request.getParameter("menge"));
 		String groesse = request.getParameter("groesse");
-		List<Produkt> produkte = new ArrayList<>();
+
 		Produkt produkt = ProduktOperations.produktausdbholen(produkt_id);
-        
+		if (produkte.size() == 0) {
+			produkte = new ArrayList<Produkt>();
+		}
 		for (int i = 1; i <= menge; i++) {
 			if (ProduktOperations.produktistHose(produkt_id)) {
 				Hose hose = new Hose(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
 						produkt.getPreis(), Integer.parseInt(groesse), produkt.getMenge());
-                produkte.add(hose);
+				produkte.add(hose);
 			}
 			if (ProduktOperations.produktistSchuhe(produkt_id)) {
 				Schuhe schuhe = new Schuhe(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
 						produkt.getPreis(), Integer.parseInt(groesse), produkt.getMenge());
-                produkte.add(schuhe);
+				produkte.add(schuhe);
 			}
 			if (ProduktOperations.produktistShirt(produkt_id)) {
 				Shirt shirt = new Shirt(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
 						produkt.getPreis(), groesse, produkt.getMenge());
-               produkte.add(shirt);
+				produkte.add(shirt);
 			}
 		}
-        
-		if(kunde != null){
-			Warenkorb warenkorb = new Warenkorb(kunde,produkte);
-			session.setAttribute("Warenkorb", warenkorb);
-		}else{
-			Warenkorb warenkorb = new Warenkorb(kunde, produkte);
-			session.setAttribute("Warenkorb", warenkorb);
+		for (Produkt item : produkte) {
+			System.out.println(item);
 		}
-		
-		
+
 		System.out.println("angekommen");
 		doGet(request, response);
 	}
