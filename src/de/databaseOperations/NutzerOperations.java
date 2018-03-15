@@ -58,9 +58,9 @@ public class NutzerOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(id);
+	
 		id++;
-		System.out.println(id);
+		
 		return id;
 	}
 
@@ -111,9 +111,7 @@ public class NutzerOperations {
 				int nutzer_id = rs.getInt(1);
 				String password = rs.getString(2);
 				String emailfromdb = rs.getString(3);
-				System.out.println(nutzer_id);
-				System.out.println(password);
-				System.out.println(emailfromdb);
+			
 
 				Nutzer nutzer = new Nutzer(nutzer_id, password, emailfromdb);
 				return nutzer;
@@ -139,8 +137,7 @@ public class NutzerOperations {
 			if (rs.next()) {
 				int kundennr = rs.getInt(1);
 
-				System.out.println(kundennr);
-				System.out.println();
+				
 
 				return true;
 			}
@@ -148,7 +145,7 @@ public class NutzerOperations {
 		} catch (
 
 		SQLException e) {
-			System.out.println("Fehler");
+			
 			e.printStackTrace();
 
 		}
@@ -166,16 +163,13 @@ public class NutzerOperations {
 			if (rs.next()) {
 				int admin_id = rs.getInt(1);
 
-				System.out.println(admin_id);
-				System.out.println();
-
 				return true;
 			}
 
 		} catch (
 
 		SQLException e) {
-			System.out.println("Fehler");
+		
 			e.printStackTrace();
 
 		}

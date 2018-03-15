@@ -22,7 +22,7 @@ public class AdminOperations {
 			if (rs.next()) {
 				int admin_id = rs.getInt(1);
 				String name = rs.getString(2);
-				System.out.println(admin_id);
+				
 
 				Admin admin = new Admin(nutzer.getNutzer_id(), nutzer.getEmail(), nutzer.getPasswort(), name);
 				return admin;

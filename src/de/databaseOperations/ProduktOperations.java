@@ -246,8 +246,7 @@ public class ProduktOperations {
 			if (rs.next()) {
 				int sh_id = rs.getInt(1);
 
-				System.out.println(sh_id);
-				System.out.println();
+				
 
 				return true;
 			}
@@ -273,8 +272,7 @@ public class ProduktOperations {
 			if (rs.next()) {
 				int ho_id = rs.getInt(1);
 
-				System.out.println(ho_id);
-				System.out.println();
+				
 
 				return true;
 			}
@@ -300,9 +298,7 @@ public class ProduktOperations {
 			if (rs.next()) {
 				int sch_id = rs.getInt(1);
 
-				System.out.println(sch_id);
-				System.out.println();
-
+				
 				return true;
 			}
 
