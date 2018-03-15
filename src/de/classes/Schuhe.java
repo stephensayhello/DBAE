@@ -1,7 +1,7 @@
 package de.classes;
 
 public class Schuhe extends Produkt {
-
+	
 	private int groesse;
 
 	public Schuhe(int id, String name, String beschreibung, double preis, int groesse, int menge, int artnr) {

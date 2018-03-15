@@ -55,39 +55,28 @@ public class Artikeluebersicht extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		List<Produkt> produkte = (List<Produkt>) session.getAttribute("produkte");
-		session.setAttribute("produkte", produkte);
+		session = request.getSession();
+		
+		//List<Produkt> produkte = (List<Produkt>) session.getAttribute("produkte");
+		
+		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
+		
+		if(warenkorb == null) {
+			Kunde kunde = (Kunde) session.getAttribute("kundeEingeloggt");
+			warenkorb = new Warenkorb(kunde);
+		}
+		
 		int produkt_id = Integer.parseInt(request.getParameter("produkt_id"));
 		int menge = Integer.parseInt(request.getParameter("menge"));
 		String groesse = request.getParameter("groesse");
 
 		Produkt produkt = ProduktOperations.produktausdbholen(produkt_id);
-		if (produkte.size() == 0) {
-			produkte = new ArrayList<Produkt>();
-		}
+		
 		for (int i = 1; i <= menge; i++) {
-			if (ProduktOperations.produktistHose(produkt_id)) {
-				Hose hose = new Hose(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
-						produkt.getPreis(), Integer.parseInt(groesse), produkt.getMenge());
-				produkte.add(hose);
-			}
-			if (ProduktOperations.produktistSchuhe(produkt_id)) {
-				Schuhe schuhe = new Schuhe(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
-						produkt.getPreis(), Integer.parseInt(groesse), produkt.getMenge());
-				produkte.add(schuhe);
-			}
-			if (ProduktOperations.produktistShirt(produkt_id)) {
-				Shirt shirt = new Shirt(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
-						produkt.getPreis(), groesse, produkt.getMenge());
-				produkte.add(shirt);
-			}
+			warenkorb.getInhalt().add(produkt);
 		}
-		for (Produkt item : produkte) {
-			System.out.println(item);
-		}
-        
+		
 		System.out.println("angekommen");
-		doGet(request, response);
 	}
 
 }
