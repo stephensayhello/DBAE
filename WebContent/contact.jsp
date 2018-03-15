@@ -5,10 +5,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" href="css/generalLayout.css">
+<title>Support Anfrage</title>
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
 <a:navigation></a:navigation>
+
+<div class="container">
+<h1>Füllen Sie das Formular aus, um eine Anfrage an den Support zu senden.</h1>
+<p>Ein Mitarbeiter des Support wird sich dann in Kürze bei Ihnen melden</p>
+	<form action="SupportAnfrageServlet" method="post">
+	<label for="anfrage"><br>Anfrage</br></label><input type="text" name="anfrage" class="input-dbae">
+	<label for="anfragetext"><br>Text:</br></label><textarea rows="5" cols="50"  name="anfragetext" class="input-dbae"></textarea>
+	
+	<label for="grund:">Grund der Anfrage</label>
+	<select name="grund" class ="input-dbae">
+		<option>Beschwerde</option>
+		<option>Probleme beim Bestellungsprozess</option>
+		<option>Sonstiges</option>
+	</select>
+	
+	<button value="submit" class="button-dbae">Anfrage Absenden</button>
+	</form>
+	
+</div>
+<a:modal messages="${messages}"></a:modal>
 </body>
 </html>
