@@ -13,6 +13,7 @@ public class AdresseOperations {
 
 	public final static String ADRESSE_ANLEGEN = "INSERT INTO adresse VALUES (?, ?, ?, ?, ?);";
 	public final static String ADRESSE_AUS_DBHOLEN = "SELECT * FROM adresse WHERE adress_id = ?;";
+	public final static String ADRESSE_UPDATE = "UPDATE adresse SET strasse= ?, hausnummer = ?, postleitzahl =?, ort = ? WHERE adress_id = ?";
 
 	public static void anlegen(Adresse adresse) {
 
@@ -80,4 +81,25 @@ public class AdresseOperations {
 
 	}
 
+	public static void adresseDataUpdate(Adresse adresse) {
+		Connection con = DBConnection.getConnection();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(ADRESSE_UPDATE);
+			pst.setString(1, adresse.getStrasse());
+			pst.setString(2, adresse.getHausnummer());
+			pst.setInt(3, adresse.getPlz());
+			pst.setString(4, adresse.getOrt());
+			pst.setInt(2, adresse.getAdress_id());
+			
+			pst.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 }

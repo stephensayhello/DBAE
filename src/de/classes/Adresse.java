@@ -38,6 +38,10 @@ public class Adresse {
 	public String getHausnummer() {
 		return hausnummer;
 	}
+	
+	public void setHausnummer(String hausnummer) {
+		this.hausnummer = hausnummer;
+	}
 
 
 	public int getPlz() {

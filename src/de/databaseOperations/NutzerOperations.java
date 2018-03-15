@@ -20,6 +20,8 @@ public class NutzerOperations {
 	public final static String KUNDEN_ABFRAGE_NACH_KUNDENNNR = "SELECT * FROM kunde WHERE kundennr = ?;";
 	
 	public final static String ADMIN_ABFRGAE_NACH_ADMINID ="SELECT * FROM admin WHERE admin_id = ?;";
+	
+	public final static String NUTZER_UPDATE = "UPDATE nutzer SET email = ? WHERE nutzer_id =?";
 
 	public static void anlegen(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
@@ -176,6 +178,24 @@ public class NutzerOperations {
 		}
 		return false;
 
+	}
+	
+	
+	
+	public static void nutzerDataUpdate(Nutzer nutzer) {
+		Connection con = DBConnection.getConnection();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(NUTZER_UPDATE);
+			pst.setString(1, nutzer.getEmail());
+			pst.setInt(2, nutzer.getNutzer_id());
+			pst.execute();
+		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 
 }

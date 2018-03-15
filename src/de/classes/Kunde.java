@@ -1,6 +1,5 @@
 package de.classes;
 
-import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 
 public class Kunde extends Nutzer {
