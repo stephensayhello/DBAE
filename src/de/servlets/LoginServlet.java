@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
 				messages.add(fehler);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
-			if (NutzerOperations.nutzeristKunde(nutzer)) {
+			if (NutzerOperations.nutzeristKunde(nutzer.getNutzer_id())) {
 
 				Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
                 System.out.println(kunde);
@@ -80,7 +80,7 @@ public class LoginServlet extends HttpServlet {
 				messages.add("Erfolgreicher login");
 				request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 			}
-			if (NutzerOperations.nutzeristAdmin(nutzer)) {
+			if (NutzerOperations.nutzeristAdmin(nutzer.getNutzer_id())) {
 				Admin admin = AdminOperations.holeAdminausDB(nutzer);
 
 				session.setAttribute("admineingeloggt", admin);

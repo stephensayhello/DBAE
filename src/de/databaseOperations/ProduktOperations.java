@@ -26,7 +26,8 @@ public class ProduktOperations {
 	public final static String ANLEGEN_SHIRT = "INSERT INTO shirt VALUES (?,?)";
 	public final static String LADE_PRODUKTE = "SELECT * FROM produkt;";
 
-	public final static String PRODUKT_ZEIGEN = "SELECT * FROM produkt WHERE  name = ?";
+	public final static String PRODUKT_ZEIGEN_NACH_NAME = "SELECT * FROM produkt WHERE  name = ?;";
+	public final static String PRODUKT_ZEIGEN_NACH_ID = "SELECT * FROM produkt WHERE  produkt_id = ?;";
 
 	public final static String PRODUKT_ANZAHL = "SELECT COUNT(*) FROM ";
 	public final static String ZEIGE_SCHUHE_NACH_PRODUKTID = "SELECT sch_id FROM schuhe WHERE sch_id = ?;";
@@ -140,7 +141,7 @@ public class ProduktOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(PRODUKT_ZEIGEN);
+			PreparedStatement pst = con.prepareStatement(PRODUKT_ZEIGEN_NACH_NAME);
 			pst.setString(1, produkt.getName());
 
 			ResultSet rs = pst.executeQuery();
@@ -162,31 +163,6 @@ public class ProduktOperations {
 		return produkt;
 	}
 
-	public static int zeigeAnzahlProdukte(String kathegorie) {
-
-		Connection con = DBConnection.getConnection();
-		int anzahl = 0;
-		String select = "SELECT COUNT(*) FROM " + kathegorie;
-		try {
-			PreparedStatement pst = con.prepareStatement(select);
-
-			ResultSet rs = pst.executeQuery();
-
-			if (!rs.next()) {
-				anzahl = rs.getInt(0);
-			} else {
-				anzahl = 0;
-			}
-
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return anzahl;
-	}
-
 	public static List<Produkt> ladeProdukteAusDatenbank() {
 
 		Connection con = DBConnection.getConnection();
@@ -195,7 +171,6 @@ public class ProduktOperations {
 		try {
 			PreparedStatement pst = con.prepareStatement(LADE_PRODUKTE);
 			ResultSet rs = pst.executeQuery();
-			
 
 			while (rs.next()) {
 				double preis = rs.getDouble(1);
@@ -204,20 +179,20 @@ public class ProduktOperations {
 				String beschreibung = rs.getString(4);
 				int id = rs.getInt(5);
 				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge);
-				
-				if(produktistSchuhe(produkt)){
+
+				if (produktistSchuhe(produkt.getProdukt_id())) {
 					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
 					produkte.add(schuhe);
 				}
-				if(produktistHose(produkt)){
+				if (produktistHose(produkt.getProdukt_id())) {
 					Hose hose = HoseOperations.hoseausdbholen(produkt);
 					produkte.add(hose);
 				}
-				if(produktistShirt(produkt)){
+				if (produktistShirt(produkt.getProdukt_id())) {
 					Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
 					produkte.add(shirt);
 				}
-				
+
 			}
 
 			con.close();
@@ -229,12 +204,12 @@ public class ProduktOperations {
 		return produkte;
 	}
 
-	public static boolean produktistShirt(Produkt produkt) {
+	public static boolean produktistShirt(int id) {
 		Connection con = DBConnection.getConnection();
 
 		try {
 			PreparedStatement pst = con.prepareStatement(ZEIGE_SHIRT_NACH_PRODUKTID);
-			pst.setInt(1, produkt.getProdukt_id());
+			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int sh_id = rs.getInt(1);
@@ -255,58 +230,87 @@ public class ProduktOperations {
 		return false;
 
 	}
-	public static boolean produktistHose(Produkt produkt) {
+
+	public static boolean produktistHose(int id) {
 		Connection con = DBConnection.getConnection();
-		
+
 		try {
 			PreparedStatement pst = con.prepareStatement(ZEIGE_HOSE_NACH_PRODUKTID);
-			pst.setInt(1, produkt.getProdukt_id());
+			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int ho_id = rs.getInt(1);
-				
+
 				System.out.println(ho_id);
 				System.out.println();
-				
+
 				return true;
 			}
-			
+
 		} catch (
-				
-				SQLException e) {
+
+		SQLException e) {
 			System.out.println("Fehler");
 			e.printStackTrace();
-			
+
 		}
 		return false;
-		
+
 	}
-	public static boolean produktistSchuhe(Produkt produkt) {
+
+	public static boolean produktistSchuhe(int id) {
 		Connection con = DBConnection.getConnection();
-		
+
 		try {
 			PreparedStatement pst = con.prepareStatement(ZEIGE_SCHUHE_NACH_PRODUKTID);
-			pst.setInt(1, produkt.getProdukt_id());
+			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int sch_id = rs.getInt(1);
-				
+
 				System.out.println(sch_id);
 				System.out.println();
-				
+
 				return true;
 			}
-			
+
 		} catch (
-				
-				SQLException e) {
+
+		SQLException e) {
 			System.out.println("Fehler");
 			e.printStackTrace();
-			
+
 		}
 		return false;
-		
+
 	}
 
-	
+	public static Produkt produktausdbholen(int id) {
+		Connection con = DBConnection.getConnection();
+
+		try {
+			PreparedStatement pst = con.prepareStatement(PRODUKT_ZEIGEN_NACH_ID);
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				double preis = rs.getDouble(1);
+				int menge = rs.getInt(2);
+				String name = rs.getString(3);
+				String beschreibung=rs.getString(4);
+				int produkt_id = rs.getInt(5);
+				
+            Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge);
+				return produkt;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		return null;
+
+	}
+
 }

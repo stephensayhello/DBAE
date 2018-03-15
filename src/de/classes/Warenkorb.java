@@ -2,7 +2,10 @@ package de.classes;
 
 import java.util.List;
 
+import de.databaseOperations.Warenkorboperations;
+
 public class Warenkorb {
+	private int warenkorb_id;
 	/**
 	 * Eine Liste von Produkten im Warenkorb.
 	 */
@@ -13,6 +16,7 @@ public class Warenkorb {
 	private Kunde kunde;
 	
 	public Warenkorb(Kunde kunde,List<Produkt> produkte){
+		this.warenkorb_id = Warenkorboperations.hoechsteID();
 		this.kunde = kunde;
 		this.produkte = produkte;
 	}

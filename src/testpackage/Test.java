@@ -31,9 +31,10 @@ public class Test {
 
 	public static void main(String[] args) {
 		Shirt shirt = new Shirt(1,"adolf","klasse",10.00,"xl",3);
+		
 		zudummfuerinsanceof(shirt);
 		System.out.println(shirt.getProdukt_id());
-	
+	System.out.println();
 
 	}
 

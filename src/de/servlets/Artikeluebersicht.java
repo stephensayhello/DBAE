@@ -9,8 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import de.classes.Hose;
+import de.classes.Kunde;
 import de.classes.Produkt;
+import de.classes.Schuhe;
+import de.classes.Shirt;
+import de.classes.Warenkorb;
 import de.databaseOperations.ProduktOperations;
 
 /**
@@ -19,7 +25,7 @@ import de.databaseOperations.ProduktOperations;
 @WebServlet("/Artikeluebersicht")
 public class Artikeluebersicht extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+HttpSession session;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -47,7 +53,41 @@ public class Artikeluebersicht extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+        Kunde kunde =(Kunde) session.getAttribute("kundeeingeloggt");
+		int produkt_id = Integer.parseInt(request.getParameter("produkt_id"));
+		int menge = Integer.parseInt(request.getParameter("menge"));
+		String groesse = request.getParameter("groesse");
+		List<Produkt> produkte = new ArrayList<>();
+		Produkt produkt = ProduktOperations.produktausdbholen(produkt_id);
+        
+		for (int i = 1; i <= menge; i++) {
+			if (ProduktOperations.produktistHose(produkt_id)) {
+				Hose hose = new Hose(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
+						produkt.getPreis(), Integer.parseInt(groesse), produkt.getMenge());
+                produkte.add(hose);
+			}
+			if (ProduktOperations.produktistSchuhe(produkt_id)) {
+				Schuhe schuhe = new Schuhe(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
+						produkt.getPreis(), Integer.parseInt(groesse), produkt.getMenge());
+                produkte.add(schuhe);
+			}
+			if (ProduktOperations.produktistShirt(produkt_id)) {
+				Shirt shirt = new Shirt(produkt.getProdukt_id(), produkt.getName(), produkt.getBeschreibung(),
+						produkt.getPreis(), groesse, produkt.getMenge());
+               produkte.add(shirt);
+			}
+		}
+        
+		if(kunde != null){
+			Warenkorb warenkorb = new Warenkorb(kunde,produkte);
+			session.setAttribute("Warenkorb", warenkorb);
+		}else{
+			Warenkorb warenkorb = new Warenkorb(kunde, produkte);
+			session.setAttribute("Warenkorb", warenkorb);
+		}
+		
+		
+		System.out.println("angekommen");
 		doGet(request, response);
 	}
 

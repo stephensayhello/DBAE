@@ -30,7 +30,7 @@ public class Produkt {
 	 * @param pfad:
 	 *            absoluter Pfad f�r ein sp�teres Produkt Bild.
 	 */
-
+    private int anzahl;
 	/**
 	 * @param preis:
 	 *            Der Produktpreis;
@@ -73,6 +73,9 @@ public class Produkt {
 		this.menge = menge;
 
 	}
+	
+	
+
 
 	public String getName() {
 		return name;

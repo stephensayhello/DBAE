@@ -18,10 +18,12 @@ public class NutzerOperations {
 	public final static String NUTZER_ABFRAGE = "SELECT * FROM nutzer WHERE email = ?;";
 
 	public final static String KUNDEN_ABFRAGE_NACH_KUNDENNNR = "SELECT * FROM kunde WHERE kundennr = ?;";
-	
-	public final static String ADMIN_ABFRGAE_NACH_ADMINID ="SELECT * FROM admin WHERE admin_id = ?;";
-	
+
+	public final static String ADMIN_ABFRGAE_NACH_ADMINID = "SELECT * FROM admin WHERE admin_id = ?;";
+
 	public final static String NUTZER_UPDATE = "UPDATE nutzer SET email = ? WHERE nutzer_id =?";
+
+	public final static String MAX_NUTZER_ID = "SELECT MAX(nutzer_id) FROM nutzer;";
 
 	public static void anlegen(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
@@ -46,7 +48,7 @@ public class NutzerOperations {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
 		try {
-			PreparedStatement pst = con.prepareStatement("SELECT MAX(nutzer_id) FROM nutzer");
+			PreparedStatement pst = con.prepareStatement(MAX_NUTZER_ID);
 
 			ResultSet rs = pst.executeQuery();
 			rs.next();
@@ -127,12 +129,12 @@ public class NutzerOperations {
 
 	}
 
-	public static boolean nutzeristKunde(Nutzer nutzer) {
+	public static boolean nutzeristKunde(int id) {
 		Connection con = DBConnection.getConnection();
 
 		try {
 			PreparedStatement pst = con.prepareStatement(KUNDEN_ABFRAGE_NACH_KUNDENNNR);
-			pst.setInt(1, nutzer.getNutzer_id());
+			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int kundennr = rs.getInt(1);
@@ -142,7 +144,7 @@ public class NutzerOperations {
 
 				return true;
 			}
-		
+
 		} catch (
 
 		SQLException e) {
@@ -153,12 +155,13 @@ public class NutzerOperations {
 		return false;
 
 	}
-	public static boolean nutzeristAdmin(Nutzer nutzer) {
+
+	public static boolean nutzeristAdmin(int id) {
 		Connection con = DBConnection.getConnection();
 
 		try {
 			PreparedStatement pst = con.prepareStatement(ADMIN_ABFRGAE_NACH_ADMINID);
-			pst.setInt(1, nutzer.getNutzer_id());
+			pst.setInt(1, id);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int admin_id = rs.getInt(1);
@@ -168,7 +171,7 @@ public class NutzerOperations {
 
 				return true;
 			}
-		
+
 		} catch (
 
 		SQLException e) {
@@ -179,23 +182,20 @@ public class NutzerOperations {
 		return false;
 
 	}
-	
-	
-	
+
 	public static void nutzerDataUpdate(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
-		
+
 		try {
 			PreparedStatement pst = con.prepareStatement(NUTZER_UPDATE);
 			pst.setString(1, nutzer.getEmail());
 			pst.setInt(2, nutzer.getNutzer_id());
 			pst.execute();
-		
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 	}
 
 }

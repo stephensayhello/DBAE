@@ -29,12 +29,13 @@ public class ArtikelView extends TagSupport {
 	private String getArtikelView() throws IOException {
 		String artikelview = ReadFromFile.readContentFromFile(pageContext, "artikel.html");
 		String counteralsString = Integer.toString(counter) ;
-		
+		String produktpreis = String.valueOf(produkt.getPreis()).replace(".","," );
+	
 		artikelview = artikelview.replace("PLATZHALTER0", counteralsString);
 		artikelview = artikelview.replace("PLATZHALTER1", produkt.getName());
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
 		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getProdukt_id()));
-		artikelview = artikelview.replace("PLATZHALTER4", String.valueOf(produkt.getPreis()));
+		artikelview = artikelview.replace("PLATZHALTER4", produktpreis);
 
 		if (produkt instanceof Shirt) {
 			artikelview = artikelview.replace("PLATZHALTERGROESSE1", "<option value=S>S</option>");
