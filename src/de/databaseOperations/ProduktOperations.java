@@ -44,7 +44,7 @@ public class ProduktOperations {
 			pst.setString(3, produkt.getName());
 			pst.setString(4, produkt.getBeschreibung());
 			pst.setInt(5, produkt.getProdukt_id());
-
+			pst.setInt(6, produkt.getArtikelnr());
 			pst.execute();
 			con.close();
 
@@ -178,7 +178,8 @@ public class ProduktOperations {
 				String name = rs.getString(3);
 				String beschreibung = rs.getString(4);
 				int id = rs.getInt(5);
-				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge);
+				int artnr = rs.getInt(6);
+				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr);
 
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
@@ -296,10 +297,11 @@ public class ProduktOperations {
 				double preis = rs.getDouble(1);
 				int menge = rs.getInt(2);
 				String name = rs.getString(3);
-				String beschreibung=rs.getString(4);
+				String beschreibung = rs.getString(4);
 				int produkt_id = rs.getInt(5);
-				
-            Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge);
+				int artnr = rs.getInt(6);
+
+				Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artnr);
 				return produkt;
 			}
 

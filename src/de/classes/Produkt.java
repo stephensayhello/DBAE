@@ -30,7 +30,7 @@ public class Produkt {
 	 * @param pfad:
 	 *            absoluter Pfad fï¿½r ein spï¿½teres Produkt Bild.
 	 */
-    private int anzahl;
+	private int anzahl;
 	/**
 	 * @param preis:
 	 *            Der Produktpreis;
@@ -52,15 +52,17 @@ public class Produkt {
 	 */
 	private String status;
 
+	private int artikelnr;
+
 	// konstruktor fürs holen aus der db oder anlengen mit id
-	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge) {
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr) {
 
 		this.setProdukt_id(produkt_id);
 		this.name = name;
 		this.beschreibung = beschreibung;
 		this.preis = preis;
 		this.menge = menge;
-
+		this.setArtikelnr(artnr);
 	}
 
 	// konstruktor fürs anlegen eines produkts
@@ -73,9 +75,6 @@ public class Produkt {
 		this.menge = menge;
 
 	}
-	
-	
-
 
 	public String getName() {
 		return name;
@@ -116,6 +115,7 @@ public class Produkt {
 	public void setSichtbarkeit(boolean sichtbarkeit) {
 		this.sichtbarkeit = sichtbarkeit;
 	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -123,7 +123,6 @@ public class Produkt {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
 
 	/**
 	 * Die Methode verï¿½ndert den Produktstatus
@@ -151,6 +150,14 @@ public class Produkt {
 
 	public void setProdukt_id(int produkt_id) {
 		this.produkt_id = produkt_id;
+	}
+
+	public int getArtikelnr() {
+		return artikelnr;
+	}
+
+	public void setArtikelnr(int artikelnr) {
+		this.artikelnr = artikelnr;
 	}
 
 }

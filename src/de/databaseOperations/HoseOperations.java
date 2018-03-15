@@ -25,7 +25,7 @@ public class HoseOperations {
 				int ho_id = rs.getInt(1);
 				int groesse = rs.getInt(2);
 				Hose hose = new Hose(ho_id, produkt.getName(), produkt.getBeschreibung(), produkt.getPreis(), groesse,
-						produkt.getMenge());
+						produkt.getMenge(), produkt.getArtikelnr());
 
 				return hose;
 			}

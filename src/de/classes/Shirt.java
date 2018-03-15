@@ -4,8 +4,8 @@ public class Shirt extends Produkt {
 
 	private String groesse;
 
-	public Shirt(int id, String name, String beschreibung, double preis, String groesse, int menge) {
-		super(id, name, beschreibung, preis, menge);
+	public Shirt(int id, String name, String beschreibung, double preis, String groesse, int menge, int artnr) {
+		super(id, name, beschreibung, preis, menge,artnr);
 		this.groesse = groesse;
 	}
 	
