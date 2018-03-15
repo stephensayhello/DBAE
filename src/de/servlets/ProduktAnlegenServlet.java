@@ -75,7 +75,7 @@ public class ProduktAnlegenServlet extends HttpServlet {
 		Produkt produkt = null;
 
 		for (int i = 0; i < groessearray.length; i++) {
-			if (mengearray[i] != null) {
+			if (!mengearray[i].isEmpty()) {
 				String groesse = groessearray[i];
 				menge = Integer.parseInt(mengearray[i]);
 				System.out.println("test");
