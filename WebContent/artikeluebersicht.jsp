@@ -6,6 +6,7 @@
 <head>
 <link rel="stylesheet" href="css/signup.css">
 <link rel="stylesheet" href="css/generalLayout.css">
+<link rel="stylesheet" href="css/artikeluebersicht.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -25,7 +26,8 @@
 	</script>
 
 	<a:navigation></a:navigation>
-
+	<a:modal messages="${messages}"></a:modal>
+     
 <div class="container">
 	<c:forEach items="${produkte}" varStatus="loop">
 		<c:if test="${(loop.index +1) % 3 == 1}">

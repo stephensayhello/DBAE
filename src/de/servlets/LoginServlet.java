@@ -58,6 +58,11 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(nutzer);
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
+		//das lösen wir noch anders
+		if(session.getAttribute("kundeeingeloggt")!=null){
+			messages.add("Sie sind bereits eingeloggt!");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 		if (nutzer != null) {
 			if (!SaltedHash.isPwdEqual(password, nutzer.getPasswort())) {
 				// hier fehlt noch was
