@@ -9,8 +9,8 @@ public class Schuhe extends Produkt {
 		this.groesse = groesse;
 	}
 	
-	public Schuhe(String name, String beschreibung, double preis, int groesse, int menge) {
-		super(name, beschreibung, preis, menge);
+	public Schuhe(String name, String beschreibung, double preis, int groesse, int menge, int artnr) {
+		super(name, beschreibung, preis, menge, artnr);
 		this.groesse = groesse;
 	}
 

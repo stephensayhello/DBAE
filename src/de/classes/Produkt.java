@@ -66,7 +66,7 @@ public class Produkt {
 	}
 
 	// konstruktor fürs anlegen eines produkts
-	public Produkt(String name, String beschreibung, double preis, int menge) {
+	public Produkt(String name, String beschreibung, double preis, int menge, int artner) {
 
 		this.setProdukt_id(ProduktOperations.hoechsteID());
 		this.name = name;
@@ -76,6 +76,7 @@ public class Produkt {
 
 	}
 
+	
 	public String getName() {
 		return name;
 	}

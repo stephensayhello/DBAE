@@ -64,9 +64,8 @@
 
 
 					<label for="p_preis">Preis</label> <input class="input-dbae"
-						type="number" step="0.01" name="p_preis" size=3> <label
-						for="p_menge">Menge</label> <input class="input-dbae"
-						type="number" name="p_menge" size=3>
+						type="number" step="0.01" name="p_preis" size=3> 
+						
 
 				</div>
 				

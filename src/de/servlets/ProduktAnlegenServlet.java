@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,29 +56,49 @@ public class ProduktAnlegenServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		int menge = 0;
 		String name = request.getParameter("p_name");
 		String beschreibung = request.getParameter("p_beschreibung");
 		int kategorie = Integer.parseInt(request.getParameter("p_kategorie"));
 		double preis = Double.parseDouble(request.getParameter("p_preis"));
-		int menge = Integer.parseInt(request.getParameter("p_menge"));
-		String groesse = request.getParameter("p_groesse");
 
-		// PrintWriter out = response.getWriter();
-		// String ausgabe = "Das Produkt wurde erfolgreich angelegt.";
-		// Die Übergabe der Kathegorie funktioniert nicht.
-
+		String[] groessearray = request.getParameterValues("checkGroesse");
+		String[] mengearray = request.getParameterValues("inputMenge");
+		new ArrayList<String>(Arrays.asList(groessearray));
+		new ArrayList<String>(Arrays.asList(mengearray));
+		System.out.println(groessearray[0]);
+		System.out.println(mengearray[0]);
+		System.out.println(mengearray.length);
+		System.out.println(groessearray.length);
+        int artikelnr = ProduktOperations.hoechsteartikelnr(); 
 		Produkt produkt = null;
-		if (kategorie == 0) {
-			request.getRequestDispatcher("produkt_anlegen.jsp").forward(request, response);
-		} else if (kategorie == 1) {
-			produkt = new Shirt(name, beschreibung, preis, groesse, menge);
-		} else if (kategorie == 2) {
-			produkt = new Hose(name, beschreibung, preis, Integer.parseInt(groesse), menge);
-		} else {
-			produkt = new Schuhe(name, beschreibung, preis, Integer.parseInt(groesse), menge);
-		}
 
-		ProduktOperations.anlegen(produkt);
+		for (int i = 0; i < groessearray.length; i++) {
+			if (mengearray[i] != null) {
+				String groesse = groessearray[i];
+				menge = Integer.parseInt(mengearray[i]);
+				System.out.println("test");
+				if (kategorie == 0) {
+					request.getRequestDispatcher("produkt_anlegen.jsp").forward(request, response);
+				} else if (kategorie == 1) {
+					produkt = new Shirt(ProduktOperations.hoechsteID(), name, beschreibung, preis, groesse, menge,
+						artikelnr	);
+					ProduktOperations.anlegen(produkt);
+
+				} else if (kategorie == 2) {
+System.out.println("hose");
+					produkt = new Hose(ProduktOperations.hoechsteID(), name, beschreibung, preis,
+							Integer.parseInt(groesse), menge, artikelnr);
+					ProduktOperations.anlegen(produkt);
+				} else {
+					produkt = new Schuhe(ProduktOperations.hoechsteID(), name, beschreibung, preis,
+							Integer.parseInt(groesse), menge, artikelnr);
+					ProduktOperations.anlegen(produkt);
+
+				}
+			}
+		}
 
 		request.getRequestDispatcher("produkt_anlegen.jsp").forward(request, response);
 

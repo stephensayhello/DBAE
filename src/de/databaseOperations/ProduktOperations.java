@@ -19,7 +19,7 @@ import de.datenbank.DBConnection;
 
 public class ProduktOperations {
 
-	public final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?)";
+	public final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?)";
 
 	public final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
 	public final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
@@ -33,8 +33,39 @@ public class ProduktOperations {
 	public final static String ZEIGE_SCHUHE_NACH_PRODUKTID = "SELECT sch_id FROM schuhe WHERE sch_id = ?;";
 	public final static String ZEIGE_SHIRT_NACH_PRODUKTID = "SELECT sh_id FROM shirt WHERE sh_id = ?;";
 	public final static String ZEIGE_HOSE_NACH_PRODUKTID = "SELECT ho_id FROM hose WHERE ho_id = ?;";
+    public final static String MAX_ARTNR = "SELECT MAX(artikelnr) FROM produkt;";
+	
+    
+    
+    public static int hoechsteartikelnr(){
+    	Connection con = DBConnection.getConnection();
+		int id = 0;
+		try {
+			PreparedStatement pst = con.prepareStatement(MAX_ARTNR);
 
-	public static void anlegen(Produkt produkt) {
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			id = rs.getInt(1);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(id);
+		id++;
+		System.out.println(id);
+		return id;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static void anlegen(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
 
 		try {
