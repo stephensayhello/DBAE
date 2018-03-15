@@ -1,5 +1,6 @@
 package de.classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.databaseOperations.Warenkorboperations;
@@ -21,6 +22,13 @@ public class Warenkorb {
 		this.produkte = produkte;
 	}
 	
+	public Warenkorb(Kunde kunde){
+		this.warenkorb_id = Warenkorboperations.hoechsteID();
+		this.kunde = kunde;
+		this.produkte = new ArrayList<Produkt>();
+	}
+	
+	
 	public List<Produkt> getInhalt() {
 		return produkte;
 	}
@@ -28,7 +36,7 @@ public class Warenkorb {
 	public void setInhalt(List<Produkt> produkte) {
 		this.produkte = produkte;
 	}
-
+	
 	
 
 

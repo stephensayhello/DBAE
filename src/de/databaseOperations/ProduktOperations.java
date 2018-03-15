@@ -299,7 +299,19 @@ public class ProduktOperations {
 				String beschreibung=rs.getString(4);
 				int produkt_id = rs.getInt(5);
 				
+				
             Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge);
+            
+			if (produktistSchuhe(produkt.getProdukt_id())) {
+				return SchuheOperations.holeSchuheausdb(produkt);
+			}
+			if (produktistHose(produkt.getProdukt_id())) {
+				return HoseOperations.hoseausdbholen(produkt);
+			}
+			if (produktistShirt(produkt.getProdukt_id())) {
+				return ShirtOperations.holeShirtausdb(produkt);
+			}
+            
 				return produkt;
 			}
 

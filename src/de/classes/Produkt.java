@@ -152,5 +152,9 @@ public class Produkt {
 	public void setProdukt_id(int produkt_id) {
 		this.produkt_id = produkt_id;
 	}
+	
+	public static Object[] getGroessen() {
+		return null;
+	}
 
 }

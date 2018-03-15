@@ -28,15 +28,15 @@
 			}
 		}
 
-		document.getElementById('p_groesse').options.length = 0;
+		//document.getElementById('groessenCheck').options.length = 0;
 
-		var sel = document.getElementById('p_groesse');
+		var sel = document.getElementById('groessenCheck');
+		var html = "";
 		for (var i = 0; i < specificSizes.length; i++) {
-			var opt = document.createElement('option');
-			opt.innerHTML = specificSizes[i];
-			opt.value = specificSizes[i];
-			sel.appendChild(opt);
+			html += "<div class='container'><div class='row'><div class='col-md-12'><div class='input-group'><span class='input-group-addon'><input type='checkbox' name='checkGroesse' value="+specificSizes[i]+"></span><span class='input-group-addon'><label for='tbox'>"+specificSizes[i]+"</label></span><input name='inputMenge' type='number' class='form-control'></div></div></div></div>";
 		}
+		
+		sel.innerHTML = html;
 	}
 </script>
 
@@ -79,8 +79,14 @@
 					<option value=1>Shirt</option>
 					<option value=2>Hose</option>
 					<option value=3>Schuhe</option>
-				</select> <label for="p_groesse">Größe</label> <select class="form-control"
-					id="p_groesse" name="p_groesse"></select>
+				</select>
+				
+				<div id="groessenCheck">
+				</div>
+				
+				
+<!-- 				 <label for="p_groesse">Größe</label> <select class="form-control"
+					id="p_groesse" name="p_groesse"></select> -->
 			</div>
 
 			<div>
