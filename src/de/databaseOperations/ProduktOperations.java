@@ -195,7 +195,7 @@ public class ProduktOperations {
 		try {
 			PreparedStatement pst = con.prepareStatement(LADE_PRODUKTE);
 			ResultSet rs = pst.executeQuery();
-			rs.next();
+			
 
 			while (rs.next()) {
 				double preis = rs.getDouble(1);

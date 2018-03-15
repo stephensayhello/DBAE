@@ -30,11 +30,11 @@
 
 <div class="container">
 	<c:forEach items="${produkte}" varStatus="loop">
-		<c:if test="${(loop.index +1) % 3 == 1}">
+		<c:if test="${((loop.index )+1) % 3 == 1}">
 			<div class="row">
 		</c:if>
 		<a:artikel produkt="${produkte[loop.index]}"></a:artikel>
-		<c:if test="${(loop.index +1) % 3 == 0}">
+		<c:if test="${((loop.index )+1) % 3 == 0}">
 			</div>
 		</c:if>
 	</c:forEach>
