@@ -37,13 +37,18 @@ public class ArtikelView extends TagSupport {
 
 	private String getArtikelView() throws IOException {
 		String artikelview = ReadFromFile.readContentFromFile(pageContext, "artikel.html");
-		String counteralsString = Integer.toString(counter);
+		
+		
+		
+		
+		
+		
 		String produktpreis = String.valueOf(produkt.getPreis()).replace(".", ",");
 
-		artikelview = artikelview.replace("PLATZHALTER0", counteralsString);
+		artikelview = artikelview.replace("PLATZHALTER0", Integer.toString(produkt.getProdukt_id()));
 		artikelview = artikelview.replace("PLATZHALTER1", produkt.getName());
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
-		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getProdukt_id()));
+		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getArtikelnr()));
 		artikelview = artikelview.replace("PLATZHALTER4", produktpreis);
 		
 		String options = "";
@@ -62,7 +67,7 @@ public class ArtikelView extends TagSupport {
 		}
 		artikelview = artikelview.replace("PLATZHALTERGROESSE", options);
 		
-		counter++;
+		
 		return artikelview;
 	}
 

@@ -51,9 +51,9 @@ public class ProduktOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(id);
+		
 		id++;
-		System.out.println(id);
+		
 		return id;
     }
     

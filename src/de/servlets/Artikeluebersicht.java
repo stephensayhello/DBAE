@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import de.classes.Hose;
 import de.classes.Kunde;
 import de.classes.Produkt;
+import de.classes.Produktgruppe;
 import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.classes.Warenkorb;
@@ -42,8 +43,25 @@ public class Artikeluebersicht extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
+		List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
+		int counter = 0;
+		for (int i = 0; i < produkte.size(); i++) {
+			if (counter == produkte.get(i).getArtikelnr()){
+				
+			}else {
+				counter = produkte.get(i).getArtikelnr();
+				produkteSortiertnachartnr.add(produkte.get(i));
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
 		request.setAttribute("test", "sdjfifjisdfjnsifsnfisdfnishn");
-		request.setAttribute("produkte", produkte);
+		request.setAttribute("produkte", produkteSortiertnachartnr);
 		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 
 	}
