@@ -54,9 +54,9 @@ public class Artikeluebersicht extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
+		
 		List<Produkt> produkte = (List<Produkt>) session.getAttribute("produkte");
-
+		session.setAttribute("produkte", produkte);
 		int produkt_id = Integer.parseInt(request.getParameter("produkt_id"));
 		int menge = Integer.parseInt(request.getParameter("menge"));
 		String groesse = request.getParameter("groesse");
@@ -85,7 +85,7 @@ public class Artikeluebersicht extends HttpServlet {
 		for (Produkt item : produkte) {
 			System.out.println(item);
 		}
-
+        
 		System.out.println("angekommen");
 		doGet(request, response);
 	}
