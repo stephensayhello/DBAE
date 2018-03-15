@@ -102,7 +102,7 @@ public class ProfilAendernServlet extends HttpServlet {
 		kunde.setAdresse(adresse);
 		messages.add("Die Daten wurden geändert.");
 		request.setAttribute("messages", messages);
-		session.setAttribute("kunde", kunde);
+		session.setAttribute("kundeeingeloggt", kunde);
 		
 		request.getRequestDispatcher("profilaendern.jsp").forward(request, response);
 	}
