@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.classes.Hose;
+import de.classes.Nutzer;
 import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.classes.Shirt;
@@ -26,8 +27,11 @@ public class ProduktOperations {
 	public final static String LADE_PRODUKTE = "SELECT * FROM produkt;";
 
 	public final static String PRODUKT_ZEIGEN = "SELECT * FROM produkt WHERE  name = ?";
-	
-	public static String PRODUKT_ANZAHL = "SELECT COUNT(*) FROM ";
+
+	public final static String PRODUKT_ANZAHL = "SELECT COUNT(*) FROM ";
+	public final static String ZEIGE_SCHUHE_NACH_PRODUKTID = "SELECT sch_id FROM schuhe WHERE sch_id = ?;";
+	public final static String ZEIGE_SHIRT_NACH_PRODUKTID = "SELECT sh_id FROM shirt WHERE sh_id = ?;";
+	public final static String ZEIGE_HOSE_NACH_PRODUKTID = "SELECT ho_id FROM hose WHERE ho_id = ?;";
 
 	public static void anlegen(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
@@ -112,7 +116,7 @@ public class ProduktOperations {
 		int id = 0;
 		try {
 			PreparedStatement pst = con.prepareStatement("SELECT MAX(produkt_id) FROM produkt");
-			
+
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
@@ -132,7 +136,7 @@ public class ProduktOperations {
 	 * @param produkt
 	 * @return
 	 */
-	public  static Produkt zeigeProdukt(Produkt produkt) {
+	public static Produkt zeigeProdukt(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
 
 		try {
@@ -157,31 +161,29 @@ public class ProduktOperations {
 		}
 		return produkt;
 	}
-	
-	
-	public  static int zeigeAnzahlProdukte(String kathegorie) {
-		
+
+	public static int zeigeAnzahlProdukte(String kathegorie) {
+
 		Connection con = DBConnection.getConnection();
 		int anzahl = 0;
 		String select = "SELECT COUNT(*) FROM " + kathegorie;
 		try {
 			PreparedStatement pst = con.prepareStatement(select);
-			
+
 			ResultSet rs = pst.executeQuery();
-			
-			if(!rs.next()) {
+
+			if (!rs.next()) {
 				anzahl = rs.getInt(0);
 			} else {
 				anzahl = 0;
 			}
-			
+
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return anzahl;
 	}
 
@@ -201,7 +203,21 @@ public class ProduktOperations {
 				String name = rs.getString(3);
 				String beschreibung = rs.getString(4);
 				int id = rs.getInt(5);
-				produkte.add(new Produkt(id, name, beschreibung, preis, menge));
+				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge);
+				
+				if(produktistSchuhe(produkt)){
+					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
+					produkte.add(schuhe);
+				}
+				if(produktistHose(produkt)){
+					Hose hose = HoseOperations.hoseausdbholen(produkt);
+					produkte.add(hose);
+				}
+				if(produktistShirt(produkt)){
+					Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
+					produkte.add(shirt);
+				}
+				
 			}
 
 			con.close();
@@ -213,4 +229,84 @@ public class ProduktOperations {
 		return produkte;
 	}
 
+	public static boolean produktistShirt(Produkt produkt) {
+		Connection con = DBConnection.getConnection();
+
+		try {
+			PreparedStatement pst = con.prepareStatement(ZEIGE_SHIRT_NACH_PRODUKTID);
+			pst.setInt(1, produkt.getProdukt_id());
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				int sh_id = rs.getInt(1);
+
+				System.out.println(sh_id);
+				System.out.println();
+
+				return true;
+			}
+
+		} catch (
+
+		SQLException e) {
+			System.out.println("Fehler");
+			e.printStackTrace();
+
+		}
+		return false;
+
+	}
+	public static boolean produktistHose(Produkt produkt) {
+		Connection con = DBConnection.getConnection();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(ZEIGE_HOSE_NACH_PRODUKTID);
+			pst.setInt(1, produkt.getProdukt_id());
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				int ho_id = rs.getInt(1);
+				
+				System.out.println(ho_id);
+				System.out.println();
+				
+				return true;
+			}
+			
+		} catch (
+				
+				SQLException e) {
+			System.out.println("Fehler");
+			e.printStackTrace();
+			
+		}
+		return false;
+		
+	}
+	public static boolean produktistSchuhe(Produkt produkt) {
+		Connection con = DBConnection.getConnection();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(ZEIGE_SCHUHE_NACH_PRODUKTID);
+			pst.setInt(1, produkt.getProdukt_id());
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				int sch_id = rs.getInt(1);
+				
+				System.out.println(sch_id);
+				System.out.println();
+				
+				return true;
+			}
+			
+		} catch (
+				
+				SQLException e) {
+			System.out.println("Fehler");
+			e.printStackTrace();
+			
+		}
+		return false;
+		
+	}
+
+	
 }

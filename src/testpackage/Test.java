@@ -4,6 +4,7 @@ import de.classes.Adresse;
 import de.classes.Kunde;
 import de.classes.Nutzer;
 import de.classes.Produkt;
+import de.classes.Shirt;
 import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
@@ -23,12 +24,15 @@ public class Test {
 		// KundenOperations.anlegen(kunde);
 
 	}
+	
+	private static void zudummfuerinsanceof (Produkt produkt){
+		System.out.println(produkt instanceof Shirt);
+	}
 
 	public static void main(String[] args) {
-		String email = "benjamin.gajewski@yahoo.de";
-		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen(email);
-		System.out.println(nutzer.getPasswort());
-		
+		Shirt shirt = new Shirt(1,"adolf","klasse",10.00,"xl",3);
+		zudummfuerinsanceof(shirt);
+		System.out.println(shirt.getProdukt_id());
 	
 
 	}

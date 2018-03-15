@@ -26,8 +26,8 @@
 	</script>
 
 	<a:navigation></a:navigation>
-	<a:modal messages="${messages}"></a:modal>
-     
+	
+
 <div class="container">
 	<c:forEach items="${produkte}" varStatus="loop">
 		<c:if test="${(loop.index +1) % 3 == 1}">

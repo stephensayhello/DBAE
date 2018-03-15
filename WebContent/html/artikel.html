@@ -1,78 +1,105 @@
-        <div class="col-md-4">
-              <div class="thumbnail">
-                <img src="img/dummy.jpg" alt="" class="img-responsive" height="300" width="250">
-                <div class="caption">
-                  <h4 class="pull-right">PLATZHALTER4</h4>
-                  <h4><a href="#">PLATZHALTER1</a></h4>
-                  <p>PLATZHALTER2</p>
-                </div>
-                <div class="ratings">
-                  <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                  </p>
-                </div>
-                <div class="space-ten"></div>
-                <div class="btn-ground text-center">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i> Quick View</button>
-                </div>
-                <div class="space-ten"></div>
-              </div>
-            </div>
-<div class="modal fade product_view" id="product_view">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-                <h3 class="modal-title">HTML5 is a markup language</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 product_img">
-                        <img src="img/dummy.jpg" alt="" class="img-responsive" height="300" width="250">
-                    </div>
-                    <div class="col-md-6 product_content">
-                        <h4>Product Id: <span>PLATZHALTER3</span></h4>
-                        <div class="rating">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                        </div>
-                        <p>PLATZHALTER2</p>
-                        <h3 class="cost"><span class="glyphicon glyphicon-usd"></span> PLATZHALTER4</h3>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <select class="form-control" name="select">
-                                    <option value="" selected="">Groﬂe</option>
-                                    <option value="black">Black</option>
-                                    <option value="white">White</option>
-                                    <option value="gold">Gold</option>
-                                    <option value="rose gold">Rose Gold</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                <select class="form-control" name="select">
-                                    <option value="" selected="">Menge</option>
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                </select>
-                            </div>
-                            <!-- end col -->
-                        </div>
-                        <div class="space-ten"></div>
-                        <div class="btn-ground">
-                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span> Add To Cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<form action="Artikeluebersicht" method="post">
+	<div class="col-md-4">
+		<div class="thumbnail">
+			<img src="img/dummy.jpg" alt="" class="img-responsive" height="300"
+				width="250">
+			<div class="caption">
+				<h4 class="pull-right">PLATZHALTER4</h4>
+				<h4>
+					<a href="#">PLATZHALTER1</a>
+				</h4>
+				<p>PLATZHALTER2</p>
+			</div>
+			<div class="ratings">
+				<p>
+					<span class="glyphicon glyphicon-star"></span> <span
+						class="glyphicon glyphicon-star"></span> <span
+						class="glyphicon glyphicon-star"></span> <span
+						class="glyphicon glyphicon-star"></span> <span
+						class="glyphicon glyphicon-star"></span>
+				</p>
+			</div>
+			<div class="space-ten"></div>
+			<div class="btn-ground text-center">
+				<button type="button" class="btn btn-primary" >
+					<i class="fa fa-search"></i> Produkt bewerten
+				</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#product_view">
+					<i class="fa fa-search"></i> Quick View
+				</button>
+			</div>
+			<div class="space-ten"></div>
+		</div>
+	</div>
+	<div class="modal fade product_view" id="product_view">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" data-dismiss="modal" class="class pull-right"><span
+						class="glyphicon glyphicon-remove"></span></a>
+					<h3 class="modal-title">HTML5 is a markup language</h3>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 product_img">
+							<img src="img/dummy.jpg" alt="" class="img-responsive"
+								height="300" width="250">
+						</div>
+						<div class="col-md-6 product_content">
+							<h4>
+								Product Id: <span>PLATZHALTER3</span>
+							</h4>
+							<div class="rating">
+								<span class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span> <span
+									class="glyphicon glyphicon-star"></span>
+							</div>
+							<p>PLATZHALTER2</p>
+							<h3 class="cost">
+								<span class="glyphicon glyphicon-usd"></span> PLATZHALTER4
+							</h3>
+							<div class="row">
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<select class="form-control" name="groesse">
+										<option value=0 selected="">Groeﬂe</option>
+										                  PLATZHALTERGROESSE1
+										                  PLATZHALTERGROESSE2
+										                  PLATZHALTERGROESSE3
+										                  PLATZHALTERGROESSE4
+										                  PLATZHALTERGROESSE5
+										                  PLATZHALTERGROESSE6
+										                  PLATZHALTERGROESSE7
+										                  PLATZHALTERGROESSE8
+										                  PLATZHALTERGROESSE9
+										
+									</select>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<select class="form-control" name="menge">
+										<option value="0" selected="">Menge</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</div>
+								<!-- end col -->
+							</div>
+							<div class="space-ten"></div>
+							<div class="btn-ground">
+								<button type="submit" class="btn btn-primary">
+									<span class="glyphicon glyphicon-shopping-cart"></span> Add To
+									Cart
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
