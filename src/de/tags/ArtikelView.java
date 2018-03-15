@@ -28,7 +28,7 @@ public class ArtikelView extends TagSupport {
 
 	private String getArtikelView() throws IOException {
 		String artikelview = ReadFromFile.readContentFromFile(pageContext, "artikel.html");
-		String counteralsString ="/"+ Integer.toString(counter) +"/";
+		String counteralsString = Integer.toString(counter) ;
 		
 		artikelview = artikelview.replace("PLATZHALTER0", counteralsString);
 		artikelview = artikelview.replace("PLATZHALTER1", produkt.getName());
