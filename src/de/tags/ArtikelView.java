@@ -12,7 +12,7 @@ import de.utilities.ReadFromFile;
 public class ArtikelView extends TagSupport {
 	private static final long serialVersionUID = 1L;
 	private Produkt produkt;
-
+    public static int counter = 0;
 	public void setProdukt(Produkt produkt) {
 		this.produkt = produkt;
 	}
@@ -28,9 +28,9 @@ public class ArtikelView extends TagSupport {
 
 	private String getArtikelView() throws IOException {
 		String artikelview = ReadFromFile.readContentFromFile(pageContext, "artikel.html");
-		int counter = 1;
-		String countalsString = Integer.toString(counter);
-		artikelview = artikelview.replace("PLATZHALTER0",countalsString );
+		String counteralsString ="/"+ Integer.toString(counter) +"/";
+		
+		artikelview = artikelview.replace("PLATZHALTER0", counteralsString);
 		artikelview = artikelview.replace("PLATZHALTER1", produkt.getName());
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
 		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getProdukt_id()));
@@ -72,6 +72,7 @@ public class ArtikelView extends TagSupport {
 			artikelview = artikelview.replace("PLATZHALTERGROESSE9", "");
 			System.out.println("test111");
 		}
+		System.out.println(counter);
 		counter++;
 		return artikelview;
 	}
