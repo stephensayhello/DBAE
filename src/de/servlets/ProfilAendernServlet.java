@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import de.classes.Adresse;
 import de.classes.Kunde;
+import de.databaseOperations.KundenOperations;
+import de.logik.Regex;
 
 /**
  * Servlet implementation class ProfilAendernServlet
@@ -61,29 +63,48 @@ public class ProfilAendernServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		session.removeAttribute("kundeeingeloggt");
 		
-		if(vorname == null && nachname== null && email == null  && strasse == null  
-				&& hausnr == null && ort == null) {
+		if(vorname.equals("") && nachname.equals("") && email.equals("")  && strasse.equals("") 
+				&& hausnr.equals("") && ort.equals("")) {
 			// Mache Nichts keine Änderungen.
 			messages.add("Sie haben Ihre Informationen nicht verändert.");
 			
-		} else if(plz >= 5)  {
+		} else  {
 			
 			messages.add("Ihre Informationen wurden erfolgreich geändert.");
-			if(vorname != kunde.getVorname()) {
+			Adresse adresse = kunde.getAdresse();
+			if(vorname != kunde.getVorname() && !vorname.equals("")) {
 				
 				kunde.setVorname(vorname);
 				messages.add("Der Vorname wurde geändert.");
 				
-			} else if(email != kunde.getEmail()) {
+			}  else if(nachname != kunde.getNachname() && !nachname.equals("")) {
+				
+				kunde.setNachname(nachname);
+				messages.add("Der Nachname wurde geändert.");
+				
+			} else if(email != kunde.getEmail() && Regex.pruefeRegexEMail(email)) {
 				
 				kunde.setEmail(email);
 				messages.add("Die E-Mail wurde geändert.");
 			
+			} else if(strasse != adresse.getStrasse()) {
+				adresse.setStrasse(strasse);
+				messages.add("Die Straße wurde geändert.");
+				
+			} else if(hausnr != adresse.getHausnummer()) {
+				adresse.setHausnummer(hausnr);
+				messages.add("Die Hausnummer wurde geändert.");
+			} else if(plz != adresse.getPlz()) {
+				adresse.setPlz(plz);
+				messages.add("Die PLZ wurde geändert.");
+			} else if(ort != adresse.getOrt()) {
+				adresse.setOrt(ort);
+				messages.add("Der Ort wurde geändert.");
+				
 			}
-		} else {
-			if(nachname.contains("Test") && email.contains("@web.de")) {
-				messages.add("testlauf");
-			}
+			kunde.setAdresse(adresse);
+			KundenOperations.kundenUpdateDaten(kunde);
+			session.setAttribute("kundeeingeloggt", kunde);
 			
 		}
 		

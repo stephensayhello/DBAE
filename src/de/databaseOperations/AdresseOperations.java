@@ -6,14 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import de.classes.Adresse;
-import de.classes.Nutzer;
 import de.datenbank.DBConnection;
 
 public class AdresseOperations {
 
 	public final static String ADRESSE_ANLEGEN = "INSERT INTO adresse VALUES (?, ?, ?, ?, ?);";
 	public final static String ADRESSE_AUS_DBHOLEN = "SELECT * FROM adresse WHERE adress_id = ?;";
-	public final static String ADRESSE_UPDATE = "UPDATE adresse SET strasse= ?, hausnummer = ?, postleitzahl =?, ort = ? WHERE adress_id = ?";
+	public final static String ADRESSE_UPDATE = "UPDATE adresse SET straﬂe= ?, hausnr = ?, postleitzahl =?, ort = ? WHERE adress_id = ?";
 
 	public static void anlegen(Adresse adresse) {
 
@@ -90,7 +89,7 @@ public class AdresseOperations {
 			pst.setString(2, adresse.getHausnummer());
 			pst.setInt(3, adresse.getPlz());
 			pst.setString(4, adresse.getOrt());
-			pst.setInt(2, adresse.getAdress_id());
+			pst.setInt(5, adresse.getAdress_id());
 			
 			pst.execute();
 			

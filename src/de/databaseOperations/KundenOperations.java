@@ -15,7 +15,7 @@ public class KundenOperations {
 	public final static String ANLEGEN_KUNDE = "INSERT INTO kunde VALUES (?,?,?,?)";
 	public final static String MAIL_KUNDE_VERGLEICH = "SELECT email FROM nutzer WHERE email = ?;";
 	public final static String KUNDEN_ABFRAGE = "SELECT * FROM kunde WHERE kundennr = ?;";
-	public final static String KUNDE_UPDATE = "UPDATE kunde SET vorname= ?, nachname =? WHERE kundennummer = ?";
+	public final static String KUNDE_UPDATE = "UPDATE kunde SET vorname= ?, nachname= ? WHERE kundennr = ?";
 	
 	
     
@@ -98,10 +98,9 @@ public class KundenOperations {
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(KUNDE_UPDATE);
-			pst.setString(1, kunde.getEmail());
-			pst.setString(2, kunde.getVorname());
-			pst.setString(3, kunde.getNachname());
-			pst.setInt(4, kunde.getNutzer_id());
+			pst.setString(1, kunde.getVorname());
+			pst.setString(2, kunde.getNachname());
+			pst.setInt(3,kunde.getNutzer_id());
 			pst.execute();
 			
 			con.close();
