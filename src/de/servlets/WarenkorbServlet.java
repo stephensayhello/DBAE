@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import de.classes.Produkt;
 import de.classes.Produkt_Anzahl_Zuordnung;
 import de.classes.Warenkorb;
 
@@ -47,10 +48,10 @@ public class WarenkorbServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
-		// for (int i = 0; i < warenkorb.getInhalt().size(); i++) {
-		// System.out.println(warenkorb.getInhalt().get(i).getProdukt_id());
-		// }
+		List <Produkt> warenkorbinhalt = (List<Produkt>) session.getAttribute("warenkorbinhalt");
+		for (int i = 0; i < warenkorbinhalt.size(); i++) {
+		 System.out.println(warenkorbinhalt.get(i).getAnzahl());
+		 }
 		
 
 	}

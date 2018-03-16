@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="/WEB-INF/tag.tld" prefix="a" %> 
+	pageEncoding="ISO-8859-1"%>
+<%@  taglib prefix="a" uri="/WEB-INF/tag.tld"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE >
 <html>
 <head>
@@ -11,8 +12,20 @@
 </head>
 <body>
 <a:navigation></a:navigation>
+<c:forEach var="produkt" items="${warenkorbinhalt}" >
+		${produkt.produkt_id}
+		${produkt.name}
+		${produkt.beschreibung}
+		${produkt.anzahl}
+		${produkt.preis}
+		${produkt.status}
+		${produkt.groesse}
+		
+		
+		
+	</c:forEach>
 <form action="WarenkorbServlet" method="post">
-
+	
 
 
 

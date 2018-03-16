@@ -83,7 +83,7 @@ public class ProduktAnlegenServlet extends HttpServlet {
 					request.getRequestDispatcher("produkt_anlegen.jsp").forward(request, response);
 				} else if (kategorie == 1) {
 					produkt = new Shirt(ProduktOperations.hoechsteID(), name, beschreibung, preis, groesse, menge,
-						artikelnr	);
+						artikelnr, 0	);
 					ProduktOperations.anlegen(produkt);
 
 				} else if (kategorie == 2) {
@@ -93,7 +93,7 @@ System.out.println("hose");
 					ProduktOperations.anlegen(produkt);
 				} else {
 					produkt = new Schuhe(ProduktOperations.hoechsteID(), name, beschreibung, preis,
-							Integer.parseInt(groesse), menge, artikelnr);
+							Integer.parseInt(groesse), menge, artikelnr, 0);
 					ProduktOperations.anlegen(produkt);
 
 				}

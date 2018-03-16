@@ -93,7 +93,7 @@ public class Artikeluebersicht extends HttpServlet {
 				if (produkt2 instanceof Shirt) {
 					Shirt shirt = (Shirt) produkt2;
 					if (shirt.getGroesse().equals(groesse)) {
-						for (int i = 0; i < menge; i++) {
+						shirt.setAnzahl(menge);
 							warenkorb.getInhalt().add(shirt);
 						}
 					}
@@ -101,25 +101,25 @@ public class Artikeluebersicht extends HttpServlet {
 				if (produkt2 instanceof Hose) {
 					Hose hose = (Hose) produkt2;
 					if (hose.getGroesse() == Integer.parseInt(groesse)) {
-						for (int i = 0; i < menge; i++) {
+						hose.setAnzahl(menge);
 							warenkorb.getInhalt().add(hose);
 						}
 					}
-				}
+				
 				if (produkt2 instanceof Schuhe) {
 					Schuhe schuhe = (Schuhe) produkt2;
 					if (schuhe.getGroesse() == Integer.parseInt(groesse)) {
-						for (int i = 0; i < menge; i++) {
+						schuhe.setAnzahl(menge);
 							warenkorb.getInhalt().add(schuhe);
-						}
+						
 					}
 				}
 
 			}
 
-		}
+		
 		session.setAttribute("warenkorb", warenkorb);
-
+        session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 		System.out.println("angekommen");
 		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 	}

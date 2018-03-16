@@ -15,11 +15,7 @@ public class Produkt {
 	 * @param art:
 	 *            Produktart.
 	 */
-	private String kategorie;
-	/**
-	 * @param name:
-	 *            Produktname.
-	 */
+	
 	private String name;
 	/**
 	 * @param beschreibung:
@@ -30,6 +26,8 @@ public class Produkt {
 	 * @param pfad:
 	 *            absoluter Pfad fï¿½r ein spï¿½teres Produkt Bild.
 	 */
+	
+	//anzahl  für den warenkorb
 	private int anzahl;
 	/**
 	 * @param preis:
@@ -63,6 +61,20 @@ public class Produkt {
 		this.preis = preis;
 		this.menge = menge;
 		this.setArtikelnr(artnr);
+		anzahl = 0;
+	}
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl) {
+		
+		this.setProdukt_id(produkt_id);
+		this.name = name;
+		this.beschreibung = beschreibung;
+		this.preis = preis;
+		this.menge = menge;
+		this.setArtikelnr(artnr);
+		this.setAnzahl(anzahl);
+		if (anzahl > menge){
+			this.setStatus("nicht lieferbar");
+		}else { this.setStatus("lieferbar");}
 	}
 
 	// konstruktor fürs anlegen eines produkts
@@ -73,6 +85,7 @@ public class Produkt {
 		this.beschreibung = beschreibung;
 		this.preis = preis;
 		this.menge = menge;
+		anzahl=0;
 
 	}
 
@@ -171,4 +184,10 @@ public class Produkt {
     		return true;
     	}
     }
+	public int getAnzahl() {
+		return anzahl;
+	}
+	public void setAnzahl(int anzahl) {
+		this.anzahl = anzahl;
+	}
 }
