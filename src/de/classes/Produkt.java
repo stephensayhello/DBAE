@@ -48,7 +48,7 @@ public class Produkt {
 	 * @param status:
 	 *            der Produktstatus zB. nicht lieferbar.
 	 */
-	private String status;
+	private boolean status;
 
 	private int artikelnr;
 	
@@ -74,10 +74,8 @@ public class Produkt {
 		this.menge = menge;
 		this.setArtikelnr(artnr);
 		this.setAnzahl(anzahl);
-		if (anzahl > menge){
-			this.setStatus("nicht lieferbar");
-		}else { this.setStatus("lieferbar");}
-		this.setPreismitanzahl((anzahl * preis));
+		
+		
 	}
 
 	// konstruktor fürs anlegen eines produkts
@@ -133,12 +131,12 @@ public class Produkt {
 		this.sichtbarkeit = sichtbarkeit;
 	}
 
-	public String getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(boolean bool) {
+		this.status = bool;
 	}
 
 	/**
@@ -148,18 +146,7 @@ public class Produkt {
 	 *            Indikator fï¿½r Wechsel.
 	 * @return der neue Status.
 	 */
-	public String getStatus(int wechsel) {
 
-		if (wechsel == 1) {
-			this.setStatus("lieferbar");
-		} else if (wechsel == 2) {
-			this.setStatus("Vorï¿½bergehendend nicht verfï¿½gbar.");
-		} else if (wechsel == 3) {
-			this.setStatus("Zur zeit nicht lieferbar.");
-		}
-
-		return this.status;
-	}
 
 	public int getProdukt_id() {
 		return produkt_id;

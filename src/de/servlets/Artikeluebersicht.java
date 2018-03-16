@@ -79,7 +79,7 @@ public class Artikeluebersicht extends HttpServlet {
 		List<Produkt> produktefürwarenkorb = new ArrayList<>();
 
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
-		boolean produktinkorbgeworfen = false;
+		boolean ingroesseverfügbar = false;
 
 		if (warenkorb == null) {
 			Kunde kunde = (Kunde) session.getAttribute("kundeEingeloggt");
@@ -98,37 +98,53 @@ public class Artikeluebersicht extends HttpServlet {
 				if (produkt2 instanceof Shirt) {
 					Shirt shirt = (Shirt) produkt2;
 					if (shirt.getGroesse().equals(groesse)) {
+						ingroesseverfügbar=true;
 						shirt.setAnzahl(menge);
-						warenkorb.getInhalt().add(shirt);
-						produktinkorbgeworfen = true;
+						if (shirt.getStatus()) {
+							warenkorb.getInhalt().add(shirt);
+							
+						} else {
+							messages.add("Produkt in dieser Menge nicht verfügbar!");
+						}
 					}
 				}
 
 				if (produkt2 instanceof Hose) {
 					Hose hose = (Hose) produkt2;
 					if (hose.getGroesse() == Integer.parseInt(groesse)) {
+						ingroesseverfügbar=true;
 						hose.setAnzahl(menge);
-						warenkorb.getInhalt().add(hose);
-						produktinkorbgeworfen = true;
-					}
-				}
-
-				if (produkt2 instanceof Schuhe) {
-					Schuhe schuhe = (Schuhe) produkt2;
-					if (schuhe.getGroesse() == Integer.parseInt(groesse)) {
-						schuhe.setAnzahl(menge);
-						warenkorb.getInhalt().add(schuhe);
-						produktinkorbgeworfen = true;
+						System.out.println(hose.getStatus());
+						if (hose.getStatus()) {
+							warenkorb.getInhalt().add(hose);
+							
+						} else {
+							messages.add("Produkt in dieser Menge nicht verfügbar!");
+						}
 					}
 				}
 			}
 
+			if (produkt2 instanceof Schuhe) {
+				Schuhe schuhe = (Schuhe) produkt2;
+				if (schuhe.getGroesse() == Integer.parseInt(groesse)) {
+					ingroesseverfügbar=true;
+					schuhe.setAnzahl(menge);
+					if (schuhe.getStatus()) {
+						warenkorb.getInhalt().add(schuhe);
+						
+					} else {
+						messages.add("Produkt in dieser Menge nicht verfügbar!");
+					}
+				}
+			}
 		}
-		if (!produktinkorbgeworfen) {
+
+		if (!ingroesseverfügbar) {
 			messages.add("Produkt ist in dieser Größe nicht lieferbar!");
 			request.setAttribute("messages", messages);
 		}
-		
+
 		session.setAttribute("warenkorb", warenkorb);
 		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 		session.removeAttribute("warenkorbgesamtpreis");

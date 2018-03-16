@@ -19,7 +19,7 @@
 			<th>Name</th>
 			<th>Anzahl</th>
 			<th>Groesse</th>
-			<th>Status</th>
+			
 
 		</tr>
 		<c:forEach var="produkt" items="${warenkorbinhalt}">

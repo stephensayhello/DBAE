@@ -12,6 +12,9 @@ public class Hose extends Produkt {
 		super(id, name, beschreibung, preis, menge, artnr, anzahl);
 		this.groesse = groesse;
 		this.setPreismitanzahl(anzahl*preis);
+		if (anzahl > menge){
+			 this.setStatus(false);
+			}else { this.setStatus(true);}
 	}
 	
 	public Hose(String name, String beschreibung, double preis, int groesse, int menge, int artnr) {

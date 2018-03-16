@@ -10,6 +10,9 @@ public class Shirt extends Produkt {
 		super(id, name, beschreibung, preis, menge, artnr, anzahl);
 		this.groesse = groesse;
 		this.setPreismitanzahl(anzahl*preis);
+		if (anzahl > menge){
+			 this.setStatus(false);
+			}else { this.setStatus(true);}
 	}
 	public Shirt(int id, String name, String beschreibung, double preis, String groesse, int menge, int artnr) {
 		super(id, name, beschreibung, preis, menge, artnr);
