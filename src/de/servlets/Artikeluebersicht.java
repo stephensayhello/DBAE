@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sun.xml.internal.ws.api.message.Message;
+import com.sun.xml.internal.ws.api.message.Messages;
+
 import de.classes.Hose;
 import de.classes.Kunde;
 import de.classes.Produkt;
@@ -70,12 +73,13 @@ public class Artikeluebersicht extends HttpServlet {
 			throws ServletException, IOException {
 
 		session = request.getSession();
-
+		List<String> messages = new ArrayList<>();
 		List<Produkt> produkte = (List<Produkt>) session.getAttribute("produktlistedb");
 
 		List<Produkt> produktefürwarenkorb = new ArrayList<>();
 
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
+		boolean produktinkorbgeworfen = false;
 
 		if (warenkorb == null) {
 			Kunde kunde = (Kunde) session.getAttribute("kundeEingeloggt");
@@ -85,6 +89,7 @@ public class Artikeluebersicht extends HttpServlet {
 
 		int artnr = Integer.parseInt(request.getParameter("artnr"));
 		int menge = Integer.parseInt(request.getParameter("menge"));
+
 		String groesse = request.getParameter("groesse");
 
 		for (Produkt produkt2 : produkte) {
@@ -94,32 +99,40 @@ public class Artikeluebersicht extends HttpServlet {
 					Shirt shirt = (Shirt) produkt2;
 					if (shirt.getGroesse().equals(groesse)) {
 						shirt.setAnzahl(menge);
-							warenkorb.getInhalt().add(shirt);
-						}
+						warenkorb.getInhalt().add(shirt);
+						produktinkorbgeworfen = true;
 					}
 				}
+
 				if (produkt2 instanceof Hose) {
 					Hose hose = (Hose) produkt2;
 					if (hose.getGroesse() == Integer.parseInt(groesse)) {
 						hose.setAnzahl(menge);
-							warenkorb.getInhalt().add(hose);
-						}
+						warenkorb.getInhalt().add(hose);
+						produktinkorbgeworfen = true;
 					}
-				
+				}
+
 				if (produkt2 instanceof Schuhe) {
 					Schuhe schuhe = (Schuhe) produkt2;
 					if (schuhe.getGroesse() == Integer.parseInt(groesse)) {
 						schuhe.setAnzahl(menge);
-							warenkorb.getInhalt().add(schuhe);
-						
+						warenkorb.getInhalt().add(schuhe);
+						produktinkorbgeworfen = true;
 					}
 				}
-
 			}
 
+		}
+		if (!produktinkorbgeworfen) {
+			messages.add("Produkt ist in dieser Größe nicht lieferbar!");
+			request.setAttribute("messages", messages);
+		}
 		
 		session.setAttribute("warenkorb", warenkorb);
-        session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
+		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
+		session.removeAttribute("warenkorbgesamtpreis");
+		session.setAttribute("warenkorbgesamtpreis", warenkorb.getGesamtpreis());
 		System.out.println("angekommen");
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}

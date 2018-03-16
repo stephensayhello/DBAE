@@ -11,42 +11,60 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-<a:navigation></a:navigation>
-<table style="width:100%"> 
-<tr>
-    <th>ID</th>
-    <th>Name</th> 
-    <th>Anzahl</th>
-    <th>Groesse</th>
-    <th>Preis</th>
-    <th>Status</th>
-    
-  </tr>
-<c:forEach var="produkt" items="${warenkorbinhalt}" >
-		
-		 
-   
-  <tr><td> ${produkt.produkt_id} </td>
-		<td> ${produkt.name} </td>
-		<td> ${produkt.anzahl}	</td>	
-		<td> ${produkt.groesse} </td>
-		<td> ${produkt.preis)}   </td>
-		<td> ${produkt.status}  </td>
-		</tr>
-		
-		
- 
+	<a:navigation></a:navigation>
+	<table style="width: 100%">
+		<tr>
+			<th>Preis</th>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Anzahl</th>
+			<th>Groesse</th>
+			<th>Status</th>
 
+		</tr>
+		<c:forEach var="produkt" items="${warenkorbinhalt}">
+
+
+
+			<tr>
+			    <td>${produkt.preis}</td>
+				<td>${produkt.produkt_id}</td>
+				<td>${produkt.name}</td>
+				<td>${produkt.anzahl}</td>
+				<td>${produkt.groesse}</td>
+				
+
+			</tr>
+
+
+
+
+
+		</c:forEach>
+	</table>
+	<table>
 		
-	</c:forEach></table>
-<form action="WarenkorbServlet" method="post">
+		<th>Gesamtpreis</th>
 	
 
 
+		<tr>
+			
+			<td> ${warenkorbgesamtpreis} </td>
+
+		</tr>
 
 
-<input type ="submit">
-</form>
+	</table>
+	<a:modal messages="${messages}"></a:modal>
+	<form action="WarenkorbServlet" method="post">
+
+
+
+
+
+		<input type="submit">
+	</form>
 
 </body>
 </html>
