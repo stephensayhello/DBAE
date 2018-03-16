@@ -51,6 +51,8 @@ public class Produkt {
 	private String status;
 
 	private int artikelnr;
+	
+	private double preismitanzahl;
 
 	// konstruktor fürs holen aus der db oder anlengen mit id
 	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr) {
@@ -75,6 +77,7 @@ public class Produkt {
 		if (anzahl > menge){
 			this.setStatus("nicht lieferbar");
 		}else { this.setStatus("lieferbar");}
+		this.setPreismitanzahl((anzahl * preis));
 	}
 
 	// konstruktor fürs anlegen eines produkts
@@ -189,5 +192,11 @@ public class Produkt {
 	}
 	public void setAnzahl(int anzahl) {
 		this.anzahl = anzahl;
+	}
+	public double getPreismitanzahl() {
+		return preismitanzahl;
+	}
+	public void setPreismitanzahl(double preismitanzahl) {
+		this.preismitanzahl = preismitanzahl;
 	}
 }

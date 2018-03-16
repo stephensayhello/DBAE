@@ -9,6 +9,7 @@ public class Shirt extends Produkt {
 	public Shirt(int id, String name, String beschreibung, double preis, String groesse, int menge, int artnr, int anzahl) {
 		super(id, name, beschreibung, preis, menge, artnr, anzahl);
 		this.groesse = groesse;
+		this.setPreismitanzahl(anzahl*preis);
 	}
 	public Shirt(int id, String name, String beschreibung, double preis, String groesse, int menge, int artnr) {
 		super(id, name, beschreibung, preis, menge, artnr);

@@ -11,6 +11,7 @@ public class Hose extends Produkt {
 	public Hose(int id, String name, String beschreibung, double preis, int groesse, int menge,int artnr, int anzahl) {
 		super(id, name, beschreibung, preis, menge, artnr, anzahl);
 		this.groesse = groesse;
+		this.setPreismitanzahl(anzahl*preis);
 	}
 	
 	public Hose(String name, String beschreibung, double preis, int groesse, int menge, int artnr) {

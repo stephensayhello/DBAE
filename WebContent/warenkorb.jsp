@@ -12,18 +12,33 @@
 </head>
 <body>
 <a:navigation></a:navigation>
+<table style="width:100%"> 
+<tr>
+    <th>ID</th>
+    <th>Name</th> 
+    <th>Anzahl</th>
+    <th>Groesse</th>
+    <th>Preis</th>
+    <th>Status</th>
+    
+  </tr>
 <c:forEach var="produkt" items="${warenkorbinhalt}" >
-		${produkt.produkt_id}
-		${produkt.name}
-		${produkt.beschreibung}
-		${produkt.anzahl}
-		${produkt.preis}
-		${produkt.status}
-		${produkt.groesse}
+		
+		 
+   
+  <tr><td> ${produkt.produkt_id} </td>
+		<td> ${produkt.name} </td>
+		<td> ${produkt.anzahl}	</td>	
+		<td> ${produkt.groesse} </td>
+		<td> ${produkt.preis)}   </td>
+		<td> ${produkt.status}  </td>
+		</tr>
 		
 		
+ 
+
 		
-	</c:forEach>
+	</c:forEach></table>
 <form action="WarenkorbServlet" method="post">
 	
 

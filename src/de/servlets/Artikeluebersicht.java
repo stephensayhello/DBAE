@@ -121,7 +121,7 @@ public class Artikeluebersicht extends HttpServlet {
 		session.setAttribute("warenkorb", warenkorb);
         session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 		System.out.println("angekommen");
-		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
+		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}
 
 }

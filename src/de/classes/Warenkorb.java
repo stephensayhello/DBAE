@@ -16,6 +16,7 @@ public class Warenkorb {
 	 */
 	private Kunde kunde;
 	
+	private int gesamtpreis;
 	public Warenkorb(Kunde kunde,List<Produkt> produkte){
 		this.warenkorb_id = Warenkorboperations.hoechsteID();
 		this.kunde = kunde;
@@ -35,6 +36,19 @@ public class Warenkorb {
 
 	public void setInhalt(List<Produkt> produkte) {
 		this.produkte = produkte;
+	}
+
+	public int getGesamtpreis() {
+		for (Produkt produkt : produkte) {
+			gesamtpreis += (produkt.getAnzahl() * produkt.getPreis());
+		}
+		return gesamtpreis;
+	}
+
+	public void setGesamtpreis(int gesamtpreis) {
+		
+		
+		this.gesamtpreis = gesamtpreis;
 	}
 	
 	
