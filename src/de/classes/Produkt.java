@@ -164,5 +164,11 @@ public class Produkt {
 	public void setArtikelnr(int artikelnr) {
 		this.artikelnr = artikelnr;
 	}
-
+    public boolean lieferbar(int menge){
+    	if(menge == 0){
+    		return false;
+    	}else{
+    		return true;
+    	}
+    }
 }

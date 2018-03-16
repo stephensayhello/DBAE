@@ -2,6 +2,7 @@ package de.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,20 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import de.classes.Kunde;
-import de.utilities.SaltedHash;
+import de.classes.Produkt_Anzahl_Zuordnung;
+import de.classes.Warenkorb;
 
 /**
- * Servlet implementation class ProfilServlet
+ * Servlet implementation class WarenkorbServlet
  */
-@WebServlet("/ProfilServlet")
-public class ProfilServlet extends HttpServlet {
+@WebServlet("/WarenkorbServlet")
+public class WarenkorbServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ProfilServlet() {
+	public WarenkorbServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,26 +47,12 @@ public class ProfilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String password = request.getParameter("psw");
-		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
+		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
+		// for (int i = 0; i < warenkorb.getInhalt().size(); i++) {
+		// System.out.println(warenkorb.getInhalt().get(i).getProdukt_id());
+		// }
+		
 
-		List<String> messages = new ArrayList<>();
-		request.setAttribute("messages", messages);
-		if (kunde == null) {
-			String bitteinloggen = "Bitte loggen Sie sich ein, um ihr Profil sehen zu können.";
-			messages.add(bitteinloggen);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-
-		}
-		if (SaltedHash.isPwdEqual(password, kunde.getPasswort())) {
-
-			session.setAttribute("kundeeingeloggt", kunde);
-			System.out.println("blabla");
-			request.getRequestDispatcher("profilinfos.jsp").forward(request, response);
-		} else {
-			String fehlermeldung = "Das eingegebene Passwort ist  falsch!";
-			messages.add(fehlermeldung);
-			request.getRequestDispatcher("profil.jsp").forward(request, response);
-		}
 	}
+
 }

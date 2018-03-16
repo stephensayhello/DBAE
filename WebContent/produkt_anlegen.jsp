@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+  pageEncoding="ISO-8859-1"%>
 <%@taglib uri="/WEB-INF/tag.tld" prefix="a"%>
 <!DOCTYPE html >
 <html>
@@ -49,8 +49,8 @@
 	<div class="container">
 
 		<form action="ProduktAnlegenServlet" method="post">
-			<h1>Produkt hinzufÃ¼gen</h1>
-			<p>bitte ausfÃ¼llen um produkt hinzuzufÃ¼gen</p>
+			<h1>Produkt hinzufügen</h1>
+			<p>bitte ausfüllen um produkt hinzuzufügen</p>
 			<hr>
 				<div class="prod0">
 					<label for="p_name">Bezeichnung</label> <input class="input-dbae"
@@ -84,14 +84,14 @@
 				</div>
 				
 				
-<!-- 				 <label for="p_groesse">GrÃ¶ÃŸe</label> <select class="form-control"
+<!-- 				 <label for="p_groesse">Größe</label> <select class="form-control"
 					id="p_groesse" name="p_groesse"></select> -->
 			</div>
 
 			<div>
-				<button type="reset" class="button-dbae">Eingabe lÃ¶schen</button>
+				<button type="reset" class="button-dbae">Eingabe löschen</button>
 				<button type="submit" class="button-dbae">Produkt
-					hinzufÃ¼gen</button>
+					hinzufügen</button>
 			</div>
 
 

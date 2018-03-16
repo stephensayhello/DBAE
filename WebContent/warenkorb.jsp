@@ -10,8 +10,15 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-
 <a:navigation></a:navigation>
+<form action="WarenkorbServlet" method="post">
+
+
+
+
+
+<input type ="submit">
+</form>
 
 </body>
 </html>
