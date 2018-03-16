@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Insert title here</title>
+<title>Profil Aendern</title>
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
@@ -22,16 +22,15 @@
 <form action="ProfilAendernServlet"  method="post">
 
 	<div class="name">
-	<label for="vorname"><b>Vorname:</b> </label><input type="text" name="vorname" class="input-dbae" required-size="3">
-	<label for="nachname"><b>Nachname:</b> </label><input type="text" name="nachname" class="input-dbae" required-size="3">
-	<label for="mail"><b>E-Mail:</b> </label><input type="text" name="mail" class= "input-dbae" required-size="3">
+	<label for="vorname"><b>Vorname:</b> </label><input type="text" name="vorname" class="input-dbae" required-size="3"  placeholder="Vorname">
+	<label for="nachname"><b>Nachname:</b> </label><input type="text" name="nachname" class="input-dbae" required-size="3"  placeholder="Nachname">
+	<label for="mail"><b>E-Mail:</b> </label><input type="text" name="mail" class= "input-dbae" required-size="3" placeholder="beispiel@web.de">
 	</div>
-	
 	<div class="adresse">
-	<label for="strasse">Strasse: </label><input type="text" name="strasse" class="input-dbae" required-size="3">
-	<label for="hausnr">Hausnummer: </label><input type="text" name="hausnr" class="input-dbae" required-size="3">
-	<label for="plz">Postleitzahl: </label><input type="text" name="plz" class="input-dbae" required-size="3">
-	<label for="ort">Ort: </label><input type="text" name="ort" class="input-dbae" required-size="3">
+	<label for="strasse">Strasse: </label><input type="text" name="strasse" class="input-dbae" required-size="3" placeholder="strasse" >
+	<label for="hausnr">Hausnummer: </label><input type="text" name="hausnr" class="input-dbae" required-size="3" placeholder ="Hausnummer">
+	<label for="plz">Postleitzahl: </label><input type="text" name="plz" class="input-dbae" required-size="3" placeholder ="Postleitzahl">
+	<label for="ort">Ort: </label><input type="text" name="ort" class="input-dbae" required-size="3"  placeholder="Hildesheim">
 	</div>
 	<button type="submit" class="button-dbae">Ändern</button>
 </form>

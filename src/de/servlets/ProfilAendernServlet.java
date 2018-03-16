@@ -13,12 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import de.classes.Adresse;
 import de.classes.Kunde;
-import de.databaseOperations.KundenOperations;
 
 /**
- * Servlet implementation class ProfilaendernServlet
+ * Servlet implementation class ProfilAendernServlet
  */
-@WebServlet("/ProfilaendernServlet")
+@WebServlet("/ProfilAendernServlet")
 public class ProfilAendernServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,76 +33,66 @@ public class ProfilAendernServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Daten holen
+		// Get Data
 		String vorname = request.getParameter("vorname");
 		String nachname = request.getParameter("nachname");
 		String email = request.getParameter("mail");
 		String strasse = request.getParameter("strasse");
 		String hausnr = request.getParameter("hausnr");
-		String plzS = request.getParameter("plz");
+		int plz = 0;
+		// -> PLZ Fehler fangen.
+		try {
+			plz = Integer.parseInt(request.getParameter("plz"));
+		} catch(NumberFormatException nfe) {
+			System.out.println("Fehler gefangen.");
+		}
+		
 		String ort = request.getParameter("ort");
 		HttpSession session = request.getSession();
-		
 		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
-		Adresse adresse = kunde.getAdresse();
+
 		List<String> messages = new ArrayList<>();
 		session.removeAttribute("kundeeingeloggt");
 		
-		// Daten ändern
-		if(vorname == null || nachname == null || email == null) {
-			// keine Änderung.
-		} else if(vorname != kunde.getVorname()) {
+		if(vorname == null && nachname== null && email == null  && strasse == null  
+				&& hausnr == null && ort == null) {
+			// Mache Nichts keine Änderungen.
+			messages.add("Sie haben Ihre Informationen nicht verändert.");
 			
-			kunde.setVorname(vorname);
+		} else if(plz >= 5)  {
 			
-		} else if(nachname != kunde.getNachname()) {
+			messages.add("Ihre Informationen wurden erfolgreich geändert.");
+			if(vorname != kunde.getVorname()) {
+				
+				kunde.setVorname(vorname);
+				messages.add("Der Vorname wurde geändert.");
+				
+			} else if(email != kunde.getEmail()) {
+				
+				kunde.setEmail(email);
+				messages.add("Die E-Mail wurde geändert.");
 			
-			kunde.setNachname(nachname);
+			}
+		} else {
+			if(nachname.contains("Test") && email.contains("@web.de")) {
+				messages.add("testlauf");
+			}
 			
-		} else if(email != kunde.getEmail()) {
-			
-			kunde.setEmail(email);
 		}
-		// Update den Kunden.
 		
 		
-		int plz = Integer.parseInt(plzS);
-		
-		if(strasse == null  || ort == null) {
-			
-		} else if(strasse != adresse.getStrasse()) {
-			
-			adresse.setStrasse(strasse);
-			
-		} else if(hausnr != adresse.getHausnummer()) {
-			
-			adresse.setHausnummer(hausnr);
-			
-		} else if(plz != adresse.getPlz()) {
-			
-			adresse.setPlz(plz);
-			
-		} else if(ort != adresse.getOrt()) {
-			
-			adresse.setOrt(ort);
-		}
-		// Data Update
-		KundenOperations.kundenUpdateDaten(kunde);
 		
 		
-		kunde.setAdresse(adresse);
-		messages.add("Die Daten wurden geändert.");
+	
+		
 		request.setAttribute("messages", messages);
-		session.setAttribute("kundeeingeloggt", kunde);
-		
 		request.getRequestDispatcher("profilaendern.jsp").forward(request, response);
 	}
 
