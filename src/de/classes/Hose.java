@@ -13,8 +13,10 @@ public class Hose extends Produkt {
 		this.groesse = groesse;
 		this.setPreismitanzahl(anzahl*preis);
 		if (anzahl > menge){
-			 this.setStatus(false);
-			}else { this.setStatus(true);}
+			 this.setStatus(" Nicht Lieferbar");
+			}else { 
+				this.setStatus("lieferbar");
+			}
 	}
 	
 	public Hose(String name, String beschreibung, double preis, int groesse, int menge, int artnr) {

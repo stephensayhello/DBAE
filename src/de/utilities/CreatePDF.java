@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import de.classes.Bestellung;
+import de.classes.Produkt;
 
 /**
  * Nutzt Apache PDFBox.
@@ -20,7 +24,7 @@ public class CreatePDF {
 	// Diese Klasse erzeugt ein PDF File.
 	final String destination = "WebContent/pdf/bestellung.pdf";
 	
-	public void create() throws InvalidPasswordException, IOException {
+	public void create(Bestellung bestellung) throws InvalidPasswordException, IOException {
 		// technische Voraussetzungen.
 		File file = new File(destination);
 		file.getParentFile().mkdirs();
@@ -29,17 +33,24 @@ public class CreatePDF {
 		PDPage ersteSeite = document.getPage(0);
 		
 		PDPageContentStream contentstream = new PDPageContentStream(doc, ersteSeite);
-		
+		List<Produkt> liste = bestellung.getListe();
 		// Der text wird geschrieben
 		contentstream.beginText();
 		contentstream.setFont(PDType1Font.TIMES_ROMAN, 12);
 		contentstream.newLineAtOffset(25, 500);
 		contentstream.setLeading(14.5f);
-		String text = "Ihre Bestellung im Detail: Artikel a ";
+		String text = "Ihre Bestellung im Detail: ";
 		contentstream.showText(text);
 		contentstream.newLine();
+		for(Produkt produkt: liste) {
+			contentstream.showText(produkt.getName() + " Anzahl:" +  produkt.getAnzahl() + "  Preis: " +  produkt.getPreismitanzahl());
+			contentstream.newLine();
+		}
+		
+		
+		contentstream.newLine();
 		Date date = new Date();
-		contentstream.showText(date.toString());
+		contentstream.showText("Zeitpunkt der Bestellung:" +  date.toString());
 		contentstream.endText();
 		contentstream.close();
 		doc.addPage(ersteSeite);

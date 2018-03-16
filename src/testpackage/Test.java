@@ -40,7 +40,7 @@ public class Test {
 		//		zudummfuerinsanceof(shirt);
 		//System.out.println(shirt.getProdukt_id());
 		//	System.out.println();
-		new CreatePDF().create();
+		
 	}
 
 }

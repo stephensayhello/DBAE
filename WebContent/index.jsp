@@ -12,6 +12,8 @@
 <body>
 
 <a:navigation></a:navigation>
-
+<h1>Willkommen im SportWebShop</h1>
+<p> Alle Produkt verfügen über den Berwertungssystem von 1 bis 5 Sternen.
+<p> (1 schlecht, 5 perfekt)
 </body>
 </html>

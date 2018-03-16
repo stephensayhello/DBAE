@@ -11,10 +11,7 @@ import de.databaseOperations.ProduktOperations;
 public class Produkt {
 	// Attribute
 	private int produkt_id;
-	/**
-	 * @param art:
-	 *            Produktart.
-	 */
+	
 	
 	private String name;
 	/**
@@ -43,12 +40,11 @@ public class Produkt {
 	 * @param sichtbarkeit:
 	 *            Produkt wird gezeigt ja/nein.
 	 */
-	private boolean sichtbarkeit;
 	/**
 	 * @param status:
 	 *            der Produktstatus zB. nicht lieferbar.
 	 */
-	private boolean status;
+	private String status;
 
 	private int artikelnr;
 	
@@ -64,6 +60,7 @@ public class Produkt {
 		this.menge = menge;
 		this.setArtikelnr(artnr);
 		anzahl = 0;
+		this.setStatus("Lieferbar");
 	}
 	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl) {
 		
@@ -74,6 +71,7 @@ public class Produkt {
 		this.menge = menge;
 		this.setArtikelnr(artnr);
 		this.setAnzahl(anzahl);
+		this.setStatus("Lieferbar");
 		
 		
 	}
@@ -87,6 +85,7 @@ public class Produkt {
 		this.preis = preis;
 		this.menge = menge;
 		anzahl=0;
+		this.setStatus("Lieferbar");
 
 	}
 
@@ -123,20 +122,12 @@ public class Produkt {
 		this.menge = menge;
 	}
 
-	public boolean isSichtbarkeit() {
-		return sichtbarkeit;
-	}
-
-	public void setSichtbarkeit(boolean sichtbarkeit) {
-		this.sichtbarkeit = sichtbarkeit;
-	}
-
-	public boolean getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean bool) {
-		this.status = bool;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	/**
@@ -185,5 +176,11 @@ public class Produkt {
 	}
 	public void setPreismitanzahl(double preismitanzahl) {
 		this.preismitanzahl = preismitanzahl;
+	}
+	// Eine idee für den Status
+	public void pruefeStatus() {
+		if(menge >= anzahl) {
+			this.setStatus("Nicht lieferbar");
+		}
 	}
 }

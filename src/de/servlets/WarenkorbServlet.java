@@ -53,6 +53,8 @@ public class WarenkorbServlet extends HttpServlet {
 		 System.out.println(warenkorbinhalt.get(i).getAnzahl());
 		 }
 		
+		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
+		
 
 	}
 

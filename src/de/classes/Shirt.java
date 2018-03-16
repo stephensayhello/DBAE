@@ -11,8 +11,8 @@ public class Shirt extends Produkt {
 		this.groesse = groesse;
 		this.setPreismitanzahl(anzahl*preis);
 		if (anzahl > menge){
-			 this.setStatus(false);
-			}else { this.setStatus(true);}
+			 this.setStatus("Nicht Lieferbar");
+			}else { this.setStatus("lieferbar");}
 	}
 	public Shirt(int id, String name, String beschreibung, double preis, String groesse, int menge, int artnr) {
 		super(id, name, beschreibung, preis, menge, artnr);
