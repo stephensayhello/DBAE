@@ -43,7 +43,7 @@ public class ArtikelView extends TagSupport {
 		
 		
 		
-		String produktpreis = String.valueOf(produkt.getPreis()).replace(".", ",");
+		String produktpreis = produkt.getPreisineuro();
 
 		artikelview = artikelview.replace("PLATZHALTER0", Integer.toString(produkt.getProdukt_id()));
 		artikelview = artikelview.replace("PLATZHALTER1", produkt.getName());

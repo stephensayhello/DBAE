@@ -54,6 +54,8 @@ public class Produkt {
 	private double preismitanzahl;
 	
 	private String preismitanzahlineuro;
+	
+	private String preisineuro;
 
 	// konstruktor fürs holen aus der db oder anlengen mit id
 	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr) {
@@ -66,6 +68,7 @@ public class Produkt {
 		this.setArtikelnr(artnr);
 		anzahl = 0;
 		this.setStatus("Lieferbar");
+		this.setPreisineuro(preis);
 	}
 	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl) {
 		
@@ -79,7 +82,7 @@ public class Produkt {
 		this.setStatus("Lieferbar");
 		this.setPreismitanzahl(anzahl*preis);
 		this.setPreismitanzahlineuro(anzahl*preis);
-		
+		this.setPreisineuro(preis);
 		System.out.println("blob");
 	}
 
@@ -93,6 +96,7 @@ public class Produkt {
 		this.menge = menge;
 		anzahl=0;
 		this.setStatus("Lieferbar");
+		this.setPreisineuro(preis);
 
 	}
 
@@ -197,5 +201,11 @@ public class Produkt {
 	public void setPreismitanzahlineuro(double preis) {
 		System.out.println("daqhhwqu");
 		this.preismitanzahlineuro = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(preis);
+	}
+	public String getPreisineuro() {
+		return preisineuro;
+	}
+	public void setPreisineuro(double preis) {
+		this.preisineuro = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(preis);
 	}
 }
