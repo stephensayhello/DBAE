@@ -100,7 +100,7 @@ public class Artikeluebersicht extends HttpServlet {
 					if (shirt.getGroesse().equals(groesse)) {
 						ingroesseverfügbar=true;
 						shirt.setAnzahl(menge);
-						if (shirt.getStatus().contains("lieferbar")) {
+						if (shirt.getStatus().contains("Lieferbar")) {
 							warenkorb.getInhalt().add(shirt);
 							
 						} else {
@@ -115,7 +115,8 @@ public class Artikeluebersicht extends HttpServlet {
 						ingroesseverfügbar=true;
 						hose.setAnzahl(menge);
 						System.out.println(hose.getStatus());
-						if (hose.getStatus().contains("lieferbar")) {
+						if (hose.getStatus().contains("Lieferbar")) {
+							System.out.println("lieferbar");
 							warenkorb.getInhalt().add(hose);
 							
 						} else {
@@ -130,7 +131,7 @@ public class Artikeluebersicht extends HttpServlet {
 				if (schuhe.getGroesse() == Integer.parseInt(groesse)) {
 					ingroesseverfügbar=true;
 					schuhe.setAnzahl(menge);
-					if (schuhe.getStatus().contains("lieferbar")) {
+					if (schuhe.getStatus().contains("Lieferbar")) {
 						warenkorb.getInhalt().add(schuhe);
 						
 					} else {
@@ -150,6 +151,8 @@ public class Artikeluebersicht extends HttpServlet {
 		session.removeAttribute("warenkorbgesamtpreis");
 		session.setAttribute("warenkorbgesamtpreis", warenkorb.getGesamtpreis());
 		System.out.println("angekommen");
+		System.out.println(warenkorb.getGesamtpreis());
+		System.out.println(warenkorb.getInhalt().size());
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}
 

@@ -77,7 +77,7 @@ public class Produkt {
 	}
 
 	// konstruktor fürs anlegen eines produkts
-	public Produkt(String name, String beschreibung, double preis, int menge, int artner) {
+	public Produkt(String name, String beschreibung, double preis, int menge, int artnr) {
 
 		this.setProdukt_id(ProduktOperations.hoechsteID());
 		this.name = name;
