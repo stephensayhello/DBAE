@@ -35,4 +35,9 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	
+	<tag>
+		<name>changenav</name>
+		<tag-class>de.tags.ChangeNav</tag-class>
+	</tag>
 </taglib>

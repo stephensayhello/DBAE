@@ -1,0 +1,43 @@
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#navbar3">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand"><img src="img/Logo.png"
+				alt="Dispute Bills"> </a>
+		</div>
+		<div class="collapse navbar-collapse" id="navbar3">
+			<ul class="nav navbar-nav">
+				
+				<li><a href="artikeluebersicht.jsp"><span
+						class="glyphicon glyphicon-tags"></span> Artikelübersicht</a></li>
+
+				<li><a href="profil.jsp"><span
+						class="glyphicon glyphicon-edit"></span> Profil</a></li>
+				
+				<li><a href="kundeninfos.jsp"><span
+						class="glyphicon glyphicon-edit"></span> Kundeninformatioenn</a></li>
+						
+				<li><a href="bestellung.jsp"><span class= "glyphicon glyphicon-edit"></span>Übersicht offener Bestellung.</a></li>		
+			
+				<li><a href="produktinfos.jsp"><span class=" glyphicon glyphicon-edit"></span>Produktinformationen</a></li>
+				
+				<li><a href="produkt_anlegen.jsp"><span class="glyphicon glyphicon-edit"></span> Neues Produkt anlegen</a></li>
+				
+				<li><a href="login.jsp"><span class="glyphincon glyphicon-log-in"></span></a> Login</li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<script>
+	$(document).ready(function() {
+		var pathname = window.location.pathname;
+		var pagename = pathname.substring(pathname.lastIndexOf("/") + 1);
+		$('a[href="' + pagename + '"]').parent().addClass('active');
+	})
+</script>

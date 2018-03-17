@@ -41,8 +41,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -75,19 +74,20 @@ public class LoginServlet extends HttpServlet {
 				Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
                 System.out.println(kunde);
 				session.setAttribute("kundeeingeloggt", kunde);
-				
+				session.setAttribute("rolle", "kunde");
 				session.setAttribute("kundenadresse", kunde.getAdresse());
 				messages.add("Erfolgreicher login");
 				request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 			}
 			if (NutzerOperations.nutzeristAdmin(nutzer.getNutzer_id())) {
 				Admin admin = AdminOperations.holeAdminausDB(nutzer);
-
+				session.setAttribute("rolle", "admin");
 				session.setAttribute("admineingeloggt", admin);
 			}
 
 		} else {
-
+			
+			session.setAttribute("rolle", "kunde");
 			String falschernutzername = "Name falsch";
 			messages.add(falschernutzername);
 			request.getRequestDispatcher("login.jsp").forward(request, response);

@@ -44,7 +44,7 @@
 
 </head>
 <body>
-	<a:navigation></a:navigation>
+	<a:changenav></a:changenav>
 
 	<div class="container">
 
