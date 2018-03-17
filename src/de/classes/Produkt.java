@@ -1,5 +1,8 @@
 package de.classes;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import de.databaseOperations.ProduktOperations;
 
 /**
@@ -49,6 +52,8 @@ public class Produkt {
 	private int artikelnr;
 	
 	private double preismitanzahl;
+	
+	private String preismitanzahlineuro;
 
 	// konstruktor fürs holen aus der db oder anlengen mit id
 	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr) {
@@ -72,6 +77,8 @@ public class Produkt {
 		this.setArtikelnr(artnr);
 		this.setAnzahl(anzahl);
 		this.setStatus("Lieferbar");
+		this.setPreismitanzahl(anzahl*preis);
+		this.setPreismitanzahlineuro(anzahl*preis);
 		
 		
 	}
@@ -182,5 +189,11 @@ public class Produkt {
 		if(menge >= anzahl) {
 			this.setStatus("Nicht lieferbar");
 		}
+	}
+	public String getPreismitanzahlineuro() {
+		return preismitanzahlineuro;
+	}
+	public void setPreismitanzahlineuro(double preis) {
+		this.preismitanzahlineuro = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(preis);
 	}
 }

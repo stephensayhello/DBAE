@@ -1,8 +1,10 @@
 package de.servlets;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -114,7 +116,7 @@ public class Artikeluebersicht extends HttpServlet {
 					if (hose.getGroesse() == Integer.parseInt(groesse)) {
 						ingroesseverfügbar=true;
 						hose.setAnzahl(menge);
-						System.out.println(hose.getStatus());
+						System.out.println(hose.getPreismitanzahlineuro());
 						if (hose.getStatus().contains("Lieferbar")) {
 							System.out.println("lieferbar");
 							warenkorb.getInhalt().add(hose);
@@ -149,9 +151,9 @@ public class Artikeluebersicht extends HttpServlet {
 		session.setAttribute("warenkorb", warenkorb);
 		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 		session.removeAttribute("warenkorbgesamtpreis");
-		session.setAttribute("warenkorbgesamtpreis", warenkorb.getGesamtpreis());
+		session.setAttribute("warenkorbgesamtpreis", NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
 		System.out.println("angekommen");
-		System.out.println(warenkorb.getGesamtpreis());
+		System.out.println(NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
 		System.out.println(warenkorb.getInhalt().size());
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}

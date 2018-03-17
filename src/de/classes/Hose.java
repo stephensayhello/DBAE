@@ -17,6 +17,7 @@ public class Hose extends Produkt {
 			}else { 
 				this.setStatus("lieferbar");
 			}
+		this.setPreismitanzahlineuro(anzahl*preis);
 	}
 	
 	public Hose(String name, String beschreibung, double preis, int groesse, int menge, int artnr) {
