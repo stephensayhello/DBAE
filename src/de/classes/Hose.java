@@ -1,9 +1,11 @@
 package de.classes;
 
+
+
 public class Hose extends Produkt {
 
 	private int groesse;
-
+   
 	public Hose(int id, String name, String beschreibung, double preis, int groesse, int menge,int artnr) {
 		super(id, name, beschreibung, preis, menge, artnr);
 		this.groesse = groesse;
@@ -17,7 +19,7 @@ public class Hose extends Produkt {
 			}else { 
 				this.setStatus("lieferbar");
 			}
-		this.setPreismitanzahlineuro(anzahl*preis);
+		
 	}
 	
 	public Hose(String name, String beschreibung, double preis, int groesse, int menge, int artnr) {
@@ -32,5 +34,5 @@ public class Hose extends Produkt {
 	public void setGroesse(int groesse) {
 		this.groesse = groesse;
 	}
-
+	
 }
