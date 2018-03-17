@@ -20,7 +20,7 @@ public class ArtikelView extends TagSupport {
 	
 	private static final String[] SHIRT_GROESSEN = { "S", "M", "L", "XL", "XXL" };
 	private static final String[] HOSE_GROESSEN = { "28", "30", "32", "34", "38", "40", "42" };
-	private static final String[] SCHUHE_GROESSEN = { "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48" };
+	private static final String[] SCHUHE_GROESSEN = { "38", "39", "40", "41", "42", "43", "44", "45" };
 
 	public void setProdukt(Produkt produkt) {
 		this.produkt = produkt;

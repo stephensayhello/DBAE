@@ -12,8 +12,9 @@
 </head>
 <body>
 	<a:navigation></a:navigation>
-	<div class="container">
-		<table style="width: 100%">
+	<a:modal messages="${messages}"></a:modal>
+	<div class="table-responsive">
+		<table class="table">
 			<tr>
 
 				<th>Preis</th>
@@ -54,7 +55,7 @@
 			</tr>
 
 		</table>
-		<a:modal messages="${messages}"></a:modal>
+		
 		<form action="WarenkorbServlet" method="post">
 
 

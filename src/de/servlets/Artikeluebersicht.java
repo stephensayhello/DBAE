@@ -61,7 +61,8 @@ public class Artikeluebersicht extends HttpServlet {
 			}
 		}
 
-		request.setAttribute("test", "sdjfifjisdfjnsifsnfisdfnishn");
+
+request.setAttribute("test", "ttttttttt");
 		request.setAttribute("produkte", produkteSortiertnachartnr);
 		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 
@@ -103,11 +104,12 @@ public class Artikeluebersicht extends HttpServlet {
 						ingroesseverfügbar=true;
 						shirt.setAnzahl(menge);
 						shirt.setPreismitanzahlineuro(shirt.getPreis()*menge);
-						if (shirt.getStatus().contains("Lieferbar")) {
+						if (shirt.getStatus().contains("Lieferbar")&&(shirt.getMenge()>=menge)) {
 							warenkorb.getInhalt().add(shirt);
 							
 						} else {
 							messages.add("Produkt in dieser Menge nicht verfügbar!");
+							request.setAttribute("messages", messages);
 						}
 					}
 				}
@@ -119,12 +121,13 @@ public class Artikeluebersicht extends HttpServlet {
 						hose.setAnzahl(menge);
 						hose.setPreismitanzahlineuro(hose.getPreis()*menge);
 						System.out.println(hose.getPreismitanzahlineuro());
-						if (hose.getStatus().contains("Lieferbar")) {
+						if (hose.getStatus().contains("Lieferbar")&&(hose.getMenge()>=menge)) {
 							System.out.println("lieferbar");
 							warenkorb.getInhalt().add(hose);
 							
 						} else {
 							messages.add("Produkt in dieser Menge nicht verfügbar!");
+							request.setAttribute("messages", messages);
 						}
 					}
 				}
@@ -136,11 +139,12 @@ public class Artikeluebersicht extends HttpServlet {
 					ingroesseverfügbar=true;
 					schuhe.setAnzahl(menge);
 					schuhe.setPreismitanzahlineuro(schuhe.getPreis()*menge);
-					if (schuhe.getStatus().contains("Lieferbar")) {
+					if (schuhe.getStatus().contains("Lieferbar")&&(schuhe.getMenge()>=menge)) {
 						warenkorb.getInhalt().add(schuhe);
 						
 					} else {
 						messages.add("Produkt in dieser Menge nicht verfügbar!");
+						request.setAttribute("messages", messages);
 					}
 				}
 			}

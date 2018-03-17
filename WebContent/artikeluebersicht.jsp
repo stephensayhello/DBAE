@@ -44,9 +44,8 @@
 	<form action="Artikeluebersicht" method="get">
 		<button type="submit" id="holeArtikel"></button>
 	</form>
-
-	<p>${test}</p>
-
+<div id = "testtest"><p >${test}</p></div>
+	 
 
 	<!-- <div class="clearfix">
 <form action="produkt_anlegen.jsp">
