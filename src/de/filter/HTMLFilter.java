@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 /**
  * Servlet Filter implementation class HTMLFilter
  */
-@WebFilter("/HTMLFilter")
+@WebFilter("/*")
 public class HTMLFilter extends BaseFilter implements Filter {
 
 	@Override

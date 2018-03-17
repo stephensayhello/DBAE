@@ -1,0 +1,22 @@
+Dokumentation bzw. Handbuch (Anfänge)-> Stand 17.03.2018
+
+1. Projektvoraussetztungen:
+	
+	- Apache Tomcat Version 8.01
+	- gegebenfalls muss der Java Build Path angepasst werden
+	- externe Biblotheken: Apache PDFbox.
+	
+	
+2. Accounts / Testen
+
+2.1 Kunde
+
+	E-Mail: paul.blanke1@web.de		
+	PW: 	BlankePaul456
+	
+	
+	
+2.2 Admin
+
+	E-Mail: admin@test.de	
+	PW:		Projekt2018

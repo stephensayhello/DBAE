@@ -81,8 +81,10 @@ public class LoginServlet extends HttpServlet {
 			}
 			if (NutzerOperations.nutzeristAdmin(nutzer.getNutzer_id())) {
 				Admin admin = AdminOperations.holeAdminausDB(nutzer);
+				System.out.println("Admin erkannt:)");
 				session.setAttribute("rolle", "admin");
 				session.setAttribute("admineingeloggt", admin);
+				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 			}
 
 		} else {
