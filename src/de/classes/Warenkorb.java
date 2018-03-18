@@ -3,7 +3,7 @@ package de.classes;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.databaseOperations.Warenkorboperations;
+import de.databaseOperations.WarenkorbOperations;
 
 public class Warenkorb {
 	private int warenkorb_id;
@@ -18,13 +18,13 @@ public class Warenkorb {
 	
 	private double gesamtpreis;
 	public Warenkorb(Kunde kunde,List<Produkt> produkte){
-		this.warenkorb_id = Warenkorboperations.hoechsteID();
+		this.warenkorb_id = WarenkorbOperations.hoechsteID();
 		this.kunde = kunde;
 		this.produkte = produkte;
 	}
 	
 	public Warenkorb(Kunde kunde){
-		this.warenkorb_id = Warenkorboperations.hoechsteID();
+		this.warenkorb_id = WarenkorbOperations.hoechsteID();
 		this.kunde = kunde;
 		this.produkte = new ArrayList<Produkt>();
 	}

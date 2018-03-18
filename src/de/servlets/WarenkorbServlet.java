@@ -56,7 +56,12 @@ public class WarenkorbServlet extends HttpServlet {
 			}
 			session.setAttribute("warenkorb", warenkorb);
 			session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
+		} else if((Warenkorb)request.getAttribute("warenkorb") == null) {
+			 System.out.println("Der Warenkorb ist leer");
 		}
+				
+			
+		
 
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 
