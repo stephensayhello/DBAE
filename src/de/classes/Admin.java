@@ -38,7 +38,7 @@ public class Admin extends Nutzer {
 	
 	
 	/**
-	 * Diese Methode set beim einen Kunden das Passwort zurück.
+	 * Diese Methode set beim einen Kunden das Passwort zurï¿½ck.
 	 * 
 	 * @param kunde: der zu aendere Kunde.
 	 * @return der geaenderte Kunde.
@@ -51,13 +51,13 @@ public class Admin extends Nutzer {
 	 *  Diese Methode loescht ein Produkt.
 	 * @param produkte: das Produkt.
 	 */
-	public void loescheProdukte(Produkt produket) {
+	public void loescheProdukte(Produkt produkte) {
 		
 	}
 	/**
-	 * Diese Methode verändert die Daten eines Prdoukt bsp.
+	 * Diese Methode verï¿½ndert die Daten eines Prdoukt bsp.
 	 * den lieferstatus etc.
-	 * @param produkte: Das ändere Produkt.
+	 * @param produkte: Das ï¿½ndere Produkt.
 	 * @return das fertige Produkt.
 	 */
 	public Produkt anedereDaten(Produkt produkte) {
