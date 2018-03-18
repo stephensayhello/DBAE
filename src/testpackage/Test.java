@@ -7,6 +7,7 @@ import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 
 import de.classes.Admin;
 import de.classes.Adresse;
+import de.classes.Bestellung;
 import de.classes.Kunde;
 import de.classes.Nutzer;
 import de.classes.Produkt;
@@ -14,6 +15,7 @@ import de.classes.Shirt;
 import de.classes.Warenkorb;
 import de.databaseOperations.AdminOperations;
 import de.databaseOperations.AdresseOperations;
+import de.databaseOperations.BestellungOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 import de.databaseOperations.ProduktOperations;
@@ -32,6 +34,8 @@ public class Test {
 		Kunde kunde = new Kunde(saltedhash, "email", adresse, "vorname", "nachname");
         Warenkorb warenkorb = new Warenkorb(kunde);
 		System.out.println(warenkorb.getWarenkorb_id());
+		Bestellung bestellung = new Bestellung(warenkorb.getInhalt(), kunde);
+		BestellungOperations.bestellunganlegen(bestellung);
 		
 
 	}
@@ -48,8 +52,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Date date = new Date();
-		System.out.println(date.toString());
+		
 		
 	}
 
