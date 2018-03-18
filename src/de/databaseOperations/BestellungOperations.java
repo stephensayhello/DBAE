@@ -51,9 +51,10 @@ public class BestellungOperations {
 
 			for (Produkt produkt : bestellliste) {
 				pst = con.prepareStatement(ANLEGEN_BESTELLUNG_PROD_ZUO);
-				pst.setInt(2,  1);
-				pst.setInt(3, bestellung.getKunde().getNutzer_id());
-				pst.setDate(2,  bestellung.getDate());
+				pst.setInt(1,  1);
+				pst.setInt(3, produkt.getMenge());
+				pst.setInt(2, produkt.getArtikelnr() );
+				
 				
 				pst.execute();
 				System.out.println("adolf");
@@ -71,7 +72,7 @@ public class BestellungOperations {
 		PreparedStatement pst;
 		try {
 			pst = con.prepareStatement(ANLEGEN_BESTELLUNG);
-			pst.setInt(1, 1);
+			pst.setInt(1, 5);
 			pst.setInt(2, bestellung.getKunde().getNutzer_id());
 			pst.setString(3 , bestellung.getDate().toString());
 			pst.execute();
@@ -80,6 +81,10 @@ public class BestellungOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		bestellung.setBestellnummer(2);
+		System.out.println("Testfall B2");
+		
+		anlegen(bestellung);
 
 	}
 }
