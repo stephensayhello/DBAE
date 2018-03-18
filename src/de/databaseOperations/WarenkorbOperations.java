@@ -8,7 +8,8 @@ import java.sql.SQLException;
 import de.datenbank.DBConnection;
 
 public class WarenkorbOperations {
-private static final String MAX_WARENKORB_ID = "SELECT MAX(warenkorb_id) FROM warenkorb_kunde_zuordnung;";
+	private static final String MAX_WARENKORB_ID = "SELECT MAX(warenkorb_id) FROM warenkorb_kunde_zuordnung;";
+
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -23,9 +24,9 @@ private static final String MAX_WARENKORB_ID = "SELECT MAX(warenkorb_id) FROM wa
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(id);
+		
 		id++;
-		System.out.println(id);
+		
 		return id;
 	}
 }
