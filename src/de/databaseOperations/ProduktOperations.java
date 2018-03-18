@@ -37,54 +37,51 @@ public class ProduktOperations {
 	private final static String MAX_ARTNR = "SELECT MAX(artikelnr) FROM produkt;";
 	private final static String ZEIGE_PRODUKT_NACH_ARTNR = "SELECT * FROM produkt WHERE artnr =?;";
 	
+	private final static String PRODUKT_UPDATE ="UPDATE produkt SET name = ?, menge = ?, preis = ? WHERE produkt_id=?;";
+	
 	private final static String PRODUKT_LOESCHEN = "DELETE FROM produkt WHERE produkt_id = ?"; 
 
-//	public static Produkt ladeProduktausdb (int artnr){
-//    	
-//    	Connection con = DBConnection.getConnection();
-//		
-//
-//		try {
-//			PreparedStatement pst = con.prepareStatement(ZEIGE_PRODUKT_NACH_ARTNR);
-//			ResultSet rs = pst.executeQuery();
-//			 rs.next();
-//
-//		
-//				double preis = rs.getDouble(1);
-//				int menge = rs.getInt(2);
-//				String name = rs.getString(3);
-//				String beschreibung = rs.getString(4);
-//				int id = rs.getInt(5);
-//				int artikelnr = rs.getInt(6);
-//				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr);
-//
-//				if (produktistSchuhe(produkt.getProdukt_id())) {
-//					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
-//					return schuhe;}
-//				
-//				if (produktistHose(produkt.getProdukt_id())) {
-//					Hose hose = HoseOperations.hoseausdbholen(produkt);
-//					return hose;}
-//				
-//				if (produktistShirt(produkt.getProdukt_id())) {
-//					Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
-//					return shirt;
-//				}
-//
-//			
-//
-//			con.close();
-//
-//		}catch(
-//
-//	SQLException e)
-//	{
-//		e.printStackTrace();
-//	}
-//
-//	return null;
-//
-//	}
+	public static Produkt ladeProduktausdb (int artnr){
+    	
+    	Connection con = DBConnection.getConnection();
+		
+
+		try {
+			PreparedStatement pst = con.prepareStatement(ZEIGE_PRODUKT_NACH_ARTNR);
+			ResultSet rs = pst.executeQuery();
+			 rs.next();
+
+		
+				double preis = rs.getDouble(1);
+				int menge = rs.getInt(2);
+				String name = rs.getString(3);
+				String beschreibung = rs.getString(4);
+				int id = rs.getInt(5);
+				int artikelnr = rs.getInt(6);
+				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, artikelnr);
+
+				if (produktistSchuhe(produkt.getProdukt_id())) {
+					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
+					return schuhe;}
+				
+				if (produktistHose(produkt.getProdukt_id())) {
+					Hose hose = HoseOperations.hoseausdbholen(produkt);
+					return hose;}
+				
+				if (produktistShirt(produkt.getProdukt_id())) {
+					Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
+					return shirt;
+				}
+			con.close();
+
+		} catch(SQLException e){
+			
+		e.printStackTrace();	
+		}
+
+	return null;
+
+	}
 
 	public static int hoechsteartikelnr() {
 		Connection con = DBConnection.getConnection();
@@ -406,5 +403,22 @@ public class ProduktOperations {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public static void updateProdukt(Produkt produkt) {
+		Connection con = DBConnection.getConnection();
+		 try {
+			PreparedStatement pst = con.prepareStatement(PRODUKT_UPDATE);
+			pst.setString(1, produkt.getName());
+			pst.setInt(2, produkt.getMenge());
+			pst.setDouble(3, produkt.getPreis());
+			pst.setInt(4, produkt.getProdukt_id());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 }

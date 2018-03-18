@@ -32,8 +32,19 @@ public class Produkt‹bersichtServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
+		String auswahl =  request.getParameter("auswahl");
+		int artikelnr = 0;
+		try {
+			artikelnr = Integer.parseInt(auswahl);
+		} catch(NumberFormatException nfe) {
+			System.out.println("Fehler beim Umwandlen.");
+		}
+		
+		Produkt produkt = ProduktOperations.ladeProduktausdb(artikelnr);
+		HttpSession session = request.getSession();
+		session.setAttribute("produktBe", produkt);
+		request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
+		
 	}
 
 	/**

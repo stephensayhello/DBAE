@@ -63,11 +63,12 @@
 	<form action="ProduktÜbersichtServlet" method="post">
 	<select name="auswahl">
 	<c:forEach  var="produkt" items="${ produkte}" >
-	<option>${produkt.name }</option>
+	<option value= "${produkt.artikelnr}" >${produkt.name }</option>
 	</c:forEach>
 	</select>
+	<button value="submit"  class= "dbae-button">Bearbeiten</button>
 	</form>
 </div>
-
+<a:modal messages="${messages}"></a:modal>
 </body>
 </html>
