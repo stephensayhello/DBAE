@@ -16,7 +16,7 @@ import de.classes.Produkt;
 import de.datenbank.DBConnection;
 
 public class BestellungOperations {
-	private final static String MAX_BSTNR = "SELECT MAX(bstnr) FROM bestellung_produktzuordnung;";
+	private final static String MAX_BSTNR = "SELECT MAX(bstnr) FROM bestellung;";
 	private final static String ANLEGEN_BESTELLUNG_PROD_ZUO = "INSERT INTO bestellung_produktzuordnung VALUES (?, ?, ?)";
 	private final static String ANLEGEN_BESTELLUNG = "INSERT INTO bestellung VALUES (?, ?,?)";
 
@@ -48,6 +48,11 @@ public class BestellungOperations {
 
 		try {
 			
+<<<<<<< HEAD
+
+			
+=======
+>>>>>>> c51ec4561bee20c594a3a7cf82d179878dbc46d2
 
 			for (Produkt produkt : bestellliste) {
 				pst = con.prepareStatement(ANLEGEN_BESTELLUNG_PROD_ZUO);
@@ -57,7 +62,7 @@ public class BestellungOperations {
 				
 				
 				pst.execute();
-				System.out.println("adolf");
+			
 
 			}
 		// 	bestellunganlegen(bestellung);

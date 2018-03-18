@@ -36,6 +36,8 @@ public class Test {
 		Kunde kunde = new Kunde(saltedhash, "email", adresse, "vorname", "nachname");
         Warenkorb warenkorb = new Warenkorb(kunde);
 		System.out.println(warenkorb.getWarenkorb_id());
+		Bestellung bestellung = new Bestellung(warenkorb.getInhalt(), kunde);
+		BestellungOperations.bestellunganlegen(bestellung);
 		
 
 	}
@@ -65,8 +67,13 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
+		
+		
+=======
 		Date date = new Date();
 		System.out.println(date.toString());
+>>>>>>> c51ec4561bee20c594a3a7cf82d179878dbc46d2
 	}
 
 }
