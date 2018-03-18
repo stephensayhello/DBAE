@@ -47,21 +47,19 @@ public class BestellungOperations {
 		PreparedStatement pst;
 
 		try {
-			System.out.println("hitler");
-
-			System.out.println("dulli");
+			
 
 			for (Produkt produkt : bestellliste) {
 				pst = con.prepareStatement(ANLEGEN_BESTELLUNG_PROD_ZUO);
-				pst.setInt(1, bestellung.getBestellnummer());
-				pst.setInt(2, produkt.getProdukt_id());
-				pst.setInt(3, produkt.getAnzahl());
-
+				pst.setInt(2,  1);
+				pst.setInt(3, bestellung.getKunde().getNutzer_id());
+				pst.setDate(2,  bestellung.getDate());
+				
 				pst.execute();
 				System.out.println("adolf");
 
 			}
-			bestellunganlegen(bestellung);
+		// 	bestellunganlegen(bestellung);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -73,9 +71,9 @@ public class BestellungOperations {
 		PreparedStatement pst;
 		try {
 			pst = con.prepareStatement(ANLEGEN_BESTELLUNG);
-			pst.setInt(1, bestellung.getBestellnummer());
+			pst.setInt(1, 1);
 			pst.setInt(2, bestellung.getKunde().getNutzer_id());
-			pst.setString(3, bestellung.getDate().toString());
+			pst.setString(3 , bestellung.getDate().toString());
 			pst.execute();
 			System.out.println("bestellop");
 		} catch (SQLException e) {
