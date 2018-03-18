@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import de.classes.Admin;
 import de.classes.Adresse;
 import de.classes.Kunde;
 import de.classes.Nutzer;
@@ -12,10 +13,12 @@ import de.datenbank.DBConnection;
 
 public class KundenOperations {
 
-	public final static String ANLEGEN_KUNDE = "INSERT INTO kunde VALUES (?,?,?,?)";
-	public final static String MAIL_KUNDE_VERGLEICH = "SELECT email FROM nutzer WHERE email = ?;";
-	public final static String KUNDEN_ABFRAGE = "SELECT * FROM kunde WHERE kundennr = ?;";
-	public final static String KUNDE_UPDATE = "UPDATE kunde SET vorname= ?, nachname= ? WHERE kundennr = ?";
+	private final static String ANLEGEN_KUNDE = "INSERT INTO kunde VALUES (?,?,?,?)";
+	private final static String MAIL_KUNDE_VERGLEICH = "SELECT email FROM nutzer WHERE email = ?;";
+	private final static String KUNDEN_ABFRAGE = "SELECT * FROM kunde WHERE kundennr = ?;";
+	private final static String KUNDE_UPDATE = "UPDATE kunde SET vorname= ?, nachname= ? WHERE kundennr = ?";
+	
+	private final static String KUNDE_LOESCHEN = "DELETE FROM kunde WHERE kundennr = ?;";
 	
 	
     
@@ -113,5 +116,18 @@ public class KundenOperations {
 		Adresse adresse = kunde.getAdresse();
 		adresse.setAdress_id(kunde.getNutzer_id());
 		AdresseOperations.adresseDataUpdate(adresse);
+	}
+	
+	
+	public static void entferneKunde(Kunde kunde) {
+		Connection con = DBConnection.getConnection();
+		 try {
+			PreparedStatement pst = con.prepareStatement(KUNDE_LOESCHEN);
+			pst.setInt(1, kunde.getNutzer_id());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

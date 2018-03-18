@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.classes.Admin;
 import de.classes.Hose;
 import de.classes.Nutzer;
 import de.classes.Produkt;
@@ -19,22 +20,24 @@ import de.datenbank.DBConnection;
 
 public class ProduktOperations {
 
-	public final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?)";
+	private final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?)";
 
-	public final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
-	public final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
-	public final static String ANLEGEN_SHIRT = "INSERT INTO shirt VALUES (?,?)";
-	public final static String LADE_PRODUKTE = "SELECT * FROM produkt;";
+	private final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
+	private final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
+	private final static String ANLEGEN_SHIRT = "INSERT INTO shirt VALUES (?,?)";
+	private final static String LADE_PRODUKTE = "SELECT * FROM produkt;";
 
-	public final static String PRODUKT_ZEIGEN_NACH_NAME = "SELECT * FROM produkt WHERE  name = ?;";
-	public final static String PRODUKT_ZEIGEN_NACH_ID = "SELECT * FROM produkt WHERE  produkt_id = ?;";
+	private final static String PRODUKT_ZEIGEN_NACH_NAME = "SELECT * FROM produkt WHERE  name = ?;";
+	private final static String PRODUKT_ZEIGEN_NACH_ID = "SELECT * FROM produkt WHERE  produkt_id = ?;";
 
-	public final static String PRODUKT_ANZAHL = "SELECT COUNT(*) FROM ";
-	public final static String ZEIGE_SCHUHE_NACH_PRODUKTID = "SELECT sch_id FROM schuhe WHERE sch_id = ?;";
-	public final static String ZEIGE_SHIRT_NACH_PRODUKTID = "SELECT sh_id FROM shirt WHERE sh_id = ?;";
-	public final static String ZEIGE_HOSE_NACH_PRODUKTID = "SELECT ho_id FROM hose WHERE ho_id = ?;";
-	public final static String MAX_ARTNR = "SELECT MAX(artikelnr) FROM produkt;";
-	public final static String ZEIGE_PRODUKT_NACH_ARTNR = "SELECT * FROM produkt WHERE artnr =?;";
+	private final static String PRODUKT_ANZAHL = "SELECT COUNT(*) FROM ";
+	private final static String ZEIGE_SCHUHE_NACH_PRODUKTID = "SELECT sch_id FROM schuhe WHERE sch_id = ?;";
+	private final static String ZEIGE_SHIRT_NACH_PRODUKTID = "SELECT sh_id FROM shirt WHERE sh_id = ?;";
+	private final static String ZEIGE_HOSE_NACH_PRODUKTID = "SELECT ho_id FROM hose WHERE ho_id = ?;";
+	private final static String MAX_ARTNR = "SELECT MAX(artikelnr) FROM produkt;";
+	private final static String ZEIGE_PRODUKT_NACH_ARTNR = "SELECT * FROM produkt WHERE artnr =?;";
+	
+	private final static String PRODUKT_LOESCHEN = "DELETE FROM produkt WHERE produkt_id = ?"; 
 
 //	public static Produkt ladeProduktausdb (int artnr){
 //    	
@@ -388,6 +391,20 @@ public class ProduktOperations {
 
 		return null;
 
+	}
+	
+	
+	
+	public static void entferneProdukt(Produkt produkt) {
+		Connection con = DBConnection.getConnection();
+		 try {
+			PreparedStatement pst = con.prepareStatement(PRODUKT_LOESCHEN);
+			pst.setInt(1, produkt.getProdukt_id());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -10,7 +10,8 @@ import de.classes.Nutzer;
 import de.datenbank.DBConnection;
 
 public class AdminOperations {
-	public static final String ADMIN_AUS_DB_HOLEN = "SELECT * FROM admin WHERE admin_id = ?;";
+	private static final String ADMIN_AUS_DB_HOLEN = "SELECT * FROM admin WHERE admin_id = ?;";
+	private static final String  ADMIN_LOESCHEN= " DELETE  FROM admin WHERE admin_id = ?";
 
 	public static Admin holeAdminausDB(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
@@ -36,6 +37,19 @@ public class AdminOperations {
 
 		return null;
 
+	}
+	
+	
+	public static void entferneAdmin(Admin admin) {
+		Connection con = DBConnection.getConnection();
+		 try {
+			PreparedStatement pst = con.prepareStatement(ADMIN_LOESCHEN);
+			pst.setInt(1, admin.getNutzer_id());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

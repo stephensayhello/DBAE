@@ -5,13 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import de.classes.Admin;
 import de.classes.Produkt;
 
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
 
 public class ShirtOperations {
-	public final static String HOLE_SHIRT_NACH_SHID = "SELECT * FROM shirt WHERE sh_id = ?;";
+	private final static String HOLE_SHIRT_NACH_SHID = "SELECT * FROM shirt WHERE sh_id = ?;";
+	private final static String SHIRT_LOESCHEN = "DELETE FROM shirt WHERE sch_id= ?;";
 
 	public static Shirt holeShirtausdb(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
@@ -35,5 +37,17 @@ public class ShirtOperations {
 
 		}
 		return null;
+	}
+	
+	public static void entferneShirt(Shirt shirt) {
+		Connection con = DBConnection.getConnection();
+		 try {
+			PreparedStatement pst = con.prepareStatement(SHIRT_LOESCHEN);
+			pst.setInt(1, shirt.getProdukt_id());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
