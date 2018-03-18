@@ -57,12 +57,15 @@
 						type="text" name="p_name" size=3> <label
 						for="p_beschreibung">Beschreibung</label> <input
 						class="input-dbae" type="text" name="p_beschreibung" size=3>
+						 
 
 
 				</div>
 				<div class="prod1">
 
-
+<label
+						for="p_versanddauer">Versanddauer in Tagen</label> <input
+						class="input-dbae" type="text" name="p_versanddauer" size=3>
 					<label for="p_preis">Preis</label> <input class="input-dbae"
 						type="number" step="0.01" name="p_preis" size=3> 
 						

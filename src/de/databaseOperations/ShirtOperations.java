@@ -24,7 +24,7 @@ public class ShirtOperations {
 				int sh_id = rs.getInt(1);
 				String groesse = rs.getString(2);
 				Shirt shirt = new Shirt(sh_id, produkt.getName(), produkt.getBeschreibung(), produkt.getPreis(),
-						groesse, produkt.getMenge(), produkt.getArtikelnr());
+						groesse, produkt.getMenge(), produkt.getArtikelnr(), produkt.getVersanddauer());
 
 				return shirt;
 

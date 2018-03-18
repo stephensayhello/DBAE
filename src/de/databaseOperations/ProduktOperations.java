@@ -19,7 +19,7 @@ import de.datenbank.DBConnection;
 
 public class ProduktOperations {
 
-	public final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?)";
+	public final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?)";
 
 	public final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
 	public final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
@@ -114,6 +114,7 @@ public class ProduktOperations {
 			pst.setString(4, produkt.getBeschreibung());
 			pst.setInt(5, produkt.getProdukt_id());
 			pst.setInt(6, produkt.getArtikelnr());
+			pst.setInt(7, produkt.getVersanddauer());
 			pst.execute();
 			con.close();
 
@@ -248,7 +249,8 @@ public class ProduktOperations {
 				String beschreibung = rs.getString(4);
 				int id = rs.getInt(5);
 				int artnr = rs.getInt(6);
-				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr);
+				int versanddauer = rs.getInt(7);
+				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, versanddauer);
 
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
@@ -361,8 +363,9 @@ public class ProduktOperations {
 				int produkt_id = rs.getInt(5);
 
 				int artnr = rs.getInt(6);
+				int versanddauer = rs.getInt(7);
 
-				Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artnr);
+				Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artnr,versanddauer);
 
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					return SchuheOperations.holeSchuheausdb(produkt);

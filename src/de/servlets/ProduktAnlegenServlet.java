@@ -61,6 +61,7 @@ public class ProduktAnlegenServlet extends HttpServlet {
 		String name = request.getParameter("p_name");
 		String beschreibung = request.getParameter("p_beschreibung");
 		int kategorie = Integer.parseInt(request.getParameter("p_kategorie"));
+		int versanddauer = Integer.parseInt(request.getParameter("p_versanddauer"));
 		double preis = Double.parseDouble(request.getParameter("p_preis"));
 
 		String[] groessearray = request.getParameterValues("checkGroesse");
@@ -83,17 +84,17 @@ public class ProduktAnlegenServlet extends HttpServlet {
 					request.getRequestDispatcher("produkt_anlegen.jsp").forward(request, response);
 				} else if (kategorie == 1) {
 					produkt = new Shirt(ProduktOperations.hoechsteID(), name, beschreibung, preis, groesse, menge,
-						artikelnr, 0	);
+						artikelnr, versanddauer	);
 					ProduktOperations.anlegen(produkt);
 
 				} else if (kategorie == 2) {
 System.out.println("hose");
 					produkt = new Hose(ProduktOperations.hoechsteID(), name, beschreibung, preis,
-							Integer.parseInt(groesse), menge, artikelnr);
+							Integer.parseInt(groesse), menge, artikelnr,versanddauer);
 					ProduktOperations.anlegen(produkt);
 				} else {
 					produkt = new Schuhe(ProduktOperations.hoechsteID(), name, beschreibung, preis,
-							Integer.parseInt(groesse), menge, artikelnr, 0);
+							Integer.parseInt(groesse), menge, artikelnr, versanddauer);
 					ProduktOperations.anlegen(produkt);
 
 				}

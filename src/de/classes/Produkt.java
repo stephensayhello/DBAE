@@ -56,9 +56,17 @@ public class Produkt {
 	private String preismitanzahlineuro;
 	
 	private String preisineuro;
+	
+	public int versanddauer;
 
+	public int getVersanddauer() {
+		return versanddauer;
+	}
+	public void setVersanddauer(int versanddauer) {
+		this.versanddauer = versanddauer;
+	}
 	// konstruktor fürs holen aus der db oder anlengen mit id
-	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr) {
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int versanddauer) {
 
 		this.setProdukt_id(produkt_id);
 		this.name = name;
@@ -69,8 +77,9 @@ public class Produkt {
 		anzahl = 0;
 		this.setStatus("Lieferbar");
 		this.setPreisineuro(preis);
+		this.setVersanddauer(versanddauer);
 	}
-	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl) {
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl, int versanddauer) {
 		
 		this.setProdukt_id(produkt_id);
 		this.name = name;
@@ -84,6 +93,7 @@ public class Produkt {
 		this.setPreismitanzahlineuro(anzahl*preis);
 		this.setPreisineuro(preis);
 		System.out.println("blob");
+		this.setVersanddauer(versanddauer);
 	}
 
 	// konstruktor fürs anlegen eines produkts
