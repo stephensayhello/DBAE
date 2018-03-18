@@ -31,6 +31,7 @@ public class Test {
 		Kunde kunde = new Kunde(saltedhash, "email", adresse, "vorname", "nachname");
         Warenkorb warenkorb = new Warenkorb(kunde);
 		System.out.println(warenkorb.getWarenkorb_id());
+		
 
 	}
 	

@@ -8,14 +8,14 @@ font-size: inherit;
   padding: 0px;
 }
 .navbar-brand>img {
-  height: 50px;
+  height: 100%;
   padding: 0px;
   width: auto;
   
 }
 
 .navbar .navbar-brand {
-  height: auto;
+  height: 100px;
 }
 
 .navbar .nav >li >a {
