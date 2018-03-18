@@ -33,7 +33,7 @@ public class CreatePDF {
 		PDPage ersteSeite = document.getPage(0);
 		
 		PDPageContentStream contentstream = new PDPageContentStream(doc, ersteSeite);
-		List<Produkt> liste = bestellung.getListe();
+		List<Produkt> liste = bestellung.getBestellliste();
 		// Der text wird geschrieben
 		contentstream.beginText();
 		contentstream.setFont(PDType1Font.TIMES_ROMAN, 12);
