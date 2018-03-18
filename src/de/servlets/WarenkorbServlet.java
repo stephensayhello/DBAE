@@ -36,8 +36,13 @@ public class WarenkorbServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+        session.removeAttribute("warenkorbinhalt");
+        session.removeAttribute("warenkorb");
+        session.removeAttribute("warenkorbgesamtpreis");
+        session.removeAttribute("warenversanddauer");
+        
+        request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}
 
 	/**
