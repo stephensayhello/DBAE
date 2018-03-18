@@ -65,6 +65,16 @@
 
 
 			<button type="submit" class="button-dbae">Bestellen</button>
+		
+
+		</form>
+		<form action="WarenkorbloeschenServlet" method="post">
+
+
+
+
+
+			
 			<button class="button-dbae">Warenkorb leeren</button>
 
 		</form>
