@@ -16,17 +16,15 @@ public class Warenkorb {
 	 */
 	private Kunde kunde;
 	
-	private double gesamtpreis;
-	
 	public Warenkorb(Kunde kunde,List<Produkt> produkte){
 	    this.setWarenkorb_id(WarenkorbOperations.hoechsteID());
-		this.kunde = kunde;
+		this.setKunde(kunde);
 		this.produkte = produkte;
 	}
 	
 	public Warenkorb(Kunde kunde){
 		this.setWarenkorb_id(WarenkorbOperations.hoechsteID());
-		this.kunde = kunde;
+		this.setKunde(kunde);
 		this.produkte = new ArrayList<Produkt>();
 	}
 	
@@ -48,8 +46,6 @@ public class Warenkorb {
 	}
 
 	public void setGesamtpreis(int gesamtpreis) {
-		
-				this.gesamtpreis = gesamtpreis;
 	}
 
 	public int getWarenkorb_id() {
@@ -72,6 +68,17 @@ public class Warenkorb {
 		
 		return versanddauer;
 		
+	}
+
+	public Kunde getKunde() {
+		return kunde;
+	}
+
+	public void setKunde(Kunde kunde) {
+		this.kunde = kunde;
+	}
+
+	public void setGesamtpreis(double gesamtpreis) {
 	}
 
 
