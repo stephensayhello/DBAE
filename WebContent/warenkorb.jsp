@@ -13,7 +13,7 @@
 <body>
 	<a:navigation></a:navigation>
 	<a:modal messages="${messages}"></a:modal>
-	<div class="table-responsive">
+	<div class="container"><div class="table-responsive">
 		<table class="table">
 			<tr>
 
@@ -68,7 +68,7 @@
 			<button class="button-dbae">Warenkorb leeren</button>
 
 		</form>
-	</div>
+	</div></div>
 
 </body>
 </html>
