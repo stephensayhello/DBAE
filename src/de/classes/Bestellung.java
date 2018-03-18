@@ -1,7 +1,9 @@
 package de.classes;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 import de.databaseOperations.BestellungOperations;
@@ -19,14 +21,14 @@ public class Bestellung {
 		
 		this.bestellnummer = bestellnummer;
 		this.bestellliste = bestellliste;
-		this.date = new Date();
+		this.date = new Date(2018, 12, 20);
 		this.kunde = kunde;
 	}
 	public Bestellung(List<Produkt> bestellliste,  Kunde kunde) {
 		
 		this.bestellnummer = BestellungOperations.hoechsteID();
 		this.bestellliste = bestellliste;
-		this.date = new Date();
+		this.date = new Date(2018, 12, 20);
 		this.kunde = kunde;
 	}
 
@@ -62,7 +64,9 @@ public class Bestellung {
 		this.kunde = kunde;
 	}
 
-	
+	public void createDate() {
+		
+	}
 	
 	
 	

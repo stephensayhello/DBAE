@@ -1,7 +1,9 @@
 package testpackage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 
@@ -45,15 +47,33 @@ public class Test {
 	}
 
 	public static void main(String[] args) throws InvalidPasswordException, IOException {
-		
+		// YYYY-MM-DD HH:MI:SS
+		Produkt produkt = ProduktOperations.ladeProduktausdb(1);
+		List<Produkt> produkte = new ArrayList<>();
+		produkte.add(0, produkt);
+	
+		Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen("paul.blanke1@web.de"));
+		Bestellung bestellung = new Bestellung(1, produkte, kunde);
+		System.out.println("TestFall A");
+		BestellungOperations.bestellunganlegen(bestellung);
+	}
+	
+	
+	
+	private void testen() {
 		try {
 			erstelleTestKunde();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		
 		
+=======
+		Date date = new Date();
+		System.out.println(date.toString());
+>>>>>>> c51ec4561bee20c594a3a7cf82d179878dbc46d2
 	}
 
 }
