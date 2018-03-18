@@ -47,20 +47,21 @@ public class WarenkorbServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if ((Warenkorb) request.getAttribute("warenkorb") != null) {
-			Warenkorb warenkorb = (Warenkorb) request.getAttribute("warenkorb");
+		if ((Warenkorb) session.getAttribute("warenkorb") != null) {
+			Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
 			List<Produkt> warenkorbinhalt = (List<Produkt>) session.getAttribute("warenkorbinhalt");
 			for (int i = 0; i < warenkorbinhalt.size(); i++) {
 				System.out.println(warenkorbinhalt.get(i).getAnzahl());
 
 			}
-			session.setAttribute("warenkorb", warenkorb);
+			session.removeAttribute("warenkorbinhalt");
 			session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
-		} else if((Warenkorb)request.getAttribute("warenkorb") == null) {
+		} else if((Warenkorb)session.getAttribute("warenkorb") == null) {
 			 System.out.println("Der Warenkorb ist leer");
 		}
 				
 			
+		
 		
 
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);

@@ -49,8 +49,7 @@ public class Warenkorb {
 
 	public void setGesamtpreis(int gesamtpreis) {
 		
-		
-		this.gesamtpreis = gesamtpreis;
+				this.gesamtpreis = gesamtpreis;
 	}
 
 	public int getWarenkorb_id() {
@@ -61,7 +60,19 @@ public class Warenkorb {
 		this.warenkorb_id = warenkorb_id;
 	}
 	
-	
+	public int gethoechsteVersanddauer(){
+		int versanddauer = 0;
+		if(produkte.size()!=0){
+		 versanddauer = produkte.get(0).getVersanddauer();
+		for (Produkt produkt : produkte) {
+			if(produkt.getVersanddauer()>versanddauer){
+				versanddauer = produkt.getVersanddauer();
+			}
+		}}
+		
+		return versanddauer;
+		
+	}
 
 
 }

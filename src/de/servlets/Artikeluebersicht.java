@@ -156,6 +156,8 @@ request.setAttribute("test", "ttttttttt");
 		session.setAttribute("warenkorb", warenkorb);
 		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 		session.removeAttribute("warenkorbgesamtpreis");
+		session.removeAttribute("warenversanddauer");
+		session.setAttribute("warenversanddauer", warenkorb.gethoechsteVersanddauer());
 		session.setAttribute("warenkorbgesamtpreis", NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
 		System.out.println("angekommen");
 		System.out.println(NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));

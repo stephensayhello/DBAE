@@ -55,7 +55,9 @@
 			</tr>
 
 		</table>
-		
+		<c:if test="${warenversanddauer>0}">
+		Der Versand dauert voraussichtlich ${warenversanddauer} Tage.
+		</c:if>
 		<form action="WarenkorbServlet" method="post">
 
 
