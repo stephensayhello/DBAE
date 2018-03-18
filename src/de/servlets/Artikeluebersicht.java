@@ -53,12 +53,10 @@ public class Artikeluebersicht extends HttpServlet {
 		List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
 		int counter = 0;
 		for (int i = 0; i < produkte.size(); i++) {
-			if (counter == produkte.get(i).getArtikelnr()) {
-
-			} else {
+			if (!(counter == produkte.get(i).getArtikelnr())) {
 				counter = produkte.get(i).getArtikelnr();
 				produkteSortiertnachartnr.add(produkte.get(i));
-			}
+			} 
 		}
 
 

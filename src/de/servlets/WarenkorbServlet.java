@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import de.classes.Produkt;
-import de.classes.Produkt_Anzahl_Zuordnung;
 import de.classes.Warenkorb;
 
 /**

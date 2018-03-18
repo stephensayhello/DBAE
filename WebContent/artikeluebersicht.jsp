@@ -44,7 +44,7 @@
 	<form action="Artikeluebersicht" method="get">
 		<button type="submit" id="holeArtikel"></button>
 	</form>
-<div id = "testtest"><p >${test}</p></div>
+
 	 
 
 	<!-- <div class="clearfix">
