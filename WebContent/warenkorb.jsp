@@ -68,7 +68,7 @@
 		
 
 		</form>
-		<form action="WarenkorbloeschenServlet" method="post">
+		<form action="WarenkorbServlet" method="get">
 
 
 
