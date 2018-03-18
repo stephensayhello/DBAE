@@ -5,14 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import de.classes.Admin;
 import de.classes.Adresse;
 import de.datenbank.DBConnection;
 
 public class AdresseOperations {
 
-	public final static String ADRESSE_ANLEGEN = "INSERT INTO adresse VALUES (?, ?, ?, ?, ?);";
-	public final static String ADRESSE_AUS_DBHOLEN = "SELECT * FROM adresse WHERE adress_id = ?;";
-	public final static String ADRESSE_UPDATE = "UPDATE adresse SET straﬂe= ?, hausnr = ?, postleitzahl =?, ort = ? WHERE adress_id = ?";
+	private final static String ADRESSE_ANLEGEN = "INSERT INTO adresse VALUES (?, ?, ?, ?, ?);";
+	private final static String ADRESSE_AUS_DBHOLEN = "SELECT * FROM adresse WHERE adress_id = ?;";
+	private final static String ADRESSE_UPDATE = "UPDATE adresse SET straﬂe= ?, hausnr = ?, postleitzahl =?, ort = ? WHERE adress_id = ?";
+	private final static String ADRESSE_LOESCHEN = "DELETE FROM adresse WHERE adress_id = ?;";
 
 	public static void anlegen(Adresse adresse) {
 
@@ -98,6 +100,20 @@ public class AdresseOperations {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	
+	
+	public static void entferneAdresse(Adresse adresse) {
+		Connection con = DBConnection.getConnection();
+		 try {
+			PreparedStatement pst = con.prepareStatement(ADRESSE_LOESCHEN);
+			pst.setInt(1, adresse.getAdress_id());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

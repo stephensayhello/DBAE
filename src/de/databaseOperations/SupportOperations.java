@@ -5,13 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import de.classes.Admin;
 import de.classes.SupportAnfrage;
 import de.datenbank.DBConnection;
 
 public class SupportOperations {
 
-	public final static String ANFRAGE_SPEICHERN = "INSERT INTO  supportanfrage VALUES (?, ?, ?)";
-	public final static String HOECHSTEID = "SELECT MAX(sa_id) FROM supportanfrage";
+	private final static String ANFRAGE_SPEICHERN = "INSERT INTO  supportanfrage VALUES (?, ?, ?)";
+	private final static String HOECHSTEID = "SELECT MAX(sa_id) FROM supportanfrage";
+	private final static String ANFRAGE_LOESCHEN = "DELETE FROM supportanfrage WHERE sa_id = ?;";
 	
 	
 	public static void speichereSupportAnfrage(SupportAnfrage anfrage) {
@@ -53,7 +55,17 @@ public class SupportOperations {
 		return id;
 	}
 	
-	
+	public static void entferneAnfrage(SupportAnfrage anfrage) {
+		Connection con = DBConnection.getConnection();
+		 try {
+			PreparedStatement pst = con.prepareStatement(ANFRAGE_LOESCHEN);
+			pst.setInt(1, anfrage.getSupport_id());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
