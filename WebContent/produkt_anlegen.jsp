@@ -33,7 +33,7 @@
 		var sel = document.getElementById('groessenCheck');
 		var html = "";
 		for (var i = 0; i < specificSizes.length; i++) {
-			html += "<div class='container'><div class='row'><div class='col-md-12'><div class='input-group'><span class='input-group-addon'><input type='checkbox' name='checkGroesse' value="+specificSizes[i]+"></span><span class='input-group-addon'><label for='tbox'>"+specificSizes[i]+"</label></span><input name='inputMenge' type='number' class='form-control'></div></div></div></div>";
+			html += "<div class='container'><div class='row'><div class='col-md-12'><div class='input-group'><span class='input-group-addon'><input type='checkbox' name='checkGroesse' value="+specificSizes[i]+"></span><span class='input-group-addon'><label for='tbox'>"+specificSizes[i]+"</label></span><input name='inputMenge' type='number' class='form-control' placeholder='Menge'><input name='p_versanddauer' type='number' class='form-control' placeholder ='Versanddauer'></div></div></div></div>";
 		}
 		
 		sel.innerHTML = html;
@@ -63,9 +63,7 @@
 				</div>
 				<div class="prod1">
 
-<label
-						for="p_versanddauer">Versanddauer in Tagen</label> <input
-						class="input-dbae" type="text" name="p_versanddauer" size=3>
+
 					<label for="p_preis">Preis</label> <input class="input-dbae"
 						type="number" step="0.01" name="p_preis" size=3> 
 						
