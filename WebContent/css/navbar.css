@@ -1,3 +1,5 @@
+
+
 nav li  {
 font-size: inherit;
 }
@@ -6,18 +8,9 @@ font-size: inherit;
   padding: 0px;
 }
 .navbar-brand>img {
-  height: 100%;
-  padding: 0px;
+  height: 100px;
+  padding: 15px;
   width: auto;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> d01419e0a2cecb8385ab283702405c82b352e160
-=======
-  
->>>>>>> d01419e0a2cecb8385ab283702405c82b352e160
 }
 
 .navbar .navbar-brand {
@@ -25,9 +18,11 @@ font-size: inherit;
 }
 
 .navbar .nav >li >a {
-  padding-top: 20px;
-  padding-bottom: 10px;
-  margin-top: 0px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 10px;
   
 }
+
+
 
