@@ -1,6 +1,7 @@
 package testpackage;
 
 import java.io.IOException;
+import java.util.Date;
 
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 
@@ -47,7 +48,8 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		Date date = new Date();
+		System.out.println(date.toString());
 		
 	}
 

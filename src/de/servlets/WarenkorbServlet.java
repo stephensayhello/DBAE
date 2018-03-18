@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import de.classes.Bestellung;
+import de.classes.Kunde;
 import de.classes.Produkt;
 import de.classes.Warenkorb;
+import de.databaseOperations.BestellungOperations;
 
 /**
  * Servlet implementation class WarenkorbServlet
@@ -37,12 +40,12 @@ public class WarenkorbServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-        session.removeAttribute("warenkorbinhalt");
-        session.removeAttribute("warenkorb");
-        session.removeAttribute("warenkorbgesamtpreis");
-        session.removeAttribute("warenversanddauer");
-        
-        request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
+		session.removeAttribute("warenkorbinhalt");
+		session.removeAttribute("warenkorb");
+		session.removeAttribute("warenkorbgesamtpreis");
+		session.removeAttribute("warenversanddauer");
+
+		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}
 
 	/**
@@ -52,22 +55,22 @@ public class WarenkorbServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if ((Warenkorb) session.getAttribute("warenkorb") != null) {
+		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
+		if ((Warenkorb) session.getAttribute("warenkorb") != null && kunde != null) {
 			Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
 			List<Produkt> warenkorbinhalt = (List<Produkt>) session.getAttribute("warenkorbinhalt");
-			for (int i = 0; i < warenkorbinhalt.size(); i++) {
-				System.out.println(warenkorbinhalt.get(i).getAnzahl());
 
-			}
+			Bestellung bestellung = new Bestellung(warenkorbinhalt, kunde);
+
+			BestellungOperations.anlegen(bestellung);
+			System.out.println("dadadadada");
 			session.removeAttribute("warenkorbinhalt");
-			session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
-		} else if((Warenkorb)session.getAttribute("warenkorb") == null) {
-			 System.out.println("Der Warenkorb ist leer");
+			session.removeAttribute("warenkorb");
+			session.removeAttribute("warenkorbgesamtpreis");
+			session.removeAttribute("warenversanddauer");
+		} else if ((Warenkorb) session.getAttribute("warenkorb") == null) {
+			System.out.println("Der Warenkorb ist leer oder loggen sie sich ein");
 		}
-				
-			
-		
-		
 
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 

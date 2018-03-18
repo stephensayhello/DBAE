@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import de.databaseOperations.BestellungOperations;
+
 public class Bestellung {
 	private int bestellnummer;
 	
@@ -13,11 +15,18 @@ public class Bestellung {
 	
 	private Kunde kunde;
 	
-	public Bestellung(int bestellnummer, List<Produkt> bestellliste, Date date, Kunde kunde) {
+	public Bestellung(int bestellnummer, List<Produkt> bestellliste,  Kunde kunde) {
 		
 		this.bestellnummer = bestellnummer;
 		this.bestellliste = bestellliste;
-		this.date = date;
+		this.date = new Date();
+		this.kunde = kunde;
+	}
+	public Bestellung(List<Produkt> bestellliste,  Kunde kunde) {
+		
+		this.bestellnummer = BestellungOperations.hoechsteID();
+		this.bestellliste = bestellliste;
+		this.date = new Date();
 		this.kunde = kunde;
 	}
 
