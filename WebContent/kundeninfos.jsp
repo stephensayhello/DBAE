@@ -49,8 +49,8 @@ function onShow() {
 
 
 				<tr>
-					<td>A</td>
-					<td>A</td>
+					<td>${kunde}</td>
+					<td>${kunde}</td>
 				</tr>
 
 
@@ -68,7 +68,7 @@ function onShow() {
  <form action = "KundenOperationsServlet" action = "post">
  	<select name ="auswahl">
  		<c:forEach var="kunde" items="kunden">
- 		<option value= 'kunde'>Kunde: </option>
+ 		<option value='${kunde}'>${kunde}</option>
  		</c:forEach>
  	</select>
  		<label for="passwort">Passwort</label><input type="text" name="passwort">
@@ -81,7 +81,7 @@ function onShow() {
  <form action = "KundenOperationsServlet" action = "post">
  	<select name ="loeschen">
  		<c:forEach var="kunde" items="kunden">
- 		<option value= 'kunde'>Kunde</option>
+ 		<option value= '${kunde}'>${kunde}</option>
  		</c:forEach>
  	</select>
  	<br />
