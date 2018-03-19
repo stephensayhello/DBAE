@@ -27,6 +27,8 @@ public class NutzerOperations {
 	private final static String MAX_NUTZER_ID = "SELECT MAX(nutzer_id) FROM nutzer;";
 	
 	private final static String NUTZER_LOESCHEN = "DELETE FROM kunde WHERE nutzer_id = ?";
+	
+	private final static String NUTZER_NACH_ID = "SELECT * FROM nutzer WHERE nutzer_id =?";
 
 	public static void anlegen(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
@@ -129,6 +131,39 @@ public class NutzerOperations {
 		return null;
 
 	}
+	
+	public static Nutzer nutzerAusDbHolen(int id) {
+
+		Connection con = DBConnection.getConnection();
+
+		try {
+			PreparedStatement pst = con.prepareStatement(NUTZER_NACH_ID);
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			if (rs.next()) {
+				int nutzer_id = rs.getInt(1);
+				String password = rs.getString(2);
+				String emailfromdb = rs.getString(3);
+			
+
+				Nutzer nutzer = new Nutzer(nutzer_id, password, emailfromdb);
+				return nutzer;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+
+		return null;
+
+	}
+	
+	
+	
+	
+	
 
 	public static boolean nutzeristKunde(int id) {
 		Connection con = DBConnection.getConnection();
@@ -155,6 +190,8 @@ public class NutzerOperations {
 		return false;
 
 	}
+	
+	
 
 	public static boolean nutzeristAdmin(int id) {
 		Connection con = DBConnection.getConnection();
