@@ -67,13 +67,10 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-		
-		
-=======
+
 		Date date = new Date();
 		System.out.println(date.toString());
->>>>>>> c51ec4561bee20c594a3a7cf82d179878dbc46d2
+
 	}
 
 }
