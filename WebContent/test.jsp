@@ -13,5 +13,7 @@
 <br/>
 <button value="submit">Los</button>
 </form>
+<p>${nutzer.email}</p>
+
 </body>
 </html>

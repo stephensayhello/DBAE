@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import de.classes.Nutzer;
+import de.databaseOperations.NutzerOperations;
 
 /**
  * Servlet implementation class TestFiltersServlet
@@ -35,7 +39,13 @@ public class TestFiltersServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String eingabe = request.getParameter("eingabe");
-		System.out.println(eingabe);
+		System.out.println("Mama ");
+		HttpSession session = request.getSession();
+		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen(1);
+		System.out.print(nutzer.getEmail());
+		session.setAttribute("nutzer", nutzer);
+		// request.setAttribute("nutzerR", nutzer);
+		
 		
 		request.getRequestDispatcher("test.jsp").forward(request, response);
 	}

@@ -84,8 +84,6 @@ class XSSRequestWrapp extends HttpServletRequestWrapper implements HttpServletRe
 			str = scriptPattern.matcher(str).replaceAll("");
 			scriptPattern = Pattern.compile(" ( )", Pattern.CASE_INSENSITIVE);
 			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile(" ;", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
 			
 			
 			
