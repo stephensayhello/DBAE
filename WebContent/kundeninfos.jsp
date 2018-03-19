@@ -34,7 +34,6 @@ function onclick() {
 		<table class="table">
 			<tr>
 
-				<th>E-mail</th>
 				<th>Vorname</th>
 				<th>Nachname</th>
 				
@@ -44,9 +43,8 @@ function onclick() {
 
 
 				<tr>
-					<td>${kunde.email }</td>
-					<td>${kunde.vorname}</td>
-					<td>${kunde.nachname}</td>
+					<td>A</td>
+					<td>A</td>
 				</tr>
 
 
@@ -59,9 +57,30 @@ function onclick() {
 </div>
 <br/>
 <br/>
+<p>bla bla </p>Formatierung geht nicht xD
 <div class="container">
- <form action = "KundenOperationsServlet">
+ <form action = "KundenOperationsServlet" action = "post">
+ 	<select name ="auswahl">
+ 		<c:forEach var="kunde" items="kunden">
+ 		<option value= 'kunde'>Kunde: </option>
+ 		</c:forEach>
+ 	</select>
+ 		<label for="passwort">Passwort</label><input type="text" name="passwort">
+ 	<button type="submit" class="dbae-button">Passwort zurueck setzen</button>
+ </form>
+
+</div>
+<br/>
+<div class="container">
+ <form action = "KundenOperationsServlet" action = "post">
+ 	<select name ="loeschen">
+ 		<c:forEach var="kunde" items="kunden">
+ 		<option value= 'kunde'>Kunde</option>
+ 		</c:forEach>
+ 	</select>
+ 	<br />
  
+ 	<button type="submit" class="dbae-button">Kunden entfernen</button>
  </form>
 
 </div>

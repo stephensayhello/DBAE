@@ -23,8 +23,52 @@
 </div>
 <br />
 <div class="container"><div class="table-responsive">
+<table class="table">
+			<tr>
 
-</div>	
+				<th>Preis</th>
+				<th>Name</th>
+				<th>Artikel-Nr</th>
+				<th>Anzahl</th>
+				<th>Groesse</th>
+				<th>Status</th>
+
+			</tr>
+			<c:forEach var="produkt" items="${produkte}">
+
+
+
+				<tr>
+					<td>${produkt.name}</td>
+					<td>${produkt.artikelnr}</td>
+					<td>${produkt.anzahl}</td>
+					<td>${produkt.groesse}
+					<td>${produkt.preismitanzahlineuro}</td>
+					<td>${produkt.status}</td>
+
+				</tr>
+
+
+
+
+
+			</c:forEach>
+	</table>
+</div>
+</div>
+<div class="container">
+	<form action="Produkt�bersichtServlet" method="post">
+	<select name="auswahl">
+	<c:forEach  var="produkt" items="${ produkte}" >
+	<option value= "${produkt.artikelnr}" >${produkt.name }</option>
+	</c:forEach>
+	</select>
+	<button value="submit"  class= "dbae-button">Bearbeiten</button>
+	</form>
+</div>
+
+
+	
 </div>
 
 <br />

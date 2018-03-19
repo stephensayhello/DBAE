@@ -21,6 +21,7 @@ public class Kunde extends Nutzer {
 		this.nachname = nachname;
 	}
 	
+	
 	public Adresse getAdresse() {
 		return adresse;
 	}
