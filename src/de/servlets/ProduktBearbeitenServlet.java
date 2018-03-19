@@ -87,8 +87,7 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 			} else if(!name.contains("") && name != produkt.getName() && menge != produkt.getMenge() && preis >= 0 && preis != produkt.getPreis())  {
 				produkt.setName(name);
 				produkt.setMenge(menge);
-				produkt.setPreis(preis)
-				;
+				produkt.setPreis(preis);
 			}
 			
 			
