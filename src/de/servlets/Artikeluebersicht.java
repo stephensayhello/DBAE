@@ -33,10 +33,6 @@ public class Artikeluebersicht extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Artikeluebersicht() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -53,11 +49,10 @@ public class Artikeluebersicht extends HttpServlet {
 			if (!(counter == produkte.get(i).getArtikelnr())) {
 				counter = produkte.get(i).getArtikelnr();
 				produkteSortiertnachartnr.add(produkte.get(i));
-			} 
+			}
 		}
 
-
-request.setAttribute("test", "ttttttttt");
+		request.setAttribute("test", "ttttttttt");
 		request.setAttribute("produkte", produkteSortiertnachartnr);
 		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 
@@ -74,8 +69,6 @@ request.setAttribute("test", "ttttttttt");
 		List<String> messages = new ArrayList<>();
 		List<Produkt> produkte = (List<Produkt>) session.getAttribute("produktlistedb");
 
-		List<Produkt> produktefürwarenkorb = new ArrayList<>();
-
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
 		boolean ingroesseverfügbar = false;
 
@@ -83,81 +76,73 @@ request.setAttribute("test", "ttttttttt");
 			Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 			warenkorb = new Warenkorb(kunde);
 
-		} 
-		
+		}
 
 		int artnr = Integer.parseInt(request.getParameter("artnr"));
 		int menge = Integer.parseInt(request.getParameter("menge"));
 
 		String groesse = request.getParameter("groesse");
 
-		for (Produkt produkt2 : produkte) {
-			if (produkt2.getArtikelnr() == artnr) {
-
-				if (produkt2 instanceof Shirt) {
-					Shirt shirt = (Shirt) produkt2;
-					if (shirt.getGroesse().equals(groesse)) {
-						ingroesseverfügbar=true;
-						shirt.setAnzahl(menge);
-						shirt.setPreismitanzahlineuro(shirt.getPreis()*menge);
-						if (shirt.getStatus().contains("Lieferbar")&&(shirt.getMenge()>=menge)) {
-							warenkorb.getInhalt().add(shirt);
-							
-						} else {
-							messages.add("Produkt in dieser Menge nicht verfügbar!");
-							request.setAttribute("messages", messages);
-						}
-					}
+		// Produkt-ID für Artikel im Modal
+		Produkt modalProdukt = null;
+		for (Produkt produkt : produkte) {
+			if (produkt instanceof Schuhe) {
+				if (produkt.getArtikelnr() == artnr && ((Schuhe) produkt).getGroesse() == Integer.parseInt(groesse)) {
+					modalProdukt = produkt;
 				}
-
-				if (produkt2 instanceof Hose) {
-					Hose hose = (Hose) produkt2;
-					if (hose.getGroesse() == Integer.parseInt(groesse)) {
-						ingroesseverfügbar=true;
-						hose.setAnzahl(menge);
-						hose.setPreismitanzahlineuro(hose.getPreis()*menge);
-						System.out.println(hose.getPreismitanzahlineuro());
-						if (hose.getStatus().contains("Lieferbar")&&(hose.getMenge()>=menge)) {
-							System.out.println("lieferbar");
-							warenkorb.getInhalt().add(hose);
-							
-						} else {
-							messages.add("Produkt in dieser Menge nicht verfügbar!");
-							request.setAttribute("messages", messages);
-						}
-					}
+			} else if (produkt instanceof Hose) {
+				if (produkt.getArtikelnr() == artnr && ((Hose) produkt).getGroesse() == Integer.parseInt(groesse)) {
+					modalProdukt = produkt;
+				}
+			} else if (produkt instanceof Shirt) {
+				if (produkt.getArtikelnr() == artnr && ((Shirt) produkt).getGroesse() == groesse) {
+					modalProdukt = produkt;
 				}
 			}
+		}
 
-			if (produkt2 instanceof Schuhe) {
-				Schuhe schuhe = (Schuhe) produkt2;
-				if (schuhe.getGroesse() == Integer.parseInt(groesse)) {
-					ingroesseverfügbar=true;
-					schuhe.setAnzahl(menge);
-					schuhe.setPreismitanzahlineuro(schuhe.getPreis()*menge);
-					if (schuhe.getStatus().contains("Lieferbar")&&(schuhe.getMenge()>=menge)) {
-						warenkorb.getInhalt().add(schuhe);
-						
+		if (modalProdukt == null) {
+			ingroesseverfügbar = false;
+		} else {
+			modalProdukt.setAnzahl(menge);
+			boolean vorhanden = false;
+			for (Produkt produkt : warenkorb.getInhalt()) {
+				if (produkt.getProdukt_id() == modalProdukt.getProdukt_id()) {
+					vorhanden = true;
+					int neueAnzahl = produkt.getAnzahl() + modalProdukt.getAnzahl();
+					if (modalProdukt.getStatus().contains("Lieferbar")
+							&& modalProdukt.getMenge() >= neueAnzahl) {
+						produkt.setAnzahl(neueAnzahl);
+						modalProdukt = produkt;
+						break;
 					} else {
 						messages.add("Produkt in dieser Menge nicht verfügbar!");
 						request.setAttribute("messages", messages);
 					}
 				}
 			}
+
+			modalProdukt.setAnzahl(modalProdukt.getAnzahl());
+			modalProdukt.setPreismitanzahlineuro(modalProdukt.getPreis() * modalProdukt.getAnzahl());
+
+			if (modalProdukt.getStatus().contains("Lieferbar") && modalProdukt.getMenge() >= modalProdukt.getAnzahl()) {
+				if (!vorhanden) {
+					warenkorb.getInhalt().add(modalProdukt);
+				}
+			} else {
+				messages.add("Produkt in dieser Menge nicht verfügbar!");
+				request.setAttribute("messages", messages);
+			}
+
 		}
 
-		if (!ingroesseverfügbar) {
-			messages.add("Produkt ist in dieser Größe nicht lieferbar!");
-			request.setAttribute("messages", messages);
-		}
-
-		
 		session.setAttribute("warenkorb", warenkorb);
 		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 		session.removeAttribute("warenkorbgesamtpreis");
 		session.removeAttribute("warenversanddauer");
 		session.setAttribute("warenversanddauer", warenkorb.gethoechsteVersanddauer());
-		session.setAttribute("warenkorbgesamtpreis", NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
+		session.setAttribute("warenkorbgesamtpreis",
+				NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
 		System.out.println("angekommen");
 		System.out.println(NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
 		System.out.println(warenkorb.getInhalt().size());
