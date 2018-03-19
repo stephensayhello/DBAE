@@ -26,7 +26,7 @@ public class Bestellung {
 	}
 	public Bestellung(List<Produkt> bestellliste,  Kunde kunde) {
 		
-		this.bestellnummer = BestellungOperations.hoechsteID();
+		this.bestellnummer = BestellungOperations.hoechsteID() ;
 		this.bestellliste = bestellliste;
 		this.date = new Date(2018, 12, 20);
 		this.kunde = kunde;

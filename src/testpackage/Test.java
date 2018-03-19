@@ -53,9 +53,9 @@ public class Test {
 		produkte.add(0, produkt);
 	
 		Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen("paul.blanke1@web.de"));
-		Bestellung bestellung = new Bestellung(1, produkte, kunde);
-		System.out.println("TestFall A");
-		BestellungOperations.bestellunganlegen(bestellung);
+		Bestellung bestellung = new Bestellung(3, produkte, kunde);
+		System.out.println(bestellung.getBestellnummer());
+		BestellungOperations.anlegen(bestellung);
 	}
 	
 	
@@ -67,13 +67,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-		
-		
-=======
-		Date date = new Date();
-		System.out.println(date.toString());
->>>>>>> c51ec4561bee20c594a3a7cf82d179878dbc46d2
+
 	}
 
 }

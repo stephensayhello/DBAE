@@ -48,17 +48,13 @@ public class BestellungOperations {
 
 		try {
 			
-<<<<<<< HEAD
 
-			
-=======
->>>>>>> c51ec4561bee20c594a3a7cf82d179878dbc46d2
 
 			for (Produkt produkt : bestellliste) {
 				pst = con.prepareStatement(ANLEGEN_BESTELLUNG_PROD_ZUO);
-				pst.setInt(2,  1);
-				pst.setInt(3, bestellung.getKunde().getNutzer_id());
-				pst.setDate(2,  bestellung.getDate());
+				pst.setInt(1,  bestellung.getBestellnummer());
+				pst.setInt(2, bestellung.getKunde().getNutzer_id());
+				pst.setInt(3,  produkt.getAnzahl());
 				
 				pst.execute();
 			
@@ -76,7 +72,7 @@ public class BestellungOperations {
 		PreparedStatement pst;
 		try {
 			pst = con.prepareStatement(ANLEGEN_BESTELLUNG);
-			pst.setInt(1, 1);
+			pst.setInt(1, bestellung.getBestellnummer());
 			pst.setInt(2, bestellung.getKunde().getNutzer_id());
 			pst.setString(3 , bestellung.getDate().toString());
 			pst.execute();
