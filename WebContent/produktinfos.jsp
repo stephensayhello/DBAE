@@ -12,6 +12,16 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
+<script>
+function onHidde() {
+	document.getElementById("unsichtbar").style.visibility="hidden";
+}
+
+function onShow() {
+	document.getElementById().style.visibility ="visible";
+}
+
+</script>
 <a:changenav></a:changenav>
 <h1>Alle verfuegbare Produkte anzeigen</h1>
 <div class="container">

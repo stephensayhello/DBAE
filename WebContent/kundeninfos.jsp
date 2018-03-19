@@ -16,20 +16,26 @@
 <h1>Eine Liste aller angemeldeten Kunden:</h1>
 <!-- Eine JS Funktion im Test :P -->
 <script>
-function onclick() {
-	document.getElementById().style.visibility="visible";
+function onHidde() {
+	document.getElementById("unsichtbar").style.visibility="hidden";
+}
+
+function onShow() {
+	document.getElementById().style.visibility ="visible";
 }
 </script>
 <div class="container">
 <p>Durch Auswahl eines Kunden wird das Passwort des Kunden zurück gesetzt.</p>
+
+
 <form action="KundenOperationsServlet" method="post">
-<button value="submit" class="button-dbae">Anzeigen</button>
+<button value="submit" class="button-dbae" onclick="onHidde()">Anzeigen</button>
 </form>
 </div>
 <br />
 
 
-<div class="container" id="unsichtbar">
+<div class="container" id="unsichtbar"  style = 'hidden'>
 <div class="container"><div class="table-responsive">
 		<table class="table">
 			<tr>
