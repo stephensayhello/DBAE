@@ -47,7 +47,7 @@ public class Test {
 	}
 
 	public static void main(String[] args) throws InvalidPasswordException, IOException {
-<<<<<<< HEAD
+
 		// YYYY-MM-DD HH:MI:SS
 		Produkt produkt = ProduktOperations.ladeProduktausdb(1);
 		List<Produkt> produkte = new ArrayList<>();
@@ -57,9 +57,7 @@ public class Test {
 		Bestellung bestellung = new Bestellung(3, produkte, kunde);
 		System.out.println(bestellung.getBestellnummer());
 		BestellungOperations.anlegen(bestellung);
-=======
-		
->>>>>>> 877afe9ba57ac4d1afc014ed765da6b9b0fbdf07
+
 	}
 	
 	

@@ -42,36 +42,24 @@ public class BestellungOperations {
 	}
 
 	public static void anlegen(Bestellung bestellung) {
-		
+
 		List<Produkt> bestellliste = bestellung.getBestellliste();
 
 		Connection con = DBConnection.getConnection();
 		PreparedStatement pst;
 
 		try {
-<<<<<<< HEAD
-			
-
-
-			for (Produkt produkt : bestellliste) {
-				pst = con.prepareStatement(ANLEGEN_BESTELLUNG_PROD_ZUO);
-				pst.setInt(1,  bestellung.getBestellnummer());
-				pst.setInt(2, bestellung.getKunde().getNutzer_id());
-				pst.setInt(3,  produkt.getAnzahl());
-=======
 
 			for (Produkt produkt : bestellliste) {
 				pst = con.prepareStatement(ANLEGEN_BESTELLUNG_PROD_ZUO);
 				pst.setInt(1, bestellung.getBestellnummer());
-				pst.setInt(3, produkt.getAnzahl());
 				pst.setInt(2, produkt.getProdukt_id());
->>>>>>> 877afe9ba57ac4d1afc014ed765da6b9b0fbdf07
-				
+				pst.setInt(3, produkt.getAnzahl());
+
 				pst.execute();
-			
 
 			}
-		
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -83,20 +71,17 @@ public class BestellungOperations {
 		PreparedStatement pst;
 		try {
 			pst = con.prepareStatement(ANLEGEN_BESTELLUNG);
-<<<<<<< HEAD
-=======
-			
->>>>>>> 877afe9ba57ac4d1afc014ed765da6b9b0fbdf07
+
 			pst.setInt(1, bestellung.getBestellnummer());
 			pst.setInt(2, bestellung.getKunde().getNutzer_id());
-			pst.setString(3 , bestellung.getDate().toString());
-			
+			pst.setString(3, bestellung.getDate().toString());
+
 			pst.execute();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		anlegen(bestellung);
 	}
 }
