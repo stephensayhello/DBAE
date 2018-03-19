@@ -63,7 +63,6 @@ public class WarenkorbServlet extends HttpServlet {
 			Bestellung bestellung = new Bestellung(warenkorbinhalt, kunde);
 
 			BestellungOperations.bestellunganlegen(bestellung);
-			System.out.println("dadadadada");
 			session.removeAttribute("warenkorbinhalt");
 			session.removeAttribute("warenkorb");
 			session.removeAttribute("warenkorbgesamtpreis");

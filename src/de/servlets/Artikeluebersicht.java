@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.xml.internal.ws.api.message.Message;
-import com.sun.xml.internal.ws.api.message.Messages;
-
 import de.classes.Hose;
 import de.classes.Kunde;
 import de.classes.Produkt;
@@ -83,10 +80,11 @@ request.setAttribute("test", "ttttttttt");
 		boolean ingroesseverfügbar = false;
 
 		if (warenkorb == null) {
-			Kunde kunde = (Kunde) session.getAttribute("kundeEingeloggt");
+			Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 			warenkorb = new Warenkorb(kunde);
 
-		}
+		} 
+		
 
 		int artnr = Integer.parseInt(request.getParameter("artnr"));
 		int menge = Integer.parseInt(request.getParameter("menge"));
@@ -153,6 +151,7 @@ request.setAttribute("test", "ttttttttt");
 			request.setAttribute("messages", messages);
 		}
 
+		
 		session.setAttribute("warenkorb", warenkorb);
 		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 		session.removeAttribute("warenkorbgesamtpreis");
