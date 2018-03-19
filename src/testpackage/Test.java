@@ -48,15 +48,8 @@ public class Test {
 
 	public static void main(String[] args) throws InvalidPasswordException, IOException {
 
-		// YYYY-MM-DD HH:MI:SS
-		Produkt produkt = ProduktOperations.ladeProduktausdb(1);
-		List<Produkt> produkte = new ArrayList<>();
-		produkte.add(0, produkt);
-	
-		Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen("paul.blanke1@web.de"));
-		Bestellung bestellung = new Bestellung(3, produkte, kunde);
-		System.out.println(bestellung.getBestellnummer());
-		BestellungOperations.anlegen(bestellung);
+		Date date = new Date();
+		System.out.println(date.toString());
 
 	}
 	
