@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=Windows-1252"
-	pageEncoding="Windows-1252"%>"%>
+	pageEncoding="Windows-1252"%>
 <%@ taglib prefix="a" uri="/WEB-INF/tag.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,17 +13,17 @@
 </head>
 <body>
 <a:changenav></a:changenav>
-<h1>Alle verfügbare Produkte anzeigen</h1>
+<h1>Alle verfuegbare Produkte anzeigen</h1>
 <div class="container">
-<form action="ProduktÜbersichtServlet" method="post">
-<button value="submit" class="dbae-button">Anzeigen</button>
-<button class="dbae-button">Löschen</button>
+<form action="ProduktÃœbersichtServlet" method="post">
+<button value="submit" class="button-dbae">Anzeigen</button>
+<button class="button-dbae">Loeschen</button>
 </form>
 <br/>
 </div>
 <br />
 <div class="container"><div class="table-responsive">
-		<table class="table">
+<table class="table">
 			<tr>
 
 				<th>Preis</th>
@@ -54,13 +54,10 @@
 
 			</c:forEach>
 	</table>
-</div>	
 </div>
-
-<br />
-
+</div>
 <div class="container">
-	<form action="ProduktÜbersichtServlet" method="post">
+	<form action="Produktï¿½bersichtServlet" method="post">
 	<select name="auswahl">
 	<c:forEach  var="produkt" items="${ produkte}" >
 	<option value= "${produkt.artikelnr}" >${produkt.name }</option>
@@ -69,6 +66,14 @@
 	<button value="submit"  class= "dbae-button">Bearbeiten</button>
 	</form>
 </div>
+
+
+	
+</div>
+
+<br />
+
+
 <a:modal messages="${messages}"></a:modal>
 </body>
 </html>

@@ -28,6 +28,13 @@ public class Warenkorb {
 		this.produkte = new ArrayList<Produkt>();
 	}
 	
+	public Warenkorb(Kunde kunde,List<Produkt> produkte, int id){
+		this.setWarenkorb_id(id);
+		this.setKunde(kunde);
+		this.produkte = produkte;
+	}
+	
+	
 	
 	public List<Produkt> getInhalt() {
 		return produkte;

@@ -14,16 +14,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 /**
- * Servlet Filter implementation class XSSFilter
+ * Servlet Filter implementation class XSSFilter2
  */
 @WebFilter("/*")
-public class XSSFilter extends BaseFilter implements Filter {
-       
+public class XSSFilter2 implements Filter {
+
     /**
-     * @see BaseFilter#BaseFilter()
+     * Default constructor. 
      */
-    public XSSFilter() {
-        super();
+    public XSSFilter2() {
         // TODO Auto-generated constructor stub
     }
 
@@ -38,7 +37,7 @@ public class XSSFilter extends BaseFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		XSSRequestWrapper wrapper = new XSSRequestWrapper((HttpServletRequest) request);
+		XSSRequestWrapp wrapper = new XSSRequestWrapp((HttpServletRequest) request);
 		chain.doFilter(wrapper, response);
 	}
 
@@ -50,9 +49,9 @@ public class XSSFilter extends BaseFilter implements Filter {
 	}
 
 }
-class XSSRequestWrapper extends HttpServletRequestWrapper implements HttpServletRequest {
+class XSSRequestWrapp extends HttpServletRequestWrapper implements HttpServletRequest {
 
-	public XSSRequestWrapper(HttpServletRequest request) {
+	public XSSRequestWrapp(HttpServletRequest request) {
 		super(request);
 		
 	}
@@ -78,13 +77,6 @@ class XSSRequestWrapper extends HttpServletRequestWrapper implements HttpServlet
 			scriptPattern = Pattern.compile("Delete", Pattern.CASE_INSENSITIVE);
 			str = scriptPattern.matcher(str).replaceAll("");
 			scriptPattern = Pattern.compile("Insert into", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");scriptPattern = Pattern.compile("SELECT *", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("function", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("Delete * FROM", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("Insert into", Pattern.CASE_INSENSITIVE);
 			str = scriptPattern.matcher(str).replaceAll("");
 			scriptPattern = Pattern.compile(" ;", Pattern.CASE_INSENSITIVE);
 			str = scriptPattern.matcher(str).replaceAll("");
@@ -97,9 +89,9 @@ class XSSRequestWrapper extends HttpServletRequestWrapper implements HttpServlet
 			
 			
 			
+			
 		}
 		return str;
 	}
 	
 }
-

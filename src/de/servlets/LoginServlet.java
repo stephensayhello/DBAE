@@ -1,8 +1,10 @@
 package de.servlets;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +16,11 @@ import javax.servlet.http.HttpSession;
 import de.classes.Admin;
 import de.classes.Kunde;
 import de.classes.Nutzer;
+import de.classes.Warenkorb;
 import de.databaseOperations.AdminOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
+import de.databaseOperations.WarenkorbOperations;
 import de.utilities.SaltedHash;
 
 /**
@@ -72,7 +76,16 @@ public class LoginServlet extends HttpServlet {
 			if (NutzerOperations.nutzeristKunde(nutzer.getNutzer_id())) {
 
 				Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
-                System.out.println(kunde);
+				
+				Warenkorb warenkorb = (Warenkorb) WarenkorbOperations.ladeWarenkorbAusDB(kunde);
+				
+				if(warenkorb != null) {
+					session.setAttribute("warenkorb", warenkorb);
+					session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
+					session.setAttribute("warenkorbgesamtpreis", NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
+					WarenkorbOperations.entferneWarenkorb(warenkorb.getWarenkorb_id());
+				}
+				
 				session.setAttribute("kundeeingeloggt", kunde);
 				session.setAttribute("rolle", "kunde");
 				session.setAttribute("kundenadresse", kunde.getAdresse());

@@ -6,18 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import de.classes.Warenkorb;
+import de.databaseOperations.WarenkorbOperations;
 
 /**
- * Servlet implementation class Kunden‹bersichtServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/Kunden‹bersichtServlet")
-public class Kunden‹bersichtServlet extends HttpServlet {
+@WebServlet("/LogoutServlet")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Kunden‹bersichtServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +30,19 @@ public class Kunden‹bersichtServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		HttpSession session = request.getSession();
+		
+		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
+		System.out.println("TEST");
+		System.out.println(warenkorb.getKunde().getNutzer_id());
+		
+		if(warenkorb != null) {
+			WarenkorbOperations.anlegenWarenkorb(warenkorb);
+		}
+		
+		request.getSession().invalidate();
+		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 	}
 
 	/**

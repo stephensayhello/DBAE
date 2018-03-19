@@ -55,9 +55,11 @@
 			</tr>
 
 		</table>
+		
 		<c:if test="${warenversanddauer>0}">
 		Der Versand dauert voraussichtlich ${warenversanddauer} Tage.
 		</c:if>
+		<div>
 		<form action="WarenkorbServlet" method="post">
 
 
@@ -77,7 +79,7 @@
 			
 			<button class="button-dbae">Warenkorb leeren</button>
 
-		</form>
+		</form></div>
 	</div></div>
 
 </body>
