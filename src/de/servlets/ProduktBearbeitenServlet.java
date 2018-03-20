@@ -53,42 +53,23 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		String mengeS = request.getParameter("menge");
 		String preisS = request.getParameter("preis");
 		HttpSession session = request.getSession();
-		Produkt produkt = (Produkt) session.getAttribute("produkt");
-		session.removeAttribute("produkt");
+		Produkt produkt = (Produkt) session.getAttribute("produktBe");
+		session.removeAttribute("produktBe");
 		int menge = 0;
 		double preis = 0.00;
 		List<String> messages = new ArrayList<String>();
-		
-		try {
-			menge = Integer.parseInt(mengeS);
-			preis = Double.parseDouble(preisS);
-		} catch(NumberFormatException nfe) {
-			
+		if(!mengeS.contains("") && !preisS.contains("") ) {
+			try {
+				menge = Integer.parseInt(mengeS);
+				preis = Double.parseDouble(preisS);
+			} catch(NumberFormatException nfe) {
+				nfe.printStackTrace();
+			}
 		}
 		
 		
-		if(!name.contains("") && preis >= 0) {
-			if(!name.contains("") && name != produkt.getName()) {
-				produkt.setName(name);
-				
-			} else if(menge != produkt.getMenge() && name.contains("") && preis >= 0) {
-				produkt.setMenge(menge);
-				
-			} else if(preis >= 0 && preis != produkt.getPreis() && name.contains("")) {
-				produkt.setName(name);
-			} else if(!name.contains("") && name != produkt.getName() && menge != produkt.getMenge() && preis >= 0) {
-				produkt.setName(name);
-				produkt.setMenge(menge);
-			} else if(name.contains("") && menge != produkt.getMenge() && preis >= 0 && preis != produkt.getPreis()) {
-				produkt.setMenge(menge);
-				produkt.setPreis(preis);
-				
-				
-			} else if(!name.contains("") && name != produkt.getName() && menge != produkt.getMenge() && preis >= 0 && preis != produkt.getPreis())  {
-				produkt.setName(name);
-				produkt.setMenge(menge);
-				produkt.setPreis(preis);
-			}
+		
+		
 			
 			
 			ProduktOperations.updateProdukt(produkt);
@@ -96,13 +77,9 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 			request.setAttribute("messages", messages);
 			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 			
-		} else if(name.contains("") && menge == 0 && preis == 0)  {
-			messages.add("Das Produkt wurde nicht geändert.");
+		
 			
-			request.setAttribute("messages", messages);
-			
-			request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
-		}
+		
 	}
 
 }

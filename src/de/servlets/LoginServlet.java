@@ -61,8 +61,8 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(nutzer);
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
-		//das lösen wir noch anders
-		if(session.getAttribute("kundeeingeloggt")!=null){
+		// das lösen wir noch anders
+		if (session.getAttribute("kundeeingeloggt") != null) {
 			messages.add("Sie sind bereits eingeloggt!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
@@ -76,16 +76,17 @@ public class LoginServlet extends HttpServlet {
 			if (NutzerOperations.nutzeristKunde(nutzer.getNutzer_id())) {
 
 				Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
-				
+
 				Warenkorb warenkorb = (Warenkorb) WarenkorbOperations.ladeWarenkorbAusDB(kunde);
-				
-				if(warenkorb != null) {
+
+				if (warenkorb != null) {
 					session.setAttribute("warenkorb", warenkorb);
 					session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
-					session.setAttribute("warenkorbgesamtpreis", NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
+					session.setAttribute("warenkorbgesamtpreis",
+							NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
 					WarenkorbOperations.entferneWarenkorb(warenkorb.getWarenkorb_id());
 				}
-				
+
 				session.setAttribute("kundeeingeloggt", kunde);
 				session.setAttribute("rolle", "kunde");
 				session.setAttribute("kundenadresse", kunde.getAdresse());
@@ -97,11 +98,13 @@ public class LoginServlet extends HttpServlet {
 				System.out.println("Admin erkannt:)");
 				session.setAttribute("rolle", "admin");
 				session.setAttribute("admineingeloggt", admin);
+				messages.add("Erfolgreicher login");
 				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
+
 			}
 
 		} else {
-			
+
 			session.setAttribute("rolle", "kunde");
 			String falschernutzername = "Name falsch";
 			messages.add(falschernutzername);

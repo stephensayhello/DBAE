@@ -25,7 +25,7 @@ function onShow() {
 <a:changenav></a:changenav>
 <h1>Alle verfuegbare Produkte anzeigen</h1>
 <div class="container">
-<form action="ProduktÜbersichtServlet" method="post">
+<form action="ProduktUebersichtServlet" method="post">
 <button value="submit" class="button-dbae">Anzeigen</button>
 <button class="button-dbae">Loeschen</button>
 </form>
@@ -39,7 +39,7 @@ function onShow() {
 				<th>Preis</th>
 				<th>Name</th>
 				<th>Artikel-Nr</th>
-				<th>Anzahl</th>
+				<th>Menge</th>
 				<th>Groesse</th>
 				<th>Status</th>
 
@@ -49,11 +49,11 @@ function onShow() {
 
 
 				<tr>
+					<td>${produkt.preisineuro}</td>				
 					<td>${produkt.name}</td>
 					<td>${produkt.artikelnr}</td>
-					<td>${produkt.anzahl}</td>
-					<td>${produkt.groesse}
-					<td>${produkt.preismitanzahlineuro}</td>
+					<td>${produkt.menge}</td>
+					<td>${produkt.groesse}</td>					
 					<td>${produkt.status}</td>
 
 				</tr>
@@ -67,10 +67,10 @@ function onShow() {
 </div>
 </div>
 <div class="container">
-	<form action="Produkt�bersichtServlet" method="post">
+	<form action="ProduktUebersichtServlet" method="get">
 	<select name="auswahl">
 	<c:forEach  var="produkt" items="${ produkte}" >
-	<option value= "${produkt.artikelnr}" >${produkt.name }</option>
+	<option value= "${produkt.produkt_id}" >${produkt.name} ${produkt.produkt_id}</option>
 	</c:forEach>
 	</select>
 	<button value="submit"  class= "dbae-button">Bearbeiten</button>
