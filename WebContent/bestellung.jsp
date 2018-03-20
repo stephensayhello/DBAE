@@ -18,14 +18,16 @@
 <a:profilnav></a:profilnav>
 
 <c:forEach var="bestellung" items="${fruehereBestellungen}">
+Bestellnummer: ${bestellung.bestellnummer}<br>
+Datum: ${bestellung.datefromdb}<br>
 <c:forEach var="produkt" items="${bestellung.bestellliste}">
                     
-					${produkt.name}
-					${produkt.preismitanzahlineuro}
-					${produkt.artikelnr}
-					${produkt.anzahl}
-					${produkt.groesse}
-					${produkt.status}
+					Name: ${produkt.name}<br>
+					Preis: ${produkt.preismitanzahlineuro}<br>
+					Artikelnr.: ${produkt.artikelnr}<br>
+					Anzahl: ${produkt.anzahl}<br>
+					Größe: ${produkt.groesse}<br>
+					
 
 
 

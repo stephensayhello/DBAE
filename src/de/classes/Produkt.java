@@ -74,7 +74,7 @@ public class Produkt {
 		this.preis = preis;
 		this.menge = menge;
 		this.setArtikelnr(artnr);
-		anzahl = 0;
+		this.anzahl = 0;
 		this.setStatus("Lieferbar");
 		this.setPreisineuro(preis);
 		this.setVersanddauer(versanddauer);

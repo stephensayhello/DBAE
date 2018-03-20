@@ -8,9 +8,7 @@ public class Schuhe extends Produkt {
 		super(id, name, beschreibung, preis, menge,  artnr, anzahl, versanddauer);
 		this.groesse = groesse;
 		this.setPreismitanzahl(anzahl*preis);
-		if (anzahl > menge){
-			 this.setStatus("Nicht lieferbar");
-			}else { this.setStatus("lieferbar");}
+		
 		
 	}
 	public Schuhe(int id, String name, String beschreibung, double preis, int groesse, int menge, int artnr, int versanddauer) {

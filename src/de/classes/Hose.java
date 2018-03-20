@@ -14,11 +14,7 @@ public class Hose extends Produkt {
 		super(id, name, beschreibung, preis, menge, artnr, anzahl, versanddauer);
 		this.groesse = groesse;
 		this.setPreismitanzahl(anzahl*preis);
-		if (anzahl > menge){
-			 this.setStatus(" Nicht Lieferbar");
-			}else { 
-				this.setStatus("lieferbar");
-			}
+	
 		
 	}
 	

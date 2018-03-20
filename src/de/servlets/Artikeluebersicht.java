@@ -83,7 +83,7 @@ public class Artikeluebersicht extends HttpServlet {
 
 		String groesse = request.getParameter("groesse");
 
-		// Produkt-ID fï¿½r Artikel im Modal
+		// Produkt-ID für Artikel im Modal
 		Produkt modalProdukt = null;
 		for (Produkt produkt : produkte) {
 			if (produkt instanceof Schuhe) {
@@ -116,7 +116,7 @@ public class Artikeluebersicht extends HttpServlet {
 						modalProdukt = produkt;
 						break;
 					} else {
-						messages.add("Produkt in dieser Menge nicht verfï¿½gbar!");
+						messages.add("Produkt in dieser Menge nicht verfügbar!");
 						request.setAttribute("messages", messages);
 					}
 				}
@@ -124,13 +124,16 @@ public class Artikeluebersicht extends HttpServlet {
 
 			modalProdukt.setAnzahl(modalProdukt.getAnzahl());
 			modalProdukt.setPreismitanzahlineuro(modalProdukt.getPreis() * modalProdukt.getAnzahl());
-
+            System.out.println("anzahl und menge");
+			System.out.println(modalProdukt.getAnzahl());
+            System.out.println(modalProdukt.getMenge());
+            System.out.println(modalProdukt.getStatus());
 			if (modalProdukt.getStatus().contains("Lieferbar") && modalProdukt.getMenge() >= modalProdukt.getAnzahl()) {
 				if (!vorhanden) {
 					warenkorb.getInhalt().add(modalProdukt);
 				}
 			} else {
-				messages.add("Produkt in dieser Menge nicht verfï¿½gbar!");
+				messages.add("fehler!");
 				request.setAttribute("messages", messages);
 			}
 

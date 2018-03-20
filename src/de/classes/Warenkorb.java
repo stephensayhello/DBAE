@@ -1,7 +1,9 @@
 package de.classes;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import de.databaseOperations.WarenkorbOperations;
 
@@ -15,6 +17,8 @@ public class Warenkorb {
 	 * Der Account, der den Warenkorb bestellt.
 	 */
 	private Kunde kunde;
+	
+	 private String gesamtpreisineuro;
 	
 	public Warenkorb(Kunde kunde,List<Produkt> produkte){
 	    this.setWarenkorb_id(WarenkorbOperations.hoechsteID());
@@ -85,7 +89,19 @@ public class Warenkorb {
 		this.kunde = kunde;
 	}
 
-	public void setGesamtpreis(double gesamtpreis) {
+	
+
+	public String getGesamtpreisineuro() {
+		double gesamtpreis = 0;
+		for (Produkt produkt : produkte) {
+			 gesamtpreis = gesamtpreis + (produkt.getAnzahl() * produkt.getPreis());
+		}
+		return NumberFormat.getCurrencyInstance(Locale.GERMANY).format(gesamtpreis);
+	}
+
+	public void setGesamtpreisineuro(String gesamtpreisineuro) {
+		
+		this.gesamtpreisineuro = gesamtpreisineuro;
 	}
 
 
