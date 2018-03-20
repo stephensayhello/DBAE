@@ -26,7 +26,18 @@
 		});
 	</script>
 
-	<a:navigation></a:navigation>
+<script>
+		$(document).ready(function() {
+			var test = "${pruefeLogin}";
+			if (test ) {
+				
+			}
+		});
+	</script>
+	<a:navKunde rolle="${rolle }"></a:navKunde>
+
+	
+	
 	
 
 <div class="container">

@@ -61,10 +61,12 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(nutzer);
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
-		//das lösen wir noch anders
+		//das lï¿½sen wir noch anders
 		if(session.getAttribute("kundeeingeloggt")!=null){
 			messages.add("Sie sind bereits eingeloggt!");
+			
 			request.getRequestDispatcher("login.jsp").forward(request, response);
+			
 		}
 		if (nutzer != null) {
 			if (!SaltedHash.isPwdEqual(password, nutzer.getPasswort())) {
@@ -90,6 +92,8 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("rolle", "kunde");
 				session.setAttribute("kundenadresse", kunde.getAdresse());
 				messages.add("Erfolgreicher login");
+				boolean pruefeLogin = false;
+				request.setAttribute("pruefeLogin", pruefeLogin);
 				request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 			}
 			if (NutzerOperations.nutzeristAdmin(nutzer.getNutzer_id())) {

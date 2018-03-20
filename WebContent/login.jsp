@@ -12,7 +12,7 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-	<a:navigation></a:navigation>
+	<a:navKunde rolle="${rolle }"></a:navKunde>
 
 	<form action="LoginServlet" method="post" style="border: 1px solid #ccc">
 		<div class="container">

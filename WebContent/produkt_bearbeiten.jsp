@@ -12,7 +12,7 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-<a:changenav></a:changenav>
+<a:navKunde rolle="${rolle }"></a:navKunde>
 	<form action="ProduktBearbeitenServlet" method="post" style="border: 1px solid #ccc">
 		<div class="container">
 			<h1>Produkt bearbeiten</h1>

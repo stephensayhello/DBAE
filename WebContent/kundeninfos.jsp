@@ -12,7 +12,7 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-<a:changenav></a:changenav>
+<a:navKunde rolle="${rolle }"></a:navKunde>
 <h1>Eine Liste aller angemeldeten Kunden:</h1>
 <!-- Eine JS Funktion im Test :P -->
 <script>

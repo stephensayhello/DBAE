@@ -70,7 +70,7 @@ public class Artikeluebersicht extends HttpServlet {
 		List<Produkt> produkte = (List<Produkt>) session.getAttribute("produktlistedb");
 
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
-		boolean ingroesseverfügbar = false;
+		boolean ingroesseverfuegbar = false;
 
 		if (warenkorb == null) {
 			Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
@@ -83,7 +83,7 @@ public class Artikeluebersicht extends HttpServlet {
 
 		String groesse = request.getParameter("groesse");
 
-		// Produkt-ID für Artikel im Modal
+		// Produkt-ID fï¿½r Artikel im Modal
 		Produkt modalProdukt = null;
 		for (Produkt produkt : produkte) {
 			if (produkt instanceof Schuhe) {
@@ -102,7 +102,7 @@ public class Artikeluebersicht extends HttpServlet {
 		}
 
 		if (modalProdukt == null) {
-			ingroesseverfügbar = false;
+			ingroesseverfuegbar = false;
 		} else {
 			modalProdukt.setAnzahl(menge);
 			boolean vorhanden = false;
@@ -116,7 +116,7 @@ public class Artikeluebersicht extends HttpServlet {
 						modalProdukt = produkt;
 						break;
 					} else {
-						messages.add("Produkt in dieser Menge nicht verfügbar!");
+						messages.add("Produkt in dieser Menge nicht verfï¿½gbar!");
 						request.setAttribute("messages", messages);
 					}
 				}
@@ -130,7 +130,7 @@ public class Artikeluebersicht extends HttpServlet {
 					warenkorb.getInhalt().add(modalProdukt);
 				}
 			} else {
-				messages.add("Produkt in dieser Menge nicht verfügbar!");
+				messages.add("Produkt in dieser Menge nicht verfï¿½gbar!");
 				request.setAttribute("messages", messages);
 			}
 

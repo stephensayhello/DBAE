@@ -22,7 +22,7 @@ function onShow() {
 }
 
 </script>
-<a:changenav></a:changenav>
+<a:navKunde rolle="${rolle }"></a:navKunde>
 <h1>Alle verfuegbare Produkte anzeigen</h1>
 <div class="container">
 <form action="ProduktÜbersichtServlet" method="post">

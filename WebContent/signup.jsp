@@ -13,7 +13,7 @@
 </head>
 <body>
 
-	<a:navigation></a:navigation>
+	<a:navKunde rolle="${rolle }"></a:navKunde>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var messages = "${messages}";

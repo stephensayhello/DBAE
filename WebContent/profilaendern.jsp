@@ -14,7 +14,7 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-<a:navigation></a:navigation>
+<a:navKunde rolle="${rolle }"></a:navKunde>
 <div id = "container">
 <a:profilnav></a:profilnav>
 <div class="container">

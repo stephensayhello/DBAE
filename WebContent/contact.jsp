@@ -10,7 +10,7 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-<a:navigation></a:navigation>
+<a:navKunde rolle="${rolle }"></a:navKunde>
 
 <div class="container">
 <h1>Füllen Sie das Formular aus, um eine Anfrage an den Support zu senden.</h1>

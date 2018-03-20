@@ -11,7 +11,7 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-	<a:navigation></a:navigation>
+	<a:navKunde rolle="${rolle }"></a:navKunde>
 	<a:modal messages="${messages}"></a:modal>
 	<div class="container"><div class="table-responsive">
 		<table class="table">

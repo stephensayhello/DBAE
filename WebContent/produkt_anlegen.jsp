@@ -44,7 +44,7 @@
 
 </head>
 <body>
-	<a:changenav></a:changenav>
+	<a:navKunde rolle="${rolle }"></a:navKunde>
 
 	<div class="container">
 
