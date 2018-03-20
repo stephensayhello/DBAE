@@ -34,27 +34,33 @@ public class Test {
 		Adresse adresse = new Adresse("strasse", "88", 1111, "einort");
 
 		Kunde kunde = new Kunde(saltedhash, "email", adresse, "vorname", "nachname");
-        Warenkorb warenkorb = new Warenkorb(kunde);
+		Warenkorb warenkorb = new Warenkorb(kunde);
 		System.out.println(warenkorb.getWarenkorb_id());
 		Bestellung bestellung = new Bestellung(warenkorb.getInhalt(), kunde);
 		BestellungOperations.bestellunganlegen(bestellung);
-		
 
 	}
-	
-	private static void zudummfuerinsanceof (Produkt produkt){
+
+	private static void zudummfuerinsanceof(Produkt produkt) {
 		System.out.println(produkt instanceof Shirt);
 	}
 
 	public static void main(String[] args) throws InvalidPasswordException, IOException {
-
-		Date date = new Date();
-		System.out.println(date.toString());
-
+		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen("benjamin.gajewski@yahoo.de");
+		Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
+		
+		List<Bestellung> bestellungen = BestellungOperations.bestellungausdbholen(kunde);
+		
+		for (Bestellung bestellung : bestellungen) {
+			System.out.println(bestellung.getBestellnummer());
+			System.out.println(bestellung.getDatefromdb());
+			for (Produkt produkt : bestellung.getBestellliste()) {
+				System.out.println(produkt.getProdukt_id());
+			}
+			
+		}
 	}
-	
-	
-	
+
 	private void testen() {
 		try {
 			erstelleTestKunde();

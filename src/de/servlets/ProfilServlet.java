@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import de.classes.Bestellung;
 import de.classes.Kunde;
+import de.databaseOperations.BestellungOperations;
 import de.utilities.SaltedHash;
 
 /**
@@ -45,11 +47,15 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
+		session.removeAttribute("fruehereBestellungen");
 		String password = request.getParameter("psw");
 		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
-
 		List<String> messages = new ArrayList<>();
+		List <Bestellung> bestellungen = BestellungOperations.bestellungausdbholen(kunde);
+		
+		session.setAttribute("fruehereBestellungen", bestellungen);
 		request.setAttribute("messages", messages);
 		if (kunde == null) {
 			String bitteinloggen = "Bitte loggen Sie sich ein, um ihr Profil sehen zu können.";

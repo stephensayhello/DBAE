@@ -147,7 +147,7 @@ public class ProfilAendernServlet extends HttpServlet {
 			} else if(ort != adresse.getOrt() && !ort.equals("") && hausnr.equals("") && strasse.equals("") && plz == 0) {
 				adresse.setOrt(ort);
 				messages.add("Der Ort wurde geändert.");
-			// 2 und mehr Sachsen werden geändert.	
+			// 2 und mehr Sachen werden geändert.	
 			} else if(strasse != adresse.getStrasse() && !strasse.equals("") && hausnr != adresse.getHausnummer() && !hausnr.equals("")
 					& ort.equals("") && plz == 0) {
 				adresse.setStrasse(strasse);

@@ -50,7 +50,7 @@
 
 			<tr>
 
-				<td>${warenkorbgesamtpreis}</td>
+				<td>${warenkorb.gesamtpreisineuro}</td>
 
 			</tr>
 

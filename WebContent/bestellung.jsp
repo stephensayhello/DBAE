@@ -16,7 +16,24 @@
 <a:navKunde rolle="${rolle }"></a:navKunde>
 <div id = "container">
 <a:profilnav></a:profilnav>
-${kundeeingeloggt.vorname}
+
+<c:forEach var="bestellung" items="${fruehereBestellungen}">
+Bestellnummer: ${bestellung.bestellnummer}<br>
+Datum: ${bestellung.datefromdb}<br>
+<c:forEach var="produkt" items="${bestellung.bestellliste}">
+                    
+					Name: ${produkt.name}<br>
+					Preis: ${produkt.preismitanzahlineuro}<br>
+					Artikelnr.: ${produkt.artikelnr}<br>
+					Anzahl: ${produkt.anzahl}<br>
+					Größe: ${produkt.groesse}<br>
+					
+
+
+
+
+</c:forEach>
+</c:forEach>
 </div>
 
 
