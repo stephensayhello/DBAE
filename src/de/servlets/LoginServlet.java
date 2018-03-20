@@ -61,13 +61,11 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(nutzer);
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
-<<<<<<< HEAD
-		//das lï¿½sen wir noch anders
-		if(session.getAttribute("kundeeingeloggt")!=null){
-=======
-		// das lösen wir noch anders
+
+		
+		// das lï¿½sen wir noch anders
 		if (session.getAttribute("kundeeingeloggt") != null) {
->>>>>>> 05e95e19d8a8eb2ba504b153f95b31784e6c35c1
+
 			messages.add("Sie sind bereits eingeloggt!");
 			
 			request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -98,11 +96,10 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("rolle", "kunde");
 				session.setAttribute("kundenadresse", kunde.getAdresse());
 				messages.add("Erfolgreicher login");
-				boolean pruefeLogin = false;
-				request.setAttribute("pruefeLogin", pruefeLogin);
+				
 				request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 			}
-			if (NutzerOperations.nutzeristAdmin(nutzer.getNutzer_id())) {
+			else if (NutzerOperations.nutzeristAdmin(nutzer.getNutzer_id())) {
 				Admin admin = AdminOperations.holeAdminausDB(nutzer);
 				System.out.println("Admin erkannt:)");
 				session.setAttribute("rolle", "admin");
