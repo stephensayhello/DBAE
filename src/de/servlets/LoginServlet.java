@@ -62,12 +62,7 @@ public class LoginServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
 
-<<<<<<< HEAD
-		
-		// das lï¿½sen wir noch anders
-=======
-		// das lösen wir noch anders
->>>>>>> e3213660853a25b4f9c96058c215d3af86cf3825
+
 		if (session.getAttribute("kundeeingeloggt") != null) {
 
 			messages.add("Sie sind bereits eingeloggt!");

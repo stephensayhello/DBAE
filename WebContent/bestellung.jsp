@@ -17,23 +17,31 @@
 <div id = "container">
 <a:profilnav></a:profilnav>
 
+
+
+
+<table class = "table">
 <c:forEach var="bestellung" items="${fruehereBestellungen}">
-Bestellnummer: ${bestellung.bestellnummer}<br>
-Datum: ${bestellung.datefromdb}<br>
+<tr>
+<td><p id = "wichtig"><b>Bestellnummer: ${bestellung.bestellnummer}</b></p><br>
+<b>Datum: ${bestellung.datefromdb}</b><br></td></tr>
+
+
 <c:forEach var="produkt" items="${bestellung.bestellliste}">
-                    
-					Name: ${produkt.name}<br>
-					Preis: ${produkt.preismitanzahlineuro}<br>
-					Artikelnr.: ${produkt.artikelnr}<br>
-					Anzahl: ${produkt.anzahl}<br>
-					Größe: ${produkt.groesse}<br>
-					
+                   <tr>
+					<td>Name: ${produkt.name}</td>
+					<td>Preis: ${produkt.preismitanzahlineuro}</td>
+					<td>Artikelnr.: ${produkt.artikelnr}</td>
+					<td>Anzahl: ${produkt.anzahl}</td>
+					<td>Größe: ${produkt.groesse}</td>
+					</tr>
 
 
 
 
 </c:forEach>
 </c:forEach>
+</table>
 </div>
 
 
