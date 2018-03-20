@@ -35,7 +35,7 @@ public class LogoutServlet extends HttpServlet {
 		
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
 		System.out.println("TEST");
-		System.out.println(warenkorb.getKunde().getNutzer_id());
+		
 		
 		if(warenkorb != null) {
 			WarenkorbOperations.anlegenWarenkorb(warenkorb);

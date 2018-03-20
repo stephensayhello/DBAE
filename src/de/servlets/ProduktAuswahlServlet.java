@@ -62,10 +62,10 @@ public class ProduktAuswahlServlet extends HttpServlet {
 		
 		// Ausgabe
 		
-		String ausgabe = "Sie haben die Kathegorie: " + auswahl 
-				+ " ausgewählt. In dieser Kathegorie haben wir ";
+		String ausgabe = "Sie haben die Kategorie: " + auswahl 
+				+ " ausgewählt. In dieser Kategorie haben wir ";
 		
-		//int anzahl = ProduktOperations.zeigeAnzahlProdukte(kategorie);
+	//int anzahl = ProduktOperations.zeigeAnzahlProdukte(kategorie);
 		//ausgabe +=  anzahl  + " Artikel für Sie.";
 		messages.add(ausgabe);
 		request.setAttribute("messages", messages);

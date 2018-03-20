@@ -28,7 +28,7 @@ public class SchuheOperations {
 				int groesse = rs.getInt(2);
 				System.out.println(produkt.getArtikelnr()+ ", artikelnrprodukt");
 				Schuhe schuhe = new Schuhe(sch_id, produkt.getName(), produkt.getBeschreibung(), produkt.getPreis(),
-						groesse, produkt.getMenge(),produkt.getArtikelnr(),produkt.getVersanddauer());
+						groesse, produkt.getMenge(),produkt.getArtikelnr(),produkt.getAnzahl(),produkt.getVersanddauer());
 				System.out.println(schuhe.getArtikelnr() + ", artikelnrschuhe");
 				return schuhe;
 

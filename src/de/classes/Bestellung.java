@@ -1,6 +1,5 @@
 package de.classes;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,26 +9,43 @@ import de.databaseOperations.BestellungOperations;
 
 public class Bestellung {
 	private int bestellnummer;
-	
-	private List <Produkt> bestellliste;
-	
+
+	private List<Produkt> bestellliste;
+
 	private Date date;
-	
+
 	private Kunde kunde;
-	
-	public Bestellung(int bestellnummer, List<Produkt> bestellliste,  Kunde kunde) {
-		
+
+	private String datefromdb;
+
+	public Bestellung(int bestellnummer, List<Produkt> bestellliste, Kunde kunde, String datefromdb) {
+
+		this.bestellnummer = bestellnummer;
+		this.bestellliste = bestellliste;
+		this.date = null;
+		this.kunde = kunde;
+		this.setDatefromdb(datefromdb);
+	}
+
+	public Bestellung(int bestellnummer, List<Produkt> bestellliste, Kunde kunde) {
+
 		this.bestellnummer = bestellnummer;
 		this.bestellliste = bestellliste;
 		this.date = new Date();
 		this.kunde = kunde;
 	}
-	public Bestellung(List<Produkt> bestellliste,  Kunde kunde) {
-		
-		this.bestellnummer = BestellungOperations.hoechsteID() ;
+
+	public Bestellung(List<Produkt> bestellliste, Kunde kunde) {
+
+		this.bestellnummer = BestellungOperations.hoechsteID();
 		this.bestellliste = bestellliste;
 		this.date = new Date();
 		this.kunde = kunde;
+	}
+
+	public Bestellung(int bstnr, String bestelldatum) {
+		this.bestellnummer = bstnr;
+		this.datefromdb = bestelldatum;
 	}
 
 	public int getBestellnummer() {
@@ -65,10 +81,15 @@ public class Bestellung {
 	}
 
 	public void createDate() {
-		
+
 	}
-	
-	
-	
-	
+
+	public String getDatefromdb() {
+		return datefromdb;
+	}
+
+	public void setDatefromdb(String datefromdb) {
+		this.datefromdb = datefromdb;
+	}
+
 }
