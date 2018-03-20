@@ -16,7 +16,7 @@ import de.databaseOperations.ProduktOperations;
 /**
  * Servlet implementation class Produkt‹bersichtServlet
  */
-@WebServlet("/Produkt‹bersichtServlet")
+@WebServlet("/ProduktUebersichtServlet")
 public class ProduktUebersichtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,6 +52,7 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("srevlet angekommen, produktuebersichtservlet");
 		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
 		System.out.println("Testen");
 		HttpSession session = request.getSession();

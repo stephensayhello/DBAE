@@ -172,13 +172,7 @@ public class Produkt {
 		return null;
 	}
 
-	public int getArtikelnr() {
-		return artikelnr;
-	}
-
-	public void setArtikelnr(int artikelnr) {
-		this.artikelnr = artikelnr;
-	}
+	
     public boolean lieferbar(int menge){
     	if(menge == 0){
     		return false;
@@ -217,5 +211,11 @@ public class Produkt {
 	}
 	public void setPreisineuro(double preis) {
 		this.preisineuro = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(preis);
+	}
+	public int getArtikelnr() {
+		return artikelnr;
+	}
+	public void setArtikelnr(int artikelnr) {
+		this.artikelnr = artikelnr;
 	}
 }
