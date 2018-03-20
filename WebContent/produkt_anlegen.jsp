@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=Windows-1252"
-	pageEncoding="Windows-1252"%>%>
+	pageEncoding="Windows-1252"%>
 <%@taglib uri="/WEB-INF/tag.tld" prefix="a"%>
 <!DOCTYPE html >
 <html>

@@ -20,7 +20,7 @@ import de.datenbank.DBConnection;
 
 public class ProduktOperations {
 
-	private final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?)";
+	private final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?,?)";
 
 	private final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
 	private final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
@@ -57,7 +57,8 @@ public class ProduktOperations {
 			String beschreibung = rs.getString(4);
 			int id = rs.getInt(5);
 			int artikelnr = rs.getInt(6);
-			Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, artikelnr);
+			String status = rs.getString(8);
+			Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, artikelnr,status);
 
 			if (produktistSchuhe(produkt.getProdukt_id())) {
 				Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
@@ -116,6 +117,8 @@ public class ProduktOperations {
 			pst.setInt(5, produkt.getProdukt_id());
 			pst.setInt(6, produkt.getArtikelnr());
 			pst.setInt(7, produkt.getVersanddauer());
+			pst.setString(8, produkt.getStatus());
+			System.out.println(produkt.getStatus());
 			pst.execute();
 			con.close();
 
@@ -251,7 +254,8 @@ public class ProduktOperations {
 				int id = rs.getInt(5);
 				int artnr = rs.getInt(6);
 				int versanddauer = rs.getInt(7);
-				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, versanddauer);
+				String status = rs.getString(8);
+				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, versanddauer, status);
 
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
@@ -365,8 +369,9 @@ public class ProduktOperations {
 
 				int artnr = rs.getInt(6);
 				int versanddauer = rs.getInt(7);
+				String status = rs.getString(8);
 
-				Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artnr, versanddauer);
+				Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artnr, versanddauer, status);
 
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					return SchuheOperations.holeSchuheausdb(produkt);

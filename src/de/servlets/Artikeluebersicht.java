@@ -116,7 +116,7 @@ public class Artikeluebersicht extends HttpServlet {
 						modalProdukt = produkt;
 						break;
 					} else {
-						messages.add("Produkt in dieser Menge nicht verfügbar!");
+						messages.add("Zur Zeit leider nicht lieferbar!");
 						request.setAttribute("messages", messages);
 					}
 				}
@@ -133,7 +133,7 @@ public class Artikeluebersicht extends HttpServlet {
 					warenkorb.getInhalt().add(modalProdukt);
 				}
 			} else {
-				messages.add("fehler!");
+				messages.add("Zur Zeit nicht lieferbar!");
 				request.setAttribute("messages", messages);
 			}
 

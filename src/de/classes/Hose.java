@@ -1,25 +1,25 @@
 package de.classes;
 
-
-
 public class Hose extends Produkt {
 
 	private int groesse;
-   
-	public Hose(int id, String name, String beschreibung, double preis, int groesse, int menge,int artnr, int versanddauer) {
-		super(id, name, beschreibung, preis, menge, artnr, versanddauer);
+
+	public Hose(int id, String name, String beschreibung, double preis, int groesse, int menge, int artnr,
+			int versanddauer, String status) {
+		super(id, name, beschreibung, preis, menge, artnr, versanddauer, status);
 		this.groesse = groesse;
 	}
-	public Hose(int id, String name, String beschreibung, double preis, int groesse, int menge,int artnr, int anzahl,int versanddauer) {
-		super(id, name, beschreibung, preis, menge, artnr, anzahl, versanddauer);
+
+	public Hose(int id, String name, String beschreibung, double preis, int groesse, int menge, int artnr, int anzahl,
+			int versanddauer, String status) {
+		super(id, name, beschreibung, preis, menge, artnr, anzahl, versanddauer, status);
 		this.groesse = groesse;
-		this.setPreismitanzahl(anzahl*preis);
-	
-		
+		this.setPreismitanzahl(anzahl * preis);
+
 	}
-	
-	public Hose(String name, String beschreibung, double preis, int groesse, int menge, int artnr) {
-		super(name, beschreibung, preis, menge, artnr);
+
+	public Hose(String name, String beschreibung, double preis, int groesse, int menge, int artnr, String status) {
+		super(name, beschreibung, preis, menge, artnr, status);
 		this.groesse = groesse;
 	}
 
@@ -30,5 +30,5 @@ public class Hose extends Produkt {
 	public void setGroesse(int groesse) {
 		this.groesse = groesse;
 	}
-	
+
 }

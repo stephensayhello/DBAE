@@ -66,7 +66,7 @@ public class Produkt {
 		this.versanddauer = versanddauer;
 	}
 	// konstruktor fürs holen aus der db oder anlengen mit id
-	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int versanddauer) {
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int versanddauer, String status) {
 
 		this.setProdukt_id(produkt_id);
 		this.name = name;
@@ -75,11 +75,11 @@ public class Produkt {
 		this.menge = menge;
 		this.setArtikelnr(artnr);
 		this.anzahl = 0;
-		this.setStatus("Lieferbar");
+		this.setStatus(status);
 		this.setPreisineuro(preis);
 		this.setVersanddauer(versanddauer);
 	}
-	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl, int versanddauer) {
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl, int versanddauer,String status) {
 		
 		this.setProdukt_id(produkt_id);
 		this.name = name;
@@ -88,7 +88,7 @@ public class Produkt {
 		this.menge = menge;
 		this.setArtikelnr(artnr);
 		this.setAnzahl(anzahl);
-		this.setStatus("Lieferbar");
+		this.setStatus(status);
 		this.setPreismitanzahl(anzahl*preis);
 		this.setPreismitanzahlineuro(anzahl*preis);
 		this.setPreisineuro(preis);
@@ -97,15 +97,15 @@ public class Produkt {
 	}
 
 	// konstruktor fürs anlegen eines produkts
-	public Produkt(String name, String beschreibung, double preis, int menge, int artnr) {
+	public Produkt(String name, String beschreibung, double preis, int menge, int artnr,String status) {
 
 		this.setProdukt_id(ProduktOperations.hoechsteID());
 		this.name = name;
 		this.beschreibung = beschreibung;
 		this.preis = preis;
 		this.menge = menge;
-		anzahl=0;
-		this.setStatus("Lieferbar");
+		this.anzahl=0;
+		this.setStatus(status);
 		this.setPreisineuro(preis);
 
 	}
