@@ -73,29 +73,28 @@ System.out.println(artikelnr);
 		for (int i = 0; i < groessearray.length; i++) {
 
 			if (!mengearray[i].isEmpty() && !versanddauerarray[i].isEmpty()) {
-				System.out.println("break");
-				break;
+				String groesse = groessearray[i];
+				int menge = Integer.parseInt(mengearray[i]);
+				int versanddauer = Integer.parseInt(versanddauerarray[i]);
+
+				if (kategorie == 1) {
+					produkt = new Shirt(ProduktOperations.hoechsteID(), name, beschreibung, preis, groesse, menge,
+							artikelnr, versanddauer,"Lieferbar");
+					System.out.println("shirt");
+					ProduktOperations.anlegen(produkt);
+				} else if (kategorie == 2) {
+					produkt = new Hose(ProduktOperations.hoechsteID(), name, beschreibung, preis, Integer.parseInt(groesse),
+							menge, artikelnr, versanddauer,"Lieferbar");
+					ProduktOperations.anlegen(produkt);
+				} else if (kategorie == 3) {
+					produkt = new Schuhe(ProduktOperations.hoechsteID(), name, beschreibung, preis,
+							Integer.parseInt(groesse), menge, artikelnr, versanddauer,"Lieferbar");
+					ProduktOperations.anlegen(produkt);
+
+				}
 			}
 System.out.println("bla");
-			String groesse = groessearray[i];
-			int menge = Integer.parseInt(mengearray[i]);
-			int versanddauer = Integer.parseInt(versanddauerarray[i]);
-
-			if (kategorie == 1) {
-				produkt = new Shirt(ProduktOperations.hoechsteID(), name, beschreibung, preis, groesse, menge,
-						artikelnr, versanddauer,"Lieferbar");
-				System.out.println("shirt");
-				ProduktOperations.anlegen(produkt);
-			} else if (kategorie == 2) {
-				produkt = new Hose(ProduktOperations.hoechsteID(), name, beschreibung, preis, Integer.parseInt(groesse),
-						menge, artikelnr, versanddauer,"Lieferbar");
-				ProduktOperations.anlegen(produkt);
-			} else if (kategorie == 3) {
-				produkt = new Schuhe(ProduktOperations.hoechsteID(), name, beschreibung, preis,
-						Integer.parseInt(groesse), menge, artikelnr, versanddauer,"Lieferbar");
-				ProduktOperations.anlegen(produkt);
-
-			}
+		
 		}
 
 		request.getRequestDispatcher("produkt_anlegen.jsp").forward(request, response);
