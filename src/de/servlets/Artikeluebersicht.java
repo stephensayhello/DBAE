@@ -136,6 +136,9 @@ public class Artikeluebersicht extends HttpServlet {
 
 		if (modalProdukt == null) {
 			ingroesseverfuegbar = false;
+			messages.add("Zur Zeit leider in der Groesse nicht lieferbar!");
+			System.out.println("das modal");
+			request.setAttribute("messages", messages);
 		} else {
 			modalProdukt.setAnzahl(menge);
 			boolean vorhanden = false;
@@ -148,8 +151,7 @@ public class Artikeluebersicht extends HttpServlet {
 						modalProdukt = produkt;
 						break;
 					} else {
-						messages.add("Zur Zeit leider nicht lieferbar!");
-						request.setAttribute("messages", messages);
+						
 					}
 				}
 			}
@@ -166,11 +168,11 @@ public class Artikeluebersicht extends HttpServlet {
 				}
 			} else {
 				messages.add("Zur Zeit nicht lieferbar!");
-				request.setAttribute("messages", messages);
+				
 			}
 
 		}
-
+		request.setAttribute("messages", messages);
 		session.setAttribute("warenkorb", warenkorb);
 		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 		session.removeAttribute("warenkorbgesamtpreis");

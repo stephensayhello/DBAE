@@ -1,39 +1,41 @@
 
-	<div class="col-md-4 artikel-container">
-		<div class="thumbnail">
-			<img src="PLATZHALTER5" alt="" class="img-responsive" style="height:300px;">
-			<div class="caption">
-				<h4 class="pull-right">PLATZHALTER4</h4>
-				<h4>
-					<p>PLATZHALTER1</p>
-				</h4>
-				
-			</div>
-			<div class="ratings">
-				<p>
-					<span class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span> <span
-						class="glyphicon glyphicon-star"></span>
-				</p>
-			</div>
-			<div class="space-ten"></div>
-			<div class="btn-ground text-center">
-				<button type="button" class="btn btn-primary" >
-					<i class="fa fa-search"></i> Produkt bewerten
-				</button>
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target= "#PLATZHALTER0" >
-					<i class="fa fa-search"></i> Schnellansicht
-				</button>
-			</div>
-			<div class="space-ten"></div>
+<div class="col-md-4 artikel-container">
+	<div class="thumbnail">
+		<img src="PLATZHALTER5" alt="" class="img-responsive"
+			style="height: 300px;">
+		<div class="caption">
+			<h4 class="pull-right">PLATZHALTER4</h4>
+			<h4>
+				<p>PLATZHALTER1</p>
+			</h4>
+
 		</div>
+		<div class="ratings">
+			<p>
+				<span class="glyphicon glyphicon-star"></span> <span
+					class="glyphicon glyphicon-star"></span> <span
+					class="glyphicon glyphicon-star"></span> <span
+					class="glyphicon glyphicon-star"></span> <span
+					class="glyphicon glyphicon-star"></span>
+			</p>
+		</div>
+		<div class="space-ten"></div>
+		<div class="btn-ground text-center">
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#PLATZHALTER0a">
+				<i class="fa fa-search"></i> Produkt bewerten
+			</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#PLATZHALTER0">
+				<i class="fa fa-search"></i> Schnellansicht
+			</button>
+		</div>
+		<div class="space-ten"></div>
 	</div>
-	
-	<form action = "Artikeluebersicht" method ="post" >
-	<div class="modal fade product_view" id="PLATZHALTER0" >
+</div>
+
+<form action="Artikeluebersicht" method="post">
+	<div class="modal fade product_view" id="PLATZHALTER0">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -44,7 +46,7 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-md-6 product_img">
-							<img src="PLATZHALTER5"  alt="" class="img-responsive"
+							<img src="PLATZHALTER5" alt="" class="img-responsive"
 								height="300" width="250">
 						</div>
 						<div class="col-md-6 product_content">
@@ -59,15 +61,12 @@
 									class="glyphicon glyphicon-star"></span>
 							</div>
 							<p>PLATZHALTER2</p>
-							<h3 class="cost">
-								 PLATZHALTER4
-							</h3>
+							<h3 class="cost">PLATZHALTER4</h3>
 							<div class="row">
 								<div class="col-md-6 col-sm-6 col-xs-6">
 									<select class="form-control" name="groesse">
-										<option value=0 selected="">Groeﬂe</option>
-										                  PLATZHALTERGROESSE
-										
+										<option value=0 selected="">Groeﬂe</option> PLATZHALTERGROESSE
+
 									</select>
 								</div>
 								<div class="col-md-6 col-sm-6 col-xs-6">
@@ -84,10 +83,68 @@
 							</div>
 							<div class="space-ten"></div>
 							<div class="btn-ground">
-								<button type="submit" class="btn btn-primary" style="margin-top:15px;">
-									<span class="glyphicon glyphicon-shopping-cart"></span> In den Warenkorb
+								<button type="submit" class="btn btn-primary"
+									style="margin-top: 15px;">
+									<span class="glyphicon glyphicon-shopping-cart"></span> In den
+									Warenkorb
 								</button>
-								<input type = "text" value = "PLATZHALTER3" id = "hiddenfield" name = "artnr">
+								<input type="text" value="PLATZHALTER3" id="hiddenfield"
+									name="artnr">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<form action="BewertungServlet" method="get">
+	<div class="modal fade product_view" id="PLATZHALTER0a">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" data-dismiss="modal" class="class pull-right"><span
+						class="glyphicon glyphicon-remove"></span></a>
+					<h3 class="modal-title">Bewertung fuer PLATZHALTER1</h3>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6 product_img">
+							<img src="PLATZHALTER5" alt="" class="img-responsive"
+								height="300" width="250">
+						</div>
+						<div class="col-md-6 product_content">
+							<h4>
+								Artikelnummer: <span>PLATZHALTER3</span>
+							</h4>
+
+							<p>PLATZHALTER2</p>
+							<h3 class="cost">PLATZHALTER4</h3>
+							<div class="row">
+
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<select class="form-control" name="menge">
+										<option value="0" selected="">Bewertung</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+									</select>
+								</div>
+
+								<!-- end col -->
+							</div>
+							<label for="anfragetext"><br>Text:</br></label>
+							<textarea rows="5" cols="5" name="anfragetext" class="input-dbae"></textarea>
+							<div class="space-ten"></div>
+							<div class="btn-ground">
+								<button type="submit" class="btn btn-primary"
+									style="margin-top: 15px;">
+									<span></span> Bewertung absenden
+								</button>
+								<input type="text" value="PLATZHALTER3" id="hiddenfield"
+									name="artnr">
 							</div>
 						</div>
 					</div>
