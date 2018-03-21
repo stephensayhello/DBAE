@@ -49,19 +49,13 @@ public class Test {
 	}
 
 	public static void main(String[] args) throws InvalidPasswordException, IOException {
-		Date date = new Date();
-		String s = date.toString();
-		
-		Date theSameDate;
-		try {
-			theSameDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", new Locale("us")).parse(s);
-			System.out.println(theSameDate.getTime());
-			System.out.println(theSameDate.toString());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		Produkt produkt = ProduktOperations.produktausdbholen(10);
+		System.out.println(produkt.getName());
+		produkt.setMenge(112);
+		ProduktOperations.updateProdukt(produkt);
+		System.out.println(produkt.getMenge());
+		Produkt produkt1 = ProduktOperations.produktausdbholen(10);
+		System.out.println(produkt1.getMenge());
 		
 		
 		

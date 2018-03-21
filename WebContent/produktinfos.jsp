@@ -66,6 +66,7 @@ function onShow() {
 	</table>
 </div>
 </div>
+<br />
 <div class="container">
 	<form action="ProduktUebersichtServlet" method="get">
 	<select name="auswahl">
@@ -79,7 +80,7 @@ function onShow() {
 
 
 	
-</div>
+
 
 <br />
 

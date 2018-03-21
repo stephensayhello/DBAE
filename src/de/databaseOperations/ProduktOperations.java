@@ -30,14 +30,15 @@ public class ProduktOperations {
 	private final static String PRODUKT_ZEIGEN_NACH_NAME = "SELECT * FROM produkt WHERE  name = ?;";
 	private final static String PRODUKT_ZEIGEN_NACH_ID = "SELECT * FROM produkt WHERE  produkt_id = ?;";
 
-	private final static String PRODUKT_ANZAHL = "SELECT COUNT(*) FROM ";
+	
 	private final static String ZEIGE_SCHUHE_NACH_PRODUKTID = "SELECT sch_id FROM schuhe WHERE sch_id = ?;";
 	private final static String ZEIGE_SHIRT_NACH_PRODUKTID = "SELECT sh_id FROM shirt WHERE sh_id = ?;";
 	private final static String ZEIGE_HOSE_NACH_PRODUKTID = "SELECT ho_id FROM hose WHERE ho_id = ?;";
 	private final static String MAX_ARTNR = "SELECT MAX(artikelnr) FROM produkt;";
 	private final static String ZEIGE_PRODUKT_NACH_ARTNR = "SELECT * FROM produkt WHERE artikelnr =?;";
 
-	private final static String PRODUKT_UPDATE = "UPDATE produkt SET name = ?, menge = ?, preis = ? WHERE produkt_id=?;";
+	private final static String PRODUKTGRUPPE_UPDATE = "UPDATE produkt SET name = ?, menge = ?, preis = ? WHERE produkt_id =?;";
+	private final static String PRODUKT_UPDATE = "UPDATE produkt SET name = ?, menge = ?, preis = ? WHERE artikelnr =?;";
 
 	private final static String PRODUKT_LOESCHEN = "DELETE FROM produkt WHERE produkt_id = ?";
 
@@ -407,7 +408,30 @@ public class ProduktOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/***
+	 * 
+	 * Diese Methode updatet eine gesamte Produktgruppe.
+	 * @param produkt das upzudatete Produkt.
+	 */
+	public static void updateProduktGruppe(Produkt produkt) {
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(PRODUKTGRUPPE_UPDATE);
+			pst.setString(1, produkt.getName());
+			pst.setInt(2, produkt.getMenge());
+			pst.setDouble(3, produkt.getPreis());
+			pst.setInt(4, produkt.getProdukt_id());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 
+	 * Diese Methode updatet ein einzeles Produkt.
+	 * @param produkt
+	 */
 	public static void updateProdukt(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -415,7 +439,7 @@ public class ProduktOperations {
 			pst.setString(1, produkt.getName());
 			pst.setInt(2, produkt.getMenge());
 			pst.setDouble(3, produkt.getPreis());
-			pst.setInt(4, produkt.getProdukt_id());
+			pst.setInt(4, produkt.getArtikelnr());
 			pst.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
