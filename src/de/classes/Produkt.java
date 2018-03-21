@@ -22,10 +22,8 @@ public class Produkt {
 	 *            Produktbeschreibung.
 	 */
 	private String beschreibung;
-	/**
-	 * @param pfad:
-	 *            absoluter Pfad fï¿½r ein spï¿½teres Produkt Bild.
-	 */
+	
+	
 	
 	//anzahl  für den warenkorb
 	private int anzahl;
