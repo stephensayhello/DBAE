@@ -1,9 +1,12 @@
 package testpackage;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 
@@ -46,19 +49,22 @@ public class Test {
 	}
 
 	public static void main(String[] args) throws InvalidPasswordException, IOException {
-		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen("benjamin.gajewski@yahoo.de");
-		Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
+		Date date = new Date();
+		String s = date.toString();
 		
-		List<Bestellung> bestellungen = BestellungOperations.bestellungausdbholen(kunde);
-		
-		for (Bestellung bestellung : bestellungen) {
-			System.out.println(bestellung.getBestellnummer());
-			System.out.println(bestellung.getDatefromdb());
-			for (Produkt produkt : bestellung.getBestellliste()) {
-				System.out.println(produkt.getProdukt_id());
-			}
-			
+		Date theSameDate;
+		try {
+			theSameDate = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", new Locale("us")).parse(s);
+			System.out.println(theSameDate.getTime());
+			System.out.println(theSameDate.toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		
+		
+		
 	}
 
 	private void testen() {
