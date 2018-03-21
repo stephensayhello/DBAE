@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import de.classes.Produkt;
-import de.databaseOperations.ProduktOperations;
+import de.databaseOperations.ProduktUpdateOperations;
 
 /**
  * Servlet implementation class ProduktBearbeitenServlet
@@ -37,7 +37,7 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		HttpSession session = request.getSession();
 		Produkt produkt = (Produkt) request.getAttribute("produkt");
-		ProduktOperations.entferneProdukt(produkt);
+		ProduktUpdateOperations.entferneProdukt(produkt);
 		session.removeAttribute("produkt");
 		messages.add("Das Produkt wurde aus den Sortiment entfernt !");
 		request.setAttribute("messages", messages);
