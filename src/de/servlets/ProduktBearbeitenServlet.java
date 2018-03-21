@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import de.classes.Produkt;
-import de.databaseOperations.ProduktOperations;
+import de.databaseOperations.ProduktUpdateOperations;
 
 /**
  * Servlet implementation class ProduktBearbeitenServlet
@@ -37,7 +37,7 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		HttpSession session = request.getSession();
 		Produkt produkt = (Produkt) request.getAttribute("produkt");
-		ProduktOperations.entferneProdukt(produkt);
+		ProduktUpdateOperations.entferneProdukt(produkt);
 		session.removeAttribute("produkt");
 		messages.add("Das Produkt wurde aus den Sortiment entfernt !");
 		request.setAttribute("messages", messages);
@@ -48,12 +48,16 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+			
+		
 		
 		String name = request.getParameter("name");
 		String mengeS = request.getParameter("menge");
 		String preisS = request.getParameter("preis");
-		HttpSession session = request.getSession();
-		Produkt produkt = (Produkt) session.getAttribute("produktBe");
+		
+		Produkt produkt = (Produkt) session.getAttribute("produkt");
 		session.removeAttribute("produktBe");
 		int menge = 0;
 		double preis = 0.00;
@@ -72,7 +76,7 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		
 			
 			
-			ProduktOperations.updateProdukt(produkt);
+//			ProduktOperations.updateProdukt(produkt);
 			messages.add("Die Daten wurden erfolgreich aktualisiert.");
 			request.setAttribute("messages", messages);
 			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);

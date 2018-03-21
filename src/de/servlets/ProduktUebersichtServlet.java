@@ -32,33 +32,32 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Crashing");
 		String pruefe = request.getParameter("pruefe");
 		String auswahl =  request.getParameter("auswahl");
 		HttpSession session = request.getSession();
 		
-		if(pruefe.equals("produktgruppe")) {
+		if(pruefe.contains("produktgruppe")) {
+			System.out.println("Produktgruppe");
 			
-			if(!auswahl.contains("")) {
-				int produkt_id = 0;
-				try {
-					produkt_id = Integer.parseInt(auswahl);
-				} catch (NumberFormatException nfe) {
-					
-				}
-				Produkt produkt = ProduktOperations.produktausdbholen(produkt_id);
-				session.setAttribute("produkt", produkt);
-				session.setAttribute("auswahl", "produktgruppe" );
-				request.getRequestDispatcher("produkt_bearbeiten.jsp");
+			int produkt_id = 0;
+			try {
+				produkt_id = Integer.parseInt(auswahl);
+			} catch (NumberFormatException nfe) {
 				
-			} else {
-				request.getRequestDispatcher("produkt_infos.jsp").forward(request, response);
 			}
+			Produkt produkt = ProduktOperations.produktausdbholen(produkt_id);
+			session.setAttribute("produkt", produkt);
+			session.setAttribute("auswahl", "produktgruppe" );
+				request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
+				
 			
 			
 			
-		} else if(pruefe.equals("artikelnr")) {
 			
-			if(!auswahl.contains("")) {
+		} else if(pruefe.contains("artikelnr")) {
+			
+			
 			int artikelnr = 0;
 			try {
 				artikelnr = Integer.parseInt(auswahl);
@@ -71,9 +70,7 @@ public class ProduktUebersichtServlet extends HttpServlet {
 			session.setAttribute("produkt", produkt);
 			session.setAttribute("auswahl", "artikel");
 			request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
-			}
+	 
 		}
 		
 		
