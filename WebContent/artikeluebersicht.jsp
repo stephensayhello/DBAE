@@ -26,42 +26,44 @@
 		});
 	</script>
 
-<script>
+	<script>
 		$(document).ready(function() {
 			var test = "${pruefeLogin}";
-			if (test ) {
-				
+			if (test) {
+
 			}
 		});
 	</script>
 	<a:navKunde rolle="${rolle }"></a:navKunde>
+	<div class="container">
+		<form action="Artikeluebersicht" method="get">
+			<label class="checkbox-inline"><input type="checkbox" name="Produkt" value="1"> Schuhe<br></label>
+			<label class="checkbox-inline"><input type="checkbox" name="Produkt" value="2"> Hosen<br></label>
+			<label class="checkbox-inline"><input type="checkbox" name="Produkt" value="3"> Shirts<br></label>
+			<br>
+			<input class="btn" type="submit" value="absenden" style="margin:10px;">
+		</form>
+	</div>
 
-	<form action="Artikeluebersicht" method="get">
-  <input type="checkbox" name="Produkt" value="1"> Schuhe<br>
-  <input type="checkbox" name="Produkt" value="2" > Hosen<br>
-  <input type="checkbox" name="Produkt" value="3" > Shirts<br>
-  <input type="submit" value="absenden">
-</form>
-	
-	
 
-<div class="container">
-	<c:forEach items="${produkte}" varStatus="loop">
-		<c:if test="${((loop.index )+1) % 3 == 1}">
-			<div class="row">
-		</c:if>
-		<a:artikel produkt="${produkte[loop.index]}"></a:artikel>
-		<c:if test="${((loop.index )+1) % 3 == 0}">
-			</div>
-		</c:if>
+
+	<div class="container">
+		<c:forEach items="${produkte}" varStatus="loop">
+			<c:if test="${((loop.index )+1) % 3 == 1}">
+				<div class="row">
+			</c:if>
+			<a:artikel produkt="${produkte[loop.index]}"></a:artikel>
+			<c:if test="${((loop.index )+1) % 3 == 0}">
+	</div>
+	</c:if>
 	</c:forEach>
-</div>
+	</div>
 
 	<form action="Artikeluebersicht" method="get">
 		<button type="submit" id="holeArtikel"></button>
 	</form>
 
-	 
+
 
 	<!-- <div class="clearfix">
 <form action="produkt_anlegen.jsp">

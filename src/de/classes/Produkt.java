@@ -58,6 +58,8 @@ public class Produkt {
 	private String preisineuro;
 	
 	public int versanddauer;
+	
+	private String imagePath = "img/dummy.jpg";
 
 	public int getVersanddauer() {
 		return versanddauer;
@@ -79,7 +81,7 @@ public class Produkt {
 		this.setPreisineuro(preis);
 		this.setVersanddauer(versanddauer);
 	}
-	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl, int versanddauer,String status) {
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl, int versanddauer,String status, String imagepath) {
 		
 		this.setProdukt_id(produkt_id);
 		this.name = name;
@@ -94,6 +96,7 @@ public class Produkt {
 		this.setPreisineuro(preis);
 		System.out.println("blob");
 		this.setVersanddauer(versanddauer);
+		this.setImagePath(imagepath);
 	}
 
 	// konstruktor fürs anlegen eines produkts
@@ -217,5 +220,11 @@ public class Produkt {
 	}
 	public void setArtikelnr(int artikelnr) {
 		this.artikelnr = artikelnr;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }

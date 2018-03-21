@@ -50,6 +50,13 @@ public class ArtikelView extends TagSupport {
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
 		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getArtikelnr()));
 		artikelview = artikelview.replace("PLATZHALTER4", produktpreis);
+		if(produkt.getImagePath().isEmpty()) {
+			artikelview = artikelview.replace("PLATZHALTER5", "img/dummy.jpg");
+
+		} else {
+			artikelview = artikelview.replace("PLATZHALTER5", produkt.getImagePath());
+
+		}
 		
 		String options = "";
 		String[] groessen = null;

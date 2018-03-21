@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import de.classes.Admin;
 import de.classes.Hose;
 import de.classes.Nutzer;
@@ -20,7 +22,7 @@ import de.datenbank.DBConnection;
 
 public class ProduktOperations {
 
-	private final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?,?)";
+	private final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?,?,?)";
 
 	private final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
 	private final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
@@ -58,8 +60,10 @@ public class ProduktOperations {
 			int id = rs.getInt(5);
 			int artikelnr = rs.getInt(6);
 			String status = rs.getString(8);
+			String pfad = rs.getString(9);
 			Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, artikelnr,status);
-
+			produkt.setImagePath(pfad);
+			
 			if (produktistSchuhe(produkt.getProdukt_id())) {
 				Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
 				return schuhe;
@@ -118,7 +122,7 @@ public class ProduktOperations {
 			pst.setInt(6, produkt.getArtikelnr());
 			pst.setInt(7, produkt.getVersanddauer());
 			pst.setString(8, produkt.getStatus());
-			System.out.println(produkt.getStatus());
+			pst.setString(9, produkt.getImagePath());
 			pst.execute();
 			con.close();
 
@@ -255,8 +259,9 @@ public class ProduktOperations {
 				int artnr = rs.getInt(6);
 				int versanddauer = rs.getInt(7);
 				String status = rs.getString(8);
+				String pfad = rs.getString(9);
 				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, versanddauer, status);
-
+				produkt.setImagePath(pfad);
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
 					produkte.add(schuhe);
@@ -271,7 +276,6 @@ public class ProduktOperations {
 				}
 
 			}
-
 			con.close();
 
 		} catch (SQLException e) {
@@ -370,9 +374,10 @@ public class ProduktOperations {
 				int artnr = rs.getInt(6);
 				int versanddauer = rs.getInt(7);
 				String status = rs.getString(8);
+				String pfad = rs.getString(9);
 
 				Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artnr, versanddauer, status);
-
+				produkt.setImagePath(pfad);
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					return SchuheOperations.holeSchuheausdb(produkt);
 				}

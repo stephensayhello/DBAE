@@ -33,13 +33,14 @@
 		var sel = document.getElementById('groessenCheck');
 		var html = "";
 		for (var i = 0; i < specificSizes.length; i++) {
-			html += "<div class='container'><div class='row'><div class='col-md-12'><div class='input-group'><span class='input-group-addon'><input type='checkbox' name='checkGroesse' value="+specificSizes[i]+"></span><span class='input-group-addon'><label for='tbox'>"+specificSizes[i]+"</label></span><input name='inputMenge' type='number' class='form-control' placeholder='Menge'><input name='p_versanddauer' type='number' class='form-control' placeholder ='Versanddauer'></div></div></div></div>";
+			html += "<div class='container'><div class='row'><div class='col-md-12'><div class='input-group'><span class='input-group-addon'><input type='checkbox' name='checkGroesse' value="+specificSizes[i]+"></span><span class='input-group-addon'><label for='tbox'>"
+					+ specificSizes[i]
+					+ "</label></span><input name='inputMenge' type='number' class='form-control' placeholder='Menge'><input name='p_versanddauer' type='number' class='form-control' placeholder ='Versanddauer'></div></div></div></div>";
 		}
-		
+
 		sel.innerHTML = html;
 	}
 </script>
-
 
 
 </head>
@@ -48,31 +49,41 @@
 
 	<div class="container">
 
-		<form action="ProduktAnlegenServlet" method="post">
+
+		<form action="ProduktAnlegenServlet" method="post"
+			enctype="multipart/form-data">
 			<h1>Produkt hinzufügen</h1>
 			<p>bitte ausfüllen um produkt hinzuzufügen</p>
 			<hr>
-				<div class="prod0">
-					<label for="p_name">Bezeichnung</label> <input class="input-dbae"
-						type="text" name="p_name" size=3> <label
-						for="p_beschreibung">Beschreibung</label> <input
-						class="input-dbae" type="text" name="p_beschreibung" size=3>
-						 
+
+			<div class="container">
+				<label for="fileUpload" class="customFileUpload"> <input
+					type="file" id="fileUpload" name="uploadFile" /></label> 
+			</div>
 
 
-				</div>
-				<div class="prod1">
+			<div class="prod0">
+				<label for="p_name">Bezeichnung</label> <input class="input-dbae"
+					type="text" name="p_name" size=3> <label
+					for="p_beschreibung">Beschreibung</label> <input class="input-dbae"
+					type="text" name="p_beschreibung" size=3>
 
 
-					<label for="p_preis">Preis</label> <input class="input-dbae"
-						type="number" step="0.01" name="p_preis" size=3> 
-						
 
-				</div>
-				
+			</div>
+			<div class="prod1">
+
+
+				<label for="p_preis">Preis</label> <input class="input-dbae"
+					type="number" step="0.01" name="p_preis" size=3>
+
+
+			</div>
+
+
+
 			<div class="prod2">
-				<label for="p_kategorie">Kategorie</label>
-				 <select
+				<label for="p_kategorie">Kategorie</label> <select
 					name="p_kategorie" class="form-control" id="p_kategorie"
 					onchange="adjustSizeForProduct(this.value)">
 					<option value=0></option>
@@ -80,12 +91,11 @@
 					<option value=2>Hose</option>
 					<option value=3>Schuhe</option>
 				</select>
-				
-				<div id="groessenCheck">
-				</div>
-				
-				
-<!-- 				 <label for="p_groesse">Größe</label> <select class="form-control"
+
+				<div id="groessenCheck"></div>
+
+
+				<!-- 				 <label for="p_groesse">Größe</label> <select class="form-control"
 					id="p_groesse" name="p_groesse"></select> -->
 			</div>
 
