@@ -22,6 +22,7 @@
 				<label for="name"><b>Name:</b></label> <input class="input-dbae" type="text" placeholder="${produkt.name }" name="name">
 				<label for="menge"><b>Menge:</b></label><input class="input-dbae" type="text" placeholder ="${produkt.menge}" name="menge">
 				<label for="preis"><b>Preis:</b></label><input class="input-dbae" type="text" placeholder="${produkt.preis }" name="preis">
+				<label for="versanddauer"><b>Versanddauer:</b></label><input class="input-dbae" type="text" name="versanddauer">
 				
 				<div class="clearfix">
 

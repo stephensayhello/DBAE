@@ -69,11 +69,11 @@ function onShow() {
 <br />
 
 <br/>
-<p> Füllen Sie dieses Fromular aus, um eine Produktgruppe zu ändern.
+
 <div class="container">
-	<form action="ProduktUebersichtServlet" method="get">
-	<label for="auswahl">Produktgruppe(Auswahl anhand von Name und ID)</label>
-	<select name="auswahl">
+	<form action="ProduktUebersichtServlet" method="get" >
+	<label for="auswahl" class="input-dbae">Produktgruppe(Auswahl anhand von Name und ID)</label>
+	<select name="auswahl" class ="input-dbae">
 	<c:forEach  var="produkt" items="${ produkte}" >
 	<option value= "${produkt.produkt_id}" >${produkt.name} ${produkt.produkt_id}</option>
 	</c:forEach>
@@ -83,13 +83,13 @@ function onShow() {
 	</form>
 </div>
 <br />
-<p>Durch dieses Formular können einzelene Artikel einer Produktgruppe geändert werden</p>
+
 <br/>
 
 <div class="container">
-	<form action="ProduktUebersichtServlet" method="get">
-	<label for="auswahl">Artikel einer Produktgruppe anpasse</label><br/>
-	<select name="auswahl">
+	<form action="ProduktUebersichtServlet" method="get" class="input-dbae">
+	<label for="auswahl" class="input-dbae">Artikel einer Produktgruppe anpassen</label><br/>
+	<select name="auswahl"  class="input-dbae">
 	<c:forEach  var="produkt" items="${ produkte}" >
 	<option value= "${produkt.artikelnr}" >${produkt.name} ${produkt.artikelnr}</option>
 	</c:forEach>
