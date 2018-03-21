@@ -14,7 +14,7 @@
 </head>
 <body>
 <a:navKunde rolle="${rolle }"></a:navKunde>
-<div id = "container">
+<div class = "container">
 <a:profilnav></a:profilnav>
 
 

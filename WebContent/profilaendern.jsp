@@ -15,9 +15,9 @@
 </head>
 <body>
 <a:navKunde rolle="${rolle }"></a:navKunde>
-<div id = "container">
-<a:profilnav></a:profilnav>
 <div class="container">
+<a:profilnav></a:profilnav>
+
 <h1>Persönliche Daten ändern:</h1><br/>
 <form action="ProfilAendernServlet"  method="post">
 
