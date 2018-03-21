@@ -52,6 +52,10 @@ hr {
 	outline: none;
 }
 
-#wichtig{
+#wichtig {
 	font-size:20px;
+}
+
+.field {
+	width:10px;
 }

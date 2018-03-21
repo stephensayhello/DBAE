@@ -23,8 +23,9 @@ function onShow() {
 
 </script>
 <a:navKunde rolle="${rolle }"></a:navKunde>
-<h1>Alle verfuegbare Produkte anzeigen</h1>
+
 <div class="container">
+<h1>Alle verfuegbare Produkte anzeigen</h1>
 <form action="ProduktUebersichtServlet" method="post">
 <button value="submit" class="button-dbae">Anzeigen</button>
 <button class="button-dbae">Loeschen</button>
@@ -38,7 +39,7 @@ function onShow() {
 
 				<th>Preis</th>
 				<th>Name</th>
-				<th>Artikel-Nr</th>
+				<th>ID</th>
 				<th>Menge</th>
 				<th>Groesse</th>
 				<th>Status</th>
