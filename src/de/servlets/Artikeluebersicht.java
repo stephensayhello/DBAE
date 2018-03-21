@@ -3,6 +3,7 @@ package de.servlets;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -44,12 +45,53 @@ public class Artikeluebersicht extends HttpServlet {
 		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
 		session.setAttribute("produktlistedb", produkte);
 		List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
+		
+		String[] checkboxkategorien = request.getParameterValues("Produkt");
+		
+		
+		List<Produkt> produktnachsortiment = new ArrayList<>();
+
 		int counter = 0;
 		for (int i = 0; i < produkte.size(); i++) {
 			if (!(counter == produkte.get(i).getArtikelnr())) {
 				counter = produkte.get(i).getArtikelnr();
 				produkteSortiertnachartnr.add(produkte.get(i));
 			}
+		}
+		if (checkboxkategorien != null ) {
+			for (String string : checkboxkategorien) {
+				if (Integer.parseInt(string) == 1) {
+					for (Produkt produkt : produkteSortiertnachartnr) {
+						if (produkt instanceof Schuhe) {
+							produktnachsortiment.add(produkt);
+
+						}
+
+					}
+
+				}
+
+				else if (Integer.parseInt(string) == 2) {
+					for (Produkt produkt : produkteSortiertnachartnr) {
+						if (produkt instanceof Hose) {
+							produktnachsortiment.add(produkt);
+
+						}
+
+					}
+				} else if (Integer.parseInt(string) == 3) {
+					for (Produkt produkt : produkteSortiertnachartnr) {
+						if (produkt instanceof Shirt) {
+							produktnachsortiment.add(produkt);
+
+						}
+
+					}
+
+				}
+
+			}
+			produkteSortiertnachartnr = produktnachsortiment;
 		}
 
 		request.setAttribute("test", "ttttttttt");
@@ -110,8 +152,7 @@ public class Artikeluebersicht extends HttpServlet {
 				if (produkt.getProdukt_id() == modalProdukt.getProdukt_id()) {
 					vorhanden = true;
 					int neueAnzahl = produkt.getAnzahl() + modalProdukt.getAnzahl();
-					if (modalProdukt.getStatus().contains("Lieferbar")
-							&& modalProdukt.getMenge() >= neueAnzahl) {
+					if (modalProdukt.getStatus().contains("Lieferbar") && modalProdukt.getMenge() >= neueAnzahl) {
 						produkt.setAnzahl(neueAnzahl);
 						modalProdukt = produkt;
 						break;
@@ -124,10 +165,10 @@ public class Artikeluebersicht extends HttpServlet {
 
 			modalProdukt.setAnzahl(modalProdukt.getAnzahl());
 			modalProdukt.setPreismitanzahlineuro(modalProdukt.getPreis() * modalProdukt.getAnzahl());
-            System.out.println("anzahl und menge");
+			System.out.println("anzahl und menge");
 			System.out.println(modalProdukt.getAnzahl());
-            System.out.println(modalProdukt.getMenge());
-            System.out.println(modalProdukt.getStatus());
+			System.out.println(modalProdukt.getMenge());
+			System.out.println(modalProdukt.getStatus());
 			if (modalProdukt.getStatus().contains("Lieferbar") && modalProdukt.getMenge() >= modalProdukt.getAnzahl()) {
 				if (!vorhanden) {
 					warenkorb.getInhalt().add(modalProdukt);

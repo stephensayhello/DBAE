@@ -36,7 +36,12 @@
 	</script>
 	<a:navKunde rolle="${rolle }"></a:navKunde>
 
-	
+	<form action="Artikeluebersicht" method="get">
+  <input type="checkbox" name="Produkt" value="1"> Schuhe<br>
+  <input type="checkbox" name="Produkt" value="2" > Hosen<br>
+  <input type="checkbox" name="Produkt" value="3" > Shirts<br>
+  <input type="submit" value="absenden">
+</form>
 	
 	
 
