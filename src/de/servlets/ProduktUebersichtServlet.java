@@ -32,18 +32,51 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pruefe = request.getParameter("pruefe");
 		String auswahl =  request.getParameter("auswahl");
-		int artikelnr = 0;
-		try {
-			artikelnr = Integer.parseInt(auswahl);
-		} catch(NumberFormatException nfe) {
-			System.out.println("Fehler beim Umwandlen.");
+		HttpSession session = request.getSession();
+		
+		if(pruefe.equals("produktgruppe")) {
+			
+			if(!auswahl.contains("")) {
+				int produkt_id = 0;
+				try {
+					produkt_id = Integer.parseInt(auswahl);
+				} catch (NumberFormatException nfe) {
+					
+				}
+				Produkt produkt = ProduktOperations.produktausdbholen(produkt_id);
+				session.setAttribute("produkt", produkt);
+				session.setAttribute("auswahl", "produktgruppe" );
+				request.getRequestDispatcher("produkt_bearbeiten.jsp");
+				
+			} else {
+				request.getRequestDispatcher("produkt_infos.jsp").forward(request, response);
+			}
+			
+			
+			
+		} else if(pruefe.equals("artikelnr")) {
+			
+			if(!auswahl.contains("")) {
+			int artikelnr = 0;
+			try {
+				artikelnr = Integer.parseInt(auswahl);
+			} catch(NumberFormatException nfe) {
+				
+			}
+			
+			Produkt produkt = ProduktOperations.ladeProduktausdb(artikelnr);
+			
+			session.setAttribute("produkt", produkt);
+			session.setAttribute("auswahl", "artikel");
+			request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
+			}
 		}
 		
-		Produkt produkt = ProduktOperations.ladeProduktausdb(artikelnr);
-		HttpSession session = request.getSession();
-		session.setAttribute("produktBe", produkt);
-		request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
+		
 		
 	}
 
