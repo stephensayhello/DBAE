@@ -10,6 +10,7 @@
 <form action="TestFiltersServlet" method="post">
 <label>Eingabe:</label><br/>
 <input type="text" name="eingabe">
+<input type="hidden">
 <br/>
 <button value="submit">Los</button>
 </form>
