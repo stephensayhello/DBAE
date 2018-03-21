@@ -45,10 +45,9 @@ public class Artikeluebersicht extends HttpServlet {
 		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
 		session.setAttribute("produktlistedb", produkte);
 		List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
-		
+
 		String[] checkboxkategorien = request.getParameterValues("Produkt");
-		
-		
+
 		List<Produkt> produktnachsortiment = new ArrayList<>();
 
 		int counter = 0;
@@ -58,7 +57,7 @@ public class Artikeluebersicht extends HttpServlet {
 				produkteSortiertnachartnr.add(produkte.get(i));
 			}
 		}
-		if (checkboxkategorien != null ) {
+		if (checkboxkategorien != null) {
 			for (String string : checkboxkategorien) {
 				if (Integer.parseInt(string) == 1) {
 					for (Produkt produkt : produkteSortiertnachartnr) {
@@ -66,30 +65,22 @@ public class Artikeluebersicht extends HttpServlet {
 							produktnachsortiment.add(produkt);
 
 						}
-
 					}
-
 				}
 
 				else if (Integer.parseInt(string) == 2) {
 					for (Produkt produkt : produkteSortiertnachartnr) {
 						if (produkt instanceof Hose) {
 							produktnachsortiment.add(produkt);
-
 						}
-
 					}
 				} else if (Integer.parseInt(string) == 3) {
 					for (Produkt produkt : produkteSortiertnachartnr) {
 						if (produkt instanceof Shirt) {
 							produktnachsortiment.add(produkt);
-
 						}
-
 					}
-
 				}
-
 			}
 			produkteSortiertnachartnr = produktnachsortiment;
 		}

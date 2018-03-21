@@ -113,7 +113,8 @@ public class BestellungOperations {
 					int artikelnr = rs.getInt(9);
 					int versanddauer = rs.getInt(10);
 					String status = rs.getString(11);
-					Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artikelnr, anzahl, versanddauer,status);
+					String imagepath = rs.getString(12);
+					Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artikelnr, anzahl, versanddauer,status, imagepath);
 				if(ProduktOperations.produktistHose(produkt_id)){
 					Hose hose = HoseOperations.hoseausdbholen(produkt);
 					produktbestellliste.add(hose);

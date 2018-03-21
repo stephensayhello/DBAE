@@ -14,7 +14,7 @@
 </head>
 <body>
 	<a:navKunde rolle="${rolle }"></a:navKunde>
-	<div id="container">
+	<div class="container">
 		<a:profilnav></a:profilnav>
 		<h1>Hallo ${kundeeingeloggt.vorname}! Hier sind ihre
 			Profilinformationen.</h1>
