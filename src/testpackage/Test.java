@@ -49,13 +49,10 @@ public class Test {
 	}
 
 	public static void main(String[] args) throws InvalidPasswordException, IOException {
-		Produkt produkt = ProduktOperations.produktausdbholen(10);
-		System.out.println(produkt.getName());
-		produkt.setMenge(112);
-		ProduktOperations.updateProdukt(produkt);
-		System.out.println(produkt.getMenge());
-		Produkt produkt1 = ProduktOperations.produktausdbholen(10);
-		System.out.println(produkt1.getMenge());
+		String auswahl = "auswahlssss";
+		
+		System.out.print(auswahl.equals("auswahl"));
+		
 		
 		
 		

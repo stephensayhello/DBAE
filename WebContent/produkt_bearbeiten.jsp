@@ -32,6 +32,10 @@
 					type="text" placeholder="${produkt.preis }" name="preis"> <label
 					for="versanddauer"><b>Versanddauer:</b></label><input
 					class="input-dbae" type="text" name="versanddauer">
+					<label for="status"><b>Status</b></label><select class="input-dbae">
+						<option value="Lieferbar" class="input-dbae">Lieferbar</option>
+						<option value=" Nicht Lieferbar" class="input-dbae"> Nicht Lieferbar</option>
+					</select>
 
 
 

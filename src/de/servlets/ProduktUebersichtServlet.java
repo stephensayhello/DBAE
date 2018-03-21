@@ -36,7 +36,7 @@ public class ProduktUebersichtServlet extends HttpServlet {
 		String auswahl =  request.getParameter("auswahl");
 		HttpSession session = request.getSession();
 		
-		if(pruefe.equals("produktgruppe")) {
+		if(pruefe.contains("produktgruppe")) {
 			
 			if(!auswahl.contains("")) {
 				int produkt_id = 0;
@@ -50,13 +50,11 @@ public class ProduktUebersichtServlet extends HttpServlet {
 				session.setAttribute("auswahl", "produktgruppe" );
 				request.getRequestDispatcher("produkt_bearbeiten.jsp");
 				
-			} else {
-				request.getRequestDispatcher("produkt_infos.jsp").forward(request, response);
-			}
+			} 
 			
 			
 			
-		} else if(pruefe.equals("artikelnr")) {
+		} else if(pruefe.contains("artikelnr")) {
 			
 			if(!auswahl.contains("")) {
 			int artikelnr = 0;
@@ -71,9 +69,7 @@ public class ProduktUebersichtServlet extends HttpServlet {
 			session.setAttribute("produkt", produkt);
 			session.setAttribute("auswahl", "artikel");
 			request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
-			} else {
-				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
-			}
+			} 
 		}
 		
 		

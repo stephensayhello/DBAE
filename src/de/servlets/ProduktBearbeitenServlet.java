@@ -48,12 +48,16 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+			
+		
 		
 		String name = request.getParameter("name");
 		String mengeS = request.getParameter("menge");
 		String preisS = request.getParameter("preis");
-		HttpSession session = request.getSession();
-		Produkt produkt = (Produkt) session.getAttribute("produktBe");
+		
+		Produkt produkt = (Produkt) session.getAttribute("produkt");
 		session.removeAttribute("produktBe");
 		int menge = 0;
 		double preis = 0.00;
@@ -72,7 +76,7 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		
 			
 			
-			ProduktOperations.updateProdukt(produkt);
+//			ProduktOperations.updateProdukt(produkt);
 			messages.add("Die Daten wurden erfolgreich aktualisiert.");
 			request.setAttribute("messages", messages);
 			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
