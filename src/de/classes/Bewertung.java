@@ -1,4 +1,7 @@
 package de.classes;
+
+import de.databaseOperations.BewertungsOperations;
+
 /***
  * Diese Klasse bildet Produktbewertungen ab.
  * @author Paul Blanke
@@ -8,23 +11,20 @@ public class Bewertung {
 	/**
 	 * zählt die Anzahl der Bewertungen.
 	 */
-	private static int counter = 0;
+
 	/**
 	 * DB-ID.
 	 */
-	private int bw_id;
+	private int bewertung_id;
 	/**
 	 * Höhe der Bewertung.
 	 */
-	private int bewertung;
-	/**
-	 * Anzahl der Gesamtbewertung
-	 */
-	private int anzahlBewertung;
+	private int punkte;
+	
 	/**
 	 * Das bewertete Produkt.
 	 */
-	private int pro_id;
+	private int produkt_id;
 	/**
 	 * Der Kunde, der die Bewertung vorgenommen hat.
 	 */
@@ -32,57 +32,38 @@ public class Bewertung {
 	/**
 	 * Der Text der Bewertung.
 	 */
-	private String inhalt;
+	private String kommentar;
 	
 	
 	
 	// get und Set Methoden 
-	public int getBw_id() {
-		return bw_id;
+	public int getBewertung_id() {
+		return bewertung_id;
 	}
 
-
-
-	public void setPw_id(int pw_id) {
-		this.bw_id = pw_id;
+	public void setBewertung_id(int bewertung_id) {
+		this.bewertung_id = bewertung_id;
 	}
 
-
-
-	public int getBewertung() {
-		return bewertung;
-	}
-
-
-
-	public void setBewertung(int bewertung) {
-		this.bewertung = bewertung;
-	}
-
-
-
-	public int getAnzahlBewertung() {
-		return anzahlBewertung;
-	}
-
-
-
-	public void setAnzahlBewertung(int anzahlBewertung) {
-		this.anzahlBewertung = anzahlBewertung;
-	}
-
-
-
-	public int getPro_id() {
-		return pro_id;
-	}
-
-
-
-	public void setPro_id(int pro_id) {
-		this.pro_id = pro_id;
+	public int getPunkte() {
+		return punkte;
 	}
 	
+	public void setPunkte(int punkte) {
+		this.punkte = punkte;
+	}
+	
+	
+	
+	
+	public int getProdukt_id() {
+		return produkt_id;
+	}
+
+	public void setProdukt_id(int produkt_id) {
+		this.produkt_id = produkt_id;
+	}
+
 	public int getKundennr() {
 		return kundennr;
 	}
@@ -94,76 +75,101 @@ public class Bewertung {
 	}
 
 
-	public String getInhalt() {
-		return inhalt;
+	public String getKommentar() {
+		return kommentar;
 	}
 
-
-
-	public void setInhalt(String inhalt) {
-		this.inhalt = inhalt;
+	public void setKommentar(String kommentar) {
+		this.kommentar = kommentar;
 	}
 
-
-
+	public Bewertung() {
+		
+	}
 	/**
  	* Konstruktur 
- 	* @param bewertung Höhe der Bewertung
- 	* @param prod_id die Produkt-ID.
+ 	* @param punkte Höhe der Bewertung
+ 	* @param produkt_id die Produkt-ID.
  	* @param kundennr Die Kundennr.
  	*/
-	public Bewertung(int bewertung, int prod_id, int kundennr) {
-		counter++;
-		this.anzahlBewertung = counter;
-		this.setPro_id(prod_id);
-		if(0 < bewertung  && bewertung <= 5) {
-			this.setBewertung(bewertung);
+	public Bewertung(int punkte, int produkt_id, int kundennr) {
+	
+		this.bewertung_id = BewertungsOperations.hoechsteID();
+		this.produkt_id = produkt_id;
+		this.kundennr = kundennr;
+		
+		if(0 < punkte  && punkte <= 5) {
+			this.punkte = punkte;
 		} else {
-			this.setBewertung(5);
+			this.punkte = 5;
 		}
-		this.setKundennr(kundennr);
-		// TODO Auto-generated constructor stub
+		this.kommentar = "";
 	}
 	
 
 
 	/**
 	 * Konstruktur
-	 * @param bewertung Höhe der Bewertung.
+	 * @param punkte Höhe der Bewertung.
 	 * @param produkt Gegenstand der Bewertung
 	 * @param kunde   Auslöser der Bewertung.
 	 */
-	public Bewertung(int bewertung, Produkt produkt, Kunde kunde) {
-		counter++;
-		this.anzahlBewertung = counter;
-		this.setPro_id(produkt.getProdukt_id());
-		if(0 < bewertung && bewertung <= 5) {
-			this.setBewertung(bewertung);
-		} else {
-			this.setBewertung(5);
-		}
+	public Bewertung(int punkte, Produkt produkt, Kunde kunde) {
+		this.bewertung_id = BewertungsOperations.hoechsteID();
+		this.produkt_id = produkt.getProdukt_id();
 		this.kundennr = kunde.getNutzer_id();
+		
+		if(0 < punkte  && punkte <= 5) {
+			this.punkte = punkte;
+		} else {
+			this.punkte = 5;
+		}
+		this.kommentar = "";
 		
 	}
 	
 	/**
 	 * Konstruktur
-	 * @param bewertung Höhe der Bewertung.
+	 * @param punkte Höhe der Bewertung.
 	 * @param produkt Gegenstand der Bewertung
 	 * @param kunde   Auslöser der Bewertung.
-	 * @param inhalt Beschreibung.
+	 * @param kommentar Beschreibung.
 	 */
-	public Bewertung(int bewertung, Produkt produkt, Kunde kunde, String inhalt) {
-		counter++;
-		this.anzahlBewertung = counter;
-		this.setPro_id(produkt.getProdukt_id());
-		if(0 < bewertung && bewertung <= 5) {
-			this.setBewertung(bewertung);
-		} else {
-			this.setBewertung(5);
-		}
+	public Bewertung(int punkte, Produkt produkt, Kunde kunde, String kommentar) {
+		this.bewertung_id = BewertungsOperations.hoechsteID();
+		this.produkt_id = produkt.getProdukt_id();
 		this.kundennr = kunde.getNutzer_id();
 		
+		if(0 < punkte  && punkte <= 5) {
+			this.punkte = punkte;
+		} else {
+			this.punkte = 5;
+		}
+		this.kommentar = kommentar;
+		
+	}
+	
+	
+	
+	/**
+ 	* Konstruktur 
+ 	* @param punkte Höhe der Bewertung
+ 	* @param produkt_id die Produkt-ID.
+ 	* @param kundennr Die Kundennr.
+ 	* @param kommentar Der Inhalt.
+ 	*/
+	public Bewertung(int punkte, int produkt_id, int kundennr, String kommentar) {
+		
+		this.bewertung_id = BewertungsOperations.hoechsteID();
+		this.produkt_id = produkt_id;
+		this.kundennr = kundennr;
+		
+		if(0 < punkte  && punkte <= 5) {
+			this.punkte = punkte;
+		} else {
+			this.punkte = 5;
+		}
+		this.kommentar = kommentar;
 	}
 	/**
 	 * testemethode für Ausgabe.
@@ -172,11 +178,11 @@ public class Bewertung {
 	
 	public String bewerten() {
 		String wertung = "";
-		if(0< bewertung && bewertung <= 2) {
+		if(0< this.punkte && this.punkte <= 2) {
 			wertung = "Das Produkt wurde schlecht bewertet!";
-		} else if(bewertung == 3) {
+		} else if(this.punkte == 3) {
 			wertung = "Das Produkt wurde durchschnittlich bewertet.";
-		} else if(3 < bewertung  && bewertung <= 5   ) {
+		} else if(3 < this.punkte  && this.punkte <= 5   ) {
 			wertung ="Das Produkt ist super";
 		}
 		return wertung;
