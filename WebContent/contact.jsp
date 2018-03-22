@@ -23,7 +23,9 @@
 	<select name="grund" class ="input-dbae">
 		<option>Beschwerde</option>
 		<option>Probleme beim Bestellungsprozess</option>
+		<option>Reklamation</option>
 		<option>Sonstiges</option>
+		
 	</select>
 	
 	<button value="submit" class="button-dbae">Anfrage Absenden</button>

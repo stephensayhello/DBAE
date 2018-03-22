@@ -76,7 +76,6 @@ public class KundenOperationsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Kunde> kunden =  KundenOperations.holeAlleKunden();
 		HttpSession session = request.getSession();
-		List<String> messages = new ArrayList<>();
 		System.out.println("Soso");
 		session.setAttribute("kunden", kunden);
 		request.getRequestDispatcher("kundeninfos.jsp").forward(request, response);

@@ -40,7 +40,7 @@ function onShow() {
 <div class="container"><div class="table-responsive">
 		<table class="table">
 			<tr>
-
+				
 				<th>Vorname</th>
 				<th>Nachname</th>
 				
@@ -50,8 +50,9 @@ function onShow() {
 
 
 				<tr>
-					<td>${kunde}</td>
-					<td>${kunde}</td>
+					
+					<td>${kunde.vorname}</td>
+					<td>${kunde.nachname}</td>
 				</tr>
 
 

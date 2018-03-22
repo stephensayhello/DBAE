@@ -7,14 +7,49 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="TestFiltersServlet" method="post">
-<label>Eingabe:</label><br/>
-<input type="text" name="eingabe">
-<input type="hidden">
-<br/>
-<button value="submit">Los</button>
-</form>
-<p>${nutzer.email}</p>
+
+<script>
+function show_elements()
+{
+ var elementNames = show_elements.arguments;
+ for (var i=0; i<elementNames.length; i++)
+  {
+    var elementName = elementNames[i];
+    document.getElementById(elementName).style.display='block';
+  }
+}
+
+function hide_elements()
+{
+ var elementNames = hide_elements.arguments;
+ for (var i=0; i<elementNames.length; i++)
+  {
+    var elementName = elementNames[i];
+    document.getElementById(elementName).style.display='none';
+  }
+}
+
+
+</script>
+<div id="text_html">
+<p>
+<button onclick="hide_elements('text_html')">Text verstecken</button>
+</p> 
+<p> Hihi versteckt.</p>
+
+</div>
+
+
+<p id="linkShow_xhtml">
+		<a href="#"  title="Anzeigen" onclick="show_elements('text_xhtml');hide_elements('linkShow_xhtml')">Text anzeigen</a>
+	</p>
+	<div id="text_xhtml" class="noscript">
+	<p>
+		Text der bei einem klick auf Text anzeigen erscheint.
+	</p>
+	</div>
+
+
 
 </body>
 </html>
