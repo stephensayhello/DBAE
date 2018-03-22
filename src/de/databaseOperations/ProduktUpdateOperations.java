@@ -202,7 +202,7 @@ public class ProduktUpdateOperations {
 
 			Connection con = DBConnection.getConnection();
 			try {
-				PreparedStatement pst = con.prepareStatement(PRODUKT_UPDATE_ALLES);
+				PreparedStatement pst = con.prepareStatement(ARTIKEL_UPDATE_ALLES);
 
 				pst.setString(1, name);
 				pst.setDouble(2, preis);
