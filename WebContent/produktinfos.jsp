@@ -73,14 +73,14 @@ function onShow() {
 
 <div class="container">
 	<form action="ProduktUebersichtServlet" method="get" >
-	<label for="auswahl" class="input-dbae">Produktgruppe(Auswahl anhand von Name und ID)</label>
+	<label for="auswahl" class="input-dbae">Produkt(Auswahl anhand von Name und ID)</label>
 	<select name="auswahl" class ="input-dbae">
 	<c:forEach  var="produkt" items="${ produkte}" >
-	<option value= "${produkt.produkt_id}" >${produkt.name} ${produkt.produkt_id}</option>
+	<option value= "${produkt.produkt_id}" >${produkt.name}, ${produkt.produkt_id}</option>
 	</c:forEach>
 	</select>
 	<button value="submit"  class= "button-dbae">Bearbeiten</button>
-	<input type="hidden" value="produktgruppe" name="pruefe">
+	<input value="id" name="pruefe">
 	</form>
 </div>
 <br />
@@ -91,7 +91,7 @@ function onShow() {
 	<form action="ProduktUebersichtServlet" method="get" class="input-dbae">
 	<label for="auswahl" class="input-dbae">Artikel einer Produktgruppe anpassen</label><br/>
 	<select name="auswahl"  class="input-dbae">
-	<c:forEach  var="produkt" items="${ produkte}" >
+	<c:forEach  var="produkt" items="${produktesortiert}" >
 	<option value= "${produkt.artikelnr}" >${produkt.name} ${produkt.artikelnr}</option>
 	</c:forEach>
 	</select>

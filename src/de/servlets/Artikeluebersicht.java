@@ -175,14 +175,11 @@ public class Artikeluebersicht extends HttpServlet {
 		request.setAttribute("messages", messages);
 		session.setAttribute("warenkorb", warenkorb);
 		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
-		session.removeAttribute("warenkorbgesamtpreis");
+		
 		session.removeAttribute("warenversanddauer");
 		session.setAttribute("warenversanddauer", warenkorb.gethoechsteVersanddauer());
-		session.setAttribute("warenkorbgesamtpreis",
-				NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
-		System.out.println("angekommen");
-		System.out.println(NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
-		System.out.println(warenkorb.getInhalt().size());
+		
+		
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}
 

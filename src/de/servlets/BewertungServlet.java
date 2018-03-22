@@ -36,6 +36,11 @@ public class BewertungServlet extends HttpServlet {
 		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 		List<String> messages = new ArrayList();
 		if(kunde == null){
+			messages.add("Um eine Bewertung abzugeben loggen Sie sich bitte ein!");
+			
+		}else {
+			
+			
 			
 		}
 		

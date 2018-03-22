@@ -27,7 +27,7 @@ public class ProduktOperations {
 	private final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
 	private final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
 	private final static String ANLEGEN_SHIRT = "INSERT INTO shirt VALUES (?,?)";
-	private final static String LADE_PRODUKTE = "SELECT * FROM produkt;";
+	private final static String LADE_PRODUKTE = "SELECT * FROM produkt ORDER BY produkt_id ASC;";
 
 	private final static String PRODUKT_ZEIGEN_NACH_NAME = "SELECT * FROM produkt WHERE  name = ?;";
 	private final static String PRODUKT_ZEIGEN_NACH_ID = "SELECT * FROM produkt WHERE  produkt_id = ?;";

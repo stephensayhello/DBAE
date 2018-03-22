@@ -24,6 +24,7 @@ import de.databaseOperations.BestellungOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 import de.databaseOperations.ProduktOperations;
+import de.databaseOperations.ProduktUpdateOperations;
 import de.databaseOperations.WarenkorbOperations;
 import de.logik.Regex;
 import de.utilities.CreatePDF;
@@ -48,24 +49,8 @@ public class Test {
 		System.out.println(produkt instanceof Shirt);
 	}
 
-	public static void main(String[] args) throws InvalidPasswordException, IOException {
-		String auswahl = "auswahlssss";
+	public static void main(String[] args) {
+		double a = 0.00;
+		System.out.println(a == 0);
 		
-		System.out.print(auswahl.equals("auswahl"));
-		
-		
-		
-		
-	}
-
-	private void testen() {
-		try {
-			erstelleTestKunde();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
-}
+	}}

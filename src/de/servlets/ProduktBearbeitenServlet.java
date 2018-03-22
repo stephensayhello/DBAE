@@ -3,6 +3,7 @@ package de.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import de.classes.Produkt;
 import de.databaseOperations.ProduktUpdateOperations;
+import de.logik.Regex;
 
 /**
  * Servlet implementation class ProduktBearbeitenServlet
@@ -37,7 +39,8 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		HttpSession session = request.getSession();
 		Produkt produkt = (Produkt) request.getAttribute("produkt");
-		ProduktUpdateOperations.entferneProdukt(produkt);
+		System.out.println(produkt);
+		//ProduktUpdateOperations.entferneProdukt(produkt);
 		session.removeAttribute("produkt");
 		messages.add("Das Produkt wurde aus den Sortiment entfernt !");
 		request.setAttribute("messages", messages);
@@ -49,40 +52,63 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
-			
-		
-		
-		String name = request.getParameter("name");
-		String mengeS = request.getParameter("menge");
-		String preisS = request.getParameter("preis");
+		session.removeAttribute("produkte");
+		List<String> messages = new ArrayList<String>();
+		if(session.getAttribute("produkt")==null){
+			messages.add("Sie haben kein Produkt ausgewählt. Wählen Sie bitte ein Produkt aus!");
+			request.setAttribute("messages", messages);
+			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
+		}else{
 		
 		Produkt produkt = (Produkt) session.getAttribute("produkt");
-		session.removeAttribute("produktBe");
-		int menge = 0;
-		double preis = 0.00;
-		List<String> messages = new ArrayList<String>();
-		if(!mengeS.contains("") && !preisS.contains("") ) {
-			try {
-				menge = Integer.parseInt(mengeS);
-				preis = Double.parseDouble(preisS);
-			} catch(NumberFormatException nfe) {
-				nfe.printStackTrace();
-			}
-		}
+	    session.removeAttribute("produkt");
+		
+		
+		String versanddauer = request.getParameter("versanddauer");
+		String mengeS = request.getParameter("menge");
+		String status= request.getParameter("status");
+		
+		System.out.println("bearbeitenservlet");
+		System.out.println(versanddauer);
+		System.out.println(mengeS);
+		System.out.println(status);
+		System.out.println(mengeS.equals(""));
+		
+		boolean mengenfeldgeprueft = Regex.pruefeNurZahlen(mengeS);
+		boolean versanddauerfeldgeprueft = Regex.pruefeNurZahlen(versanddauer);
+		System.out.println(mengenfeldgeprueft);
+		System.out.println(versanddauerfeldgeprueft);
+	if(mengenfeldgeprueft && versanddauerfeldgeprueft){
+		
+		int versanddauergeprueft = Integer.parseInt(versanddauer);
+		int mengegeprueft = Integer.parseInt(mengeS);
+		ProduktUpdateOperations.updateProdukt(produkt.getProdukt_id(), mengegeprueft, versanddauergeprueft, status);
+		messages.add("Die Daten wurden erfolgreich aktualisiert.");
+	}
+	else if (mengeS.equals("") && versanddauer.equals("")){
+		int versanddauergeprueft = -1;
+		int mengegeprueft = -1;
+		System.out.println(mengegeprueft);
+		ProduktUpdateOperations.updateProdukt(produkt.getProdukt_id(), mengegeprueft, versanddauergeprueft, status);
+		messages.add("Die Daten wurden erfolgreich aktualisiert.");
+	}else{
+		messages.add("Keine Zahlen eingegeben!");
+	}
+		
+		
 		
 		
 		
 		
 			
 			
-//			ProduktOperations.updateProdukt(produkt);
-			messages.add("Die Daten wurden erfolgreich aktualisiert.");
+
+			
 			request.setAttribute("messages", messages);
 			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 			
 		
-			
+		}
 		
 	}
 

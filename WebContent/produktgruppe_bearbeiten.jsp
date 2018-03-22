@@ -14,30 +14,25 @@
 <body>
 
 	<a:navKunde rolle="${rolle }"></a:navKunde>
-	<div class = "container">
+	<div class="container">
 		<h1 class="header">Produkt bearbeiten</h1>
 		<p>Bitte ändern Sie das Produkt</p>
-	
+
 		<hr>
 
 		<div>
-			<form action="ProduktBearbeitenServlet" method="post"
-				>
+			<form action="ProduktgruppenBearbeitenServlet" method="post">
 
-Name:${produkt.name}
-Preis: ${produkt.preis }
-				 <label
-					for="menge"><b>Menge:</b></label><input class="input-dbae"
-					type="text" placeholder="${produkt.menge}" name="menge">  <label
-					for="versanddauer"><b>Versanddauer:</b></label><input
-					class="input-dbae" placeholder="${produkt.versanddauer }" type="text" name="versanddauer">
-					<label for="status"><b>Status</b></label>
-					<select class="input-dbae" name = "status">
-						<option value="nix" class="input-dbae">Status</option>
-						<option value="Lieferbar" class="input-dbae">Lieferbar</option>
-						<option value="Nicht Lieferbar" class="input-dbae"> Nicht Lieferbar</option>
-					</select>
 
+				<label for="name"><b>Name:</b></label><input class="input-dbae"
+					type="text" placeholder="${produkt.name}" name="name"> 
+					<label
+					for="preis"><b>Preis:</b></label><input class="input-dbae"
+					type="number" placeholder="${produkt.name}" name="preis"> 
+					
+					<label	for="anfragetext"><br>Beschreibung:</br></label>
+				<textarea rows="5" cols="5" name="beschreibung"
+					placeholder="${produkt.beschreibung}" class="input-dbae"></textarea>
 
 
 
