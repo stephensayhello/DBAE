@@ -41,9 +41,8 @@ public class SupportOperations {
 		try {
 			PreparedStatement pst = con.prepareStatement(HOECHSTEID);
 			ResultSet rs = pst.executeQuery();
-			if(!rs.next()) {
-				id = rs.getInt(0);
-			}
+			rs.next();
+			id = rs.getInt(1);
 			
 			con.close();
 			

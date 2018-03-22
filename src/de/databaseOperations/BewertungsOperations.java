@@ -27,6 +27,8 @@ public class BewertungsOperations {
 	
 	private final static String BEWERTUNG_NEU = "INSERT INTO bewertung VALUES(?, ?, ?, ? ,?);";
 	
+	private final static String BEWERTUNG_LOESCHEN = "DELETE FROM bewertung WHERE bewertung_id = ?;";
+	
 	/**
 	 * Select Methode.
 	 * Holt eine Bewertung anhand eines Kunden aus der DB.
@@ -119,6 +121,19 @@ public class BewertungsOperations {
 			pst.setInt(3, bewertung.getProdukt_id());
 			pst.setInt(4, bewertung.getPunkte());
 			pst.setString(5, bewertung.getKommentar());
+			pst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void entferneBewertung(Bewertung bewertung) {
+		Connection con = DBConnection.getConnection();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(BEWERTUNG_LOESCHEN);
+			pst.setInt(1, bewertung.getBewertung_id());
 			pst.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

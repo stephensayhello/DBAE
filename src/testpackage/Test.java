@@ -51,8 +51,9 @@ public class Test {
 	}
 
 	public static void main(String[] args) throws InvalidPasswordException, IOException {
-		Bewertung bewertung = new Bewertung(1,1,3,"Nee ist nicht so geil");
+		Bewertung bewertung = new Bewertung(1,1,2,"Nee ist nicht so geil");
 		BewertungsOperations.neueBewertung(bewertung);
+		System.out.println("testeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
 		
 		
 		
