@@ -10,7 +10,7 @@
 </head>
 <body>
 <a:navKunde rolle="${rolle }"></a:navKunde>
-
+<!-- zeige ein produkt und die Bewertung dazu -->
 
 </body>
 </html>

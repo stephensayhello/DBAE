@@ -32,17 +32,8 @@ public class BewertungServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
-		List<String> messages = new ArrayList();
-		if(kunde == null){
-			messages.add("Um eine Bewertung abzugeben loggen Sie sich bitte ein!");
-			
-		}else {
-			
-			
-			
-		}
+		// To Post
+		doPost(request, response);
 		
 	}
 
@@ -50,8 +41,28 @@ public class BewertungServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String punkteRe = request.getParameter("punkte");
+		HttpSession session = request.getSession();
+		List<String> messages = new ArrayList<>();
+		session.setAttribute("messages", messages);
+		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
+		int punkte = 1;
+		String kommentar = request.getParameter("bewertung");
+		if(!punkteRe.contains("")) {
+			try {
+				punkte = Integer.parseInt(punkteRe);
+			} catch(NumberFormatException nfe) {
+				System.out.println(nfe.toString());
+			}
+		} else if(kunde == null) {
+			messages.add("Nur eingeloggte Kunden können bewerten !");
+			
+		} else {
+			messages.add("Sie können das Produkt nur bewerten, wenn Sie es gekauft haben");
+		}
+		System.out.println("Mimi Bwertung erstellt!");
+		
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }
