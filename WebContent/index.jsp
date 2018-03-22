@@ -4,20 +4,21 @@
 <!DOCTYPE >
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<link rel="stylesheet" href="css/generalLayout.css">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-
 <a:navKunde rolle="${rolle }"></a:navKunde>
 <h1>Willkommen im SportWebShop</h1>
 <h2>Der Newsfeed. Hier finden Sie die neusten Informationen über uns.</h2>
-<p> Alle Produkt verfügen über den Bewertungssystem von 1 bis 5 Sternen.
-<p> (1 schlecht, 5 perfekt)</p><br>
 <p> Admin- Kennung: admin@test.de und Projekt2018
 <br>
-<h3> <a href="tagesangebot.jsp">Aktuelles Tagesangebot!</h3>
+<form action="TagesAngebotServlet" method="post">
+<button class="button-dbae">zum Tagesangebot</button>
+</form>
+
 </body>
 </html>

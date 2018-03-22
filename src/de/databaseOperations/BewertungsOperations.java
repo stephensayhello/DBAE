@@ -29,6 +29,8 @@ public class BewertungsOperations {
 	
 	private final static String BEWERTUNG_LOESCHEN = "DELETE FROM bewertung WHERE bewertung_id = ?;";
 	
+	private final static String SUCHE_BEST_BEWERTUNG = "SELECT * FROM bewertung WHERE kundennr = ?, produkt_id= ?";
+	
 	/**
 	 * Select Methode.
 	 * Holt eine Bewertung anhand eines Kunden aus der DB.
@@ -49,7 +51,7 @@ public class BewertungsOperations {
 			bewertung.setKundennr(rs.getInt(2));
 			bewertung.setPunkte(rs.getInt(4));
 			bewertung.setKommentar(rs.getString(5));
-			
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,6 +77,7 @@ public class BewertungsOperations {
 				Bewertung bewertung = new Bewertung(rs.getInt(4), rs.getInt(3), rs.getInt(2), rs.getString(5));
 				bewertungen.add(bewertung);
 			}
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,6 +100,7 @@ public class BewertungsOperations {
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,6 +126,7 @@ public class BewertungsOperations {
 			pst.setInt(4, bewertung.getPunkte());
 			pst.setString(5, bewertung.getKommentar());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -135,11 +140,42 @@ public class BewertungsOperations {
 			PreparedStatement pst = con.prepareStatement(BEWERTUNG_LOESCHEN);
 			pst.setInt(1, bewertung.getBewertung_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Diese Methode überprüft ob eine Bewertung schon vorhanden ist-> Vermeidung von Doppelungen.
+	 * Logik rs leer = false, rs voll = true;
+	 * @param kundennr
+	 * @param produkt_id
+	 * @return
+	 */
+	public static boolean prufeaufVorhandeneBestellung(int kundennr, int produkt_id) {
+		boolean rückgabe = false;
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(SUCHE_BEST_BEWERTUNG);
+			pst.setInt(1, kundennr);
+			pst.setInt(2, produkt_id);
+			ResultSet rs = pst.executeQuery();
+			if(!rs.next()) {
+				rückgabe = false;
+			} else if(rs.next()) {
+				rückgabe = true;
+			}
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return rückgabe;
+	}
 	
 }

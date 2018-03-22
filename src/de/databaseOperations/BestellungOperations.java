@@ -25,9 +25,11 @@ public class BestellungOperations {
 	private final static String MAX_BSTNR = "SELECT MAX(bstnr) FROM bestellung;";
 	private final static String ANLEGEN_BESTELLUNG_PROD_ZUO = "INSERT INTO bestellung_produktzuordnung VALUES (?, ?, ?)";
 	private final static String ANLEGEN_BESTELLUNG = "INSERT INTO bestellung VALUES (?,?,?)";
-	private final static String BESTELLUNG_MIT_BSTNR_AUS_DB_HOLEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE bstnr = ?;";
+	private final static String BESTELLUNG_MIT_BSTNR_AUS_DB_HOLEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt "
+			+ "ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE bstnr = ?;";
 	private final static String BSTNR_MIT_KUNDENNR_AUS_DB_HOLEN = "SELECT * FROM bestellung WHERE kundennr = ?;";
-
+	private final static String BESTELLUNG_AUF_PRODUKT_PRUEFEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt "
+			+ "ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE kundennr = ?, produkt_id = ? ";
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -177,5 +179,35 @@ public class BestellungOperations {
 		return null;
 
 	}
+	
+	/**
+	 * Diese Methode prüft ob ein Kunde ein Produkt bestellt hat.
+	 * @param kunde der prüfende Kunde.
+	 * @param produkt_id das prüfende Produkt
+	 * @return hat / hat nicht das Produkt.
+	 */
+	public static boolean pruefeBestellungAufProdukt(Kunde kunde, int produkt_id) {
+		Connection con = DBConnection.getConnection();
+		boolean rückgabe = false;
+		try {
+			PreparedStatement pst = con.prepareStatement(BESTELLUNG_AUF_PRODUKT_PRUEFEN);
+			pst.setInt(1, kunde.getNutzer_id());
+			pst.setInt(2, produkt_id);
+			ResultSet rs = pst.executeQuery();
+			
+			if(!rs.next()) {
+				rückgabe = false;
+			} else {
+				rückgabe = true;
+			}
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rückgabe;
+		
+	}
+	
 
 }

@@ -2,6 +2,7 @@ package de.databaseOperations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import de.classes.Produkt;
@@ -27,6 +28,8 @@ public class ProduktUpdateOperations {
 
 	private final static String PRODUKT_LOESCHEN = "DELETE FROM produkt WHERE produkt_id = ?";
 	private final static String ARTIKEL_LOESCHEN = "DELETE FROM produkt WHERE artikelnr = ?";
+	
+	private final static String PRODUKTID_DURCH_ARTIKELNUMMER ="SELECT produkt_id WHERE artikelnr =?;";
 
 	public static void entferneProdukt(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
@@ -301,6 +304,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(2, artikelnr);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -318,9 +322,34 @@ public class ProduktUpdateOperations {
 			pst.setInt(2, artikelnr);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public static int sucheProduktIDanhandArtikelNr(int artikelnummer) {
+		Connection con = DBConnection.getConnection();
+		int produkt_id = 1;
+		try {
+			PreparedStatement pst = con.prepareStatement(PRODUKTID_DURCH_ARTIKELNUMMER);
+			pst.setInt(1, artikelnummer);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				produkt_id = rs.getInt(1);
+			} else if(!rs.next()) {
+				produkt_id = 1;
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return produkt_id;
+	}
+	
+	
 }
