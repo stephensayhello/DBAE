@@ -13,6 +13,7 @@ import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import de.classes.Admin;
 import de.classes.Adresse;
 import de.classes.Bestellung;
+import de.classes.Bewertung;
 import de.classes.Kunde;
 import de.classes.Nutzer;
 import de.classes.Produkt;
@@ -21,6 +22,7 @@ import de.classes.Warenkorb;
 import de.databaseOperations.AdminOperations;
 import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.BestellungOperations;
+import de.databaseOperations.BewertungsOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 import de.databaseOperations.ProduktOperations;
@@ -49,8 +51,4 @@ public class Test {
 		System.out.println(produkt instanceof Shirt);
 	}
 
-	public static void main(String[] args) {
-		double a = 0.00;
-		System.out.println(a == 0);
-		
-	}}
+}
