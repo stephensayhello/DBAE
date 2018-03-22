@@ -87,7 +87,7 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	    request.setAttribute("klick", "klick");
 		HttpSession session = request.getSession();
 		session.removeAttribute("messages");
 		System.out.println("srevlet angekommen, produktuebersichtservlet");
@@ -103,9 +103,9 @@ public class ProduktUebersichtServlet extends HttpServlet {
 			}}
 		System.out.println("Testen");
 		session.removeAttribute("produkte");
-		session.removeAttribute("produktesortiert");
+		
 		session.setAttribute("produkte", produkte);
-		session.setAttribute("produktesortiert", produkteSortiertnachartnr);
+		request.setAttribute("produktesortiert", produkteSortiertnachartnr);
 		
 		request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 		

@@ -13,7 +13,7 @@
 </head>
 <body>
 <a:navKunde rolle="${rolle }"></a:navKunde>
-<h1>Eine Liste aller angemeldeten Kunden:</h1>
+
 <!-- Eine JS Funktion im Test :P -->
 <script>
 function onHidde() {
@@ -25,6 +25,7 @@ function onShow() {
 }
 </script>
 <div class="container">
+<h1>Eine Liste aller angemeldeten Kunden:</h1>
 <p>Durch Auswahl eines Kunden wird das Passwort des Kunden zurück gesetzt.</p>
 
 
@@ -32,7 +33,7 @@ function onShow() {
 <button value="submit" class="button-dbae" onclick="onHidde()">Anzeigen</button>
 </form>
 </div>
-<br />
+
 
 
 <div class="container" id="unsichtbar"  style = 'hidden'>

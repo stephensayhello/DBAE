@@ -13,6 +13,14 @@
 </head>
 <body>
 <script>
+
+$(document).ready(function() {
+	var klick = "${klick}";
+	if (klick === "") {
+		$("#anzeigen").click();
+	}
+});
+
 function onHidde() {
 	document.getElementById("unsichtbar").style.visibility="hidden";
 }
@@ -27,7 +35,7 @@ function onShow() {
 <div class="container">
 <h1>Alle verfuegbare Produkte anzeigen</h1>
 <form action="ProduktUebersichtServlet" method="post">
-<button value="submit" class="button-dbae">Anzeigen</button>
+<button value="submit" class="button-dbae" id="anzeigen">Anzeigen</button>
 <button class="button-dbae">Loeschen</button>
 </form>
 <br/>
@@ -80,7 +88,7 @@ function onShow() {
 	</c:forEach>
 	</select>
 	<button value="submit"  class= "button-dbae">Bearbeiten</button>
-	<input value="id" name="pruefe">
+	<input type ="hidden" value="id" name="pruefe">
 	</form>
 </div>
 <br />
