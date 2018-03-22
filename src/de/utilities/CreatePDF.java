@@ -42,6 +42,11 @@ public class CreatePDF {
 		String text = "Ihre Bestellung im Detail: ";
 		contentstream.showText(text);
 		contentstream.newLine();
+		contentstream.newLine();
+		text = "Bestelldetails: " + bestellung.getBestellnummer();
+		contentstream.showText(text);
+		contentstream.newLine();
+		contentstream.newLine();
 		for(Produkt produkt: liste) {
 			contentstream.showText(produkt.getName() + " Anzahl:" +  produkt.getAnzahl() + "  Preis: " +  produkt.getPreismitanzahl());
 			contentstream.newLine();
