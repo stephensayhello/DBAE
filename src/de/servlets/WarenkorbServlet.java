@@ -17,6 +17,7 @@ import de.classes.Kunde;
 import de.classes.Produkt;
 import de.classes.Warenkorb;
 import de.databaseOperations.BestellungOperations;
+import de.utilities.CreatePDF;
 
 /**
  * Servlet implementation class WarenkorbServlet
@@ -59,9 +60,9 @@ public class WarenkorbServlet extends HttpServlet {
 		if ((Warenkorb) session.getAttribute("warenkorb") != null && kunde != null) {
 			Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
 			List<Produkt> warenkorbinhalt = (List<Produkt>) session.getAttribute("warenkorbinhalt");
-
+				
 			Bestellung bestellung = new Bestellung(warenkorbinhalt, kunde);
-
+			CreatePDF.create(bestellung);
 			BestellungOperations.bestellunganlegen(bestellung);
 			session.removeAttribute("warenkorbinhalt");
 			session.removeAttribute("warenkorb");

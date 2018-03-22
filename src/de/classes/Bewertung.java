@@ -158,9 +158,29 @@ public class Bewertung {
  	* @param kundennr Die Kundennr.
  	* @param kommentar Der Inhalt.
  	*/
-	public Bewertung(int punkte, int produkt_id, int kundennr, String kommentar) {
+	public Bewertung(int punkte, int kundennr, int produkt_id, String kommentar) {
 		
 		this.bewertung_id = BewertungsOperations.hoechsteID();
+		this.produkt_id = produkt_id;
+		this.kundennr = kundennr;
+		
+		if(0 < punkte  && punkte <= 5) {
+			this.punkte = punkte;
+		} else {
+			this.punkte = 5;
+		}
+		this.kommentar = kommentar;
+	}
+	/**
+ 	* Konstruktur 
+ 	* @param punkte Höhe der Bewertung
+ 	* @param produkt_id die Produkt-ID.
+ 	* @param kundennr Die Kundennr.
+ 	* @param kommentar Der Inhalt.
+ 	*/
+	public Bewertung(int bewertung_id, int kundennr, int produkt_id, int punkte, String kommentar) {
+		
+		this.bewertung_id = bewertung_id;
 		this.produkt_id = produkt_id;
 		this.kundennr = kundennr;
 		

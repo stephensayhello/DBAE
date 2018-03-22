@@ -66,6 +66,7 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 		} else {
 			messages.add("fehler");
 		}
+		session.removeAttribute("produkte");
 		session.setAttribute("messages", messages);
 		request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 

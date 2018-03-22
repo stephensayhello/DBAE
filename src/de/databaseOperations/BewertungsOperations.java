@@ -29,7 +29,9 @@ public class BewertungsOperations {
 	
 	private final static String BEWERTUNG_LOESCHEN = "DELETE FROM bewertung WHERE bewertung_id = ?;";
 	
-	private final static String SUCHE_BEST_BEWERTUNG = "SELECT * FROM bewertung WHERE kundennr = ?, produkt_id= ?";
+	private final static String SUCHE_BEST_BEWERTUNG = "SELECT * FROM bewertung WHERE kundennr = ?, produkt_id= ?;";
+	
+	private final static String ALLE_BEWERT_PRODUKT = "SELECT * FROM bewertung WHERE produkt_id;";
 	
 	/**
 	 * Select Methode.
@@ -74,7 +76,7 @@ public class BewertungsOperations {
 			
 			while(rs.next()) {
 				int id = rs.getInt(1);
-				Bewertung bewertung = new Bewertung(rs.getInt(4), rs.getInt(3), rs.getInt(2), rs.getString(5));
+				Bewertung bewertung = new Bewertung(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
 				bewertungen.add(bewertung);
 			}
 			con.close();
@@ -176,6 +178,29 @@ public class BewertungsOperations {
 		
 		
 		return rückgabe;
+	}
+	
+	
+	public static List<Bewertung> sucheAlleBwertungBestProdukt(int produkt_id) {
+		List<Bewertung> bewertProdukt = new ArrayList<>();
+		Connection con = DBConnection.getConnection();
+		
+			PreparedStatement pst;
+			try {
+				pst = con.prepareStatement(ALLE_BEWERT_PRODUKT);
+				pst.setInt(1, produkt_id);
+				ResultSet rs = pst.executeQuery();
+				while(rs.next()) {
+					Bewertung bewertung = new Bewertung(rs.getInt(1), rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getString(5));
+					bewertProdukt.add(bewertung);
+				}	
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
+			
+		return bewertProdukt;
 	}
 	
 }

@@ -51,4 +51,9 @@ public class Test {
 		System.out.println(produkt instanceof Shirt);
 	}
 
+	public static void main(String[]args) {
+		List<Kunde> kunden = KundenOperations.holeAlleKunden();
+		System.out.println(kunden.get(0).getEmail());
+	}
+	
 }

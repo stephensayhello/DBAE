@@ -22,9 +22,9 @@ import de.classes.Produkt;
  */
 public class CreatePDF {
 	// Diese Klasse erzeugt ein PDF File.
-	final String destination = "WebContent/pdf/bestellung.pdf";
+	final  static String destination = "WebContent/pdf/bestellung.pdf";
 	
-	public void create(Bestellung bestellung) throws InvalidPasswordException, IOException {
+	public  static void create(Bestellung bestellung) throws InvalidPasswordException, IOException {
 		// technische Voraussetzungen.
 		File file = new File(destination);
 		file.getParentFile().mkdirs();
