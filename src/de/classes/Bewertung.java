@@ -1,5 +1,6 @@
 package de.classes;
 
+import de.databaseOperations.BewertsDurchschnittOperations;
 import de.databaseOperations.BewertungsOperations;
 
 /***
@@ -191,21 +192,16 @@ public class Bewertung {
 		}
 		this.kommentar = kommentar;
 	}
-	/**
-	 * testemethode für Ausgabe.
-	 * @return Ausgabe der Bewertung.
-	 */
 	
-	public String bewerten() {
-		String wertung = "";
-		if(0< this.punkte && this.punkte <= 2) {
-			wertung = "Das Produkt wurde schlecht bewertet!";
-		} else if(this.punkte == 3) {
-			wertung = "Das Produkt wurde durchschnittlich bewertet.";
-		} else if(3 < this.punkte  && this.punkte <= 5   ) {
-			wertung ="Das Produkt ist super";
-		}
-		return wertung;
+	
+	/**
+	 * Diese Methode leitet an die DBOperationsklasse weiter.
+	 * @see
+	 * {@link BewertDurchschnittOperations}
+	 * @return den Durchschnitt der Bewertungen
+	 */
+	public int ermitteleDurchschnitt() {
+		 return BewertsDurchschnittOperations.ermitteleneDurchschnitt(this.getProdukt_id());
 	}
 
 }

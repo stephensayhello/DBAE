@@ -6,18 +6,81 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" href="css/generalLayout.css">
+<title>Tagesangebot</title>
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
+<script>
+
+$(document).ready(function() {
+	var klick = "${klick}";
+	if(klick=="show") {
+		show_elements('Form');
+	}
+	
+});
+
+function show_elements()
+{
+ var elementNames = show_elements.arguments;
+ for (var i=0; i<elementNames.length; i++)
+  {
+    var elementName = elementNames[i];
+    document.getElementById(elementName).style.display='block';
+  }
+}
+
+function hide_elements()
+{
+ var elementNames = hide_elements.arguments;
+ for (var i=0; i<elementNames.length; i++)
+  {
+    var elementName = elementNames[i];
+    document.getElementById(elementName).style.display='none';
+  }
+}
+</script>
+
 <a:navKunde rolle="${rolle }"></a:navKunde>
 <!-- zeige ein produkt und die Bewertung dazu -->
-Nur heute im Tages Angebot!
+
 <div class="container">
+<h1>Nur heute im Tageangebot !</h1>
+	<form action="TagesAngebotServlet" method="post">
+	<button class="button-dbae">Anzeigen</button>
+	</form>
 
-	<a:artikel produkt="${produkte[2]}"></a:artikel>
+<div id="Form" style ='display: none'>
+<p>Hier kommt später ein Tag rein</p>
+<a:tagesangebot produkt="${produkt} " durchschnitt="${durchschnitt}"></a:tagesangebot>
+<div class="table-responsive">
+<table class="table">
+			<tr>
+
+				<th>Punkte</th>
+				<th>Kommentar</th>
+				
+
+			</tr>
+			<c:forEach var="bewertung" items="${bewertungen}">
+
+
+
+				<tr>
+					<td>${bewertung.punkte}</td>				
+					<td>${bewertung.kommentar}</td>
+					
+				</tr>
+
+
+
+
+
+			</c:forEach>
+	</table>
 </div>
-
-
+</div>
+</div>
 </body>
 </html>

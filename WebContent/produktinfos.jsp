@@ -41,7 +41,8 @@ function onShow() {
 <br/>
 </div>
 <br />
-<div class="container"><div class="table-responsive">
+<div class="container">
+<div class="table-responsive">
 <table class="table">
 			<tr>
 

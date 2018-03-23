@@ -31,8 +31,27 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>	
+			<name>bewertungen</name>
+			<required>false</required>
+		</attribute>
 	</tag>
 	
+	<tag>
+		<name>tagesangebot</name>
+	<tag-class>de.tags.TagesAngebot</tag-class>
+	<attribute>
+		<name>produkt</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+	</attribute>
+	<attribute>	
+		<name>durchschnitt</name>
+		<required>true</required>
+		<rtexprvalue>true</rtexprvalue>
+		
+	</attribute>
+	</tag>
 	
 	<tag>
 		<name>navKunde</name>

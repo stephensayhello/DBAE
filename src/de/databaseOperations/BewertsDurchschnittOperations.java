@@ -15,6 +15,7 @@ import de.datenbank.DBConnection;
 public class BewertsDurchschnittOperations {
 
 	public final static String DURCHSCHNITT_PRO_PRODUKT = "SELECT * FROM bewertung WHERE produkt_id = ?;";
+	private final static String DURCHSCHNITT_BEWERTUNG = "SELECT score FROM bewertungs_durchschnitt WHERE artikelnr = ?;";
 /**
  * Diese Methode ermittelt den Durchschnitt anhand einer produkt_id
  * @param produkt_id Grundlage der Berechnung.
