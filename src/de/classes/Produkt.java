@@ -25,7 +25,7 @@ public class Produkt {
 	
 	
 	
-	//anzahl  für den warenkorb
+	//anzahl  fï¿½r den warenkorb
 	private int anzahl;
 	/**
 	 * @param preis:
@@ -65,7 +65,7 @@ public class Produkt {
 	public void setVersanddauer(int versanddauer) {
 		this.versanddauer = versanddauer;
 	}
-	// konstruktor fürs holen aus der db oder anlengen mit id
+	// konstruktor fï¿½rs holen aus der db oder anlengen mit id
 	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int versanddauer, String status) {
 
 		this.setProdukt_id(produkt_id);
@@ -97,7 +97,7 @@ public class Produkt {
 		this.setImagePath(imagepath);
 	}
 
-	// konstruktor fürs anlegen eines produkts
+	// konstruktor fï¿½rs anlegen eines produkts
 	public Produkt(String name, String beschreibung, double preis, int menge, int artnr,String status) {
 
 		this.setProdukt_id(ProduktOperations.hoechsteID());
@@ -193,7 +193,7 @@ public class Produkt {
 	public void setPreismitanzahl(double preismitanzahl) {
 		this.preismitanzahl = preismitanzahl;
 	}
-	// Eine idee für den Status
+	// Eine idee fï¿½r den Status
 	public void pruefeStatus() {
 		if(menge >= anzahl) {
 			this.setStatus("Nicht lieferbar");

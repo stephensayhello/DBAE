@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import de.classes.Admin;
+import de.classes.Bewertung;
 import de.classes.Hose;
 import de.classes.Nutzer;
 import de.classes.Produkt;
@@ -39,6 +40,7 @@ public class ProduktOperations {
 	private final static String MAX_ARTNR = "SELECT MAX(artikelnr) FROM produkt;";
 	private final static String ZEIGE_PRODUKT_NACH_ARTNR = "SELECT * FROM produkt WHERE artikelnr =?;";
 
+	private final static String DURCHSCHNITT_BEWERTUNG = "SELECT score FROM bewertungs_durchschnitt WHERE artikelnr = ?;";
 
 
 	public static Produkt ladeProduktausdb(int artnr) {
@@ -402,7 +404,34 @@ public class ProduktOperations {
 
 	}
 
-	
+	//sql methode produkt bewertung setzten
+		public static int holeBewertungProdukt(int id) {
+			Connection con = DBConnection.getConnection();
+			
+			
+			try {
+				PreparedStatement pst = con.prepareStatement(DURCHSCHNITT_BEWERTUNG);
+				pst.setInt(1, id);
+				ResultSet rs = pst.executeQuery();
+				if (rs.next()) {
+					int bewertung = rs.getInt(1);
+					con.close();
+					return bewertung;
+				}
+
+			} catch (
+
+			SQLException e) {
+				System.out.println("Fehler");
+				e.printStackTrace();
+
+			}
+			return 0;
+			
+
+		}
+
+		
 	
 
 }

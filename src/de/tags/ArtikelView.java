@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.jsp.tagext.TagSupport;
 
+import de.classes.Bewertung;
 import de.classes.Hose;
 import de.classes.Produkt;
 import de.classes.Schuhe;
@@ -16,6 +17,7 @@ public class ArtikelView extends TagSupport {
 
 	private static final long serialVersionUID = 1L;
 	private Produkt produkt;
+	private Bewertung bewertung;
 	public static int counter = 0;
 	
 	private static final String[] SHIRT_GROESSEN = { "S", "M", "L", "XL", "XXL" };
@@ -50,6 +52,7 @@ public class ArtikelView extends TagSupport {
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
 		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getArtikelnr()));
 		artikelview = artikelview.replace("PLATZHALTER4", produktpreis);
+//		artikelview = artikelview.replace("PLATZHALTER6", );
 		if(produkt.getImagePath().isEmpty()) {
 			artikelview = artikelview.replace("PLATZHALTER5", "img/dummy.jpg");
 

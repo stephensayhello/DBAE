@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.classes.Produkt;
 import de.classes.Bewertung;
 import de.classes.Kunde;
 import de.datenbank.DBConnection;
@@ -32,6 +33,7 @@ public class BewertungsOperations {
 	private final static String SUCHE_BEST_BEWERTUNG = "SELECT * FROM bewertung WHERE kundennr = ?, produkt_id= ?;";
 	
 	private final static String ALLE_BEWERT_PRODUKT = "SELECT * FROM bewertung WHERE produkt_id;";
+	
 	
 	/**
 	 * Select Methode.
@@ -61,6 +63,8 @@ public class BewertungsOperations {
 		
 		return bewertung;
 	}
+	
+	
 	
 	/**
 	 * Zeigt alle Bewertungen.
