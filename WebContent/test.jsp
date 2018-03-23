@@ -38,12 +38,35 @@ function hide_elements()
 <p> Hihi versteckt.</p>
 
 </div>
+<br />
+<form>
+<label for="auswahl"><br>Auswahl<Br/></label><input type="checkbox" name="auswahl" value="Kunde A">Testen</input>
+<br />
+
+<button>Absenden</button>
+</form>
+
+<form action = "KundenOperationsServlet" method="get">
+<label class= "input-dbae">Bitte wählen Sie einen Kunden aus</label>
+<c:forEach var="kunde" items="${kunden}">
+<input type="checkbox" name="auswahl">
+
+
+</c:forEach>
+
+
+
+
+</form>
+
+<br />
+
 
 
 <p id="linkShow_xhtml">
-		<a href="#"  title="Anzeigen" onclick="show_elements('text_xhtml');hide_elements('linkShow_xhtml')">Text anzeigen</a>
+		<a href="#"  title="Anzeigen" onclick="show_elements('text_xhtml');">Text anzeigen</a>
 	</p>
-	<div id="text_xhtml" class="noscript">
+	<div id="text_xhtml" style='display: none;'>
 	<p>
 		Text der bei einem klick auf Text anzeigen erscheint.
 	</p>

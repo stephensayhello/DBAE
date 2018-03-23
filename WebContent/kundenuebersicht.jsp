@@ -54,49 +54,40 @@ function hide_elements()
 </form>
 <br />
 <div id="Form">
-<div class="table-responsive">
+
 <table class="table">
 			<tr>
-				<th>Kunden_ID</th>
-				<th>Vorname</th>
-				<th>Nachname</th>
-				<th>E-Mail</th>
+
+				<th>Preis</th>
+				<th>Name</th>
+				<th>ID</th>
+				<th>Menge</th>
+				<th>Groesse</th>
+				<th>Status</th>
 
 			</tr>
+</table>			
+<form action="KundenOperationsServlet" method="get">
+<table class="table">			
 			<c:forEach var="kunde" items="${kunden}">
 
-
-
-				<tr>
-					<td>${kunde.nutzer_id}</td>
-					<td>${kunde.vorname }</td>				
-					<td>${kunde.nachname}</td>
-					<td>${kunde.email}</td>
-
-				</tr>
-
-
-
-
-
+				<td><input type="checkbox" value="${kunde}">${kunde.nutzer_id}   ${kunde.email}   ${kunde.vorname} </input><br/><td/>
+					
+				
 			</c:forEach>
-	</table>
-</div>
-<p>Leer optische Abgrenzungen
-<form action="KundenOperationsServlet" method="get">
-<label for="Auswahl" ><br> Auswahl:<br/></label>
-<select name="auswahl" class="input-dbae">
-<c:forEach var="kunde" items="${kunden}">
-<option value="kunde.email">${kunde.email}</option>
-</c:forEach>
-</select>
-<label for="passwort"><br>Initalpasswort setzen:<br></label>
-<input type="password" class="input-dbae" name="passwort" placeholder="Passwort">
-<input type="hidden" value="passwort" name="auslesen">
-<button class="button-dbae">Passwort zurück setzen</button>
+</table>
+	<label class="input-dbae"><br>Passwort<br/></label><input class="input-dbae"  type="password" name="passwort">
+	<button class ="button-dbae"><br>Passwort ändern</br></button>
 </form>
-<br/>
-<br/>
+
+
+
+
+</div>
+
+
+
+
 
 <p>Leer
 <form action="KundenOperationsServlet" method="get">
@@ -109,7 +100,7 @@ function hide_elements()
 <input type="hidden" value="loeschen" name="auslesen">
 <button class="button-dbae">Kunden loeschen?</button>
 </form>
-</div>
+
 <a:modal messages="${messages}"></a:modal>
 </body>
 </html>
