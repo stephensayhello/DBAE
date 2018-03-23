@@ -50,7 +50,7 @@ function hide_elements()
 <h1>Kunden Übersicht.</h1> 
 <p>Wählen Sie einen Kunden aus, um diesen zu löschen oder Passwort zurück zu setzen.</p>
 <form action="KundenOperationsServlet" method="post">
-<button class="button-dbae" id="Anzeigen" onclick="show_elements('Form')">Anzeigen</button>
+<button class="button-dbae" id="Anzeigen" onclick="show_elements('Form')" id="anzeigen">Anzeigen</button>
 </form>
 <br />
 <div id="Form">

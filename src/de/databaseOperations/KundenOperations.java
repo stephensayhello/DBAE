@@ -19,7 +19,7 @@ public class KundenOperations {
 	private final static String MAIL_KUNDE_VERGLEICH = "SELECT email FROM nutzer WHERE email = ?;";
 	private final static String KUNDEN_ABFRAGE = "SELECT * FROM kunde WHERE kundennr = ?;";
 	private final static String KUNDE_UPDATE = "UPDATE kunde SET vorname= ?, nachname= ? WHERE kundennr = ?";
-	private final static String KUNDE_LISTE ="SELECT * FROM kunde;";
+	private final static String KUNDE_LISTE ="SELECT * FROM kunde ORDER BY kundennr ASC;";
 	
 	private final static String KUNDE_LOESCHEN = "DELETE FROM kunde WHERE kundennr = ?;";
 	
@@ -151,7 +151,7 @@ public class KundenOperations {
 				String nachname = rs.getString(4);
 				Adresse adresse = AdresseOperations.adresseAusDbHolen(adress_id);
 				String passwort = nutzer.getPasswort();
-				Kunde kunde = new Kunde(passwort, mail, adresse, vorname , nachname);
+				Kunde kunde = new Kunde(id,passwort, mail, adresse, vorname , nachname);
 				kunden.add(kunde);
 				
 			}

@@ -79,6 +79,7 @@ public class KundenOperationsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("klick", "klick");
 		List<Kunde> kunden =  KundenOperations.holeAlleKunden();
 		HttpSession session = request.getSession();
 		session.setAttribute("kunden", kunden);
