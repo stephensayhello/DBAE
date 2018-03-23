@@ -4,12 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import de.classes.Admin;
-import de.classes.Kunde;
 import de.classes.Nutzer;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet NutzerOperationen
+* @see {@link package-info}
+* 
+* @author alle.
+*
+*/
 public class NutzerOperations {
 
 	private final static String NUTZER_ANLEGEN = "INSERT INTO nutzer VALUES (?, ?, ?)";

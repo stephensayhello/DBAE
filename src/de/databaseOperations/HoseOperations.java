@@ -11,7 +11,14 @@ import de.classes.Hose;
 import de.classes.Kunde;
 import de.classes.Produkt;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet ProduktOperationen
+* @see {@link package-infos}
+* 
+* @author alle.
+*
+*/
 public class HoseOperations {
 	private final static String HOSE_NACH_HO_ID = "SELECT * FROM hose WHERE ho_id=?;";
 	private final static String HOSE_LOESCHEN = "DELETE FROM hose WHERE ho_id = ?;";

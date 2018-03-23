@@ -10,7 +10,14 @@ import de.classes.Produkt;
 
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet ProduktOperationen
+* @see {@link package-info}
+* 
+* @author alle.
+*
+*/
 public class ShirtOperations {
 	private final static String HOLE_SHIRT_NACH_SHID = "SELECT * FROM shirt WHERE sh_id = ?;";
 	private final static String SHIRT_LOESCHEN = "DELETE FROM shirt WHERE sch_id= ?;";

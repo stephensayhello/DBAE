@@ -8,7 +8,13 @@ import java.sql.SQLException;
 import de.classes.Admin;
 import de.classes.Nutzer;
 import de.datenbank.DBConnection;
-
+/**
+ * 
+ * Diese Klasse verwaltet AdminOperationen
+ * @see package-infos.
+ * @author alle.
+ *
+ */
 public class AdminOperations {
 	private static final String ADMIN_AUS_DB_HOLEN = "SELECT * FROM admin WHERE admin_id = ?;";
 	private static final String  ADMIN_LOESCHEN= " DELETE  FROM admin WHERE admin_id = ?";

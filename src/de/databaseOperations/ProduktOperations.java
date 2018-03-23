@@ -20,7 +20,14 @@ import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet ProduktOperationen 1 von 2.
+* @see {@link package-info}
+* 
+* @author alle.
+*
+*/
 public class ProduktOperations {
 
 	private final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?,?,?)";

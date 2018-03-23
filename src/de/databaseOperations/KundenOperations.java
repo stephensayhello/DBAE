@@ -12,7 +12,14 @@ import de.classes.Adresse;
 import de.classes.Kunde;
 import de.classes.Nutzer;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet KundenOperationen
+* @see {@link package-info}
+* 
+* @author alle.
+*
+*/
 public class KundenOperations {
 
 	private final static String ANLEGEN_KUNDE = "INSERT INTO kunde VALUES (?,?,?,?)";

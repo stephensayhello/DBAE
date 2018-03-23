@@ -8,7 +8,14 @@ import java.util.Random;
 
 import de.classes.Produkt;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet ProduktOperationen 2 von 2
+* @see {@link package-info}
+* 
+* @author alle.
+*
+*/
 public class ProduktUpdateOperations {
 
 	private final static String ARTIKEL_UPDATE_ALLES = "UPDATE produkt SET name = ?, preis = ?, beschreibung = ? WHERE artikelnr =?;";

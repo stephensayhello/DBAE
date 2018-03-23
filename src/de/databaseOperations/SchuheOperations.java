@@ -10,7 +10,14 @@ import de.classes.Hose;
 import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet ProduktOperationen
+* @see {@link package-info}
+* 
+* @author alle.
+*
+*/
 public class SchuheOperations {
 	private final static String HOLE_SCHUHE_NACH_SCHID = "SELECT * FROM schuhe WHERE sch_id = ?;";
 	

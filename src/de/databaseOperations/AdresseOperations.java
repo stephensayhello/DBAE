@@ -8,7 +8,14 @@ import java.sql.SQLException;
 import de.classes.Admin;
 import de.classes.Adresse;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet AdressOperationen
+* @see 
+* @link {package-info }.
+* @author alle.
+*
+*/
 public class AdresseOperations {
 
 	private final static String ADRESSE_ANLEGEN = "INSERT INTO adresse VALUES (?, ?, ?, ?, ?);";

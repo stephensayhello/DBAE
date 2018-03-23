@@ -13,7 +13,14 @@ import de.classes.Kunde;
 import de.classes.Produkt;
 import de.classes.Warenkorb;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet ProduktOperationen
+* @see {@link package-info}
+* 
+* @author alle.
+*
+*/
 public class WarenkorbOperations {
 	private static final String MAX_WARENKORB_ID = "SELECT MAX(warenkorb_id) FROM warenkorb_kunde_zuordnung;";
 

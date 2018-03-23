@@ -8,7 +8,14 @@ import java.sql.SQLException;
 import de.classes.Admin;
 import de.classes.SupportAnfrage;
 import de.datenbank.DBConnection;
-
+/**
+* 
+* Diese Klasse verwaltet SupportAnfragenOperationen
+* @see {@link package-info}
+* 
+* @author alle.
+*
+*/
 public class SupportOperations {
 
 	private final static String ANFRAGE_SPEICHERN = "INSERT INTO  supportanfrage VALUES (?, ?, ?)";

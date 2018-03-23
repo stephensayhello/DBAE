@@ -20,7 +20,14 @@ import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
 import sun.security.action.GetBooleanAction;
-
+/**
+ * 
+ * Diese Klasse verwaltet BestellungOperationen
+ * @see package-info.
+ * {@link package-info}
+ * @author alle.
+ *
+ */
 public class BestellungOperations {
 	private final static String MAX_BSTNR = "SELECT MAX(bstnr) FROM bestellung;";
 	private final static String ANLEGEN_BESTELLUNG_PROD_ZUO = "INSERT INTO bestellung_produktzuordnung VALUES (?, ?, ?)";
