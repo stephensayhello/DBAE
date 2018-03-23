@@ -87,7 +87,7 @@ public class Artikeluebersicht extends HttpServlet {
 		}
 
 		request.setAttribute("test", "ttttttttt");
-		request.setAttribute("produkte", produkteSortiertnachartnr);
+		request.setAttribute("produktesortiertnachartnr", produkteSortiertnachartnr);
 		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 
 	}
