@@ -15,12 +15,8 @@
 
 $(document).ready(function() {
 	var klick = "${klick}";
-	if (klick === "") {
-		$("#anzeigen").click();
-		hide_elements('form');
-		hide_elements('Form');
-	} else {
-		show_elements('form');	
+	if(klick=="show") {
+		show_elements('Form');
 	}
 	
 });
@@ -53,35 +49,41 @@ function hide_elements()
 <button class="button-dbae" id="Anzeigen" onclick="show_elements('Form')" id="anzeigen">Anzeigen</button>
 </form>
 <br />
-<div id="Form">
+<div id="Form" class="container" style ='display: none'>
+
 
 			
+
+		
+
 <form action="KundenOperationsServlet" method="get">
 <table class="table">			
 			<c:forEach var="kunde" items="${kunden}">
 
-				<td><input type="checkbox" value="${kunde}">${kunde.nutzer_id}   ${kunde.email}   ${kunde.vorname} </input><br/><td/>
+				<td><input type="radio" value="${kunde.email}" name="auswahl"><td><td>${kunde.nutzer_id}</td><td>   ${kunde.email} </td>
+				<td>  ${kunde.vorname}</td><br/> </input><td/>
 					
 				
 			</c:forEach>
 </table>
-	<label class="input-dbae"><br>Passwort<br/></label><input class="input-dbae"  type="password" name="passwort">
+	<label ><br>Passwort<br/></label><input class="input-dbae"  type="password" name="passwort">
 	<button class ="button-dbae"><br>Passwort ändern</br></button>
+	<input type="hidden" value="passwort">
 </form>
 
 
 
 
-</div>
 
 
 
 
 
-<p>Leer
+<br />
+<br />
 <form action="KundenOperationsServlet" method="get">
 <label for="Auswahl" ><br> Auswahl:<br/></label>
-<select name="auswahl" class="input-dbae">
+<select name="loeschen" class="input-dbae">
 <c:forEach var="kunde" items="${kunden}">
 <option value="kunde.email">${kunde.email}</option>
 </c:forEach>
@@ -89,7 +91,7 @@ function hide_elements()
 <input type="hidden" value="loeschen" name="auslesen">
 <button class="button-dbae">Kunden loeschen?</button>
 </form>
+</div>
 
-<a:modal messages="${messages}"></a:modal>
 </body>
 </html>

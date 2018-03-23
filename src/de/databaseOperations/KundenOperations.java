@@ -124,11 +124,11 @@ public class KundenOperations {
 	}
 	
 	
-	public static void entferneKunde(Kunde kunde) {
+	public static void entferneKunde(Kunde kunde, Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
 		 try {
 			PreparedStatement pst = con.prepareStatement(KUNDE_LOESCHEN);
-			pst.setInt(1, kunde.getNutzer_id());
+			pst.setInt(1, nutzer.getNutzer_id());
 			pst.execute();
 			con.close();
 		} catch (SQLException e) {
