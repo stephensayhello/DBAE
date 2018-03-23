@@ -34,51 +34,52 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Crashing");
-		String pruefe = request.getParameter("pruefe");
-		String auswahl =  request.getParameter("auswahl");
 		HttpSession session = request.getSession();
-		
-		System.out.println(auswahl);
+		String rolle = (String) session.getAttribute("rolle");
+	    List<String> messages = new ArrayList<>();
+	    session.setAttribute("messages", messages);
 	
-		if(pruefe.contains("id")) {
-			System.out.println("id");
-			
-			int produkt_id = 0;
-			try {
-				produkt_id = Integer.parseInt(auswahl);
-				System.out.println(produkt_id + "diese id");
-			} catch (NumberFormatException nfe) {
-				
-			}
-			Produkt produkt = ProduktOperations.produktausdbholen(produkt_id);
-			session.removeAttribute("produkt");
-			session.setAttribute("produkt", produkt);
-			session.setAttribute("auswahl", "produktgruppe" );
-				request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
-				
-			
-			
-			
-			
-		} else if(pruefe.contains("artikelnr")) {
-			
-			
-			int artikelnr = 0;
-			try {
-				artikelnr = Integer.parseInt(auswahl);
-			} catch(NumberFormatException nfe) {
-				
-			}
-			
-			Produkt produkt = ProduktOperations.ladeProduktausdb(artikelnr);
-			session.removeAttribute("produkt");
-			session.setAttribute("produkt", produkt);
-			session.setAttribute("auswahl", "artikel");
-			request.getRequestDispatcher("produktgruppe_bearbeiten.jsp").forward(request, response);
-	 
-		}
+	    if(rolle.contains("admin")) {
+	    	String pruefe = request.getParameter("pruefe");
+	    	String auswahl =  request.getParameter("auswahl");
 		
+	    	if(pruefe.contains("id")) {
+	    		System.out.println("id");
+			
+	    		int produkt_id = 0;
+	    		try {
+	    			produkt_id = Integer.parseInt(auswahl);
+	    			System.out.println(produkt_id + "diese id");
+	    		} catch (NumberFormatException nfe) {
+				
+	    		}
+	    		Produkt produkt = ProduktOperations.produktausdbholen(produkt_id);
+	    		session.removeAttribute("produkt");
+	    		session.setAttribute("produkt", produkt);
+	    		session.setAttribute("auswahl", "produktgruppe" );
+				request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
+							
+	    	} else if(pruefe.contains("artikelnr")) {
+			
+			
+	    		int artikelnr = 0;
+	    		try {
+	    			artikelnr = Integer.parseInt(auswahl);
+	    		} catch(NumberFormatException nfe) {
+				
+	    		}
+			
+	    		Produkt produkt = ProduktOperations.ladeProduktausdb(artikelnr);
+	    		session.removeAttribute("produkt");
+	    		session.setAttribute("produkt", produkt);
+	    		session.setAttribute("auswahl", "artikel");
+	    		request.getRequestDispatcher("produktgruppe_bearbeiten.jsp").forward(request, response);
+	 
+	    	}
+	    } else {
+	    	messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
+	    	request.getRequestDispatcher("index.jsp").forward(request, response);
+	    }
 		
 		
 	}
@@ -87,28 +88,38 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    request.setAttribute("klick", "klick");
-		HttpSession session = request.getSession();
-		session.removeAttribute("messages");
-		System.out.println("srevlet angekommen, produktuebersichtservlet");
-		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
-		List<Produkt> produktnachsortiment = new ArrayList<>();
-		List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
-
-		int counter = 0;
-		for (int i = 0; i < produkte.size(); i++) {
-			if (!(counter == produkte.get(i).getArtikelnr())) {
-				counter = produkte.get(i).getArtikelnr();
-				produkteSortiertnachartnr.add(produkte.get(i));
-			}}
-		System.out.println("Testen");
-		session.removeAttribute("produkte");
-		
-		session.setAttribute("produkte", produkte);
-		request.setAttribute("produktesortiert", produkteSortiertnachartnr);
-		
-		request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
-		
+	    HttpSession session = request.getSession();
+	    String rolle = (String) session.getAttribute("rolle");
+	    List<String> messages = new ArrayList<>();
+	    session.setAttribute("messages", messages);
 	
+	    if(rolle.contains("admin")) {
+	    	request.setAttribute("klick", "klick");
+			session.removeAttribute("messages");
+			System.out.println("srevlet angekommen, produktuebersichtservlet");
+			List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
+			List<Produkt> produktnachsortiment = new ArrayList<>();
+			List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
 
-	}}
+			int counter = 0;
+			for (int i = 0; i < produkte.size(); i++) {
+				if (!(counter == produkte.get(i).getArtikelnr())) {
+					counter = produkte.get(i).getArtikelnr();
+					produkteSortiertnachartnr.add(produkte.get(i));
+				}}
+			System.out.println("Testen");
+			session.removeAttribute("produkte");
+			
+			session.setAttribute("produkte", produkte);
+			request.setAttribute("produktesortiert", produkteSortiertnachartnr);
+			
+			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
+			
+	    } else {
+	    	messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
+	    	request.getRequestDispatcher("index.jsp").forward(request, response);
+	    }
+
+	}
+	
+}

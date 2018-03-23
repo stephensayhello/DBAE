@@ -52,8 +52,6 @@ public class Test {
 	}
 
 	public static void main(String[]args) {
-		int zahl = ProduktUpdateOperations.zufallsID();
-		System.out.println(zahl);
+		
 	}
-	
 }
