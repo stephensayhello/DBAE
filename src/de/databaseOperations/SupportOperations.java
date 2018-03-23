@@ -60,6 +60,7 @@ public class SupportOperations {
 			PreparedStatement pst = con.prepareStatement(ANFRAGE_LOESCHEN);
 			pst.setInt(1, anfrage.getSupport_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

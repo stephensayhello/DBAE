@@ -52,8 +52,8 @@ public class Test {
 	}
 
 	public static void main(String[]args) {
-		List<Kunde> kunden = KundenOperations.holeAlleKunden();
-		System.out.println(kunden.get(0).getEmail());
+		int zahl = ProduktUpdateOperations.zufallsID();
+		System.out.println(zahl);
 	}
 	
 }

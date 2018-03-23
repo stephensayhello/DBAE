@@ -41,7 +41,7 @@ public class KundenOperations {
 			pst.setString(4, kunde.getNachname());
 
 			pst.execute();
-
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -59,8 +59,10 @@ public class KundenOperations {
 			ResultSet rs = prprdQuery.executeQuery();
 
 			if (rs.next()) {
+				con.close();
 				return true;
 			} else {
+				con.close();
 				return false;
 			}
 
@@ -128,6 +130,7 @@ public class KundenOperations {
 			PreparedStatement pst = con.prepareStatement(KUNDE_LOESCHEN);
 			pst.setInt(1, kunde.getNutzer_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

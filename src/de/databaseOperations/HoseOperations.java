@@ -28,7 +28,7 @@ public class HoseOperations {
 				int groesse = rs.getInt(2);
 				Hose hose = new Hose(ho_id, produkt.getName(), produkt.getBeschreibung(), produkt.getPreis(), groesse,
 						produkt.getMenge(), produkt.getArtikelnr(),produkt.getAnzahl(),produkt.getVersanddauer(),produkt.getStatus(), produkt.getImagePath());
-
+				con.close();
 				return hose;
 			}
 
@@ -49,6 +49,7 @@ public class HoseOperations {
 			PreparedStatement pst = con.prepareStatement(HOSE_LOESCHEN);
 			pst.setInt(1, hose.getProdukt_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

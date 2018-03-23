@@ -31,6 +31,7 @@ public class ShirtOperations {
 				return shirt;
 
 			}
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,6 +46,7 @@ public class ShirtOperations {
 			PreparedStatement pst = con.prepareStatement(SHIRT_LOESCHEN);
 			pst.setInt(1, shirt.getProdukt_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

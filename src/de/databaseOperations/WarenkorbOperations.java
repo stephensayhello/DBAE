@@ -38,7 +38,7 @@ public class WarenkorbOperations {
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
-
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -58,6 +58,7 @@ public class WarenkorbOperations {
 			PreparedStatement pst = con.prepareStatement(WARENKORB_LOESCHEN);
 			pst.setInt(1, id);
 			pst.execute();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,6 +67,7 @@ public class WarenkorbOperations {
 			PreparedStatement pst = con.prepareStatement(WARENKORB_LOESCHEN_ZU);
 			pst.setInt(1, id);
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -88,7 +90,7 @@ public class WarenkorbOperations {
 				pst.setInt(2, produkt.getProdukt_id());
 				pst.setInt(3, produkt.getAnzahl());
 				pst.execute();
-
+				con.close();
 			}
 
 		} catch (SQLException e) {
@@ -106,7 +108,7 @@ public class WarenkorbOperations {
 			pst.setInt(2, warenkorb.getKunde().getNutzer_id());
 
 			pst.execute();
-
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -130,7 +132,7 @@ public class WarenkorbOperations {
 
 			List<Produkt> produkte = ladeProdukteZuWarenkorbAusDB(warenkorb_id);
 			warenkorb = new Warenkorb(kunde, produkte, warenkorb_id);
-
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -159,7 +161,7 @@ public class WarenkorbOperations {
 				produkt.setPreismitanzahlineuro(produkt.getPreismitanzahl());
 				produkte.add(produkt);
 			}
-
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

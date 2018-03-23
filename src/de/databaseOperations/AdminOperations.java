@@ -26,8 +26,9 @@ public class AdminOperations {
 				
 
 				Admin admin = new Admin(nutzer.getNutzer_id(), nutzer.getEmail(), nutzer.getPasswort(), name);
+				con.close();
 				return admin;
-			}
+			}	
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -46,6 +47,7 @@ public class AdminOperations {
 			PreparedStatement pst = con.prepareStatement(ADMIN_LOESCHEN);
 			pst.setInt(1, admin.getNutzer_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

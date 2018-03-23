@@ -33,6 +33,7 @@ public class SchuheOperations {
 				return schuhe;
 
 			}
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,6 +49,7 @@ public class SchuheOperations {
 			PreparedStatement pst = con.prepareStatement(SCHUHE_LOESCHEN);
 			pst.setInt(1, schuhe.getProdukt_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

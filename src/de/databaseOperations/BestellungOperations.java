@@ -30,6 +30,7 @@ public class BestellungOperations {
 	private final static String BSTNR_MIT_KUNDENNR_AUS_DB_HOLEN = "SELECT * FROM bestellung WHERE kundennr = ?;";
 	private final static String BESTELLUNG_AUF_PRODUKT_PRUEFEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt "
 			+ "ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE kundennr = ?, produkt_id = ? ";
+	
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -39,7 +40,7 @@ public class BestellungOperations {
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
-
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,7 +69,7 @@ public class BestellungOperations {
 				pst.execute();
 
 			}
-
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -86,7 +87,7 @@ public class BestellungOperations {
 			pst.setString(3, bestellung.getDate().toString());
 
 			pst.execute();
-
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -137,6 +138,7 @@ public class BestellungOperations {
 				bestellung.setKunde(kunde);
 				
 			}
+			
 			return bestellungen;
 			
 
@@ -188,7 +190,7 @@ public class BestellungOperations {
 	 */
 	public static boolean pruefeBestellungAufProdukt(Kunde kunde, int produkt_id) {
 		Connection con = DBConnection.getConnection();
-		boolean rückgabe = false;
+		boolean rueckgabe = false;
 		try {
 			PreparedStatement pst = con.prepareStatement(BESTELLUNG_AUF_PRODUKT_PRUEFEN);
 			pst.setInt(1, kunde.getNutzer_id());
@@ -196,16 +198,16 @@ public class BestellungOperations {
 			ResultSet rs = pst.executeQuery();
 			
 			if(!rs.next()) {
-				rückgabe = false;
+				rueckgabe = false;
 			} else {
-				rückgabe = true;
+				rueckgabe = true;
 			}
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return rückgabe;
+		return rueckgabe;
 		
 	}
 	

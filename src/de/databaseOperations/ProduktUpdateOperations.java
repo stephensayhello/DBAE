@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 
 import de.classes.Produkt;
 import de.datenbank.DBConnection;
@@ -30,6 +31,9 @@ public class ProduktUpdateOperations {
 	private final static String ARTIKEL_LOESCHEN = "DELETE FROM produkt WHERE artikelnr = ?";
 	
 	private final static String PRODUKTID_DURCH_ARTIKELNUMMER ="SELECT produkt_id WHERE artikelnr =?;";
+	private final static String HOECHSTE_ID_ZUFALL = "SELECT MAX(produkt_id) FROM produkt;";
+	
+	
 
 	public static void entferneProdukt(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
@@ -37,6 +41,7 @@ public class ProduktUpdateOperations {
 			PreparedStatement pst = con.prepareStatement(PRODUKT_LOESCHEN);
 			pst.setInt(1, produkt.getProdukt_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,6 +54,7 @@ public class ProduktUpdateOperations {
 			PreparedStatement pst = con.prepareStatement(ARTIKEL_LOESCHEN);
 			pst.setInt(1, produkt.getArtikelnr());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,6 +86,7 @@ public class ProduktUpdateOperations {
 				pst.setInt(4, id);
 
 				pst.execute();
+				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -98,6 +105,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(3, id);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,6 +123,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(3, id);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,6 +141,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(3, id);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,6 +158,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(2, id);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -164,6 +175,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(2, id);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -179,6 +191,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(2, id);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -213,6 +226,7 @@ public class ProduktUpdateOperations {
 				pst.setInt(4, artikelnr);
 
 				pst.execute();
+				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -232,6 +246,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(3, artikelnr);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -251,6 +266,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(3, artikelnr);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -270,6 +286,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(3, artikelnr);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -287,6 +304,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(2, artikelnr);
 
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -342,7 +360,7 @@ public class ProduktUpdateOperations {
 			} else if(!rs.next()) {
 				produkt_id = 1;
 			}
-			
+			con.close();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -351,5 +369,26 @@ public class ProduktUpdateOperations {
 		return produkt_id;
 	}
 	
+	// Mtehode für eine Zufällige ID
+	public static int zufallsID() {
+		Connection con = DBConnection.getConnection();
+		int randomZahl = 1;
+		int hoechsteID = 1;
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(HOECHSTE_ID_ZUFALL);
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			hoechsteID = rs.getInt(1);
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		randomZahl = (int) (Math.random() * hoechsteID + 1);
+		
+		return randomZahl;
+		
+	}
 	
 }

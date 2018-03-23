@@ -29,6 +29,7 @@ public class AdresseOperations {
 			pst.setString(5, adresse.getHausnummer());
 
 			pst.execute();
+			con.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -45,7 +46,7 @@ public class AdresseOperations {
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
-
+			con.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,6 +70,7 @@ public class AdresseOperations {
 				String hausnr = rs.getString(5);
 			
 				Adresse adresse = new Adresse(id, strasse, hausnr, plz, ort);
+				con.close();
 				return adresse;
 			}
 
@@ -94,7 +96,7 @@ public class AdresseOperations {
 			pst.setInt(5, adresse.getAdress_id());
 			
 			pst.execute();
-			
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -110,6 +112,7 @@ public class AdresseOperations {
 			PreparedStatement pst = con.prepareStatement(ADRESSE_LOESCHEN);
 			pst.setInt(1, adresse.getAdress_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

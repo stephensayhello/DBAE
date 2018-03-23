@@ -58,7 +58,7 @@ public class NutzerOperations {
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
-
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,7 +90,7 @@ public class NutzerOperations {
 			if (rs.next()) {
 				passwort = rs.getString(1);
 			}
-
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,6 +119,7 @@ public class NutzerOperations {
 			
 
 				Nutzer nutzer = new Nutzer(nutzer_id, password, emailfromdb);
+				con.close();
 				return nutzer;
 			}
 
@@ -147,6 +148,7 @@ public class NutzerOperations {
 			
 
 				Nutzer nutzer = new Nutzer(nutzer_id, password, emailfromdb);
+				con.close();
 				return nutzer;
 			}
 
@@ -174,15 +176,12 @@ public class NutzerOperations {
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int kundennr = rs.getInt(1);
-
-				
-
+				con.close();
 				return true;
 			}
+			
 
-		} catch (
-
-		SQLException e) {
+		} catch (SQLException e) {
 			
 			e.printStackTrace();
 
@@ -202,7 +201,7 @@ public class NutzerOperations {
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int admin_id = rs.getInt(1);
-
+				con.close();
 				return true;
 			}
 
@@ -213,6 +212,7 @@ public class NutzerOperations {
 			e.printStackTrace();
 
 		}
+		
 		return false;
 
 	}
@@ -225,7 +225,7 @@ public class NutzerOperations {
 			pst.setString(1, nutzer.getEmail());
 			pst.setInt(2, nutzer.getNutzer_id());
 			pst.execute();
-
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -238,6 +238,7 @@ public class NutzerOperations {
 			PreparedStatement pst = con.prepareStatement(NUTZER_LOESCHEN);
 			pst.setInt(1, admin.getNutzer_id());
 			pst.execute();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -157,7 +157,7 @@ public class BewertungsOperations {
 	 * @return
 	 */
 	public static boolean prufeaufVorhandeneBestellung(int kundennr, int produkt_id) {
-		boolean rückgabe = false;
+		boolean rueckgabe = false;
 		Connection con = DBConnection.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(SUCHE_BEST_BEWERTUNG);
@@ -165,9 +165,9 @@ public class BewertungsOperations {
 			pst.setInt(2, produkt_id);
 			ResultSet rs = pst.executeQuery();
 			if(!rs.next()) {
-				rückgabe = false;
+				rueckgabe = false;
 			} else if(rs.next()) {
-				rückgabe = true;
+				rueckgabe = true;
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -177,7 +177,7 @@ public class BewertungsOperations {
 		
 		
 		
-		return rückgabe;
+		return rueckgabe;
 	}
 	
 	
@@ -190,10 +190,13 @@ public class BewertungsOperations {
 				pst = con.prepareStatement(ALLE_BEWERT_PRODUKT);
 				pst.setInt(1, produkt_id);
 				ResultSet rs = pst.executeQuery();
+				
 				while(rs.next()) {
 					Bewertung bewertung = new Bewertung(rs.getInt(1), rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getString(5));
 					bewertProdukt.add(bewertung);
-				}	
+				}
+				
+				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

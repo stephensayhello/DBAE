@@ -64,16 +64,17 @@ public class ProduktOperations {
 			
 			if (produktistSchuhe(produkt.getProdukt_id())) {
 				Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
+				
 				return schuhe;
-			}
-
-			if (produktistHose(produkt.getProdukt_id())) {
+				
+			} else if (produktistHose(produkt.getProdukt_id())) {
 				Hose hose = HoseOperations.hoseausdbholen(produkt);
+				
 				return hose;
-			}
-
-			if (produktistShirt(produkt.getProdukt_id())) {
+				
+			} else if (produktistShirt(produkt.getProdukt_id())) {
 				Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
+				
 				return shirt;
 			}
 			con.close();
@@ -96,6 +97,7 @@ public class ProduktOperations {
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
+			con.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -197,6 +199,7 @@ public class ProduktOperations {
 			ResultSet rs = pst.executeQuery();
 			rs.next();
 			id = rs.getInt(1);
+			con.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -292,7 +295,7 @@ public class ProduktOperations {
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int sh_id = rs.getInt(1);
-
+				con.close();
 				return true;
 			}
 
@@ -316,7 +319,7 @@ public class ProduktOperations {
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int ho_id = rs.getInt(1);
-
+				con.close();
 				return true;
 			}
 
@@ -340,7 +343,7 @@ public class ProduktOperations {
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				int sch_id = rs.getInt(1);
-
+				con.close();
 				return true;
 			}
 
@@ -385,7 +388,7 @@ public class ProduktOperations {
 				if (produktistShirt(produkt.getProdukt_id())) {
 					return ShirtOperations.holeShirtausdb(produkt);
 				}
-
+				con.close();
 				return produkt;
 			}
 
