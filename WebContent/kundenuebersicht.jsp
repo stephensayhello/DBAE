@@ -51,15 +51,11 @@ function hide_elements()
 <br />
 <div id="Form" class="container" style ='display: none'>
 
-<table class="table">
-			<tr>
-				<th>ID</th>
-				<th>E-Mail</th>
-				<th>Vorname</th>
-				
 
-			</tr>
-</table>			
+			
+
+		
+
 <form action="KundenOperationsServlet" method="get">
 <table class="table">			
 			<c:forEach var="kunde" items="${kunden}">
