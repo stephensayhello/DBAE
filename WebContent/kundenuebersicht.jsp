@@ -55,18 +55,7 @@ function hide_elements()
 <br />
 <div id="Form">
 
-<table class="table">
-			<tr>
-
-				<th>Preis</th>
-				<th>Name</th>
-				<th>ID</th>
-				<th>Menge</th>
-				<th>Groesse</th>
-				<th>Status</th>
-
-			</tr>
-</table>			
+			
 <form action="KundenOperationsServlet" method="get">
 <table class="table">			
 			<c:forEach var="kunde" items="${kunden}">

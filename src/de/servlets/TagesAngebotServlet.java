@@ -49,6 +49,7 @@ public class TagesAngebotServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		session.removeAttribute("produktlistedb");
 		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
 		session.setAttribute("produktlistedb", produkte);
 		List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
