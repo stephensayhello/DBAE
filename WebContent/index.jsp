@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=Windows-1252"
 	pageEncoding="Windows-1252"%>
     <%@taglib uri="/WEB-INF/tag.tld" prefix="a" %> 
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE >
 <html>
 <head>
@@ -16,6 +17,9 @@
 <h2>Der Newsfeed. Hier finden Sie die neusten Informationen über uns.</h2>
 <p> Admin- Kennung: admin@test.de und Projekt2018
 <br>
+
+
+	
 <form action="TagesAngebotServlet" method="post">
 <button class="button-dbae">zum Tagesangebot</button>
 </form>

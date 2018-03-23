@@ -181,14 +181,14 @@ public class BestellungOperations {
 	}
 	
 	/**
-	 * Diese Methode prüft ob ein Kunde ein Produkt bestellt hat.
-	 * @param kunde der prüfende Kunde.
-	 * @param produkt_id das prüfende Produkt
+	 * Diese Methode prï¿½ft ob ein Kunde ein Produkt bestellt hat.
+	 * @param kunde der prï¿½fende Kunde.
+	 * @param produkt_id das prï¿½fende Produkt
 	 * @return hat / hat nicht das Produkt.
 	 */
 	public static boolean pruefeBestellungAufProdukt(Kunde kunde, int produkt_id) {
 		Connection con = DBConnection.getConnection();
-		boolean rückgabe = false;
+		boolean rÃ¼ckgabe = false;
 		try {
 			PreparedStatement pst = con.prepareStatement(BESTELLUNG_AUF_PRODUKT_PRUEFEN);
 			pst.setInt(1, kunde.getNutzer_id());
@@ -196,16 +196,16 @@ public class BestellungOperations {
 			ResultSet rs = pst.executeQuery();
 			
 			if(!rs.next()) {
-				rückgabe = false;
+				rÃ¼ckgabe = false;
 			} else {
-				rückgabe = true;
+				rÃ¼ckgabe = true;
 			}
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return rückgabe;
+		return rÃ¼ckgabe;
 		
 	}
 	

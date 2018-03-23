@@ -36,7 +36,7 @@ public class BewertungsOperations {
 	/**
 	 * Select Methode.
 	 * Holt eine Bewertung anhand eines Kunden aus der DB.
-	 * @param kunde der Auslöser der Bewertung.
+	 * @param kunde der Auslï¿½ser der Bewertung.
 	 * 
 	 * @return Bewertungsobjekt
 	 */
@@ -91,7 +91,7 @@ public class BewertungsOperations {
 	
 	
 	/**
-	 * Die Methode liefert die hoechste ID aus der DB zurück.
+	 * Die Methode liefert die hoechste ID aus der DB zurï¿½ck.
 	 * @return hoechste ID.
 	 */
 	public static int hoechsteID() {
@@ -114,7 +114,7 @@ public class BewertungsOperations {
 	
 	
 	/**
-	 * Die Methode schreibte eine übergegebende Bewertung in die DB rein.
+	 * Die Methode schreibte eine ï¿½bergegebende Bewertung in die DB rein.
 	 * @param bewertung die neue Bewertung
 	 */
 	public static void neueBewertung(Bewertung bewertung) {
@@ -150,14 +150,14 @@ public class BewertungsOperations {
 	}
 	
 	/**
-	 * Diese Methode überprüft ob eine Bewertung schon vorhanden ist-> Vermeidung von Doppelungen.
+	 * Diese Methode ï¿½berprï¿½ft ob eine Bewertung schon vorhanden ist-> Vermeidung von Doppelungen.
 	 * Logik rs leer = false, rs voll = true;
 	 * @param kundennr
 	 * @param produkt_id
 	 * @return
 	 */
 	public static boolean prufeaufVorhandeneBestellung(int kundennr, int produkt_id) {
-		boolean rückgabe = false;
+		boolean rÃ¼ckgabe = false;
 		Connection con = DBConnection.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(SUCHE_BEST_BEWERTUNG);
@@ -165,9 +165,9 @@ public class BewertungsOperations {
 			pst.setInt(2, produkt_id);
 			ResultSet rs = pst.executeQuery();
 			if(!rs.next()) {
-				rückgabe = false;
+				rÃ¼ckgabe = false;
 			} else if(rs.next()) {
-				rückgabe = true;
+				rÃ¼ckgabe = true;
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -177,7 +177,7 @@ public class BewertungsOperations {
 		
 		
 		
-		return rückgabe;
+		return rÃ¼ckgabe;
 	}
 	
 	
