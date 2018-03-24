@@ -64,8 +64,8 @@ public class WarenkorbServlet extends HttpServlet {
 				
 			Bestellung bestellung = new Bestellung(warenkorbinhalt, kunde);
 			CreatePDF.create(bestellung);
-			mail.SendMailTLSwithAttachement(kunde.getEmail(), "Ihre Bestellung", "Vielen Dank für ihre Bestellung!");
-			BestellungOperations.bestellunganlegen(bestellung);
+			mail.SendMailTLS(kunde.getEmail(), "Ihre Bestellung", "Vielen Dank für ihre Bestellung!");
+			
 			session.removeAttribute("warenkorbinhalt");
 			session.removeAttribute("warenkorb");
 			session.removeAttribute("warenkorbgesamtpreis");

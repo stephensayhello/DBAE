@@ -163,7 +163,7 @@ public class Artikeluebersicht extends HttpServlet {
 			System.out.println(modalProdukt.getAnzahl());
 			System.out.println(modalProdukt.getMenge());
 			System.out.println(modalProdukt.getStatus());
-			if (modalProdukt.getStatus().contains("Lieferbar") && modalProdukt.getMenge() >= modalProdukt.getAnzahl()) {
+			if (modalProdukt.getStatus().equals("Lieferbar") && modalProdukt.getMenge() >= modalProdukt.getAnzahl()) {
 				if (!vorhanden) {
 					warenkorb.getInhalt().add(modalProdukt);
 				}
