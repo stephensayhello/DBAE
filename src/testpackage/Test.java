@@ -32,7 +32,12 @@ import de.logik.Regex;
 import de.utilities.CreatePDF;
 import de.utilities.SaltedHash;
 import de.utilities.mail;
-
+/**
+ * Eine Testklasse mit der Funktionen ohne den Weg u&eber den HTMl Code gepr&ueft werden 
+ * k&oennen.
+ * @author alle
+ *
+ */
 public class Test {
 
 	private static void erstelleTestKunde() throws Exception {

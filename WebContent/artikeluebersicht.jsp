@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/artikeluebersicht.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <title>Insert title here</title>
 
 <a:bootstrap></a:bootstrap>

@@ -6,7 +6,8 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>produkte_anlegen</title>
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
+<title>Neue Produkt einpflegen(Admin)</title>
 <link rel="stylesheet" href="css/generalLayout.css">
 <link rel="stylesheet" href="css/produkt_anlegen.css">
 

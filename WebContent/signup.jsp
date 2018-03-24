@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/generalLayout.css">
 <link rel="stylesheet" href="css/signup.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <title>Signup</title>
 <a:bootstrap></a:bootstrap>
 </head>

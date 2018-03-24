@@ -6,112 +6,76 @@ import java.util.Locale;
 import de.databaseOperations.ProduktOperations;
 
 /**
- * Die Klasse bildet das Produkt p ab.
+ * Die Klasse bildet das Gegenstück zu entsprechenden Tabelle.
  * 
- * @author Paul Blanke, stephen Galla
+ * @author Benjamin Gajewski	
  *
  */
 public class Produkt {
 	// Attribute
+	/**
+	 * DB-ID.
+	 */
 	private int produkt_id;
 	
-	
+	/**
+	 * Der Produktname.
+	 */
 	private String name;
 	/**
-	 * @param beschreibung:
-	 *            Produktbeschreibung.
+	 * Die Produktbeschreibung.
 	 */
 	private String beschreibung;
 	
 	
-	
-	//anzahl  fï¿½r den warenkorb
+	/**
+	 * Anzahl von Produkten f&uer den Warenkorb.
+	 */
 	private int anzahl;
 	/**
-	 * @param preis:
-	 *            Der Produktpreis;
+	 * Produktpreis.
 	 */
 	private double preis;
 	/**
-	 * @param groesse:
-	 *            Die Produktgrï¿½ï¿½e bzw. l, 44 etc.
+	 * Die produktmenge die auf Lager ist.
 	 */
 	private int menge;
 	/**
-	 * @param sichtbarkeit:
-	 *            Produkt wird gezeigt ja/nein.
-	 */
-	/**
-	 * @param status:
-	 *            der Produktstatus zB. nicht lieferbar.
+	 * Sagt aus, ob ein produkt verf&uegbar ist
 	 */
 	private String status;
-
+	/**
+	 * Artikel Nummer
+	 */
 	private int artikelnr;
-	
+	/**
+	 *  Der Gesamtpreis
+	 */
 	private double preismitanzahl;
-	
+	/**
+	 * Hilfsvariable für Darstellung.
+	 */
 	private String preismitanzahlineuro;
-	
+	/**
+	 * Hilfsvariable für Darstellung.
+	 */
 	private String preisineuro;
-	
+	/**
+	 * Versanddauer in Tage.
+	 */
 	public int versanddauer;
-	
+	/**
+	 * Bildpfad
+	 */
 	private String imagePath = "img/dummy.jpg";
-
+// get und set
+	
 	public int getVersanddauer() {
 		return versanddauer;
 	}
 	public void setVersanddauer(int versanddauer) {
 		this.versanddauer = versanddauer;
 	}
-	// konstruktor fï¿½rs holen aus der db oder anlengen mit id
-	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int versanddauer, String status) {
-
-		this.setProdukt_id(produkt_id);
-		this.name = name;
-		this.beschreibung = beschreibung;
-		this.preis = preis;
-		this.menge = menge;
-		this.setArtikelnr(artnr);
-		this.anzahl = 0;
-		this.setStatus(status);
-		this.setPreisineuro(preis);
-		this.setVersanddauer(versanddauer);
-	}
-	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl, int versanddauer,String status, String imagepath) {
-		
-		this.setProdukt_id(produkt_id);
-		this.name = name;
-		this.beschreibung = beschreibung;
-		this.preis = preis;
-		this.menge = menge;
-		this.setArtikelnr(artnr);
-		this.setAnzahl(anzahl);
-		this.setStatus(status);
-		this.setPreismitanzahl(anzahl*preis);
-		this.setPreismitanzahlineuro(anzahl*preis);
-		this.setPreisineuro(preis);
-		System.out.println("blob");
-		this.setVersanddauer(versanddauer);
-		this.setImagePath(imagepath);
-	}
-
-	// konstruktor fï¿½rs anlegen eines produkts
-	public Produkt(String name, String beschreibung, double preis, int menge, int artnr,String status) {
-
-		this.setProdukt_id(ProduktOperations.hoechsteID());
-		this.name = name;
-		this.beschreibung = beschreibung;
-		this.preis = preis;
-		this.menge = menge;
-		this.anzahl=0;
-		this.setStatus(status);
-		this.setPreisineuro(preis);
-
-	}
-
-	
 	public String getName() {
 		return name;
 	}
@@ -225,4 +189,85 @@ public class Produkt {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	
+	
+	// konstruktoren
+	/**
+	 * Konstruktor
+	 * @param produkt_id DB-id.
+	 * @param name selbsterkl&aerend.
+	 * @param beschreibung selbsterkl&aerend.
+	 * @param preis selbsterkl&aerend.
+	 * @param menge selbsterkl&aerend.
+	 * @param artnr selbsterkl&aerend.
+	 * @param versanddauer in Tagen
+	 * @param status lieferbarkeit.
+	 */
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int versanddauer, String status) {
+
+		this.setProdukt_id(produkt_id);
+		this.name = name;
+		this.beschreibung = beschreibung;
+		this.preis = preis;
+		this.menge = menge;
+		this.setArtikelnr(artnr);
+		this.anzahl = 0;
+		this.setStatus(status);
+		this.setPreisineuro(preis);
+		this.setVersanddauer(versanddauer);
+	}
+	/**
+	 * Konstruktor
+	 * @param produkt_id DB-id.
+	 * @param name selbsterkl&aerend.
+	 * @param beschreibung selbsterkl&aerend.
+	 * @param preis selbsterkl&aerend.
+	 * @param menge selbsterkl&aerend.
+	 * @param artnr selbsterkl&aerend.
+	 * @param versanddauer in Tagen
+	 * @param status lieferbarkeit.
+	 * @param imagepath Bildpfad
+	 */
+	public Produkt(int produkt_id, String name, String beschreibung, double preis, int menge, int artnr, int anzahl, int versanddauer,String status, String imagepath) {
+		
+		this.setProdukt_id(produkt_id);
+		this.name = name;
+		this.beschreibung = beschreibung;
+		this.preis = preis;
+		this.menge = menge;
+		this.setArtikelnr(artnr);
+		this.setAnzahl(anzahl);
+		this.setStatus(status);
+		this.setPreismitanzahl(anzahl*preis);
+		this.setPreismitanzahlineuro(anzahl*preis);
+		this.setPreisineuro(preis);
+		System.out.println("blob");
+		this.setVersanddauer(versanddauer);
+		this.setImagePath(imagepath);
+	}
+
+	/**
+	 * Konstruktur f&uer neue Produkte.
+	 * @param name selbsterk&aerend
+	 * @param beschreibung selbsterk&aerend
+	 * @param preis selbsterk&aerend
+	 * @param menge selbsterk&aerend
+	 * @param artnr selbsterk&aerend
+	 * @param status Lieferbarkeit.
+	 */
+	public Produkt(String name, String beschreibung, double preis, int menge, int artnr,String status) {
+
+		this.setProdukt_id(ProduktOperations.hoechsteID());
+		this.name = name;
+		this.beschreibung = beschreibung;
+		this.preis = preis;
+		this.menge = menge;
+		this.anzahl=0;
+		this.setStatus(status);
+		this.setPreisineuro(preis);
+
+	}
+
+	
+	
 }
