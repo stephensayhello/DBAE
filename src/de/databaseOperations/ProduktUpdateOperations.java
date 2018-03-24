@@ -57,7 +57,8 @@ public class ProduktUpdateOperations {
 		}else if(ProduktOperations.produktistShirt(produkt.getProdukt_id())){
 			ShirtOperations.entferneShirtmitId(produkt.getProdukt_id());
 		}
-		
+		System.out.println("entferneprodukt");
+		BewertungsOperations.entferneBewertungmitProd_id(produkt.getProdukt_id());
 		Connection con = DBConnection.getConnection();
 		
 		try {
@@ -65,6 +66,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(1, produkt.getProdukt_id());
 			pst.execute();
 			con.close();
+			System.out.println("produkt entfernt");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

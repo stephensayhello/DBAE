@@ -29,6 +29,7 @@ public class BewertungsOperations {
 	private final static String BEWERTUNG_NEU = "INSERT INTO bewertung VALUES(?, ?, ?, ? ,?);";
 	
 	private final static String BEWERTUNG_LOESCHEN = "DELETE FROM bewertung WHERE bewertung_id = ?;";
+	private final static String BEWERTUNG_LOESCHEN_MIT_PRODID = "DELETE FROM bewertung WHERE produkt_id = ?;";
 	
 	private final static String SUCHE_BEST_BEWERTUNG = "SELECT * FROM bewertung WHERE kundennr = ?, produkt_id= ?;";
 	
@@ -145,6 +146,19 @@ public class BewertungsOperations {
 		try {
 			PreparedStatement pst = con.prepareStatement(BEWERTUNG_LOESCHEN);
 			pst.setInt(1, bewertung.getBewertung_id());
+			pst.execute();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void entferneBewertungmitProd_id(int prod_id) {
+		Connection con = DBConnection.getConnection();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(BEWERTUNG_LOESCHEN_MIT_PRODID);
+			pst.setInt(1, prod_id);
 			pst.execute();
 			con.close();
 		} catch (SQLException e) {

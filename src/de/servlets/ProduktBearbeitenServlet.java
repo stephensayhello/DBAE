@@ -44,13 +44,13 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		if (rolle != null) {
 			if (rolle.contains("admin")) {
 
-				Produkt produkt = (Produkt) request.getAttribute("produkt");
+				Produkt produkt = (Produkt) session.getAttribute("produkt");
 				System.out.println(produkt);
 				ProduktUpdateOperations.entferneProdukt(produkt);
 				session.removeAttribute("produkt");
 				messages.add("Das Produkt wurde aus den Sortiment entfernt !");
 
-				request.getRequestDispatcher("produktinfos.jsp");
+				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 			}
 		} else {
 			messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
