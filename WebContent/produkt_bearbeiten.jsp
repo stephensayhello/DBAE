@@ -49,7 +49,7 @@ Preis: ${produkt.preis }
 
 			</form>
 
-			<form action="ProdouktBearbeitenServlet" method="get">
+			<form action="ProduktBearbeitenServlet" method="get">
 				<button type="submit" class="button-dbae">Produkt löschen</button>
 			</form>
 		</div>

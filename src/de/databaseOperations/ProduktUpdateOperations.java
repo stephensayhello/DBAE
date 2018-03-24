@@ -47,7 +47,7 @@ public class ProduktUpdateOperations {
 	
 
 	public static void entferneProdukt(Produkt produkt) {
-		Connection con = DBConnection.getConnection();
+		
 		
 		if(ProduktOperations.produktistHose(produkt.getProdukt_id())){
 			HoseOperations.entferneHosemitid(produkt.getProdukt_id());
@@ -58,7 +58,7 @@ public class ProduktUpdateOperations {
 			ShirtOperations.entferneShirtmitId(produkt.getProdukt_id());
 		}
 		
-		
+		Connection con = DBConnection.getConnection();
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(PRODUKT_LOESCHEN);
