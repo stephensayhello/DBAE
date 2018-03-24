@@ -48,6 +48,12 @@ public class Bestellung {
 		this.datefromdb = bestelldatum;
 	}
 
+	public Bestellung(int bstnr, String bestelldatum, Kunde kunde) {
+		this.bestellnummer=bstnr;
+		this.datefromdb=bestelldatum;
+		this.kunde=kunde;
+	}
+
 	public int getBestellnummer() {
 		return bestellnummer;
 	}

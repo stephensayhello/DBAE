@@ -35,7 +35,7 @@ function onShow() {
 <h1>Alle verfuegbare Produkte anzeigen</h1>
 <form action="KundenOperationsServlet" method="get">
 <button value="submit" class="button-dbae" id="anzeigen">Anzeigen</button>
-<button class="button-dbae">Loeschen</button>
+
 </form>
 <br/>
 </div>
