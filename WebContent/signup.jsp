@@ -52,15 +52,7 @@
 					size=3> <label for="ort"><b>Ort</b></label> <input class="input-dbae"
 					type="text" placeholder="Ort" name="ort" required size=3>
 			</div>
-			<div class="pw">
-				
-
-
-				<p>
-					By creating an account you agree to our <a href="#"
-						style="color: dodgerblue">Terms & Privacy</a>.
-				</p>
-			</div>
+			
 
 			<div class="clearfix">
 				<button type="submit" class="button-dbae">Sign Up</button>

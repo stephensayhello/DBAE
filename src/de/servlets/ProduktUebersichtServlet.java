@@ -92,7 +92,8 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	    String rolle = (String) session.getAttribute("rolle");
 	    List<String> messages = new ArrayList<>();
 	    session.setAttribute("messages", messages);
-	
+	System.out.println(rolle);
+	if(rolle!=null){
 	    if(rolle.contains("admin")) {
 	    	request.setAttribute("klick", "klick");
 			session.removeAttribute("messages");
@@ -115,7 +116,7 @@ public class ProduktUebersichtServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 			
-	    } else {
+	    }} else {
 	    	messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
 	    	request.getRequestDispatcher("index.jsp").forward(request, response);
 	    }

@@ -39,6 +39,7 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		String rolle = (String) session.getAttribute("rolle");
 		request.setAttribute("messages", messages);
+		if(rolle!=null){
 		if(rolle.contains("admin")) {
 		
 			Produkt produkt = (Produkt) request.getAttribute("produkt");
@@ -48,7 +49,7 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 			messages.add("Das Produkt wurde aus den Sortiment entfernt !");
 		
 			request.getRequestDispatcher("produktinfos.jsp");
-		} else {
+		}} else {
 			messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}

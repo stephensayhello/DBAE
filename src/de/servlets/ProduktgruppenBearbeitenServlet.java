@@ -48,6 +48,7 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
 		String rolle = (String) session.getAttribute("rolle"); 
+		if(rolle!= null){
 		if(rolle.contains("admin")) {
 			session.removeAttribute("messages");
 			double preis1 = 0;
@@ -71,7 +72,7 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 			session.removeAttribute("produkte");
 			session.setAttribute("messages", messages);
 			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
-		} else {
+		} }else {
 			messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
