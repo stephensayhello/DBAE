@@ -48,6 +48,7 @@ function onShow() {
 
 				<th>Preis</th>
 				<th>Name</th>
+				<th>Artikelnr.</th>
 				<th>ID</th>
 				<th>Menge</th>
 				<th>Groesse</th>
@@ -62,6 +63,7 @@ function onShow() {
 					<td>${produkt.preisineuro}</td>				
 					<td>${produkt.name}</td>
 					<td>${produkt.artikelnr}</td>
+					<td>${produkt.produkt_id}</td>
 					<td>${produkt.menge}</td>
 					<td>${produkt.groesse}</td>					
 					<td>${produkt.status}</td>
@@ -90,7 +92,7 @@ function onShow() {
 	<input type ="hidden" value="id" name="pruefe">
 	</form>
 
-	<form action="ProduktUebersichtServlet" method="get" class="input-dbae">
+	<form action="ProduktUebersichtServlet" method="get" >
 	<label for="auswahl" class="input-dbae">Artikel einer Produktgruppe anpassen</label><br/>
 	<select name="auswahl"  class="input-dbae">
 	<c:forEach  var="produkt" items="${produktesortiert}" >
@@ -110,6 +112,5 @@ function onShow() {
 
 
 
-<a:modal messages="${messages}"></a:modal>
 </body>
 </html>

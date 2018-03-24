@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
 
+import de.classes.Hose;
 import de.classes.Produkt;
+import de.classes.Schuhe;
+import de.classes.Shirt;
 import de.datenbank.DBConnection;
 /**
 * 
@@ -35,9 +38,7 @@ public class ProduktUpdateOperations {
 	private final static String PRODUKT_UPDATE_STATUS = "UPDATE produkt SET status = ? WHERE produkt_id =?;";
 
 	private final static String PRODUKT_LOESCHEN = "DELETE FROM produkt WHERE produkt_id = ?";
-	private final static String SCHUH_LOESCHEN = "DELETE FROM schuhe WHERE sch_id = ?";
-	private final static String HOSE_LOESCHEN = "DELETE FROM hose WHERE ho_id = ?";
-	private final static String SHIRT_LOESCHEN = "DELETE FROM shirt WHERE sh_id = ?";
+	
 	
 	private final static String ARTIKEL_LOESCHEN = "DELETE FROM produkt WHERE artikelnr = ?";
 	
@@ -49,12 +50,12 @@ public class ProduktUpdateOperations {
 	public static void entferneProdukt(Produkt produkt) {
 		
 		
-		if(ProduktOperations.produktistHose(produkt.getProdukt_id())){
+		if(produkt instanceof Hose){
 			HoseOperations.entferneHosemitid(produkt.getProdukt_id());
 			
-		}else if(ProduktOperations.produktistSchuhe(produkt.getProdukt_id())){
+		}else if(produkt instanceof Schuhe){
 			SchuheOperations.entferneSchuhemitId(produkt.getProdukt_id());
-		}else if(ProduktOperations.produktistShirt(produkt.getProdukt_id())){
+		}else if(produkt instanceof Shirt){
 			ShirtOperations.entferneShirtmitId(produkt.getProdukt_id());
 		}
 		System.out.println("entferneprodukt");
@@ -74,18 +75,7 @@ public class ProduktUpdateOperations {
 	}
 	
 
-	public static void entferneArtikel(Produkt produkt) {
-		Connection con = DBConnection.getConnection();
-		try {
-			PreparedStatement pst = con.prepareStatement(ARTIKEL_LOESCHEN);
-			pst.setInt(1, produkt.getArtikelnr());
-			pst.execute();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	
 	public static void updateProdukt(int id, int menge, int versanddauer, String status) {
 		if (versanddauer != -1 && menge != -1 && status.contains("nix")) {

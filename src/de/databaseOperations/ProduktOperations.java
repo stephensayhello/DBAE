@@ -294,6 +294,50 @@ public class ProduktOperations {
 
 		return produkte;
 	}
+	public static List<Produkt> ladeProdukteAusDatenbankmitArtnr(int artikelnr) {
+		
+		Connection con = DBConnection.getConnection();
+		List<Produkt> produkte = new ArrayList<Produkt>();
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(ZEIGE_PRODUKT_NACH_ARTNR);
+			pst.setInt(1, artikelnr);
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()) {
+				double preis = rs.getDouble(1);
+				int menge = rs.getInt(2);
+				String name = rs.getString(3);
+				String beschreibung = rs.getString(4);
+				int id = rs.getInt(5);
+				int artnr = rs.getInt(6);
+				int versanddauer = rs.getInt(7);
+				String status = rs.getString(8);
+				String pfad = rs.getString(9);
+				Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, versanddauer, status);
+				produkt.setImagePath(pfad);
+				if (produktistSchuhe(produkt.getProdukt_id())) {
+					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
+					produkte.add(schuhe);
+				}
+				if (produktistHose(produkt.getProdukt_id())) {
+					Hose hose = HoseOperations.hoseausdbholen(produkt);
+					produkte.add(hose);
+				}
+				if (produktistShirt(produkt.getProdukt_id())) {
+					Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
+					produkte.add(shirt);
+				}
+				
+			}
+			con.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return produkte;
+	}
 
 	public static boolean produktistShirt(int id) {
 		Connection con = DBConnection.getConnection();

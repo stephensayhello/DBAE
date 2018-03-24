@@ -44,7 +44,7 @@
 
 			</form>
 
-			<form action="ProduktBearbeitenServlet" method="get">
+			<form action="ProduktgruppenBearbeitenServlet" method="get">
 				<button type="submit" class="button-dbae">Produkt löschen</button>
 			</form>
 		</div>
