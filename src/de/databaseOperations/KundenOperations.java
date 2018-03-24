@@ -131,13 +131,14 @@ public class KundenOperations {
 	}
 	
 	
-	public static void entferneKunde(Kunde kunde, Nutzer nutzer) {
+	public static void entferneKunde(Kunde kunde) {
 		Connection con = DBConnection.getConnection();
 		 try {
 			PreparedStatement pst = con.prepareStatement(KUNDE_LOESCHEN);
-			pst.setInt(1, nutzer.getNutzer_id());
+			pst.setInt(1, kunde.getNutzer_id());
 			pst.execute();
 			con.close();
+			NutzerOperations.entferneNutzermitID(kunde.getNutzer_id());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

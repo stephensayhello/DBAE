@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=Windows-1252"
 	pageEncoding="Windows-1252"%>
-    <%@  taglib prefix="a" uri="/WEB-INF/tag.tld"%> 
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@  taglib prefix="a" uri="/WEB-INF/tag.tld"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,83 +15,91 @@
 
 $(document).ready(function() {
 	var klick = "${klick}";
-	if(klick=="show") {
-		show_elements('Form');
+	if (klick === "") {
+		$("#anzeigen").click();
 	}
-	
 });
 
-function show_elements()
-{
- var elementNames = show_elements.arguments;
- for (var i=0; i<elementNames.length; i++)
-  {
-    var elementName = elementNames[i];
-    document.getElementById(elementName).style.display='block';
-  }
+function onHidde() {
+	document.getElementById("unsichtbar").style.visibility="hidden";
 }
 
-function hide_elements()
-{
- var elementNames = hide_elements.arguments;
- for (var i=0; i<elementNames.length; i++)
-  {
-    var elementName = elementNames[i];
-    document.getElementById(elementName).style.display='none';
-  }
+function onShow() {
+	document.getElementById().style.visibility ="visible";
 }
 
 </script>
 <a:navKunde rolle="${rolle }"></a:navKunde>
-<h1>Kunden Übersicht.</h1> 
-<p>Wählen Sie einen Kunden aus, um diesen zu löschen oder Passwort zurück zu setzen.</p>
-<form action="KundenOperationsServlet" method="post">
-<button class="button-dbae" id="Anzeigen" onclick="show_elements('Form')" id="anzeigen">Anzeigen</button>
-</form>
-<br />
-<div id="Form" class="container" style ='display: none'>
 
-
-			
-
-		
-
+<div class="container">
+<h1>Alle verfuegbare Produkte anzeigen</h1>
 <form action="KundenOperationsServlet" method="get">
-<table class="table">			
+<button value="submit" class="button-dbae" id="anzeigen">Anzeigen</button>
+<button class="button-dbae">Loeschen</button>
+</form>
+<br/>
+</div>
+<br />
+<div class="container">
+<div class="table-responsive">
+<table class="table">
+			<tr>
+
+				<th>KNR</th>
+				<th>Name</th>
+				<th>Email</th>
+				
+			</tr>
 			<c:forEach var="kunde" items="${kunden}">
 
-				<td><input type="radio" value="${kunde.email}" name="auswahl"><td><td>${kunde.nutzer_id}</td><td>   ${kunde.email} </td>
-				<td>  ${kunde.vorname}</td><br/> </input><td/>
+
+
+				<tr>
+					<td>${kunde.nutzer_id}</td>				
+					<td>${kunde.name}</td>
+					<td>${kunde.email}</td>
 					
-				
+
+				</tr>
+
+
+
+
+
 			</c:forEach>
-</table>
-	<label ><br>Passwort<br/></label><input class="input-dbae"  type="password" name="passwort">
-	<button class ="button-dbae"><br>Passwort ändern</br></button>
-	<input type="hidden" value="passwort">
-</form>
-
-
-
-
-
-
-
-
-
-<br />
-<br />
-<form action="KundenOperationsServlet" method="get">
-<label for="Auswahl" ><br> Auswahl:<br/></label>
-<select name="loeschen" class="input-dbae">
-<c:forEach var="kunde" items="${kunden}">
-<option value="kunde.email">${kunde.email}</option>
-</c:forEach>
-</select>
-<input type="hidden" value="loeschen" name="auslesen">
-<button class="button-dbae">Kunden loeschen?</button>
-</form>
+	</table>
+</div>
 </div>
 
-</body>
+
+<div class="container">
+	<form action="KundeBearbeitenServlet" method="get" >
+	<label for="auswahlkunde" class="input-dbae">Kundenauswahl um neues Passwort zu setzen.</label>
+	<select name="auswahlkunde" class ="input-dbae">
+	<c:forEach  var="kunde" items="${ kunden}" >
+	<option value= "${kunde.nutzer_id}" >${kunde.name}, ${kunde.nutzer_id}</option>
+	</c:forEach>
+	</select>
+	<button value="submit"  class= "button-dbae">Bearbeiten</button>
+
+	</form>
+	<form action="KundenOperationsServlet" method="post" >
+	<label for="auswahl" class="input-dbae">Kunde löschen</label>
+	<select name="auswahl" class ="input-dbae">
+	<c:forEach  var="kunde" items="${kunden}" >
+	<option value= "${kunde.nutzer_id}" >${kunde.name}, ${kunde.nutzer_id}</option>
+	</c:forEach>
+	</select>
+	<button value="submit"  class= "button-dbae">Kunde löschen</button>
+	
+	</form>
+
+	
+</div>
+	
+
+
+
+
+</body>	
 </html>

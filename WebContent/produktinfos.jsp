@@ -76,9 +76,7 @@ function onShow() {
 	</table>
 </div>
 </div>
-<br />
 
-<br/>
 
 <div class="container">
 	<form action="ProduktUebersichtServlet" method="get" >
@@ -91,12 +89,7 @@ function onShow() {
 	<button value="submit"  class= "button-dbae">Bearbeiten</button>
 	<input type ="hidden" value="id" name="pruefe">
 	</form>
-</div>
-<br />
 
-<br/>
-
-<div class="container">
 	<form action="ProduktUebersichtServlet" method="get" class="input-dbae">
 	<label for="auswahl" class="input-dbae">Artikel einer Produktgruppe anpassen</label><br/>
 	<select name="auswahl"  class="input-dbae">
@@ -106,7 +99,7 @@ function onShow() {
 	</select>
 	<br/>
 	<input type="hidden" value="artikelnr" name="pruefe">
-	<button value="submit" class="button-dbae">Verändern</button>
+	<button value="submit" class="button-dbae">Bearbeiten</button>
 	</form>
 </div>
 
@@ -114,7 +107,7 @@ function onShow() {
 	
 
 
-<br />
+
 
 
 <a:modal messages="${messages}"></a:modal>

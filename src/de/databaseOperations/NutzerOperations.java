@@ -18,19 +18,19 @@ public class NutzerOperations {
 
 	private final static String NUTZER_ANLEGEN = "INSERT INTO nutzer VALUES (?, ?, ?)";
 
-	private final static String PASSWORT_ABFRAGE = "SELECT passwort FROM nutzer WHERE email= ?;";
-
+	
 	private final static String NUTZER_ABFRAGE = "SELECT * FROM nutzer WHERE email = ?;";
 
 	private final static String KUNDEN_ABFRAGE_NACH_KUNDENNNR = "SELECT * FROM kunde WHERE kundennr = ?;";
 
 	private final static String ADMIN_ABFRGAE_NACH_ADMINID = "SELECT * FROM admin WHERE admin_id = ?;";
 
-	private final static String NUTZER_UPDATE = "UPDATE nutzer SET email = ? WHERE nutzer_id =?";
+	private final static String NUTZER_UPDATE_EMAIL = "UPDATE nutzer SET email = ? WHERE nutzer_id =?;";
+	private final static String NUTZER_UPDATE_PASSWORT = "UPDATE nutzer SET passwort = ? WHERE nutzer_id =?;";
 
 	private final static String MAX_NUTZER_ID = "SELECT MAX(nutzer_id) FROM nutzer;";
 	
-	private final static String NUTZER_LOESCHEN = "DELETE FROM kunde WHERE nutzer_id = ?";
+	private final static String NUTZER_LOESCHEN = "DELETE FROM nutzer WHERE nutzer_id = ?";
 	
 	private final static String NUTZER_NACH_ID = "SELECT * FROM nutzer WHERE nutzer_id =?";
 
@@ -82,31 +82,7 @@ public class NutzerOperations {
 	 * @return das Passwort ist richtig / oder falsch.
 	 */
 
-	public static boolean login(Nutzer nutzer) {
-		boolean passwortabfrage = false;
-		String passwort = "";
-		Connection con = DBConnection.getConnection();
-
-		try {
-			PreparedStatement pst = con.prepareStatement(PASSWORT_ABFRAGE);
-			pst.setString(1, nutzer.getEmail());
-			ResultSet rs = pst.executeQuery();
-			if (rs.next()) {
-				passwort = rs.getString(1);
-			}
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		if (nutzer.getPasswort().contains(passwort)) {
-			passwortabfrage = true;
-		} else {
-			// Tue nichts.
-		}
-		return passwortabfrage;
-	}
+	
 
 	public static Nutzer nutzerAusDbHolen(String email) {
 
@@ -225,7 +201,7 @@ public class NutzerOperations {
 		Connection con = DBConnection.getConnection();
 
 		try {
-			PreparedStatement pst = con.prepareStatement(NUTZER_UPDATE);
+			PreparedStatement pst = con.prepareStatement(NUTZER_UPDATE_EMAIL);
 			pst.setString(1, nutzer.getEmail());
 			pst.setInt(2, nutzer.getNutzer_id());
 			pst.execute();
@@ -236,17 +212,45 @@ public class NutzerOperations {
 		}
 	}
 	
-	public static void entferneNutzer(Nutzer admin) {
+	public static void entferneNutzer(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
 		 try {
 			PreparedStatement pst = con.prepareStatement(NUTZER_LOESCHEN);
-			pst.setInt(1, admin.getNutzer_id());
+			pst.setInt(1, nutzer.getNutzer_id());
 			pst.execute();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public static void entferneNutzermitID(int id) {
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(NUTZER_LOESCHEN);
+			pst.setInt(1, id);
+			pst.execute();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void setzeNeuesPasswort(String pw, int id){
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(NUTZER_UPDATE_PASSWORT);
+			pst.setString(1, pw);
+			pst.setInt(2, id);
+			
+			pst.execute();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

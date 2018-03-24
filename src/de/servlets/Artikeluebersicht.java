@@ -152,7 +152,7 @@ public class Artikeluebersicht extends HttpServlet {
 						modalProdukt = produkt;
 						break;
 					} else {
-						
+
 					}
 				}
 			}
@@ -169,18 +169,19 @@ public class Artikeluebersicht extends HttpServlet {
 				}
 			} else {
 				messages.add("Zur Zeit nicht lieferbar!");
-				
+
 			}
 
 		}
-		request.setAttribute("messages", messages);
+		if (messages.size() != 0) {
+			request.setAttribute("messages", messages);
+		}
 		session.setAttribute("warenkorb", warenkorb);
 		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
-		
+
 		session.removeAttribute("warenversanddauer");
 		session.setAttribute("warenversanddauer", warenkorb.gethoechsteVersanddauer());
-		
-		
+
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}
 

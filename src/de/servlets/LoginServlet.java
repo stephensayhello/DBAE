@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		if (nutzer != null) {
 			if (!SaltedHash.isPwdEqual(password, nutzer.getPasswort())) {
-				// hier fehlt noch was
+				
 				String fehler = "passwort falsch";
 				messages.add(fehler);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
