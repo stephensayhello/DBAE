@@ -35,6 +35,10 @@ public class ProduktUpdateOperations {
 	private final static String PRODUKT_UPDATE_STATUS = "UPDATE produkt SET status = ? WHERE produkt_id =?;";
 
 	private final static String PRODUKT_LOESCHEN = "DELETE FROM produkt WHERE produkt_id = ?";
+	private final static String SCHUH_LOESCHEN = "DELETE FROM schuhe WHERE sch_id = ?";
+	private final static String HOSE_LOESCHEN = "DELETE FROM hose WHERE ho_id = ?";
+	private final static String SHIRT_LOESCHEN = "DELETE FROM shirt WHERE sh_id = ?";
+	
 	private final static String ARTIKEL_LOESCHEN = "DELETE FROM produkt WHERE artikelnr = ?";
 	
 	private final static String PRODUKTID_DURCH_ARTIKELNUMMER ="SELECT produkt_id WHERE artikelnr =?;";
@@ -44,6 +48,18 @@ public class ProduktUpdateOperations {
 
 	public static void entferneProdukt(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
+		
+		if(ProduktOperations.produktistHose(produkt.getProdukt_id())){
+			HoseOperations.entferneHosemitid(produkt.getProdukt_id());
+			
+		}else if(ProduktOperations.produktistSchuhe(produkt.getProdukt_id())){
+			SchuheOperations.entferneSchuhemitId(produkt.getProdukt_id());
+		}else if(ProduktOperations.produktistShirt(produkt.getProdukt_id())){
+			ShirtOperations.entferneShirtmitId(produkt.getProdukt_id());
+		}
+		
+		
+		
 		try {
 			PreparedStatement pst = con.prepareStatement(PRODUKT_LOESCHEN);
 			pst.setInt(1, produkt.getProdukt_id());
@@ -54,6 +70,7 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
+	
 
 	public static void entferneArtikel(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
@@ -67,7 +84,7 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static void updateProdukt(int id, int menge, int versanddauer, String status) {
 		if (versanddauer != -1 && menge != -1 && status.contains("nix")) {
 			updateProduktVersanddauerundMenge(id, menge, versanddauer);

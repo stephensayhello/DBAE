@@ -59,4 +59,16 @@ public class ShirtOperations {
 			e.printStackTrace();
 		}
 	}
+	public static void entferneShirtmitId(int id) {
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(SHIRT_LOESCHEN);
+			pst.setInt(1, id);
+			pst.execute();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

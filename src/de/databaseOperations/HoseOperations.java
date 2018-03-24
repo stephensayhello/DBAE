@@ -62,5 +62,17 @@ public class HoseOperations {
 			e.printStackTrace();
 		}
 	}
+	public static void entferneHosemitid(int id) {
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(HOSE_LOESCHEN);
+			pst.setInt(1, id);
+			pst.execute();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
