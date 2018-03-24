@@ -56,7 +56,7 @@ function onShow() {
 
 				<tr>
 					<td>${kunde.nutzer_id}</td>				
-					<td>${kunde.name}</td>
+					<td>${kunde.nachname}</td>
 					<td>${kunde.email}</td>
 					
 
@@ -77,7 +77,7 @@ function onShow() {
 	<label for="auswahlkunde" class="input-dbae">Kundenauswahl um neues Passwort zu setzen.</label>
 	<select name="auswahlkunde" class ="input-dbae">
 	<c:forEach  var="kunde" items="${ kunden}" >
-	<option value= "${kunde.nutzer_id}" >${kunde.name}, ${kunde.nutzer_id}</option>
+	<option value= "${kunde.nutzer_id}" >${kunde.nachname}, ${kunde.nutzer_id}</option>
 	</c:forEach>
 	</select>
 	<button value="submit"  class= "button-dbae">Bearbeiten</button>
@@ -87,7 +87,7 @@ function onShow() {
 	<label for="auswahl" class="input-dbae">Kunde löschen</label>
 	<select name="auswahl" class ="input-dbae">
 	<c:forEach  var="kunde" items="${kunden}" >
-	<option value= "${kunde.nutzer_id}" >${kunde.name}, ${kunde.nutzer_id}</option>
+	<option value= "${kunde.nutzer_id}" >${kunde.nachname}, ${kunde.nutzer_id}</option>
 	</c:forEach>
 	</select>
 	<button value="submit"  class= "button-dbae">Kunde löschen</button>

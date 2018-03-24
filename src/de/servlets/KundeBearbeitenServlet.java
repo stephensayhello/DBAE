@@ -37,7 +37,7 @@ public class KundeBearbeitenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<String> messages = new ArrayList<>();
-		String auswahl = request.getParameter("kundenauswahl");
+		String auswahl = request.getParameter("auswahlkunde");
 		int kundenauswahl = Integer.parseInt(auswahl);
 		Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen(kundenauswahl));
 		String newRandomPw = randomStringGenerator.generateString();
