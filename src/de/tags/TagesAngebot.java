@@ -11,19 +11,23 @@ import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.utilities.ReadFromFile;
-
+/**
+ * Diese Klasse liefert einen Tag speziell f&uer das tagesangebot dazu.
+ * @author Paul Blanke
+ *
+ */
 public class TagesAngebot  extends TagSupport{
 	/**
-	 * 
+	 * autogeneriert.
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Ein Produkt Objekt.
+	 * Ein Produkt Objekt. @Produkt
 	 */
 	Produkt produkt;
 	/**
-	 * Eine Liste von Bewertungen.
 	 * 
+	 * die durchschnittliche Punktzahl.
 	 */
 	int durchschnitt;
 	/**
@@ -65,7 +69,7 @@ public class TagesAngebot  extends TagSupport{
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
 		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getArtikelnr()));
 		artikelview = artikelview.replace("PLATZHALTER4", produktpreis);
-//		artikelview = artikelview.replace("PLATZHALTER6", );
+		artikelview = artikelview.replace("PLATZHALTER6",Integer.toString(durchschnitt) );
 		if(produkt.getImagePath().isEmpty()) {
 			artikelview = artikelview.replace("PLATZHALTER5", "img/dummy.jpg");
 

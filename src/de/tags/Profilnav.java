@@ -5,8 +5,15 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import de.utilities.ReadFromFile;
 
-
+/**
+ * Der tag liefert eine Navigationsleiste f&uer die Anforderung Daten bearbeiten.
+ * @author Stephen Galla
+ *
+ */
 public class Profilnav extends TagSupport {
+	/**
+	 * Autogeneriert
+	 */
 	private static final long serialVersionUID = 1L;
 
 	public int doStartTag() {

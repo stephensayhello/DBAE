@@ -5,7 +5,11 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import de.utilities.ReadFromFile;
 
-
+/**
+ * Dieser tag liefert die ben&oetigte Beschreibung f&uer Boostrap. 
+ * @author Stephen Galla
+ *
+ */
 public class Bootstrap extends TagSupport {
 	private static final long serialVersionUID = 1L;
 
