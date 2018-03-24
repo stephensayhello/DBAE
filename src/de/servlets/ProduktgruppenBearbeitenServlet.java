@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import de.classes.Produkt;
+import de.databaseOperations.ProduktOperations;
 import de.databaseOperations.ProduktUpdateOperations;
 import de.logik.Regex;
 
@@ -36,43 +37,76 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+		HttpSession session = request.getSession();
+		List<String> messages = new ArrayList<String>();
+		List<Produkt> produkte = new ArrayList<>();
+		Produkt produkt = (Produkt) session.getAttribute("produkt");
+		session.removeAttribute("produkt");
+		String rolle = (String) session.getAttribute("rolle");
+		session.removeAttribute("messages");
+		session.setAttribute("messages", messages);
+		System.out.println("prodgrup");
+		System.out.println(produkte);
+		System.out.println(produkt);
+		if (rolle != null) {
+			if (rolle.contains("admin")) {
+				produkte = ProduktOperations.ladeProdukteAusDatenbankmitArtnr(produkt.getArtikelnr());
+				for (Produkt produkt2 : produkte) {
+					System.out.println(produkt);
+					ProduktUpdateOperations.entferneProdukt(produkt2);
+				}
+
+				messages.add("Artikel gelöscht!");
+				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
+
+			}
+
+		} else {
+			messages.add("Bitte einloggen!");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+
+		}
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
-		String rolle = (String) session.getAttribute("rolle"); 
-		if(rolle!= null){
-		if(rolle.contains("admin")) {
-			session.removeAttribute("messages");
-			double preis1 = 0;
-			Produkt produkt = (Produkt) session.getAttribute("produkt");
-			session.removeAttribute("produkt");
-			String name = request.getParameter("name");
-			String preis = request.getParameter("preis");
-			String beschreibung = request.getParameter("beschreibung");
-			if (produkt != null) {
-				if (Regex.pruefeNurDouble(preis)) {
-					preis1 = Double.parseDouble(preis);
+		String rolle = (String) session.getAttribute("rolle");
+		session.removeAttribute("messages");
+		if (rolle != null) {
+			if (rolle.contains("admin")) {
+
+				double preis1 = 0;
+				Produkt produkt = (Produkt) session.getAttribute("produkt");
+				session.removeAttribute("produkt");
+				String name = request.getParameter("name");
+				String preis = request.getParameter("preis");
+				String beschreibung = request.getParameter("beschreibung");
+				if (produkt != null) {
+					if (Regex.pruefeNurDouble(preis)) {
+						preis1 = Double.parseDouble(preis);
+					}
+					ProduktUpdateOperations.updateProduktgruppemitArtikelnr(produkt.getArtikelnr(), name, preis1,
+							beschreibung);
+
+					messages.add("Alles in Butter!");
+
+				} else {
+					messages.add("fehler");
+
 				}
-				ProduktUpdateOperations.updateProduktgruppemitArtikelnr(produkt.getArtikelnr(), name, preis1, beschreibung);
-
-				messages.add("Alles in Butter!");
-
-			} else {
-				messages.add("fehler");
-			
+				session.removeAttribute("produkte");
+				session.setAttribute("messages", messages);
+				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 			}
-			session.removeAttribute("produkte");
-			session.setAttribute("messages", messages);
-			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
-		} }else {
+		} else {
 			messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
