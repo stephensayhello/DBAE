@@ -1,66 +1,38 @@
 package de.classes;
 /**
- * Das ist die Klasse Admin.
+ * Diese Klasse präsentiert die Rolle des Admins.
  * @author Paul Blanke.
+ * @see {@link Nutzer}
  *
  */
 public class Admin extends Nutzer {
 
-	
+	/**
+	 * Der benutzername des Admin
+	 */
 	private String name;
-	
-	
-	
+	// get und Set
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	// konstruktor
+	/**
+	 * 
+	 * @param nutzer_id DB-Id.
+	 * @param email Die E-Mail die als Benutzer dient.
+	 * @param passwort DasPpasswort des Admin.
+	 * @param name Benutzername.
+	 */
 	public Admin(int nutzer_id, String email, String passwort,String name) {
 		super( nutzer_id, email, passwort);
-		this.name = name;
+		this.setName(name);
 		
 	}
 
 
-// Konstruktoren.	
-	
-	
-	
-	
-	
-// Methoden
-	
-	
-	/**
-	 *  Diese Methode loescht einen vorgegebenden Kunden.
-	 * @param kunde: der zu loeschende kunde.
-	 */
-	public void loescheKunde(Kunde kunde) {
-		
-	}
-	
-	
-	
-	/**
-	 * Diese Methode set beim einen Kunden das Passwort zurï¿½ck.
-	 * 
-	 * @param kunde: der zu aendere Kunde.
-	 * @return der geaenderte Kunde.
-	 */
-	public Kunde anederePasswort(Kunde kunde) {
-		return kunde;
-	}
-	
-	/**
-	 *  Diese Methode loescht ein Produkt.
-	 * @param produkte: das Produkt.
-	 */
-	public void loescheProdukte(Produkt produkte) {
-		
-	}
-	/**
-	 * Diese Methode verï¿½ndert die Daten eines Prdoukt bsp.
-	 * den lieferstatus etc.
-	 * @param produkte: Das ï¿½ndere Produkt.
-	 * @return das fertige Produkt.
-	 */
-	public Produkt anedereDaten(Produkt produkte) {
-		return produkte;
-	}
 }

@@ -7,6 +7,7 @@
 <head>
 <link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="css/generalLayout.css">
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <a:bootstrap></a:bootstrap>

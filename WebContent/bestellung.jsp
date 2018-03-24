@@ -8,18 +8,16 @@
 <link rel="stylesheet" href="css/generalLayout.css">
 <link rel="stylesheet" href="css/profilnav.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<title>Insert title here</title>
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
+<title>Bestellung</title>
 <a:bootstrap></a:bootstrap>
 </head>
+
+
 <body>
 <a:navKunde rolle="${rolle }"></a:navKunde>
 <div class = "container">
 <a:profilnav></a:profilnav>
-
-
-
-
 <table class = "table">
 <c:forEach var="bestellung" items="${fruehereBestellungen}">
 <tr>

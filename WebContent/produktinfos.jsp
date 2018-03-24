@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <title>Produktinfos</title>
 <link rel="stylesheet" href="css/generalLayout.css">
 <link rel="stylesheet" href="css/produkt_anlegen.css">

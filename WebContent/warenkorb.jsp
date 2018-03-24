@@ -7,7 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/generalLayout.css">
-<title>Insert title here</title>
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
+<title>Ihr Warenkorb</title>
 <a:bootstrap></a:bootstrap>
 </head>
 <body>

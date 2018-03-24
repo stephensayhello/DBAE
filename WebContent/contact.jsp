@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <link rel="stylesheet" href="css/generalLayout.css">
 <title>Support Anfrage</title>
 <a:bootstrap></a:bootstrap>

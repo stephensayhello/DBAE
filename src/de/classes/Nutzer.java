@@ -8,30 +8,30 @@ import java.sql.SQLException;
 import de.datenbank.DBConnection;
 
 /**
- * Diese Klasse repräsentiert den Nutzer.
+ * Diese Klasse bildet den Nutzer, der als Ausgangsbasis der Vererbung eine Elternklasse
+ * bildet.
  * 
- * @author paul4
+ * @author Stephen Galla
  *
  */
 public class Nutzer {
 	/**
-	 * @param Der
-	 *            Name des Nutzers.
+	 * DB-ID.
+	 */
+	private int nutzer_id;
+	/**
+	 * Die E_Mail.
 	 */
 	private String email;
-
+	/**
+	 * Das passwort in Klartext.
+	 */
 	private String passwort;
 
-	private int nutzer_id;
-
-	public Nutzer(int nutzerid, String passwort, String email) {
-
-		this.nutzer_id = nutzerid;
-		this.email = email;
-		this.passwort = passwort;
-
-	}
-
+	
+// get und Set
+	
+	
 	public int getNutzer_id() {
 		return nutzer_id;
 	}
@@ -55,5 +55,19 @@ public class Nutzer {
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
 	}
+	/**
+	 * Konstruktor
+	 * @param nutzerid DB-Id
+	 * @param passwort Das verwendete Passwort
+	 * @param email Die E-mail als Benutzername
+	 */
+	public Nutzer(int nutzerid, String passwort, String email) {
 
+		this.nutzer_id = nutzerid;
+		this.email = email;
+		this.passwort = passwort;
+
+	}
+
+	
 }

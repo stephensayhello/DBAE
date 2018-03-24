@@ -1,53 +1,38 @@
 package de.classes;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import de.databaseOperations.BestellungOperations;
-
+/**
+ * Diese Klasse bildet die Bestellungen aus der DB ab.
+ * @author Paul Blanke.
+ *
+ */
 public class Bestellung {
+	/**
+	 * DB-ID.
+	 */
 	private int bestellnummer;
-
+	/**
+	 * Eine Liste aller Produkt die zu einer Bestellung dazu gehören.
+	 */
 	private List<Produkt> bestellliste;
-
+	/**
+	 * Das Datum der Bestellung.
+	 */
 	private Date date;
-
+	/**
+	 * Der Kunde zu dem die bestellung gehört.
+	 */
 	private Kunde kunde;
-
+	/**
+	 * Hilfsvariable. 
+	 */
 	private String datefromdb;
 
-	public Bestellung(int bestellnummer, List<Produkt> bestellliste, Kunde kunde, String datefromdb) {
-
-		this.bestellnummer = bestellnummer;
-		this.bestellliste = bestellliste;
-		this.date = null;
-		this.kunde = kunde;
-		this.setDatefromdb(datefromdb);
-	}
-
-	public Bestellung(int bestellnummer, List<Produkt> bestellliste, Kunde kunde) {
-
-		this.bestellnummer = bestellnummer;
-		this.bestellliste = bestellliste;
-		this.date = new Date();
-		this.kunde = kunde;
-	}
-
-	public Bestellung(List<Produkt> bestellliste, Kunde kunde) {
-
-		this.bestellnummer = BestellungOperations.hoechsteID();
-		this.bestellliste = bestellliste;
-		this.date = new Date();
-		this.kunde = kunde;
-	}
-
-	public Bestellung(int bstnr, String bestelldatum) {
-		this.bestellnummer = bstnr;
-		this.datefromdb = bestelldatum;
-	}
-
+	
+	// Get und Set Methoden
 	public int getBestellnummer() {
 		return bestellnummer;
 	}
@@ -91,5 +76,56 @@ public class Bestellung {
 	public void setDatefromdb(String datefromdb) {
 		this.datefromdb = datefromdb;
 	}
+	// konstruktoren
+	
+	/**
+	 * Konstruktor
+	 * Die ID wird aus der DB geholt.
+	 * @param bestellliste Liste von produkten
+	 * @param kunde der bestellene Kunde.
+	 */
+	public Bestellung(List<Produkt> bestellliste, Kunde kunde) {
 
+		this.bestellnummer = BestellungOperations.hoechsteID();
+		this.bestellliste = bestellliste;
+		this.date = new Date();
+		this.kunde = kunde;
+	}
+	/**
+	 * Konstruktor
+	 * @param bstnr DB-ID
+	 * @param bestelldatum aus der DB.
+	 */
+	public Bestellung(int bstnr, String bestelldatum) {
+		this.bestellnummer = bstnr;
+		this.datefromdb = bestelldatum;
+	}
+	/**
+	 * Kontruktor
+	 * @param bestellnummer DB-ID
+	 * @param bestellliste liste von produkten
+	 * @param kunde Der Kunde der bestellt hat.
+	 * @param datefromdb Datum aus der DB.
+	 */
+	public Bestellung(int bestellnummer, List<Produkt> bestellliste, Kunde kunde, String datefromdb) {
+
+		this.bestellnummer = bestellnummer;
+		this.bestellliste = bestellliste;
+		this.date = null;
+		this.kunde = kunde;
+		this.setDatefromdb(datefromdb);
+	}
+	/**
+	 * Kontruktor
+	 * @param bestellnummer DB-ID.
+	 * @param bestellliste Eine Liste von produkten
+	 * @param kunde Der Kunde, der bestellt hat.
+	 */
+	public Bestellung(int bestellnummer, List<Produkt> bestellliste, Kunde kunde) {
+
+		this.bestellnummer = bestellnummer;
+		this.bestellliste = bestellliste;
+		this.date = new Date();
+		this.kunde = kunde;
+	}
 }
