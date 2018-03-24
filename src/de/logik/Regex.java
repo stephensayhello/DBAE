@@ -3,8 +3,8 @@ package de.logik;
 import java.util.regex.Pattern;
 /**
  * Diese Klasse stellt Regex Überprüfungen bereit.
- * @author Benjamin 
- *
+ * @author Benjamin Gajewski
+ * 
  */
 public class Regex {
 	/**

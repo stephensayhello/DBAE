@@ -16,14 +16,26 @@ import de.classes.Bestellung;
 import de.classes.Produkt;
 
 /**
- * Nutzt Apache PDFBox.
- * @author paul4
+ * Die Klasse erzeugt eine PDF Datei in dem ordner /WebContent/pdf
+ * @author Paul Blanke
  *
  */
 public class CreatePDF {
-	// Diese Klasse erzeugt ein PDF File.
+	/**
+	 * Pfad der PDF Datei.
+	 */
 	final  static String destination = "WebContent/pdf/bestellung.pdf";
-	
+	/**
+	 * Diese Methode mithilfe von Apache PDFbox eine PDF Datei.
+	 * als erstes wird ein File in ein Document umgewandelt 
+	 * und dann ein PDDocument erstellt, das mit Ihalt gef&uellt wird.
+	 * 
+	 * 
+	 * 
+	 * @param bestellung @Bestellung ein Objekt der Klasse Bestellung, was in eine PDF Datei geschrieben wird.
+	 * @throws InvalidPasswordException PDFErzeugung Fehler fangen.
+	 * @throws IOException PDFErzeugung Fehler fangen.
+	 */
 	public  static void create(Bestellung bestellung) throws InvalidPasswordException, IOException {
 		// technische Voraussetzungen.
 		File file = new File(destination);
@@ -64,9 +76,48 @@ public class CreatePDF {
 		doc.close();
 		
 		
+	}
+	
+	/**
+	 * Diese Methode erzeugt eine PDF Datei f&uer den Mailversand.
+	 * ToDo Methode unfertig
+	 * @return eine PDf Datei f&uer den Mailversand
+	 * @throws IOException 
+	 */
+	public static  PDDocument erstelleDocumetFuerMailVersand(Bestellung bestellung) throws IOException {
+		PDDocument document = new PDDocument();
+		PDPage ersteSeite = new PDPage();
+		
+		PDPageContentStream contentstream = new PDPageContentStream(document, ersteSeite);
+		List<Produkt> liste = bestellung.getBestellliste();
+		// Der text wird geschrieben
+		contentstream.beginText();
+		contentstream.setFont(PDType1Font.TIMES_ROMAN, 12);
+		contentstream.newLineAtOffset(25, 500);
+		contentstream.setLeading(14.5f);
+		String text = "Ihre Bestellung im Detail: ";
+		contentstream.showText(text);
+		contentstream.newLine();
+		contentstream.newLine();
+		text = "Bestelldetails: " + bestellung.getBestellnummer();
+		contentstream.showText(text);
+		contentstream.newLine();
+		contentstream.newLine();
+		for(Produkt produkt: liste) {
+			contentstream.showText(produkt.getName() + " Anzahl:" +  produkt.getAnzahl() + "  Preis: " +  produkt.getPreismitanzahl());
+			contentstream.newLine();
+		}
 		
 		
+		contentstream.newLine();
+		Date date = new Date();
+		contentstream.showText("Zeitpunkt der Bestellung:" +  date.toString());
+		contentstream.endText();
+		contentstream.close();
+		document.addPage(ersteSeite);
 		
+		
+		return document;
 	}
 	
 }
