@@ -24,6 +24,8 @@ import de.classes.Warenkorb;
 import de.databaseOperations.ProduktOperations;
 
 /**
+ * Dieses Servlet liefert Daten aus der DB f&uer die Artikel&uebersicht dazu.
+ * @author Stephen Galla
  * Servlet implementation class Artikeluebersicht
  */
 @WebServlet("/Artikeluebersicht")

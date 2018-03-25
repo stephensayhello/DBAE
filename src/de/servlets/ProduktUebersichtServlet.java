@@ -17,6 +17,8 @@ import de.databaseOperations.ProduktOperations;
 
 /**
  * Servlet implementation class ProduktÜbersichtServlet
+ * @author Benjamin 
+ * Dieses Servlet liefert dem Admin eine Übersicht über alle verfügbaren Produkte.
  */
 @WebServlet("/ProduktUebersichtServlet")
 public class ProduktUebersichtServlet extends HttpServlet {
@@ -36,10 +38,11 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Daten holen
 		HttpSession session = request.getSession();
 		String rolle = (String) session.getAttribute("rolle");
 		List<String> messages = new ArrayList<>();
-
+		// logik
 		if (rolle.contains("admin")) {
 			String pruefe = request.getParameter("pruefe");
 			String auswahl = request.getParameter("auswahl");
@@ -90,10 +93,12 @@ public class ProduktUebersichtServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Daten holen
 		HttpSession session = request.getSession();
 		String rolle = (String) session.getAttribute("rolle");
 		List<String> messages = new ArrayList<>();
 		session.setAttribute("messages", messages);
+		// logik
 		System.out.println(rolle);
 		if (rolle != null) {
 			if (rolle.contains("admin")) {

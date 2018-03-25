@@ -18,6 +18,8 @@ import de.utilities.SaltedHash;
 
 /**
  * Servlet implementation class ProfilServlet
+ * Dieses Servlet überprüft den Login bevor der Kunde seine Daten einsehen kann.
+ * @author Stephen Galla
  */
 @WebServlet("/ProfilServlet")
 public class ProfilServlet extends HttpServlet {
@@ -37,8 +39,8 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// Methode leer
+		doPost(request, response);
 	}
 
 	/**
@@ -47,7 +49,7 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		// Daten holen
 		HttpSession session = request.getSession();
 		session.removeAttribute("fruehereBestellungen");
 		String password = request.getParameter("psw");
@@ -57,6 +59,7 @@ public class ProfilServlet extends HttpServlet {
 		
 		session.setAttribute("fruehereBestellungen", bestellungen);
 		request.setAttribute("messages", messages);
+		// Logik
 		if (kunde == null) {
 			String bitteinloggen = "Bitte loggen Sie sich ein, um ihr Profil sehen zu können.";
 			messages.add(bitteinloggen);

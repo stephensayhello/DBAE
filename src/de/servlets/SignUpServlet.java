@@ -19,6 +19,8 @@ import de.utilities.mail;
 
 /**
  * Servlet implementation class SignUpServlet
+ * Dieses Servlet liefert die Logik um Neukunden anzulegen, deren Daten zu prüfen und sie dann in 
+ * die DB zu schreiben.
  */
 @WebServlet("/SignUpServlet")
 public class SignUpServlet extends HttpServlet {
@@ -38,8 +40,8 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// leere methode
+		doPost(request, response);
 	}
 
 	

@@ -18,6 +18,8 @@ import de.databaseOperations.BewertungsOperations;
 import de.databaseOperations.ProduktUpdateOperations;
 
 /**
+ * @author Paul Blanke
+ * Diese Servlet ermöglicht die Bewertung der Produkte auf den entsprechenden Seiten.
  * Servlet implementation class BewertungServlet
  */
 @WebServlet("/BewertungServlet")
@@ -37,6 +39,7 @@ public class BewertungServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// To Post
+		// Wird nicht genutzt.
 		doPost(request, response);
 		
 	}
@@ -90,7 +93,6 @@ public class BewertungServlet extends HttpServlet {
 		} else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
-		
 		
 		
 		

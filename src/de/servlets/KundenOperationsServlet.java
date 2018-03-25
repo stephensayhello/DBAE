@@ -19,6 +19,7 @@ import de.utilities.SaltedHash;
 import de.utilities.mail;
 
 /**
+ * Dieses Servlet bietet die M&oeglichkeit die Kundendaten zu ver&anendern.
  * Servlet implementation class KundenOperationsServlet
  */
 @WebServlet("/KundenOperationsServlet")
@@ -37,10 +38,12 @@ public class KundenOperationsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Daten holen
 		HttpSession session = request.getSession();
 		String rolle = (String) session.getAttribute("rolle");
 		List<String> messages = new ArrayList<>();
 		session.setAttribute("messages", messages);
+		// prüfungen vornehmen
 		if(rolle!=null){
 		if(rolle.contains("admin")) {
 			request.setAttribute("klick", "show");
@@ -60,11 +63,13 @@ public class KundenOperationsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	// Daten holen
 		HttpSession session = request.getSession();
 		String rolle = (String) session.getAttribute("rolle");
 		List<String> messages = new ArrayList<>();
 		session.setAttribute("messages", messages);
+		
+		// logik
 		if(rolle!=null){
 		if(rolle.contains("admin")) {
 			String auswahl = request.getParameter("auswahl");
