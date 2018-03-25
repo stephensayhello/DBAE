@@ -59,7 +59,7 @@
 				</c:forEach>
 			</c:forEach>
 		</table>
-<<<<<<< HEAD
+
 	
 	<form action="AdminBestelluebersichtServlet" method="get">
 		<input type=submit id="anzeigen">
@@ -79,12 +79,6 @@
 	
 	</form>
 	</div>
-=======
-	</div>
-	<form action="AdminBestelluebersichtServlet" method="post">
-		<input type=submit id="anzeigen">
-	</form>
-<a:footer></a:footer>
->>>>>>> b566a185a91ca728dc0b6a1bc07cccda49c99e79
+
 </body>
 </html>

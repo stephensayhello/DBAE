@@ -22,12 +22,12 @@
  Mit unseren Produkt steigern wir Ihre Sport Qualität enorm und verhelfen Ihnen zu neuen Bestleistungen.</p>
 <br>
 <h2>Newsfeed</h2>
-<p class="input-dbae">	 - 	Forscher haben bestätigen, dass Schwimmen eine gelenkschonende Alternativsport ist im Vergleich zum Laufsport.
+<p class="input-dbae">	 - 	Forscher haben bestätigt, dass Schwimmen eine gelenkschonende Alternativsport ist im Vergleich zum Laufsport.
 <br>
-<p class="input-dbae">	- 	Sparen Sie mit uns 10 % auf Ihreren ersten Marathon. Senden Sie uns dazu eine Kontaktanfrage und bekommen Sie noch heute 
+<p class="input-dbae">	- 	Sparen Sie mit uns 10 % für Ihren ersten Marathon. Senden Sie uns dazu eine Kontaktanfrage und bekommen Sie noch heute 
 Ihren persönlichen Gutscheincode.
 <br>
-<p class="input-dbae">Nutzen Sie außerdem unseren Kontaktformular bei Fragen zu unseren Produkten. Wir helfen Ihnen rund um die Uhr innerhalb von 2 Stunden!
+<p class="input-dbae">Nutzen Sie außerdem unser Kontaktformular bei Fragen zu unseren Produkten. Wir helfen Ihnen rund um die Uhr innerhalb von 2 Stunden!
 <br />
 
 
