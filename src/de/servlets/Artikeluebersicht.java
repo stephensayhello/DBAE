@@ -38,6 +38,7 @@ public class Artikeluebersicht extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      Die Get Methode holt alle Daten aus der DB heraus und bringt Sie in die Übersicht.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

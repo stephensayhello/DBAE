@@ -22,6 +22,7 @@ import de.classes.Warenkorb;
 import de.databaseOperations.AdminOperations;
 import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.BestellungOperations;
+import de.databaseOperations.BewertsDurchschnittOperations;
 import de.databaseOperations.BewertungsOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
@@ -57,6 +58,7 @@ public class Test {
 	}
 
 	public static void main(String[]args) {
-		
+		 int durchschnitt = BewertsDurchschnittOperations.ermitteleneDurchschnitt(3);
+		System.out.println(durchschnitt);
 	}
 }
