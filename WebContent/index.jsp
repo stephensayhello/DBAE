@@ -30,7 +30,6 @@ Ihren persönlichen Gutscheincode.
 <p class="input-dbae">Nutzen Sie außerdem unseren Kontaktformular bei Fragen zu unseren Produkten. Wir helfen Ihnen rund um die Uhr innerhalb von 2 Stunden!
 <br />
 
-<p><a href="contact.jsp" class= "input-dbae">Zum Support</a>
 
 <p> - ... Oder werfen Sie einen Blcik auf unserer Tagesangebot: 
 		 Nur begrenzt gültig innerhalb von 24 Std. Sie sparen bis zu 25 % gegenüber dem UVP.	
@@ -39,5 +38,6 @@ Ihren persönlichen Gutscheincode.
 <button class="button-dbae">zum Tagesangebot</button>
 </form>
 </div>
+<a:footer></a:footer>
 </body>
 </html>

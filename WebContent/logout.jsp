@@ -15,5 +15,6 @@
 <body>
 <a:navKunde rolle="${rolle }"></a:navKunde>
 
+<a:footer></a:footer>
 </body>
 </html>

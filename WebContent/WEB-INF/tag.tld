@@ -63,4 +63,8 @@
 		</attribute>
 	</tag>
 	
+	<tag>
+		<name>footer</name>
+		<tag-class>de.tags.Footer</tag-class>
+	</tag>
 </taglib>

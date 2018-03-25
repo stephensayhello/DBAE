@@ -60,6 +60,6 @@
 	<form action="AdminBestelluebersichtServlet" method="get">
 		<input type=submit id="anzeigen">
 	</form>
-
+<a:footer></a:footer>
 </body>
 </html>

@@ -28,5 +28,7 @@
 					<button type="submit" class="button-dbae">Login</button>
 				</div>
 			</div>
+			
+			<a:footer></a:footer>
 </body>
 </html>

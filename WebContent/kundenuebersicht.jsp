@@ -100,7 +100,7 @@ function onShow() {
 	
 
 
-
+<a:footer></a:footer>
 
 </body>	
 </html>
