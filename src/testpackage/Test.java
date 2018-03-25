@@ -57,8 +57,11 @@ public class Test {
 		System.out.println(produkt instanceof Shirt);
 	}
 
-	public static void main(String[]args) {
-		 int durchschnitt = BewertsDurchschnittOperations.ermitteleneDurchschnitt(3);
-		System.out.println(durchschnitt);
+	public static void main(String[]args) throws InvalidPasswordException, IOException {
+		Bestellung  bestellung =  new Bestellung(1,"25-3-2018");
+		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
+		bestellung.setBestellliste(produkte);
+		CreatePDF.create(bestellung);
+		System.out.println("So So das geht jetzt also");
 	}
 }
