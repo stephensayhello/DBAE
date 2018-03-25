@@ -29,20 +29,28 @@ public class BewertsDurchschnittOperations {
 			PreparedStatement pst = con.prepareStatement(DURCHSCHNITT_PRO_PRODUKT);
 			pst.setInt(1, produkt_id);
 			ResultSet rs = pst.executeQuery();
+			if(!rs.next()) {
+				counter = 1;
+				sum = 5;
+			}
+			
 			while(rs.next()) {
 				counter++;
 				int eins = rs.getInt(1);
 				int zwei = rs.getInt(2);
 				int drei = rs.getInt(3);
-				sum = rs.getInt(4);
+				sum += rs.getInt(4);
 				String komm = rs.getString(5);
+			}
+			if(!rs.next()) {
+				sum = sum / counter;
 			}
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sum = sum /counter;
+
 		return sum;
 	}
 	

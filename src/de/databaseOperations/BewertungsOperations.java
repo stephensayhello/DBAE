@@ -33,7 +33,7 @@ public class BewertungsOperations {
 	
 	private final static String SUCHE_BEST_BEWERTUNG = "SELECT * FROM bewertung WHERE kundennr = ?, produkt_id= ?;";
 	
-	private final static String ALLE_BEWERT_PRODUKT = "SELECT * FROM bewertung WHERE produkt_id;";
+	private final static String ALLE_BEWERT_PRODUKT = "SELECT * FROM bewertung WHERE produkt_id = ?";
 	
 	
 	/**
@@ -50,19 +50,28 @@ public class BewertungsOperations {
 			PreparedStatement pst = con.prepareStatement(BEWERTUNG_NACH_ID);
 			pst.setInt(1, kunde.getNutzer_id());
 			ResultSet rs = pst.executeQuery();
-			rs.next();
+			
+			
+			if(rs.next()) {
 			bewertung.setBewertung_id(rs.getInt(1));
 			bewertung.setProdukt_id(rs.getInt(3));
 			bewertung.setKundennr(rs.getInt(2));
 			bewertung.setPunkte(rs.getInt(4));
-			bewertung.setKommentar(rs.getString(5));
+			bewertung.setKommentar(rs.getString(5)); 
 			con.close();
+			return bewertung;
+			} else {
+				con.close();
+				return null;
+			}
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return bewertung;
+		return null;
 	}
 	
 	
@@ -73,17 +82,23 @@ public class BewertungsOperations {
 	 */
 	public static List<Bewertung> holeAlleBewetung() {
 		List<Bewertung> bewertungen = new ArrayList<>();
+		Bewertung bewertung;
 		Connection con = DBConnection.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(BEWERTUNGEN);
 			ResultSet rs = pst.executeQuery();
-			rs.next();
+			
+			if(!rs.next()) {
+				
+				bewertungen = null;
+			}
 			
 			while(rs.next()) {
 				int id = rs.getInt(1);
-				Bewertung bewertung = new Bewertung(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
+				bewertung = new Bewertung(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
 				bewertungen.add(bewertung);
 			}
+			
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -202,17 +217,17 @@ public class BewertungsOperations {
 	public static List<Bewertung> sucheAlleBwertungBestProdukt(int produkt_id) {
 		List<Bewertung> bewertProdukt = new ArrayList<>();
 		Connection con = DBConnection.getConnection();
-		
+			Bewertung bewertung;
 			PreparedStatement pst;
 			try {
 				pst = con.prepareStatement(ALLE_BEWERT_PRODUKT);
 				pst.setInt(1, produkt_id);
 				ResultSet rs = pst.executeQuery();
 				
-				while(rs.next()) {
-					Bewertung bewertung = new Bewertung(rs.getInt(1), rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getString(5));
-					bewertProdukt.add(bewertung);
-				}
+					while(rs.next()) {
+						bewertung = new Bewertung(rs.getInt(1), rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getString(5));
+						bewertProdukt.add(bewertung);
+					}
 				
 				con.close();
 			} catch (SQLException e) {
@@ -224,4 +239,28 @@ public class BewertungsOperations {
 		return bewertProdukt;
 	}
 	
+	public static Bewertung holeEinzeleneBewertung(int produkt_id) {
+		Connection con = DBConnection.getConnection();
+		Bewertung bewertung;
+		PreparedStatement pst;
+		
+			try {
+				pst = con.prepareStatement(ALLE_BEWERT_PRODUKT);
+				pst.setInt(1, produkt_id);
+				ResultSet rs = pst.executeQuery();
+				if(!rs.next()) {
+					return null;
+				} else if(rs.next()) {
+					bewertung = new Bewertung(rs.getInt(1), rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getString(5));
+					return bewertung;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+		
+	
+	}
 }

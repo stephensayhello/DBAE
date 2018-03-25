@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=Windows-1252"
-	pageEncoding="Windows-1252"%>
+    pageEncoding="ISO-8859-1"%>
     <%@  taglib prefix="a" uri="/WEB-INF/tag.tld"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,62 +16,52 @@
 
 $(document).ready(function() {
 	var klick = "${klick}";
-	if(klick=="show") {
-		show_elements('Form');
+	if (klick === "") {
+		$("#anzeigen").click();
 	}
-	
 });
 
-function show_elements()
-{
- var elementNames = show_elements.arguments;
- for (var i=0; i<elementNames.length; i++)
-  {
-    var elementName = elementNames[i];
-    document.getElementById(elementName).style.display='block';
-  }
+function onHidde() {
+	document.getElementById("unsichtbar").style.visibility="hidden";
 }
 
-function hide_elements()
-{
- var elementNames = hide_elements.arguments;
- for (var i=0; i<elementNames.length; i++)
-  {
-    var elementName = elementNames[i];
-    document.getElementById(elementName).style.display='none';
-  }
+function onShow() {
+	document.getElementById().style.visibility ="visible";
 }
+
 </script>
-
-<a:navKunde rolle="${rolle }"></a:navKunde>
-<!-- zeige ein produkt und die Bewertung dazu -->
-
+<a:navKunde rolle="${rolle} "></a:navKunde>
 <div class="container">
-<h1>Nur heute im Tageangebot !</h1>
-	<form action="TagesAngebotServlet" method="post">
-	<button class="button-dbae">Anzeigen</button>
-	</form>
+<h1>Nur für heute im Tagesangebot ! Bestellen Sie jetzt.</h1>
+<form action="TagesAngebotServlet" method="post">
+<button class="button-dbae" id="Anzeigen">Ansehen</button>
+</form>
+<!--  Tag -->
+<br/>
+<a:tagesangebot produkt="${produkt}" durchschnitt="${durchschnitt}"></a:tagesangebot>
+<br/>
 
-<div id="Form" style ='display: none'>
-<p>Hier kommt später ein Tag rein</p>
-<a:tagesangebot produkt="${produkt} " durchschnitt="${durchschnitt}"></a:tagesangebot>
-<div class="table-responsive">
 <table class="table">
 			<tr>
 
-				<th>Punkte</th>
+				<th>Bewertungsnummer</th>
+				<th>Punkte(x/5)</th>
 				<th>Kommentar</th>
 				
 
 			</tr>
 			<c:forEach var="bewertung" items="${bewertungen}">
-
-
-
+			
+				<c:if test="${bewertungen} == null">
+					<td>Dieses Produkte wurde nocht nicht bewertet. Seien Sie der Erste.</td>
+				</c:if>
+				
 				<tr>
-					<td>${bewertung.punkte}</td>				
+					<td>${bewertung.bewertung_id}</td>				
+					<td>${bewertung.punkte}</td>
 					<td>${bewertung.kommentar}</td>
 					
+
 				</tr>
 
 
@@ -80,8 +70,7 @@ function hide_elements()
 
 			</c:forEach>
 	</table>
-</div>
-</div>
+<p> Durchschnittliche Bewertung: ${durchschnitt} von 5 Sternen.
 </div>
 </body>
 </html>

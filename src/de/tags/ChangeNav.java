@@ -6,8 +6,8 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import de.utilities.ReadFromFile;
 /**
- * Der Tag um das Menü zu wechsel. Rolle change Kunde / Admin.
- * @author paul4
+ * Dieser Tag lifert das Adminmen&ue.
+ * @author Paul Blanke
  *
  */
 public class ChangeNav  extends TagSupport{

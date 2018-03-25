@@ -22,6 +22,7 @@ import de.classes.Warenkorb;
 import de.databaseOperations.AdminOperations;
 import de.databaseOperations.AdresseOperations;
 import de.databaseOperations.BestellungOperations;
+import de.databaseOperations.BewertsDurchschnittOperations;
 import de.databaseOperations.BewertungsOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
@@ -56,7 +57,8 @@ public class Test {
 		System.out.println(produkt instanceof Shirt);
 	}
 
-	public static void main(String[]args) {
-		
+	public static void main(String[]args) throws InvalidPasswordException, IOException {
+		 int zahl = ProduktUpdateOperations.zufallsID();
+		System.out.println(zahl);
 	}
 }

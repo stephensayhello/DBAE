@@ -34,15 +34,14 @@ function onShow() {
 <a:navKunde rolle="${rolle }"></a:navKunde>
 
 <div class="container">
-<h1>Alle verfuegbare Produkte anzeigen</h1>
+<h1>Alle verfügbaren Produkte anzeigen</h1>
 <form action="ProduktUebersichtServlet" method="post">
 <button value="submit" class="button-dbae" id="anzeigen">Anzeigen</button>
 
 </form>
 <br/>
-</div>
 <br />
-<div class="container">
+
 <div class="table-responsive">
 <table class="table">
 			<tr>
@@ -57,7 +56,7 @@ function onShow() {
 
 			</tr>
 			<c:forEach var="produkt" items="${produkte}">
-
+			
 
 
 				<tr>

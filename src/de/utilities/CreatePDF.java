@@ -41,8 +41,7 @@ public class CreatePDF {
 		File file = new File(destination);
 		file.getParentFile().mkdirs();
 		PDDocument doc = new PDDocument();
-	 	PDDocument document = doc.load(file);
-		PDPage ersteSeite = document.getPage(0);
+		PDPage ersteSeite = new PDPage();
 		
 		PDPageContentStream contentstream = new PDPageContentStream(doc, ersteSeite);
 		List<Produkt> liste = bestellung.getBestellliste();
@@ -58,11 +57,28 @@ public class CreatePDF {
 		text = "Bestelldetails: " + bestellung.getBestellnummer();
 		contentstream.showText(text);
 		contentstream.newLine();
+		text = "Nachfolgenden einen Überblick über alle Artikel Ihrer Bestellung:";
+		contentstream.showText(text);
 		contentstream.newLine();
+		contentstream.newLine();
+		contentstream.newLine();
+		double gesamtpreis = 0;
 		for(Produkt produkt: liste) {
-			contentstream.showText(produkt.getName() + " Anzahl:" +  produkt.getAnzahl() + "  Preis: " +  produkt.getPreismitanzahl());
+			String produkt_id = Integer.toString(produkt.getProdukt_id());
+			String anzahl = Integer.toString(produkt.getMenge());
+			String preis = Double.toString(produkt.getPreis()) + " Euro";
+			gesamtpreis += produkt.getPreis(); 
+			String versanddauer = Integer.toString(produkt.getVersanddauer()) + " Tage";
+			contentstream.showText("Produkt-ID: "+ produkt_id + " Name: " + produkt.getName() + " Anzahl: " +  anzahl 
+				+ "  Preis: " +  preis + " Versanddauer:" +  versanddauer);
 			contentstream.newLine();
 		}
+		contentstream.newLine();
+		contentstream.newLine();
+		String preisangabe = Double.toString(gesamtpreis);
+		text = "Der Gesamtpreis beträgt: "+ preisangabe +"  Euro und ist innerhalb von 7 Tagen Brutto auf folgendes Konto zu überweisen: IBAN XXXXXXXXX!123";
+		contentstream.showText(text);
+		contentstream.newLine();
 		
 		
 		contentstream.newLine();
