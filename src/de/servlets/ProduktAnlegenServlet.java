@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -85,16 +86,18 @@ public class ProduktAnlegenServlet extends HttpServlet {
 		int kategorie = Integer.parseInt(request.getParameter("p_kategorie"));
 
 		double preis = Double.parseDouble(request.getParameter("p_preis"));
-
-		String[] groessearray = request.getParameterValues("checkGroesse");
-		String[] mengearray = request.getParameterValues("inputMenge");
-		String[] versanddauerarray = request.getParameterValues("p_versanddauer");
+       String[] groessearray = new String[10];
+       String[] mengearray = new String[10];
+       String[] versanddauerarray = new String[10];
+		 groessearray = request.getParameterValues("checkGroesse");
+		 mengearray = request.getParameterValues("inputMenge");
+		 versanddauerarray = request.getParameterValues("p_versanddauer");
 
 		int artikelnr = ProduktOperations.hoechsteartikelnr();
 		Produkt produkt = null;
 		for (int i = 0; i < groessearray.length; i++) {
 
-			if (!mengearray[i].isEmpty() && !versanddauerarray[i].isEmpty()) {
+			if (mengearray[i]!=null && versanddauerarray[i]!=null) {
 				String groesse = groessearray[i];
 				int menge = Integer.parseInt(mengearray[i]);
 				int versanddauer = Integer.parseInt(versanddauerarray[i]);

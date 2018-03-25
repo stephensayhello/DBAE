@@ -13,6 +13,8 @@ import de.classes.Bestellung;
 import de.databaseOperations.BestellungOperations;
 
 /**
+ * @author 
+ * Dieses Servlet liefert die Logik zur gleichnamigen JSP-Seite dazu.
  * Servlet implementation class AdminBestelluebersichtServlet
  */
 @WebServlet("/AdminBestelluebersichtServlet")
@@ -33,13 +35,8 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("klick", "klick");
-		List<Bestellung> bestellungen = BestellungOperations.allebestellungenausgeben();
-		request.setAttribute("Bestellungen", bestellungen);
-		for (Bestellung bestellung : bestellungen) {
-			System.out.println(bestellung.getBestellliste());
-		}
-		request.getRequestDispatcher("bestellungadmin.jsp").forward(request, response);
+		// methode ist ungenutzt.
+		doPost(request, response);
 	}
 
 	/**
@@ -48,8 +45,13 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setAttribute("klick", "klick");
+		List<Bestellung> bestellungen = BestellungOperations.allebestellungenausgeben();
+		request.setAttribute("Bestellungen", bestellungen);
+		for (Bestellung bestellung : bestellungen) {
+			System.out.println(bestellung.getBestellliste());
+		}
+		request.getRequestDispatcher("bestellungadmin.jsp").forward(request, response);
 	}
 
 }

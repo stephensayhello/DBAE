@@ -19,6 +19,9 @@ import de.databaseOperations.ProduktUpdateOperations;
 
 /**
  * Servlet implementation class TagesAngebotServlet
+ * Dieses Servlet leitet Daten aus der DB an die oberfläche durch.
+ * Daten: einzeles Produkt und Bewertung
+ * @author Paul Blanke
  */
 @WebServlet("/TagesAngebotServlet")
 public class TagesAngebotServlet extends HttpServlet {
@@ -47,16 +50,13 @@ public class TagesAngebotServlet extends HttpServlet {
 		// Daten holen und Attribute setzen
 		HttpSession session = request.getSession();
 		session.setAttribute("klick", " ");
-	//	int id = ProduktUpdateOperations.zufallsID();
-		// Für testzwecke die ID umgesetzt auf 1 da das Produkt Bewertungen hat.
-		int id = 1;
+		int id = ProduktUpdateOperations.zufallsID();
 		Produkt produkt = ProduktOperations.produktausdbholen(id);
 		session.setAttribute("produkt", produkt);
 		List<Bewertung> bewertungen = BewertungsOperations.sucheAlleBwertungBestProdukt(id);
 		session.setAttribute("bewertungen", bewertungen);
 		int durchschnitt = BewertsDurchschnittOperations.ermitteleneDurchschnitt(id);
 		session.setAttribute("durchschnitt", durchschnitt);
-		System.out.println("Bis hier und nicht weiter.");
 		request.getRequestDispatcher("tagesangebot.jsp").forward(request, response);
 		
 		

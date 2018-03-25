@@ -33,11 +33,6 @@ public class Bestellung {
 
 
 
-	
-
-
-	
-	// Get und Set Methoden
 
 	public int getBestellnummer() {
 		return bestellnummer;

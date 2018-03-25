@@ -57,7 +57,7 @@
 			</c:forEach>
 		</table>
 	</div>
-	<form action="AdminBestelluebersichtServlet" method="get">
+	<form action="AdminBestelluebersichtServlet" method="post">
 		<input type=submit id="anzeigen">
 	</form>
 <a:footer></a:footer>

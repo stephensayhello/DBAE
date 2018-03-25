@@ -18,6 +18,8 @@ import de.logik.Regex;
 
 /**
  * Servlet implementation class ProfilAendernServlet
+ * @author Stephen Galla
+ * Dieses Servlet bietet die entsprechende Logik für die Kundenfunktion Daten verändern an.
  */
 @WebServlet("/ProfilAendernServlet")
 public class ProfilAendernServlet extends HttpServlet {
@@ -227,11 +229,6 @@ public class ProfilAendernServlet extends HttpServlet {
 				adresse.setPlz(plz);
 				messages.add("Die Straße, die Hausnummer , die PLZ und der Ort wurden geändert");
 			}
-			
-			
-			
-			
-			
 			
 			
 			kunde.setAdresse(adresse);

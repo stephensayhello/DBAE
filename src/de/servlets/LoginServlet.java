@@ -24,6 +24,9 @@ import de.databaseOperations.WarenkorbOperations;
 import de.utilities.SaltedHash;
 
 /**
+ * @author Paul Blanke
+ * Dieses Servlet &ueberpr&ueft den Login des kunden und gibt 
+ * bei einer falschen Eingabe eine Fehlermeldung raus.
  * Servlet implementation class LoginServlet
  */
 @WebServlet("/LoginServlet")
@@ -46,6 +49,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
+		// methode wird nicht verwendet
 	}
 
 	/**
@@ -54,6 +58,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Daten holen
 		String email = request.getParameter("email");
 		String password = request.getParameter("psw");
 		session = request.getSession();
@@ -61,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(nutzer);
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
-
+		// logik 
 
 		if (session.getAttribute("kundeeingeloggt") != null) {
 
