@@ -18,7 +18,7 @@
 	<a:navKunde rolle="${rolle }"></a:navKunde>
 	<div class="container">
 		<p>
-			Impressum:<br> Besitzer: Paul Blanke, Stephen Galla, Benjamin
+			Impressum:<br> Besitzer/Ersteller: Paul Blanke, Stephen Galla, Benjamin
 			Gajewski<br> SportWebShop, BestFirmenStraﬂe 1, 12345 Hildesheim,
 			Deutschland <br> Eintragung bei der Handelskammer,
 			Registernummer 12345679<br> USt.-Nummer: xy123456567789<br>
