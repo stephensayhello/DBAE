@@ -58,10 +58,7 @@ public class Test {
 	}
 
 	public static void main(String[]args) throws InvalidPasswordException, IOException {
-		Bestellung  bestellung =  new Bestellung(1,"25-3-2018");
-		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
-		bestellung.setBestellliste(produkte);
-		CreatePDF.create(bestellung);
-		System.out.println("So So das geht jetzt also");
+		 int zahl = ProduktUpdateOperations.zufallsID();
+		System.out.println(zahl);
 	}
 }

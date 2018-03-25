@@ -33,9 +33,44 @@ function onShow() {
 <a:navKunde rolle="${rolle} "></a:navKunde>
 <div class="container">
 <h1>Nur für heute im Tagesangebot ! Bestellen Sie jetzt.</h1>
-<form action="TagesAngebotServlet" method="get">
+<form action="TagesAngebotServlet" method="post">
 <button class="button-dbae" id="Anzeigen">Ansehen</button>
 </form>
+<!--  Tag -->
+<br/>
+<a:tagesangebot produkt="${produkt}" durchschnitt="${durchschnitt}"></a:tagesangebot>
+<br/>
+
+<table class="table">
+			<tr>
+
+				<th>Bewertungsnummer</th>
+				<th>Punkte(x/5)</th>
+				<th>Kommentar</th>
+				
+
+			</tr>
+			<c:forEach var="bewertung" items="${bewertungen}">
+			
+				<c:if test="${bewertungen} == null">
+					<td>Dieses Produkte wurde nocht nicht bewertet. Seien Sie der Erste.</td>
+				</c:if>
+				
+				<tr>
+					<td>${bewertung.bewertung_id}</td>				
+					<td>${bewertung.punkte}</td>
+					<td>${bewertung.kommentar}</td>
+					
+
+				</tr>
+
+
+
+
+
+			</c:forEach>
+	</table>
+<p> Durchschnittliche Bewertung: ${durchschnitt} von 5 Sternen.
 </div>
 </body>
 </html>

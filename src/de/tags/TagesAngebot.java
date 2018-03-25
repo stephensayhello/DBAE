@@ -48,10 +48,15 @@ public class TagesAngebot  extends TagSupport{
 	}
 	
 	public int doStartTag() {
+		if(produkt != null && durchschnitt > 0) {
 		try {
-			pageContext.getOut().append(getTagesAngebotView());
+			
+				pageContext.getOut().append(getTagesAngebotView());
+			
 		} catch (IOException e) {
 			e.printStackTrace();
+		} } else {
+			// tue nicht nichts Tag wird nocht ausgelöst.
 		}
 		return SKIP_BODY;
 	}

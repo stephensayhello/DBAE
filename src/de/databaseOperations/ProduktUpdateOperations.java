@@ -44,6 +44,7 @@ public class ProduktUpdateOperations {
 	
 	private final static String PRODUKTID_DURCH_ARTIKELNUMMER ="SELECT produkt_id WHERE artikelnr =?;";
 	private final static String HOECHSTE_ID_ZUFALL = "SELECT MAX(produkt_id) FROM produkt;";
+	private final static String HILFS_LOGIK = "SELECT * FROM produkt WHERE produkt_id = ?;";
 	
 	
 
@@ -402,9 +403,40 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 		randomZahl = (int) (Math.random() * hoechsteID + 1);
+		if(checkID(randomZahl)) {
+			return randomZahl;
+		} else if(!checkID(randomZahl)) {
+			zufallsID();
+		}
+		return 0;
 		
-		return randomZahl;
+	}
+	
+	
+	private static boolean checkID(int id) {
+		Connection con = DBConnection.getConnection();
+	
+		try {
+			PreparedStatement pst = con.prepareStatement(HILFS_LOGIK);
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				System.out.println(rs.getInt(1));
+				con.close();
+				return true;
+				
+			} else if(!rs.next()) {
+				con.close();
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		
+		
+		return false;
 	}
 	
 }

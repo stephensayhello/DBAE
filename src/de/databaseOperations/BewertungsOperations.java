@@ -223,15 +223,11 @@ public class BewertungsOperations {
 				pst = con.prepareStatement(ALLE_BEWERT_PRODUKT);
 				pst.setInt(1, produkt_id);
 				ResultSet rs = pst.executeQuery();
-				if(!rs.next()) {
-					bewertung = null;
-					bewertProdukt.add(null);
-				}
 				
-				while(rs.next()) {
-					bewertung = new Bewertung(rs.getInt(1), rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getString(5));
-					bewertProdukt.add(bewertung);
-				}
+					while(rs.next()) {
+						bewertung = new Bewertung(rs.getInt(1), rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getString(5));
+						bewertProdukt.add(bewertung);
+					}
 				
 				con.close();
 			} catch (SQLException e) {

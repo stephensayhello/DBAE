@@ -36,30 +36,30 @@ public class TagesAngebotServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// wird nicht verwendet.
+		doGet(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Daten holen und Attribute setzen
 		HttpSession session = request.getSession();
-		session.setAttribute("klick", "show");
-		int id = ProduktUpdateOperations.zufallsID();
+		session.setAttribute("klick", " ");
+	//	int id = ProduktUpdateOperations.zufallsID();
+		// Für testzwecke die ID umgesetzt auf 1 da das Produkt Bewertungen hat.
+		int id = 1;
 		Produkt produkt = ProduktOperations.produktausdbholen(id);
 		session.setAttribute("produkt", produkt);
 		List<Bewertung> bewertungen = BewertungsOperations.sucheAlleBwertungBestProdukt(id);
-		if(bewertungen == null) {
-			// Behandele diesen fall später
-		}
 		session.setAttribute("bewertungen", bewertungen);
 		int durchschnitt = BewertsDurchschnittOperations.ermitteleneDurchschnitt(id);
 		session.setAttribute("durchschnitt", durchschnitt);
-		
-		
-		
+		System.out.println("Bis hier und nicht weiter.");
 		request.getRequestDispatcher("tagesangebot.jsp").forward(request, response);
+		
+		
 	}
 
 }
