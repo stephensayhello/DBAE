@@ -70,6 +70,6 @@
 <form action="produkt_anlegen.jsp">
     <button type="submit" class="button-dbae">produkt anlegen</button> 
 </form>-->
-
+<a:footer></a:footer>
 </body>
 </html>

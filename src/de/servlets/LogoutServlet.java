@@ -12,6 +12,9 @@ import de.classes.Warenkorb;
 import de.databaseOperations.WarenkorbOperations;
 
 /**
+ * @author paul Blanke 
+ * dieses Servlet loggt den Nutzer aus.
+ * Der Warenkorb wird beim Ausloggen in die Db geschrieben und die Session wird entfernt. 
  * Servlet implementation class LogoutServlet
  */
 @WebServlet("/LogoutServlet")
@@ -30,13 +33,9 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// Daten holen
 		HttpSession session = request.getSession();
-		
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
-		System.out.println("TEST");
-		
-		
 		if(warenkorb != null) {
 			WarenkorbOperations.anlegenWarenkorb(warenkorb);
 		}
@@ -51,6 +50,7 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// DoPost wird nicht verwendet
 		
 		
 	}

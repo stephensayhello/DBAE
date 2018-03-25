@@ -18,6 +18,9 @@ import de.utilities.mail;
 import de.utilities.randomStringGenerator;
 
 /**
+ * @author Paul Blanke
+ * Dieses Servlet liefert die Logik f&uer die Funktionen des Admins einen kunden zu l&oeschen oder ihm
+ * ein neues Passwort zu setzten.
  * Servlet implementation class KundeBearbeitenServlet
  */
 @WebServlet("/KundeBearbeitenServlet")
@@ -36,6 +39,7 @@ public class KundeBearbeitenServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Daten holen
 		List<String> messages = new ArrayList<>();
 		String auswahl = request.getParameter("auswahlkunde");
 		int kundenauswahl = Integer.parseInt(auswahl);
@@ -63,7 +67,7 @@ public class KundeBearbeitenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// Diese Methode wird nicht genutzt :)
 		
 	}
 

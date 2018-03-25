@@ -17,6 +17,8 @@ import de.databaseOperations.ProduktUpdateOperations;
 import de.logik.Regex;
 
 /**
+ * @author Benjamin 
+ * Dieses Servlet bietet die Möglichkeit and, dass der Admin die Produkte selber ändern kann.
  * Servlet implementation class ProduktBearbeitenServlet
  */
 @WebServlet("/ProduktBearbeitenServlet")
@@ -37,10 +39,13 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Daten holen
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<>();
 		String rolle = (String) session.getAttribute("rolle");
 		request.setAttribute("messages", messages);
+		
+		// logik
 		if (rolle != null) {
 			if (rolle.contains("admin")) {
 
@@ -64,10 +69,12 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Daten holen
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<>();
 		String rolle = (String) session.getAttribute("rolle");
 		request.setAttribute("messages", messages);
+		// logik
 		if (rolle.contains("admin")) {
 
 			session.removeAttribute("produkte");

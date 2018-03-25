@@ -18,6 +18,9 @@ import de.logik.Regex;
 
 /**
  * Servlet implementation class ProduktgruppenBearbeitenServlet
+ * @author Benjamin
+ * Dieses Servlet bietet die Möglichkeit mehrere Artikel einer Produktgruppe gleichzeitig zu ändern.
+ * 
  */
 @WebServlet("/ProduktgruppenBearbeitenServlet")
 public class ProduktgruppenBearbeitenServlet extends HttpServlet {
@@ -37,6 +40,7 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Daten holen
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
 		List<Produkt> produkte = new ArrayList<>();
@@ -48,6 +52,8 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 		System.out.println("prodgrup");
 		System.out.println(produkte);
 		System.out.println(produkt);
+		
+		// logik
 		if (rolle != null) {
 			if (rolle.contains("admin")) {
 				produkte = ProduktOperations.ladeProdukteAusDatenbankmitArtnr(produkt.getArtikelnr());
@@ -75,11 +81,12 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// Daten holen
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
 		String rolle = (String) session.getAttribute("rolle");
 		session.removeAttribute("messages");
+		// logik
 		if (rolle != null) {
 			if (rolle.contains("admin")) {
 

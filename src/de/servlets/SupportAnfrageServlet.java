@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.Message;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import de.databaseOperations.SupportOperations;
 import de.utilities.mail;
 
 /**
+ * @author Paul Blanke
+ * Dieses Servlet speichert die SupportAnfrage und informiert den Admin per E-mail.
  * Servlet implementation class SupportAnfrageServlet
  */
 @WebServlet("/SupportAnfrageServlet")
@@ -35,7 +38,7 @@ public class SupportAnfrageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// leere methode
 		doPost(request, response);
 	}
 
@@ -43,20 +46,20 @@ public class SupportAnfrageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Daten holen
 		String anfrage = request.getParameter("anfrage");
 		String anfragetext = request.getParameter("anfragetext");
 		String grund = request.getParameter("grund");
-		// anpassungen
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<>();
 		String ausgabe = "Ihre Anfrage ist eingegangen und wird sofort bearbeitet.";
 		SupportAnfrage support = new SupportAnfrage(anfrage, anfragetext, grund);
 		List<SupportAnfrage> supportAnfragen = support.getAnfragen();
 		session.setAttribute("anfragen", supportAnfragen);
-		
+		// Logik
 		messages.add(ausgabe);
 		SupportOperations.speichereSupportAnfrage(support);
-		mail.SendMailTLS("", "SupportAnfrage",  anfragetext);
+		mail.SendMailTLS("Message.RecipientType.TO", "SupportAnfrage",  anfragetext);
 		request.setAttribute("messages", messages);
 		
 		request.getRequestDispatcher("contact.jsp").forward(request, response);

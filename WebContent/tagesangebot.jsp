@@ -72,5 +72,7 @@ function onShow() {
 	</table>
 <p> Durchschnittliche Bewertung: ${durchschnitt} von 5 Sternen.
 </div>
+
+<a:footer></a:footer>
 </body>
 </html>

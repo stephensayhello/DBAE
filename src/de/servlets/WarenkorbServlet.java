@@ -21,6 +21,8 @@ import de.utilities.CreatePDF;
 import de.utilities.mail;
 
 /**
+ * Dieses Servlet liefert die Logik für den Warenkorb dazu.
+ * @author Benjamin
  * Servlet implementation class WarenkorbServlet
  */
 @WebServlet("/WarenkorbServlet")
@@ -41,6 +43,7 @@ public class WarenkorbServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Warenkob leeren
 		HttpSession session = request.getSession();
 		session.removeAttribute("warenkorbinhalt");
 		session.removeAttribute("warenkorb");

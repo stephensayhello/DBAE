@@ -18,6 +18,8 @@ import de.databaseOperations.BestellungUpdateOperations;
 import de.databaseOperations.KundenOperations;
 
 /**
+ * @author 
+ * Dieses Servlet liefert die Logik zur gleichnamigen JSP-Seite dazu.
  * Servlet implementation class AdminBestelluebersichtServlet
  */
 @WebServlet("/AdminBestelluebersichtServlet")
@@ -38,6 +40,7 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		request.setAttribute("klick", "klick");
 		List<Kunde> kunden = KundenOperations.holeAlleKunden();
@@ -59,6 +62,7 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 			System.out.println(bestellung.getBestellliste());
 		}
 		request.getRequestDispatcher("bestellungadmin.jsp").forward(request, response);
+
 	}
 
 	/**
@@ -67,6 +71,7 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		String bearbeitungsstatus = request.getParameter("status");
 		String auswahl = request.getParameter("auswahl");
@@ -80,7 +85,7 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 		
 		
 		
-		
+
 	}
 
 }

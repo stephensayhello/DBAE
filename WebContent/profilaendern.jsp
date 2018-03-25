@@ -39,5 +39,6 @@
 <a:modal messages="${messages}"></a:modal>
 </div>
 </div>
+<a:footer></a:footer>
 </body>
 </html>
