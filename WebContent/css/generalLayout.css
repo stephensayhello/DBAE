@@ -57,6 +57,7 @@ hr {
 }
 
 .footer {
+	text-align: center;
 	margin-top: 50px;
     position: inherit;
     bottom: 0;
