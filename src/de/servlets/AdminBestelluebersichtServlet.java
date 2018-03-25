@@ -1,6 +1,7 @@
 package de.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,9 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import de.classes.Bestellung;
+import de.classes.Kunde;
 import de.databaseOperations.BestellungOperations;
+import de.databaseOperations.BestellungUpdateOperations;
+import de.databaseOperations.KundenOperations;
 
 /**
  * Servlet implementation class AdminBestelluebersichtServlet
@@ -33,10 +38,24 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		request.setAttribute("klick", "klick");
-		List<Bestellung> bestellungen = BestellungOperations.allebestellungenausgeben();
-		request.setAttribute("Bestellungen", bestellungen);
+		List<Kunde> kunden = KundenOperations.holeAlleKunden();
+		
+		List<Bestellung> bestellungen = new ArrayList<>();
+		List<Bestellung> bestellungenvonallenkunden = new ArrayList<>();
+		
+		for (Kunde kunde : kunden) {
+			bestellungen = BestellungOperations.bestellungausdbholen(kunde);
+			for (Bestellung bestellung : bestellungen) {
+				bestellungenvonallenkunden.add(bestellung);
+			}
+		}
+		
+		session.setAttribute("Bestellungen", bestellungenvonallenkunden);
 		for (Bestellung bestellung : bestellungen) {
+			System.out.println("DIE BESTELLUNGEN");
+			System.out.println(bestellung.getBearbeitungsstatus());
 			System.out.println(bestellung.getBestellliste());
 		}
 		request.getRequestDispatcher("bestellungadmin.jsp").forward(request, response);
@@ -48,8 +67,20 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		String bearbeitungsstatus = request.getParameter("status");
+		String auswahl = request.getParameter("auswahl");
+		int bstnr = Integer.parseInt(auswahl);
+		
+		BestellungUpdateOperations.updateBestellungBearbeitungsstatus(bstnr, bearbeitungsstatus);
+		
+		request.getRequestDispatcher("bestellungadmin.jsp").forward(request, response);
+		
+		
+		
+		
+		
+		
 	}
 
 }

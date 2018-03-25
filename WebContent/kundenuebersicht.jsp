@@ -49,6 +49,8 @@ function onShow() {
 				<th>KNR</th>
 				<th>Name</th>
 				<th>Email</th>
+				<th>Anschrift</th>
+				
 				
 			</tr>
 			<c:forEach var="kunde" items="${kunden}">
@@ -59,6 +61,7 @@ function onShow() {
 					<td>${kunde.nutzer_id}</td>				
 					<td>${kunde.nachname}</td>
 					<td>${kunde.email}</td>
+					<td>${kunde.adresse.strasse}${kunde.adresse.hausnummer}${kunde.adresse.plz}${kunde.adresse.ort}</td>
 					
 
 				</tr>

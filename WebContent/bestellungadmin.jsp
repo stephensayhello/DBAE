@@ -36,7 +36,10 @@
 							<b>Bestellnummer: ${bestellung.bestellnummer}</b>
 						</p>
 						<br> <b>Datum: ${bestellung.datefromdb}</b><br>
-						<br> <b>Kundennummer: ${bestellung.kunde.nutzer_id}</b><br></td>
+						<br> <b>Kundennummer: ${bestellung.kunde.nutzer_id}</b><br>
+						<br> <b>Status: ${bestellung.bearbeitungsstatus}</b><br>
+						<br> <b>Anschrift: ${bestellung.kunde.adresse.strasse}${bestellung.kunde.adresse.hausnummer}${bestellung.kunde.adresse.plz}${bestellung.kunde.adresse.ort}</b><br>
+						</td>
 						
 				</tr>
 
@@ -56,10 +59,24 @@
 				</c:forEach>
 			</c:forEach>
 		</table>
-	</div>
+	
 	<form action="AdminBestelluebersichtServlet" method="get">
 		<input type=submit id="anzeigen">
 	</form>
-
+    
+	<form action="AdminBestelluebersichtServlet" method="post" >
+	<label for="auswahl" class="input-dbae">Status bearbeiten: Bitte wählen Sie eine Bestellnummer aus</label>
+	<select name="auswahl" class ="input-dbae">
+	<c:forEach  var="bestellung" items="${Bestellungen}" >
+	<option value= "${bestellung.bestellnummer}" >${bestellung.bestellnummer}</option>
+	</c:forEach>
+	</select>
+	<label for="versanddauer"><b>Neuer Status:</b></label><input
+					class="input-dbae" type="text" name="status">
+	
+	<button value="submit"  class= "button-dbae">Bearbeitungsstatus aendern</button>
+	
+	</form>
+	</div>
 </body>
 </html>

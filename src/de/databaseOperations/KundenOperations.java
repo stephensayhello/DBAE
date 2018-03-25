@@ -157,6 +157,8 @@ public class KundenOperations {
 				int id = rs.getInt(1);
 				Nutzer nutzer = NutzerOperations.nutzerAusDbHolen(id);
 				int adress_id = rs.getInt(2);
+				System.out.println(id);
+				System.out.println(nutzer.getEmail());
 				String mail = nutzer.getEmail();
 				String vorname = rs.getString(3);
 				String nachname = rs.getString(4);

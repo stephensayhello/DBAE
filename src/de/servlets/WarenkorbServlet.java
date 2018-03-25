@@ -64,6 +64,7 @@ public class WarenkorbServlet extends HttpServlet {
 				
 			Bestellung bestellung = new Bestellung(warenkorbinhalt, kunde);
 			BestellungOperations.bestellunganlegen(bestellung);
+			
 			mail.SendMailTLS(kunde.getEmail(), "Ihre Bestellung", "Vielen Dank für ihre Bestellung!");
 			
 			session.removeAttribute("warenkorbinhalt");

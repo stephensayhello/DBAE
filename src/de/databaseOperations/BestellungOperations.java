@@ -32,13 +32,10 @@ import sun.security.action.GetBooleanAction;
 public class BestellungOperations {
 	private final static String MAX_BSTNR = "SELECT MAX(bstnr) FROM bestellung;";
 	private final static String ANLEGEN_BESTELLUNG_PROD_ZUO = "INSERT INTO bestellung_produktzuordnung VALUES (?, ?, ?)";
-	private final static String ANLEGEN_BESTELLUNG = "INSERT INTO bestellung VALUES (?,?,?)";
+	private final static String ANLEGEN_BESTELLUNG = "INSERT INTO bestellung VALUES (?,?,?,'offen')";
 	private final static String BESTELLUNG_MIT_BSTNR_AUS_DB_HOLEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt "
 			+ "ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE bstnr = ?;";
-	private final static String BESTELLUNG_NATURAL_JOIN = "SELECT * FROM produkt NATURAL JOIN bestellung_produktzuordnung ;";
-	
-	private final static String BSTNR_MIT_KUNDENNR_AUS_DB_HOLEN = "SELECT * FROM bestellung WHERE kundennr = ?;";
-	private final static String BESTELLUNG_AUS_DB = "SELECT * FROM bestellung ;";
+	private final static String BSTNR_MIT_KUNDENNR_AUS_DB_HOLEN = "SELECT * FROM bestellung WHERE kundennr = ? ORDER BY bstnr ASC;";
 	private final static String BESTELLUNG_AUF_PRODUKT_PRUEFEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt "
 			+ "ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE kundennr = ?, produkt_id = ? ";
 
@@ -99,6 +96,7 @@ public class BestellungOperations {
 
 			pst.execute();
 			con.close();
+		anlegen(bestellung);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -158,60 +156,60 @@ public class BestellungOperations {
 		}
 	return null;	
 	}
-		public static List<Bestellung> allebestellungenausgeben() {
-			
-			List<Bestellung> bestellungen = BestellungmitDatumAusDbholen() ;
-			
-			try {
-				for (Bestellung bestellung : bestellungen) {
-					List<Produkt> produktbestellliste = new ArrayList<>();
-					Connection con = DBConnection.getConnection();
-					PreparedStatement pst = con.prepareStatement(BESTELLUNG_NATURAL_JOIN);
-					
-					ResultSet rs = pst.executeQuery();
-					while (rs.next()) {
-						int produkt_id = rs.getInt(1);
-						int preis = rs.getInt(2);
-						int menge = rs.getInt(3);
-						String name = rs.getString(4);
-						String beschreibung = rs.getString(5);
-						int artikelnr = rs.getInt(6);
-						int versanddauer = rs.getInt(7);
-						String status = rs.getString(8);
-						String imagepath = rs.getString(9);
-						int anzahl = rs.getInt(10);
-						Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artikelnr, anzahl,
-								versanddauer, status, imagepath);
-						if (ProduktOperations.produktistHose(produkt_id)) {
-							Hose hose = HoseOperations.hoseausdbholen(produkt);
-							produktbestellliste.add(hose);
-						} else if (ProduktOperations.produktistSchuhe(produkt_id)) {
-							Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
-							produktbestellliste.add(schuhe);
-						} else if (ProduktOperations.produktistShirt(produkt_id)) {
-							Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
-							produktbestellliste.add(shirt);
-						}
-						
-						con.close();
-					}
-					
-					bestellung.setBestellliste(produktbestellliste);
-					
-					
-				}
-				
-				return bestellungen;
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				
-			}
-
-		return null;
-
-	}
+//		public static List<Bestellung> allebestellungenausgeben() {
+//			
+//			List<Bestellung> bestellungen = BestellungmitDatumAusDbholen() ;
+//			
+//			try {
+//				for (Bestellung bestellung : bestellungen) {
+//					List<Produkt> produktbestellliste = new ArrayList<>();
+//					Connection con = DBConnection.getConnection();
+//					PreparedStatement pst = con.prepareStatement(BESTELLUNG_NATURAL_JOIN);
+//					
+//					ResultSet rs = pst.executeQuery();
+//					while (rs.next()) {
+//						int produkt_id = rs.getInt(1);
+//						int preis = rs.getInt(2);
+//						int menge = rs.getInt(3);
+//						String name = rs.getString(4);
+//						String beschreibung = rs.getString(5);
+//						int artikelnr = rs.getInt(6);
+//						int versanddauer = rs.getInt(7);
+//						String status = rs.getString(8);
+//						String imagepath = rs.getString(9);
+//						int anzahl = rs.getInt(10);
+//						Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artikelnr, anzahl,
+//								versanddauer, status, imagepath);
+//						if (ProduktOperations.produktistHose(produkt_id)) {
+//							Hose hose = HoseOperations.hoseausdbholen(produkt);
+//							produktbestellliste.add(hose);
+//						} else if (ProduktOperations.produktistSchuhe(produkt_id)) {
+//							Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
+//							produktbestellliste.add(schuhe);
+//						} else if (ProduktOperations.produktistShirt(produkt_id)) {
+//							Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
+//							produktbestellliste.add(shirt);
+//						}
+//						
+//						con.close();
+//					}
+//					
+//					bestellung.setBestellliste(produktbestellliste);
+//					
+//					
+//				}
+//				
+//				return bestellungen;
+//				
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//				
+//			}
+//
+//		return null;
+//
+//	}
 
 	public static List<Bestellung> bestelldatumundBstnrMitKnrAusDbholen(int knr) {
 
@@ -225,8 +223,9 @@ public class BestellungOperations {
 			while (rs.next()) {
 				int bstnr = rs.getInt(1);
 				String bestelldatum = rs.getString(3);
+				String bearbeitungsstatus = rs.getString(4);
 
-				Bestellung bestellung = new Bestellung(bstnr, bestelldatum);
+				Bestellung bestellung = new Bestellung(bstnr, bestelldatum, bearbeitungsstatus);
 				teilbestellungen.add(bestellung);
 			}
 
@@ -241,35 +240,35 @@ public class BestellungOperations {
 		return null;
 
 	}
-	public static List<Bestellung> BestellungmitDatumAusDbholen() {
-		
-		Connection con = DBConnection.getConnection();
-		
-		try {
-			PreparedStatement pst = con.prepareStatement(BESTELLUNG_AUS_DB);
-			
-			ResultSet rs = pst.executeQuery();
-			List<Bestellung> teilbestellungen = new ArrayList<>();
-			while (rs.next()) {
-				int bstnr = rs.getInt(1);
-				int knr = rs.getInt(2);
-				String bestelldatum = rs.getString(3);
-				Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen(knr));
-				Bestellung bestellung = new Bestellung(bstnr,bestelldatum,kunde);
-				teilbestellungen.add(bestellung);
-			}
-			
-			con.close();
-			return teilbestellungen;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}
-		
-		return null;
-		
-	}
+//	public static List<Bestellung> BestellungmitDatumAusDbholen() {
+//		
+//		Connection con = DBConnection.getConnection();
+//		
+//		try {
+//			PreparedStatement pst = con.prepareStatement(BESTELLUNG_AUS_DB);
+//			
+//			ResultSet rs = pst.executeQuery();
+//			List<Bestellung> teilbestellungen = new ArrayList<>();
+//			while (rs.next()) {
+//				int bstnr = rs.getInt(1);
+//				int knr = rs.getInt(2);
+//				String bestelldatum = rs.getString(3);
+//				Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen(knr));
+//				Bestellung bestellung = new Bestellung(bstnr,bestelldatum,kunde);
+//				teilbestellungen.add(bestellung);
+//			}
+//			
+//			con.close();
+//			return teilbestellungen;
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			
+//		}
+//		
+//		return null;
+//		
+//	}
 
 	/**
 	 * Diese Methode pr�ft ob ein Kunde ein Produkt bestellt hat.

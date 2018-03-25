@@ -22,7 +22,9 @@
 <c:forEach var="bestellung" items="${fruehereBestellungen}">
 <tr>
 <td><p id = "wichtig"><b>Bestellnummer: ${bestellung.bestellnummer}</b></p><br>
-<b>Datum: ${bestellung.datefromdb}</b><br></td></tr>
+<b>Datum: ${bestellung.datefromdb}</b><br>
+<b>Status: ${bestellung.bearbeitungsstatus}</b><br>
+</td></tr>
 
 
 <c:forEach var="produkt" items="${bestellung.bestellliste}">
