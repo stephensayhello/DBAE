@@ -22,7 +22,7 @@ import de.utilities.mail;
 
 /**
  * Dieses Servlet liefert die Logik für den Warenkorb dazu.
- * @author Benjamin
+ * @author Benjamin Gajewski
  * Servlet implementation class WarenkorbServlet
  */
 @WebServlet("/WarenkorbServlet")

@@ -18,6 +18,7 @@ import de.utilities.SaltedHash;
 import de.utilities.mail;
 
 /**
+ * @author Benjamin Gajewski
  * Servlet implementation class SignUpServlet
  * Dieses Servlet liefert die Logik um Neukunden anzulegen, deren Daten zu prüfen und sie dann in 
  * die DB zu schreiben.

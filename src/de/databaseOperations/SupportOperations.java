@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import de.classes.Admin;
 import de.classes.SupportAnfrage;
 import de.datenbank.DBConnection;
 /**
@@ -13,16 +11,21 @@ import de.datenbank.DBConnection;
 * Diese Klasse verwaltet SupportAnfragenOperationen
 * @see {@link package-info}
 * 
-* @author alle.
+* @author Stephen Galla
 *
 */
 public class SupportOperations {
-
+	/**
+	 * Statements
+	 */
 	private final static String ANFRAGE_SPEICHERN = "INSERT INTO  supportanfrage VALUES (?, ?, ?)";
 	private final static String HOECHSTEID = "SELECT MAX(sa_id) FROM supportanfrage";
 	private final static String ANFRAGE_LOESCHEN = "DELETE FROM supportanfrage WHERE sa_id = ?;";
 	
-	
+	/**
+	 * Diese Methode speichert eine SupportAnfrage in der DB.
+	 * @param anfrage das zu speichernde Objekt der Klasse @SupportAnfrage
+	 */
 	public static void speichereSupportAnfrage(SupportAnfrage anfrage) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -41,7 +44,10 @@ public class SupportOperations {
 		}
 		
 	}
-	
+	/**
+	 * Diese Methode holt die H&oechste ID aus der DB
+	 * @return neue DB-Id
+	 */
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id = 1;
@@ -60,7 +66,11 @@ public class SupportOperations {
 		id++;
 		return id;
 	}
-	
+	/**
+	 * DELETE 
+	 * Diese Methode entfernt eine Anfrage aus der DB
+	 * @param anfrage
+	 */
 	public static void entferneAnfrage(SupportAnfrage anfrage) {
 		Connection con = DBConnection.getConnection();
 		 try {

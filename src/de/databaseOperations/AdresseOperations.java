@@ -12,8 +12,8 @@ import de.datenbank.DBConnection;
 * 
 * Diese Klasse verwaltet AdressOperationen
 * @see 
-* @link {package-info }.
-* @author alle.
+* @package-info
+* @author Paul Blanke
 *
 */
 public class AdresseOperations {
@@ -22,7 +22,10 @@ public class AdresseOperations {
 	private final static String ADRESSE_AUS_DBHOLEN = "SELECT * FROM adresse WHERE adress_id = ?;";
 	private final static String ADRESSE_UPDATE = "UPDATE adresse SET straße= ?, hausnr = ?, postleitzahl =?, ort = ? WHERE adress_id = ?";
 	private final static String ADRESSE_LOESCHEN = "DELETE FROM adresse WHERE adress_id = ?;";
-
+	/**
+	 * Diese Methode schreibt einen neue Adresse in die DB rein.
+	 * @param adresse die neue @Adresse
+	 */
 	public static void anlegen(Adresse adresse) {
 
 		Connection con = DBConnection.getConnection();
@@ -43,7 +46,10 @@ public class AdresseOperations {
 		}
 
 	}
-
+	/**
+	 * Diese methode ermittelt die h&oechste ID aus der Db und erh&oeht sie um einen.
+	 * @return neue ID für DB Speciherung.
+	 */
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -60,7 +66,11 @@ public class AdresseOperations {
 		id++;
 		return id;
 	}
-	
+	/**
+	 * Liest eine Adresse aus der DB.
+	 * @param id Die ID anhand der die Adresse ermittelt wird
+	 * @return rausgesuchte Adresse
+	 */
 	public static Adresse adresseAusDbHolen(int id) {
 
 		Connection con = DBConnection.getConnection();
@@ -90,7 +100,10 @@ public class AdresseOperations {
 		return null;
 
 	}
-
+	/**
+	 * Diese Methode updatet die Daten einer Adresse. 
+	 * @param adresse die Änderungen an der Adresse
+	 */
 	public static void adresseDataUpdate(Adresse adresse) {
 		Connection con = DBConnection.getConnection();
 		
@@ -112,7 +125,10 @@ public class AdresseOperations {
 	}
 	
 	
-	
+	/**
+	 * Diese Methode löschte eine Adresse aus der DB.
+	 * @param adresse zu löschende Adresse
+	 */
 	public static void entferneAdresse(Adresse adresse) {
 		Connection con = DBConnection.getConnection();
 		 try {

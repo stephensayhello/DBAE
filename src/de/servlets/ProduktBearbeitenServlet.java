@@ -17,7 +17,7 @@ import de.databaseOperations.ProduktUpdateOperations;
 import de.logik.Regex;
 
 /**
- * @author Benjamin 
+ * @author Benjamin Gajewski
  * Dieses Servlet bietet die Möglichkeit and, dass der Admin die Produkte selber ändern kann.
  * Servlet implementation class ProduktBearbeitenServlet
  */

@@ -38,7 +38,10 @@ function onShow() {
 </form>
 <!--  Tag -->
 <br/>
-<a:tagesangebot produkt="${produkt}" durchschnitt="${durchschnitt}"></a:tagesangebot>
+
+<a:tagesangebot produkt="${produkt} "></a:tagesangebot>
+
+
 <br/>
 
 <table class="table">

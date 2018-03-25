@@ -18,7 +18,7 @@ import de.databaseOperations.BestellungUpdateOperations;
 import de.databaseOperations.KundenOperations;
 
 /**
- * @author 
+ * @author Paul Blanke
  * Dieses Servlet liefert die Logik zur gleichnamigen JSP-Seite dazu.
  * Servlet implementation class AdminBestelluebersichtServlet
  */

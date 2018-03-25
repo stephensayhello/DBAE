@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
-
 import de.classes.Hose;
 import de.classes.Produkt;
 import de.classes.Schuhe;
@@ -16,7 +14,7 @@ import de.datenbank.DBConnection;
 * Diese Klasse verwaltet ProduktOperationen 2 von 2
 * @see {@link package-info}
 * 
-* @author alle.
+* @author Benjamin Gajewski
 *
 */
 public class ProduktUpdateOperations {
@@ -38,16 +36,16 @@ public class ProduktUpdateOperations {
 	private final static String PRODUKT_UPDATE_STATUS = "UPDATE produkt SET status = ? WHERE produkt_id =?;";
 
 	private final static String PRODUKT_LOESCHEN = "DELETE FROM produkt WHERE produkt_id = ?";
-	
-	
-	private final static String ARTIKEL_LOESCHEN = "DELETE FROM produkt WHERE artikelnr = ?";
-	
 	private final static String PRODUKTID_DURCH_ARTIKELNUMMER ="SELECT produkt_id WHERE artikelnr =?;";
+	
 	private final static String HOECHSTE_ID_ZUFALL = "SELECT MAX(produkt_id) FROM produkt;";
 	private final static String HILFS_LOGIK = "SELECT * FROM produkt WHERE produkt_id = ?;";
 	
 	
-
+	/**
+	 * Diese Methode entfernt ein Produkt aus der DB.
+	 * @param produkt das zu L&oeschende Produkt
+	 */
 	public static void entferneProdukt(Produkt produkt) {
 		
 		
@@ -77,7 +75,13 @@ public class ProduktUpdateOperations {
 	
 
 	
-	
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param id DB-Id
+	 * @param menge Anzahl auf Lager
+	 * @param versanddauer in Tagen
+	 * @param status Lieferbarkeit des Produktes
+	 */
 	public static void updateProdukt(int id, int menge, int versanddauer, String status) {
 		if (versanddauer != -1 && menge != -1 && status.contains("nix")) {
 			updateProduktVersanddauerundMenge(id, menge, versanddauer);
@@ -110,7 +114,13 @@ public class ProduktUpdateOperations {
 			}
 		}
 	}
-
+	
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param id DB-Id
+	 * @param menge Anzahl auf Lager
+	 * @param versanddauer in Tagen
+	 */
 	public static void updateProduktVersanddauerundMenge(int id, int menge, int versanddauer) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -129,6 +139,12 @@ public class ProduktUpdateOperations {
 		}
 	}
 
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param id DB-Id
+	 * @param menge Anzahl auf Lager
+	 * @param status Lieferbarkeit des Produktes
+	 */
 	public static void updateProduktmengeundstatus(int id, int menge, String status) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -146,7 +162,12 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param id DB-Id
+	 * @param versanddauer in Tagen
+	 * @param status Lieferbarkeit
+	 */
 	public static void updateProduktVersanddauerundStatus(int id, int versanddauer, String status) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -164,7 +185,12 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param id DB-Id
+	 * @param menge Anzahl auf Lager
+	 * 
+	 */
 	public static void updateProduktMenge(int id, int menge) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -181,7 +207,11 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param id DB-Id
+	 * @param versanddauer in Tagen
+	 */
 	public static void updateProduktVersanddauer(int id, int versanddauer) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -198,7 +228,11 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param id DB-Id
+	 * @param status lieferbarkeit des produktes
+	 */
 	public static void updateProduktStatus(int id, String status) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -214,7 +248,13 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param artikelnr DB-Id
+	 * @param name produktbezeichnung
+	 * @param preis der Preis incl. Ust.
+	 * @param beschreibung eine Prodktbeschreibung
+	 */
 	public static void updateProduktgruppemitArtikelnr(int artikelnr, String name, double preis, String beschreibung) {
 		if (!name.equals("") && preis != 0 && beschreibung.equals("")) {
 
@@ -250,7 +290,13 @@ public class ProduktUpdateOperations {
 			}
 		}
 	}
-
+	
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param artikelnr DB-Id
+	 * @param name Produktbezeichnung
+	 * @param preis der Preis incl. Ust.
+	 */
 	public static void updateProduktgruppemitArtikelnrNameundPreis(int artikelnr, String name, double preis) {
 
 		Connection con = DBConnection.getConnection();
@@ -269,7 +315,12 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param artikelnr DB-Id
+	 * @param name Produktbezeichnung
+	 * @param beschreibung die Produktbeschreibung
+	 */
 	public static void updateProduktgruppemitArtikelnrNameundBeschreibung(int artikelnr, String name,
 			String beschreibung) {
 
@@ -289,7 +340,12 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param artikelnr DB-Id
+	 * @param preis der Preis incl. Ust.
+	 * @param beschreibung eine beschreibung des Produktes
+	 */
 	public static void updateProduktgruppemitArtikelnrPreisundBeschreibung(int artikelnr, double preis,
 			String beschreibung) {
 
@@ -309,7 +365,12 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param artikelnr DB-Id
+	 * @param name Produktbezeichnung
+	 * 
+	 */
 	public static void updateProduktgruppemitArtikelnrName(int artikelnr, String name) {
 
 		Connection con = DBConnection.getConnection();
@@ -327,7 +388,12 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param artikelnr DB-Id
+	 * @param preis der Preis incl. Ust.
+	 */
 	public static void updateProduktgruppemitArtikelnrPreis(int artikelnr, double preis) {
 
 		Connection con = DBConnection.getConnection();
@@ -345,7 +411,12 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Diese Methode updatet eine Instanz @Produkt in der DB
+	 * @param artikelnr DB-Id
 
+	 * @param beschreibung eine Produktbeschreibung
+	 */
 	public static void updateProduktgruppemitArtikelnrBeschreibung(int artikelnr, String beschreibung) {
 
 		Connection con = DBConnection.getConnection();
@@ -364,7 +435,11 @@ public class ProduktUpdateOperations {
 		}
 	}
 	
-	
+	/**
+	 * Diese Methode sucht anhand einer Artikelnummer die dazugeh&oerige Produkt-Id raus.
+	 * @param artikelnummer Index.
+	 * @return @Produkt_id
+	 */
 	public static int sucheProduktIDanhandArtikelNr(int artikelnummer) {
 		Connection con = DBConnection.getConnection();
 		int produkt_id = 1;
@@ -386,7 +461,10 @@ public class ProduktUpdateOperations {
 		return produkt_id;
 	}
 	
-	// Mtehode für eine Zufällige ID
+	/**
+	 * Diese Methode ermittelt eine zuf&aellige ID f&uer das Tagesangebot
+	 * @return Zufallsid
+	 */
 	public static int zufallsID() {
 		Connection con = DBConnection.getConnection();
 		int randomZahl = 1;
@@ -412,7 +490,12 @@ public class ProduktUpdateOperations {
 		
 	}
 	
-	
+	/**
+	 * Diese Methode checkt ob eine Id in der Tabelle vorhanden ist.
+	 * @zufallsID
+	 * @param id untersuchende ID
+	 * @return ist / ist nicht vorhanden.
+	 */
 	private static boolean checkID(int id) {
 		Connection con = DBConnection.getConnection();
 	

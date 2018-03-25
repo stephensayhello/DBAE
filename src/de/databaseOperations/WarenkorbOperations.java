@@ -6,36 +6,34 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.classes.Admin;
-import de.classes.Bestellung;
 import de.classes.Kunde;
 import de.classes.Produkt;
 import de.classes.Warenkorb;
 import de.datenbank.DBConnection;
 /**
 * 
-* Diese Klasse verwaltet ProduktOperationen
+* Diese Klasse verwaltet @Warenkorb Operations
 * @see {@link package-info}
 * 
-* @author alle.
+* @author Stephen Galla
 *
 */
 public class WarenkorbOperations {
+	/**
+	 * Statements
+	 */
 	private static final String MAX_WARENKORB_ID = "SELECT MAX(warenkorb_id) FROM warenkorb_kunde_zuordnung;";
-
 	private static final String WARENKORB_LOESCHEN_ZU = "DELETE FROM warenkorb_kunde_zuordnung WHERE warenkorb_id = ?";
-	
 	private static final String WARENKORB_LOESCHEN = "DELETE FROM warenkorb WHERE warenkorb_id = ?";
-
 	private static final String WARENKORB_SPEICHERN = "INSERT INTO warenkorb VALUES(?,?,?);";
-
 	private static final String WARENKORB_BESTELLUNG_PROD_ZUO = "INSERT INTO warenkorb_kunde_zuordnung VALUES(?,?);";
-
 	private static final String WARENKORB_LADEN = "SELECT * FROM warenkorb WHERE warenkorb_id = ?;";
-
 	private static final String WARENKORB_KUNDE_ZU_LADEN = "SELECT warenkorb_id FROM warenkorb_kunde_zuordnung WHERE kundennr = ?;";
-
+	
+	/**
+	 * Diese Methode holt die H&oechste ID aus der DB.
+	 * @return hoechste ID
+	 */
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -54,7 +52,11 @@ public class WarenkorbOperations {
 
 		return id;
 	}
-
+	/**
+	 * DELETE
+	 * Diese methode l&oescht einen Warenkorb aus der DB.
+	 * @param id Die zu entfernde ID
+	 */
 	public static void entferneWarenkorb(int id) {
 		System.out.println("WARENKORB ID:");
 		System.out.println(id);
@@ -81,7 +83,11 @@ public class WarenkorbOperations {
 		
 
 	}
-
+	
+	/**
+	 * Diese Methode ordnet eine Liste von Produkten einen bestimmten Warenkorb zu.
+	 * @param warenkorb Der Warenkob der mit den Produkten verkn&uepft wird
+	 */
 	private static void anlegenWarenkorbProduktzuordnung(Warenkorb warenkorb) {
 
 		List<Produkt> inhalt = warenkorb.getInhalt();
@@ -105,7 +111,12 @@ public class WarenkorbOperations {
 		}
 
 	}
-
+	
+	/**
+	 * INSERT INTO
+	 * Diese Methode legt einen neuen Warenkorb in der DB an.
+	 * @param warenkorb das neue objekt der Klasse @Warenkorb
+	 */
 	public static void anlegenWarenkorb(Warenkorb warenkorb) {
 		Connection con = DBConnection.getConnection();
 		PreparedStatement pst;
@@ -122,7 +133,11 @@ public class WarenkorbOperations {
 
 		anlegenWarenkorbProduktzuordnung(warenkorb);
 	}
-
+	/**
+	 * Diese methode ladet einen Warenkorb aus der DB anhand eines Kunden
+	 * @param kunde der bestimmte Kunde
+	 * @return der Warenkorb des kunden
+	 */
 	public static Warenkorb ladeWarenkorbAusDB(Kunde kunde) {
 
 		Connection con = DBConnection.getConnection();
@@ -146,7 +161,12 @@ public class WarenkorbOperations {
 
 		return warenkorb;
 	}
-
+	
+	/**
+	 * Diese Methode liefert eine Liste aller Produkte die im Warenkorb sind.
+	 * @param warenkorb DB-ID.
+	 * @return Liste von Objekten der Klasse @Produkt = Warenkorbinhalt
+	 */
 	private static List<Produkt> ladeProdukteZuWarenkorbAusDB(int warenkorb) {
 
 		Connection con = DBConnection.getConnection();

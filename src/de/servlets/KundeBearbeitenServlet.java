@@ -18,7 +18,7 @@ import de.utilities.mail;
 import de.utilities.randomStringGenerator;
 
 /**
- * @author Paul Blanke
+ * @author Stephen galla
  * Dieses Servlet liefert die Logik f&uer die Funktionen des Admins einen kunden zu l&oeschen oder ihm
  * ein neues Passwort zu setzten.
  * Servlet implementation class KundeBearbeitenServlet

@@ -17,21 +17,26 @@ import de.datenbank.DBConnection;
 * Diese Klasse verwaltet KundenOperationen
 * @see {@link package-info}
 * 
-* @author alle.
+* @author Benjamin Gajewski
 *
 */
 public class KundenOperations {
-
+	/**
+	 * Statements
+	 */
 	private final static String ANLEGEN_KUNDE = "INSERT INTO kunde VALUES (?,?,?,?)";
 	private final static String MAIL_KUNDE_VERGLEICH = "SELECT email FROM nutzer WHERE email = ?;";
 	private final static String KUNDEN_ABFRAGE = "SELECT * FROM kunde WHERE kundennr = ?;";
 	private final static String KUNDE_UPDATE = "UPDATE kunde SET vorname= ?, nachname= ? WHERE kundennr = ?";
 	private final static String KUNDE_LISTE ="SELECT * FROM kunde ORDER BY kundennr ASC;";
-	
 	private final static String KUNDE_LOESCHEN = "DELETE FROM kunde WHERE kundennr = ?;";
 	
 	
-    
+    /**
+     * INSERT INTO
+     * Diese Methode legt einen neuen Kunde in der DB an.
+     * @param kunde die ge&aenderten Kundendaten
+     */
 	public static void anlegen(Kunde kunde) {
 
 		NutzerOperations.anlegen(kunde);
@@ -54,7 +59,11 @@ public class KundenOperations {
 		}
 
 	}
-
+	/**
+	 * Diese Methode &ueberpr&ueft ob eine Mail einen bestimmten Kunden zugeordnet werden kann
+	 * @param mail pr&uefende Mail
+	 * @return stimmt / stimmt nicht
+	 */
 	public static boolean mailIstVorhanden(String mail) {
 		Connection con = DBConnection.getConnection();
 		PreparedStatement prprdQuery;
@@ -80,7 +89,12 @@ public class KundenOperations {
 		return true;
 
 	}
-	
+	/**
+	 * SELECT 
+	 * Diese Methode holt einen bestimmten Kunden aus der DB raus.
+	 * @param nutzer das @Nutzer Objekt anhand dessen der Kunde bestimmt wird
+	 * @return der Kunde
+	 */
 	public static Kunde kundeausdbholen (Nutzer nutzer){
 
 		Connection con = DBConnection.getConnection();
@@ -107,7 +121,11 @@ public class KundenOperations {
 		return null;
 		
 	}
-
+	/**
+	 * UPDATE
+	 * Diese Methode updatet eine bestimmten Kunden.
+	 * @param kunde der ge&aenderte Kunde
+	 */
 	public static void kundenUpdateDaten(Kunde kunde) {
 		Connection con = DBConnection.getConnection();
 		
@@ -130,7 +148,11 @@ public class KundenOperations {
 		AdresseOperations.adresseDataUpdate(adresse);
 	}
 	
-	
+	/**
+	 * DELETE 
+	 * Diese methode l&oescht einen bestimmten Kunden aus der DB
+	 * @param kunde
+	 */
 	public static void entferneKunde(Kunde kunde) {
 		Connection con = DBConnection.getConnection();
 		 try {
@@ -144,7 +166,10 @@ public class KundenOperations {
 			e.printStackTrace();
 		}
 	}
-	// Hole alle Kunden aus DB
+	/**
+	 * Diese Methode holt alle vorhanden Kunden aus der DB.
+	 * @return liste aller Kunden
+	 */
 	public static List<Kunde> holeAlleKunden() {
 		List<Kunde> kunden  = new ArrayList<>();
 		Connection con = DBConnection.getConnection();

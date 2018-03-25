@@ -13,16 +13,22 @@ import de.classes.Produkt;
 import de.datenbank.DBConnection;
 /**
 * 
-* Diese Klasse verwaltet ProduktOperationen
+* Diese Klasse verwaltet ProduktOperationen.
+* 
 * @see {@link package-infos}
 * 
-* @author alle.
+* @author Benjamin Gajewski
 *
 */
 public class HoseOperations {
 	private final static String HOSE_NACH_HO_ID = "SELECT * FROM hose WHERE ho_id=?;";
 	private final static String HOSE_LOESCHEN = "DELETE FROM hose WHERE ho_id = ?;";
-
+	/**
+	 * Diese Methode holt ein bestimmtes Produkt aus der DB
+	 * @ProduktOperations
+	 * @param produkt das Produkt, was als Hose aus der Db geholt werden soll
+	 * @return Produktobjekt von Typ Hose
+	 */
 	public static Hose hoseausdbholen(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
 
@@ -49,7 +55,11 @@ public class HoseOperations {
 
 	}
 	
-	
+	/**
+	 * @see @ProduktOperations
+	 * Diese Methode &loescht ein Produkt aus der DB.
+	 * @param hose
+	 */
 	public static void entferneHose(Hose hose) {
 		Connection con = DBConnection.getConnection();
 		 try {
@@ -62,6 +72,11 @@ public class HoseOperations {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * @see @ProduktOperations
+	 * Diese Methode &loescht ein Produkt aus der DB.
+	 * @param hose
+	 */
 	public static void entferneHosemitid(int id) {
 		Connection con = DBConnection.getConnection();
 		try {

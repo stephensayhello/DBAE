@@ -17,7 +17,7 @@ import de.databaseOperations.ProduktOperations;
 
 /**
  * Servlet implementation class ProduktÜbersichtServlet
- * @author Benjamin 
+ * @author Benjamin Gajewski
  * Dieses Servlet liefert dem Admin eine Übersicht über alle verfügbaren Produkte.
  */
 @WebServlet("/ProduktUebersichtServlet")

@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import de.classes.Admin;
-import de.classes.Hose;
 import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.datenbank.DBConnection;
@@ -17,14 +14,20 @@ import de.datenbank.DBConnection;
  * 
  * @see {@link package-info}
  * 
- * @author alle.
+ * @author Stephen Galla
  *
  */
 public class SchuheOperations {
+	/**
+	 * Statements
+	 */
 	private final static String HOLE_SCHUHE_NACH_SCHID = "SELECT * FROM schuhe WHERE sch_id = ?;";
-
 	private final static String SCHUHE_LOESCHEN = "DELETE FROM schuhe WHERE sch_id = ?;";
-
+	/**
+	 * Select Diese Methode holt ein Produkt von Typ Schuhe aus der DB.
+	 * @param produkt das rauszuholende Produkt
+	 * @return Instanz der Klasse @Schuhe
+	 */
 	public static Schuhe holeSchuheausdb(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
 
@@ -51,7 +54,11 @@ public class SchuheOperations {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Diese Methode l&oescht einen bestimmten Schuhe aus der DB.
+	 * @param schuhe das zul&oeschende Produkt
+	 */
 	public static void entferneSchuhe(Schuhe schuhe) {
 		Connection con = DBConnection.getConnection();
 		try {
@@ -64,7 +71,10 @@ public class SchuheOperations {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Diese methode l&oescht ein Schuh anhand der ID aus der DB.
+	 * @param id
+	 */
 	public static void entferneSchuhemitId(int id) {
 		Connection con = DBConnection.getConnection();
 		try {

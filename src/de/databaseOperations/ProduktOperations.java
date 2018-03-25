@@ -25,22 +25,21 @@ import de.datenbank.DBConnection;
 * Diese Klasse verwaltet ProduktOperationen 1 von 2.
 * @see {@link package-info}
 * 
-* @author alle.
+* @author Benjamin Gajewski
 *
 */
 public class ProduktOperations {
-
+	
+	/**
+	 * Statements
+	 */
 	private final static String ANLEGEN_PRODUKT = "INSERT INTO produkt VALUES (?,?,?,?,?,?,?,?,?)";
-
 	private final static String ANLEGEN_SCHUHE = "INSERT INTO schuhe VALUES (?,?)";
 	private final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
 	private final static String ANLEGEN_SHIRT = "INSERT INTO shirt VALUES (?,?)";
 	private final static String LADE_PRODUKTE = "SELECT * FROM produkt ORDER BY produkt_id ASC;";
-
 	private final static String PRODUKT_ZEIGEN_NACH_NAME = "SELECT * FROM produkt WHERE  name = ?;";
 	private final static String PRODUKT_ZEIGEN_NACH_ID = "SELECT * FROM produkt WHERE  produkt_id = ?;";
-
-	
 	private final static String ZEIGE_SCHUHE_NACH_PRODUKTID = "SELECT sch_id FROM schuhe WHERE sch_id = ?;";
 	private final static String ZEIGE_SHIRT_NACH_PRODUKTID = "SELECT sh_id FROM shirt WHERE sh_id = ?;";
 	private final static String ZEIGE_HOSE_NACH_PRODUKTID = "SELECT ho_id FROM hose WHERE ho_id = ?;";
@@ -49,7 +48,11 @@ public class ProduktOperations {
 
 	
 
-
+	/**
+	 * Diese Methode holt ein bestimmtes Produkt aus der DB.
+	 * @param artnr DB-ID.
+	 * @return Instanz der Klasse @Produkt
+	 */
 	public static Produkt ladeProduktausdb(int artnr) {
 
 		Connection con = DBConnection.getConnection();
@@ -96,7 +99,11 @@ public class ProduktOperations {
 		return null;
 
 	}
-
+	/**
+	 * SELECT
+	 * Diese Methode ermittelt die Höchste Artikelnummer aus der Db und erhöht sie um eins.
+	 * @return neue DB-iD
+	 */
 	public static int hoechsteartikelnr() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -117,7 +124,11 @@ public class ProduktOperations {
 
 		return id;
 	}
-
+	
+	/**
+	 * Diese Methode speichert eine neues Produkt in der DB.
+	 * @param produkt das neue objekt der Klasse @Produkt
+	 */
 	public static void anlegen(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
 
@@ -148,7 +159,10 @@ public class ProduktOperations {
 		}
 
 	}
-
+	/**
+	 * Diese Methode speichert ein Produkt der Klasse Schuhe in der DB.
+	 * @param schuhe eine Instanz von @Schuhe
+	 */
 	private static void anlegenSchuhe(Schuhe schuhe) {
 		Connection con = DBConnection.getConnection();
 
@@ -165,7 +179,10 @@ public class ProduktOperations {
 		}
 
 	}
-
+	/**
+	 * Diese Methode speichert ein Produkt der Klasse Hose in der DB.
+	 * @param hose eine Instanz von @Hose
+	 */
 	private static void anlegenHose(Hose hose) {
 		Connection con = DBConnection.getConnection();
 
@@ -182,7 +199,10 @@ public class ProduktOperations {
 		}
 
 	}
-
+	/**
+	 * Diese Methode speichert ein Produkt der Klasse Shirt in der DB.
+	 * @param shirt eine Instanz von @Shirt
+	 */
 	private static void anlegenShirt(Shirt shirt) {
 		Connection con = DBConnection.getConnection();
 
@@ -198,7 +218,10 @@ public class ProduktOperations {
 		}
 
 	}
-
+	/**
+	 * Diese Methode liefert eine neue DB-Id.
+	 * @return neue DB-Id
+	 */
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -241,7 +264,6 @@ public class ProduktOperations {
 				produkt.setBeschreibung(rs.getString(1));
 
 			}
-
 			con.close();
 
 		} catch (SQLException e) {
@@ -251,6 +273,11 @@ public class ProduktOperations {
 		return produkt;
 	}
 
+	
+	/**
+	 * Diese Methode liefert eine Liste aller Produkte aus der DB.
+	 * @return alle produkte aus der DB.
+	 */
 	public static List<Produkt> ladeProdukteAusDatenbank() {
 
 		Connection con = DBConnection.getConnection();
@@ -294,6 +321,12 @@ public class ProduktOperations {
 
 		return produkte;
 	}
+	/**
+	 * Diese methode liefert alle Produkt einer Produktgruppe aus der DB.
+	 * @param artikelnr DB-ID
+	 * @return Liste aller @Produkte aus der DB, die zu einer best. Gruppe
+	 * geh&oeren
+	 */
 	public static List<Produkt> ladeProdukteAusDatenbankmitArtnr(int artikelnr) {
 		
 		Connection con = DBConnection.getConnection();
@@ -338,7 +371,11 @@ public class ProduktOperations {
 		
 		return produkte;
 	}
-
+	/**
+	 * Diese Methode pr&ueft ob ein produkt zu der Klasse Shirts geh&oert.
+	 * @param id DB-ID.
+	 * @return ist / ist nicht eine Instanz der Klasse @Shirt
+	 */
 	public static boolean produktistShirt(int id) {
 		Connection con = DBConnection.getConnection();
 
@@ -362,7 +399,11 @@ public class ProduktOperations {
 		return false;
 
 	}
-
+	/**
+	 * Diese Methode pr&ueft ob ein produkt zu der Klasse Hose geh&oert.
+	 * @param id DB-ID.
+	 * @return ist / ist nicht eine Instanz der Klasse @Hose
+	 */
 	public static boolean produktistHose(int id) {
 		Connection con = DBConnection.getConnection();
 
@@ -386,7 +427,11 @@ public class ProduktOperations {
 		return false;
 
 	}
-
+	/**
+	 * Diese Methode pr&ueft ob ein produkt zu der Klasse Schuhe geh&oert.
+	 * @param id DB-ID.
+	 * @return ist / ist nicht eine Instanz der Klasse @Schuhe
+	 */
 	public static boolean produktistSchuhe(int id) {
 		Connection con = DBConnection.getConnection();
 
@@ -410,7 +455,11 @@ public class ProduktOperations {
 		return false;
 
 	}
-
+/**
+ * Diese Methode holt ein produkt anhand der ID aus der DB.
+ * @param id DB-ID
+ * @return Instanz der Klasse @Produkt
+ */
 	public static Produkt produktausdbholen(int id) {
 		Connection con = DBConnection.getConnection();
 

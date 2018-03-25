@@ -9,18 +9,20 @@ import de.datenbank.DBConnection;
 /**
  * Diese Klasse stellt eine Logikmetethode bereit, die zufällige id ermittelt.
  *@see package-infos
- * @author paul4
+ * @author Paul Blanke
  *
  */
 public class BewertsDurchschnittOperations {
-
+	/**
+	 * Statements
+	 */
 	public final static String DURCHSCHNITT_PRO_PRODUKT = "SELECT * FROM bewertung WHERE produkt_id = ?;";
 	private final static String DURCHSCHNITT_BEWERTUNG = "SELECT score FROM bewertungs_durchschnitt WHERE artikelnr = ?;";
-/**
- * Diese Methode ermittelt den Durchschnitt anhand einer produkt_id
- * @param produkt_id Grundlage der Berechnung.
- * @return durchschnitt pro Produkt
- */
+	/**
+	 * Diese Methode ermittelt den Durchschnitt anhand einer produkt_id
+	 * @param produkt_id Grundlage der Berechnung.
+	 * @return durchschnittliche Bewertung pro Produkt
+	 */
 	public static int ermitteleneDurchschnitt(int produkt_id) {
 		int counter = 0;
 		int sum = 0;

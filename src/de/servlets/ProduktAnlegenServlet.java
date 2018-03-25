@@ -28,6 +28,7 @@ import de.utilities.FileStorageInDropbox;
 
 /**
  * Servlet implementation class ProduktAnlegenServlet
+ * @author Benjamin Gajewski
  */
 @WebServlet("/ProduktAnlegenServlet")
 @MultipartConfig
@@ -48,7 +49,7 @@ public class ProduktAnlegenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		doPost(request, response);
 	}
 
 	/**

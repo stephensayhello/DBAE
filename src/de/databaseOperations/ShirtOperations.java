@@ -4,24 +4,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import de.classes.Admin;
 import de.classes.Produkt;
-
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
 /**
 * 
 * Diese Klasse verwaltet ProduktOperationen
-* @see {@link package-info}
+* @see @package-info
 * 
-* @author alle.
+* @author Stephen Galla
 *
 */
 public class ShirtOperations {
+	/**
+	 * Statements
+	 */
 	private final static String HOLE_SHIRT_NACH_SHID = "SELECT * FROM shirt WHERE sh_id = ?;";
 	private final static String SHIRT_LOESCHEN = "DELETE FROM shirt WHERE sch_id= ?;";
-
+	/**
+	 * SELECT
+	 * Diese Methode holtb ein Produkt aus der DB
+	 * @param produkt
+	 * @return ein Objekt der Klasse Shirts.
+	 */
 	public static Shirt holeShirtausdb(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
 
@@ -46,7 +51,10 @@ public class ShirtOperations {
 		}
 		return null;
 	}
-	
+	/**
+	 * Diese Methode l&oescht ein Shirt aus der DB.
+	 * @param shirt das l&oeschende Objekt der Instanz @shirt
+	 */
 	public static void entferneShirt(Shirt shirt) {
 		Connection con = DBConnection.getConnection();
 		 try {
@@ -59,6 +67,10 @@ public class ShirtOperations {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Diese Methode l&oescht ein Shirt anhand der ID aus der DB
+	 * @param id DB-id
+	 */
 	public static void entferneShirtmitId(int id) {
 		Connection con = DBConnection.getConnection();
 		try {

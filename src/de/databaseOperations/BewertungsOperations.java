@@ -238,7 +238,11 @@ public class BewertungsOperations {
 			
 		return bewertProdukt;
 	}
-	
+	/**
+	 * Diese Methode holt eine einzige Bewertung aus der DB.
+	 * @param produkt_id Das Produkt, zu dem eine Bestellung gesucht wird.
+	 * @return Einzelbewertung
+	 */
 	public static Bewertung holeEinzeleneBewertung(int produkt_id) {
 		Connection con = DBConnection.getConnection();
 		Bewertung bewertung;

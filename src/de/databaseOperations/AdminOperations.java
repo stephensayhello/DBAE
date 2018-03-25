@@ -12,13 +12,17 @@ import de.datenbank.DBConnection;
  * 
  * Diese Klasse verwaltet AdminOperationen
  * @see package-infos.
- * @author alle.
+ * @author Stephen Galla
  *
  */
 public class AdminOperations {
 	private static final String ADMIN_AUS_DB_HOLEN = "SELECT * FROM admin WHERE admin_id = ?;";
 	private static final String  ADMIN_LOESCHEN= " DELETE  FROM admin WHERE admin_id = ?";
-
+	/**
+	 * Diese Metthode holt einen Admin aus der DB raus.
+	 * @param nutzer Ein Objekt der Klasse @Nutzer
+	 * @return ein Admin Objekt @Admin
+	 */
 	public static Admin holeAdminausDB(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
 
@@ -46,7 +50,10 @@ public class AdminOperations {
 
 	}
 	
-	
+	/**
+	 * Diese Methode entfernt einen gegebenden Admin aus der DB.
+	 * @param admin Der zu L&oeschende Admin
+	 */
 	public static void entferneAdmin(Admin admin) {
 		Connection con = DBConnection.getConnection();
 		 try {

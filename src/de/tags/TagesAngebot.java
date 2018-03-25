@@ -24,40 +24,31 @@ public class TagesAngebot  extends TagSupport{
 	/**
 	 * Ein Produkt Objekt. @Produkt
 	 */
-	Produkt produkt;
-	/**
-	 * 
-	 * die durchschnittliche Punktzahl.
-	 */
-	int durchschnitt;
-	/**
-	 * Arrays von Groessen.
-	 */
 	private static final String[] SHIRT_GROESSEN = { "S", "M", "L", "XL", "XXL" };
 	private static final String[] HOSE_GROESSEN = { "28", "30", "32", "34", "38", "40", "42" };
 	private static final String[] SCHUHE_GROESSEN = { "38", "39", "40", "41", "42", "43", "44", "45" };
-
+	
+	Produkt produkt;
 	
 	public void setProdukt(Produkt produkt) {
 		this.produkt = produkt;
 	}
 	
-	public void setDurchschnitt(int durchschnitt) {
-		this.durchschnitt = durchschnitt;
-		
-	}
+
+	
 	
 	public int doStartTag() {
-		if(produkt != null && durchschnitt > 0) {
-		try {
+		
 			
-				pageContext.getOut().append(getTagesAngebotView());
+				try {
+					pageContext.getOut().append(getTagesAngebotView());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} } else {
-			// tue nicht nichts Tag wird nocht ausgelöst.
-		}
+		
+			
 		return SKIP_BODY;
 	}
 	/**
@@ -65,7 +56,10 @@ public class TagesAngebot  extends TagSupport{
 	 * @return
 	 */
 	private String getTagesAngebotView() {
-		String artikelview = ReadFromFile.readContentFromFile(pageContext, "tagesangebot.html");
+		
+		
+		if(produkt!= null) {
+			String artikelview = ReadFromFile.readContentFromFile(pageContext, "artikelview.html");
 		
 		String produktpreis = produkt.getPreisineuro();
 
@@ -74,7 +68,7 @@ public class TagesAngebot  extends TagSupport{
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
 		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getArtikelnr()));
 		artikelview = artikelview.replace("PLATZHALTER4", produktpreis);
-		artikelview = artikelview.replace("PLATZHALTER6",Integer.toString(durchschnitt) );
+		artikelview = artikelview.replace("PLATZHALTER6","Sterne" );
 		if(produkt.getImagePath().isEmpty()) {
 			artikelview = artikelview.replace("PLATZHALTER5", "img/dummy.jpg");
 
@@ -98,9 +92,13 @@ public class TagesAngebot  extends TagSupport{
 			options += "<option value=" + value + ">" + value + "</option>";
 		}
 		artikelview = artikelview.replace("PLATZHALTERGROESSE", options);
-		
-		
 		return artikelview;
+		} else {
+			 String artikelview = "";
+			 return artikelview;
+		}
+		
+		
 	}
 
 }

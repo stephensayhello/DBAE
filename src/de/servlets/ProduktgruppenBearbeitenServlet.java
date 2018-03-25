@@ -18,7 +18,7 @@ import de.logik.Regex;
 
 /**
  * Servlet implementation class ProduktgruppenBearbeitenServlet
- * @author Benjamin
+ * @author Benjamin Gajewski
  * Dieses Servlet bietet die Möglichkeit mehrere Artikel einer Produktgruppe gleichzeitig zu ändern.
  * 
  */

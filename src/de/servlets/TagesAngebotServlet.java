@@ -50,7 +50,7 @@ public class TagesAngebotServlet extends HttpServlet {
 		// Daten holen und Attribute setzen
 		HttpSession session = request.getSession();
 		session.setAttribute("klick", " ");
-		int id = ProduktUpdateOperations.zufallsID();
+		int id = 1;
 		Produkt produkt = ProduktOperations.produktausdbholen(id);
 		session.setAttribute("produkt", produkt);
 		List<Bewertung> bewertungen = BewertungsOperations.sucheAlleBwertungBestProdukt(id);

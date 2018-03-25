@@ -21,6 +21,7 @@ import de.utilities.mail;
 /**
  * Dieses Servlet bietet die M&oeglichkeit die Kundendaten zu ver&anendern.
  * Servlet implementation class KundenOperationsServlet
+ * @author Stephen Galla
  */
 @WebServlet("/KundenOperationsServlet")
 public class KundenOperationsServlet extends HttpServlet {

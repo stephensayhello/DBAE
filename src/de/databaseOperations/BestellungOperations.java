@@ -26,7 +26,7 @@ import sun.security.action.GetBooleanAction;
  * Diese Klasse verwaltet BestellungOperationen
  * 
  * @see package-info. {@link package-info}
- * @author alle.
+ * @author Paul blanke
  *
  */
 public class BestellungOperations {
@@ -38,7 +38,10 @@ public class BestellungOperations {
 	private final static String BSTNR_MIT_KUNDENNR_AUS_DB_HOLEN = "SELECT * FROM bestellung WHERE kundennr = ? ORDER BY bstnr ASC;";
 	private final static String BESTELLUNG_AUF_PRODUKT_PRUEFEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt "
 			+ "ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE kundennr = ?, produkt_id = ? ";
-
+	/**
+	 * Diese Methode liefert die höchste ID aus der DB und erhöht sie um eins.
+	 * @return neue ID zu speichern in der DB
+	 */
 	public static int hoechsteID() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -58,7 +61,10 @@ public class BestellungOperations {
 
 		return id;
 	}
-
+	/**
+	 * Diese Methode speichert eine neue Bestellung in der DB.
+	 * @param bestellung die zuspeichernde @Bestellung
+	 */
 	public static void anlegen(Bestellung bestellung) {
 
 		List<Produkt> bestellliste = bestellung.getBestellliste();
@@ -83,7 +89,10 @@ public class BestellungOperations {
 		}
 
 	}
-
+	/**
+	 * Diese Methode speichert eine neue Bestellung in der DB.
+	 * @param bestellung die zuspeichernde @Bestellung
+	 */
 	public static void bestellunganlegen(Bestellung bestellung) {
 		Connection con = DBConnection.getConnection();
 		PreparedStatement pst;
@@ -103,7 +112,12 @@ public class BestellungOperations {
 
 		
 	}
-
+/**
+ * Diese Methode holt eine Liste von Bestellung für den einen bestimmten
+ * Kunden aus der DB.
+ * @param kunde der kunde, zu dem die Bestellung gehören.
+ * @return eine Liste aller Bestellungen
+ */
 	public static List<Bestellung> bestellungausdbholen(Kunde kunde) {
 
 		List<Bestellung> bestellungen = bestelldatumundBstnrMitKnrAusDbholen(kunde.getNutzer_id());
@@ -156,61 +170,13 @@ public class BestellungOperations {
 		}
 	return null;	
 	}
-//		public static List<Bestellung> allebestellungenausgeben() {
-//			
-//			List<Bestellung> bestellungen = BestellungmitDatumAusDbholen() ;
-//			
-//			try {
-//				for (Bestellung bestellung : bestellungen) {
-//					List<Produkt> produktbestellliste = new ArrayList<>();
-//					Connection con = DBConnection.getConnection();
-//					PreparedStatement pst = con.prepareStatement(BESTELLUNG_NATURAL_JOIN);
-//					
-//					ResultSet rs = pst.executeQuery();
-//					while (rs.next()) {
-//						int produkt_id = rs.getInt(1);
-//						int preis = rs.getInt(2);
-//						int menge = rs.getInt(3);
-//						String name = rs.getString(4);
-//						String beschreibung = rs.getString(5);
-//						int artikelnr = rs.getInt(6);
-//						int versanddauer = rs.getInt(7);
-//						String status = rs.getString(8);
-//						String imagepath = rs.getString(9);
-//						int anzahl = rs.getInt(10);
-//						Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artikelnr, anzahl,
-//								versanddauer, status, imagepath);
-//						if (ProduktOperations.produktistHose(produkt_id)) {
-//							Hose hose = HoseOperations.hoseausdbholen(produkt);
-//							produktbestellliste.add(hose);
-//						} else if (ProduktOperations.produktistSchuhe(produkt_id)) {
-//							Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
-//							produktbestellliste.add(schuhe);
-//						} else if (ProduktOperations.produktistShirt(produkt_id)) {
-//							Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
-//							produktbestellliste.add(shirt);
-//						}
-//						
-//						con.close();
-//					}
-//					
-//					bestellung.setBestellliste(produktbestellliste);
-//					
-//					
-//				}
-//				
-//				return bestellungen;
-//				
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//				
-//			}
-//
-//		return null;
-//
-//	}
 
+	/**
+	 * Diese Methode holt eine Liste von Bestellung für den einen bestimmten
+	 * Kunden aus der DB.
+	 * @param knr der kunde, zu dem die Bestellung gehören.
+	 * @return eine Liste aller Bestellungen
+	 */
 	public static List<Bestellung> bestelldatumundBstnrMitKnrAusDbholen(int knr) {
 
 		Connection con = DBConnection.getConnection();
@@ -240,43 +206,12 @@ public class BestellungOperations {
 		return null;
 
 	}
-//	public static List<Bestellung> BestellungmitDatumAusDbholen() {
-//		
-//		Connection con = DBConnection.getConnection();
-//		
-//		try {
-//			PreparedStatement pst = con.prepareStatement(BESTELLUNG_AUS_DB);
-//			
-//			ResultSet rs = pst.executeQuery();
-//			List<Bestellung> teilbestellungen = new ArrayList<>();
-//			while (rs.next()) {
-//				int bstnr = rs.getInt(1);
-//				int knr = rs.getInt(2);
-//				String bestelldatum = rs.getString(3);
-//				Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen(knr));
-//				Bestellung bestellung = new Bestellung(bstnr,bestelldatum,kunde);
-//				teilbestellungen.add(bestellung);
-//			}
-//			
-//			con.close();
-//			return teilbestellungen;
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			
-//		}
-//		
-//		return null;
-//		
-//	}
 
 	/**
-	 * Diese Methode prï¿½ft ob ein Kunde ein Produkt bestellt hat.
+	 * Diese Methode pr&ueft ob ein Kunde ein bestimmtes Produkt bewerten darf.
 	 * 
-	 * @param kunde
-	 *            der prï¿½fende Kunde.
-	 * @param produkt_id
-	 *            das prï¿½fende Produkt
+	 * @param kunde der pr&uefende Kunde.
+	 * @param produkt_id das pruefende Produkt
 	 * @return hat / hat nicht das Produkt.
 	 */
 	public static boolean pruefeBestellungAufProdukt(Kunde kunde, int produkt_id) {
