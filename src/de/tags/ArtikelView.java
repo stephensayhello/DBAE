@@ -28,11 +28,6 @@ public class ArtikelView extends TagSupport {
 	 */
 	private Produkt produkt;
 	/**
-	 *@Bewertung eine Instanz der Klasse Bewertung 
-	 */
-	private List<Bewertung> bewertungen;
-	private Bewertung bewertung;
-	/**
 	 * Ein Z&aehler
 	 */
 	public static int counter = 0;
@@ -45,18 +40,6 @@ public class ArtikelView extends TagSupport {
 // Getter und Setter
 	public void setProdukt(Produkt produkt) {
 		this.produkt = produkt;
-	}
-
-	public List<Bewertung> getBewertungen() {
-		return bewertungen;
-	}
-
-	public void setBewertungen(List<Bewertung> bewertungen) {
-		this.bewertungen = bewertungen;
-	}
-	
-	public void setBewertung(Bewertung bewertung) {
-		this.bewertung = bewertung;
 	}
 	/**
 	 * Tag Methode 
@@ -76,11 +59,54 @@ public class ArtikelView extends TagSupport {
 	 */
 	private String getArtikelView() throws IOException {
 		String artikelview = ReadFromFile.readContentFromFile(pageContext, "artikel.html");
+	
+		Bewertung bewertung = new Bewertung();
+		bewertung.setBewertung_id(produkt.getProdukt_id());
+		int anzahlSterne = bewertung.ermitteleDurchschnitt();
+		String fuerSix="";
+		if(anzahlSterne == 5) {
+			
+			fuerSix = "<span class='glyphicon glyphicon-star'></span>"
+			+ "<span class='glyphicon glyphicon-star'></span>"
+			+ "<span class='glyphicon glyphicon-star'></span>"
+			+ "<span class='glyphicon glyphicon-star'></span>"
+			+ "<span class='glyphicon glyphicon-star'></span>";
+			
+		} else if(anzahlSterne == 4) {
+
+			fuerSix = "<span class='glyphicon glyphicon-star'></span>"
+			+ "<span class='glyphicon glyphicon-star'></span>"
+			+ "<span class='glyphicon glyphicon-star'></span>"
+			+ "<span class='glyphicon glyphicon-star'></span>"
+			+ "<span class='glyphicon glyphicon-star-empty'></span>";
+		} else if(anzahlSterne == 3) {
+			fuerSix = "<p><span class='glyphicon glyphicon-star'></span>"
+					+ "<p><span class='glyphicon glyphicon-star'></span>"
+					+ "<p><span class='glyphicon glyphicon-star'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>";
+		} else if(anzahlSterne == 2) {
+			fuerSix = "<p><span class='glyphicon glyphicon-star'></span>"
+					+ "<p><span class='glyphicon glyphicon-star'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>";
+		} else if(anzahlSterne == 1) {
+			fuerSix = "<p><span class='glyphicon glyphicon-star'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>";
+		} else if(anzahlSterne == 0) {
+			fuerSix = "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<p><span class='glyphicon glyphicon-star-empty'></span>";
+		}
 		
 		
-		
-		
-		
+		System.out.println(Integer.toString(bewertung.ermitteleDurchschnitt()));
 		
 		String produktpreis = produkt.getPreisineuro();
 
@@ -89,7 +115,9 @@ public class ArtikelView extends TagSupport {
 		artikelview = artikelview.replace("PLATZHALTER2", produkt.getBeschreibung());
 		artikelview = artikelview.replace("PLATZHALTER3", String.valueOf(produkt.getArtikelnr()));
 		artikelview = artikelview.replace("PLATZHALTER4", produktpreis);
-	// artikelview = artikelview.replace("PLATZHALTER6", Integer.toString(bewertung.ermitteleDurchschnitt()));
+	
+		
+		artikelview = artikelview.replace("PLATZHALTER6", fuerSix);
 		if(produkt.getImagePath().isEmpty()) {
 			artikelview = artikelview.replace("PLATZHALTER5", "img/dummy.jpg");
 
