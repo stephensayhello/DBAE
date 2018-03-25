@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 
 /**
+ * Diese Klasse erweitert den Basefilter @BaseFilter.
+ * Analog zu Klasse aus dem Learnweb.
+ * @author Benjamin Gajewski
  * Servlet Filter implementation class HTMLFilter
  */
 @WebFilter("/*")
@@ -41,7 +44,7 @@ class HtmlRequestWrapper extends HttpServletRequestWrapper implements HttpServle
 	/**
 	 * Konstruktor
 	 * 
-	 * @param request
+	 * @param request das zu pr&uefende request Objekt
 	 */
 	public HtmlRequestWrapper(HttpServletRequest request) 
 	{
@@ -50,7 +53,7 @@ class HtmlRequestWrapper extends HttpServletRequestWrapper implements HttpServle
 	
 	/**
 	 * 
-	 * @param str
+	 * @param str Eingabe mit Code Anteil.
 	 * @return String ohne html code
 	 */
 	public String getParameter(String str)

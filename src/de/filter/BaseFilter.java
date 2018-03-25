@@ -8,7 +8,14 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
+/**
+ * Diese Klasse stellt einen BasisFilter bereit.
+ * Analog nach Vorlage aus dem Learnweb &uebernommen.
+ * Klasse nicht erweitert.
+ * 
+ * @author Stephen Galla
+ *
+ */
 public class BaseFilter implements Filter {
 	protected FilterConfig config;
 	

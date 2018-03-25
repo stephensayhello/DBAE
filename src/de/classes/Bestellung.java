@@ -32,13 +32,6 @@ public class Bestellung {
 	private String datefromdb;
 
 
-	
-
-	public Bestellung(int bstnr, String bestelldatum, Kunde kunde) {
-		this.bestellnummer=bstnr;
-		this.datefromdb=bestelldatum;
-		this.kunde=kunde;
-	}
 
 
 	public int getBestellnummer() {
@@ -127,7 +120,7 @@ public class Bestellung {
 	 * Kontruktor
 	 * @param bestellnummer DB-ID.
 	 * @param bestellliste Eine Liste von produkten
-	 * @param kunde Der Kunde, der bestellt hat.
+	 * @param kunde Der Kunde, der bestellt hat @Kunde
 	 */
 	public Bestellung(int bestellnummer, List<Produkt> bestellliste, Kunde kunde) {
 
@@ -135,5 +128,16 @@ public class Bestellung {
 		this.bestellliste = bestellliste;
 		this.date = new Date();
 		this.kunde = kunde;
+	}
+	/**
+	 * Konstruktor
+	 * @param bstnr DB-iD
+	 * @param bestelldatum Das Datum einer Bestellung
+	 * @param kunde Kundenobjekt @Kunde
+	 */
+	public Bestellung(int bstnr, String bestelldatum, Kunde kunde) {
+		this.bestellnummer=bstnr;
+		this.datefromdb=bestelldatum;
+		this.kunde=kunde;
 	}
 }

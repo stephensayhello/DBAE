@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 /**
  * Servlet Filter implementation class XSSFilter
+ * @author paul Blanke
+ * Diese Klasse Filtert die Eingabe nach XSS Angriffe
+ * Zum gr&oessten Teil Analog zum Learnweb allerdings wurden weiteren Pr&uefungen erg&aenzt.
  */
 @WebFilter("/*")
 public class XSSFilter extends BaseFilter implements Filter {
@@ -56,7 +59,11 @@ class XSSRequestWrapper extends HttpServletRequestWrapper implements HttpServlet
 		super(request);
 		
 	}
-	
+	/**
+	 * Diese Methode &ueberpr&ueft die Eingabe anhand vorgegebener Parameter und erstetzt diese.
+	 * @param str Eingabe
+	 * @return bereinigte Eingabe.
+	 */
 	public String getParameter(String str) {
 		str = super.getParameter(str);
 		if(str != null) {
@@ -85,14 +92,6 @@ class XSSRequestWrapper extends HttpServletRequestWrapper implements HttpServlet
 			scriptPattern = Pattern.compile("Delete * FROM", Pattern.CASE_INSENSITIVE);
 			str = scriptPattern.matcher(str).replaceAll("");
 			scriptPattern = Pattern.compile("Insert into", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile(" ;", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile(" ('') ", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile(" ( )", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile(" ;", Pattern.CASE_INSENSITIVE);
 			str = scriptPattern.matcher(str).replaceAll("");
 			
 			
