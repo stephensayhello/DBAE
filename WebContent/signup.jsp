@@ -2,7 +2,7 @@
 	pageEncoding="Windows-1252"%>
 <%@  taglib prefix="a" uri="/WEB-INF/tag.tld"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="css/generalLayout.css">
@@ -25,7 +25,7 @@
 	</script>
 
 	<form action="SignUpServlet" method="post"
-		style="border: 1px solid #ccc">
+		style="border: 1px solid #ccc" onsubmit="return checkForm(this);">
 		<div class="container">
 			<h1>Sign Up</h1>
 			<p>Please fill in this form to create an account.</p>
@@ -54,8 +54,9 @@
 					type="text" placeholder="Ort" name="ort" required size=3>
 			</div>
 			
-
-			<div class="clearfix">
+			<div align="center"><input type="checkbox" required name="terms"> Ich stimme die <a href="datenschutz.jsp">AGB's und Datenschutzbestimmungen</a> zu.</div>
+			
+			<div align= "center" class="clearfix" >
 				<button type="submit" class="button-dbae">Sign Up</button>
 			</div>
 			<!-- Modal -->
