@@ -54,7 +54,7 @@ public class AdminOperations {
 	
 	/**
 	 * Diese Methode entfernt einen gegebenden Admin aus der DB.
-	 * @param admin Der zu L&oeschende Admin
+	 * @param admin Der zu Löschende Admin
 	 */
 	public static void entferneAdmin(Admin admin) {
 		Connection con = DBConnection.getConnection();

@@ -33,7 +33,7 @@ function onShow() {
 <a:navKunde rolle="${rolle }"></a:navKunde>
 
 <div class="container">
-<h1>Alle verfuegbare Produkte anzeigen</h1>
+<h1>Kundenübersicht</h1>
 <form action="KundenOperationsServlet" method="get">
 <button value="submit" class="button-dbae" id="anzeigen">Anzeigen</button>
 
@@ -43,7 +43,7 @@ function onShow() {
 <br />
 <div class="container">
 <div class="table-responsive">
-<table class="table">
+<table class="table table-striped table-bordered">
 			<tr>
 
 				<th>KNR</th>
