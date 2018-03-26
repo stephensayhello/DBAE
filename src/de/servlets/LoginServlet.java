@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 		if (nutzer != null) {
 			if (!SaltedHash.isPwdEqual(password, nutzer.getPasswort())) {
 				
-				String fehler = "passwort falsch";
+				String fehler = "Nutzername oder Passwort nicht vorhanden!";
 				messages.add(fehler);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}else if (NutzerOperations.nutzeristKunde(nutzer.getNutzer_id())) {
@@ -115,7 +115,7 @@ public class LoginServlet extends HttpServlet {
 		} else {
 
 			session.setAttribute("rolle", "kunde");
-			String falschernutzername = "Name falsch";
+			String falschernutzername = "Nutzername oder Passwort nicht vorhanden!";
 			messages.add(falschernutzername);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 
