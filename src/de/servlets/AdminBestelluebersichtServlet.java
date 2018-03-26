@@ -72,7 +72,7 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
+	
 		String bearbeitungsstatus = request.getParameter("status");
 		String auswahl = request.getParameter("auswahl");
 		int bstnr = Integer.parseInt(auswahl);

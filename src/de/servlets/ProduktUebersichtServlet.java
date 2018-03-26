@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-
 import de.classes.Produkt;
 import de.databaseOperations.ProduktOperations;
 
@@ -106,7 +104,6 @@ public class ProduktUebersichtServlet extends HttpServlet {
 				session.removeAttribute("messages");
 				System.out.println("srevlet angekommen, produktuebersichtservlet");
 				List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
-				List<Produkt> produktnachsortiment = new ArrayList<>();
 				List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
 
 				int counter = 0;

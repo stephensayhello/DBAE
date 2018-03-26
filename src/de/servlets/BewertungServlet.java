@@ -54,8 +54,6 @@ public class BewertungServlet extends HttpServlet {
 		int punkte = Integer.parseInt(request.getParameter("punkte"));
 		int artikelNr = Integer.parseInt(request.getParameter("artnr"));
 		String kommentar = request.getParameter("bewertung");
-		int artikelnr = 0;
-
 		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 		
 		List<String> messages = new ArrayList<>();

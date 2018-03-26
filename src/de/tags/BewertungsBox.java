@@ -4,7 +4,6 @@ import java.io.IOException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 import de.classes.Bewertung;
-import de.databaseOperations.BewertungsOperations;
 import de.utilities.ReadFromFile;
 
 /**

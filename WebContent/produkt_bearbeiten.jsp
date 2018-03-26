@@ -25,8 +25,8 @@
 			<form action="ProduktBearbeitenServlet" method="post"
 				>
 
-Name:${produkt.name}
-Preis: ${produkt.preis }
+<p>Name:${produkt.name}</p><br>
+<p>Preis: ${produkt.preis }</p><br>
 				 <label
 					for="menge"><b>Menge:</b></label><input class="input-dbae"
 					type="text" placeholder="${produkt.menge}" name="menge">  <label

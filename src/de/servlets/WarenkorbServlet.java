@@ -1,8 +1,6 @@
 package de.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,7 +15,6 @@ import de.classes.Kunde;
 import de.classes.Produkt;
 import de.classes.Warenkorb;
 import de.databaseOperations.BestellungOperations;
-import de.utilities.CreatePDF;
 import de.utilities.Mail;
 
 /**
@@ -63,16 +60,16 @@ public class WarenkorbServlet extends HttpServlet {
 		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 		if ((Warenkorb) session.getAttribute("warenkorb") != null && kunde != null) {
 			Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
-			List<Produkt> warenkorbinhalt = (List<Produkt>) session.getAttribute("warenkorbinhalt");
+			List<Produkt> warenkorbinhalt = warenkorb.getInhalt();
 				
 			Bestellung bestellung = new Bestellung(warenkorbinhalt, kunde);
 			BestellungOperations.bestellunganlegen(bestellung);
 			
 			Mail.SendMailTLS(kunde.getEmail(), "Ihre Bestellung", "Vielen Dank für ihre Bestellung!");
 			
-			session.removeAttribute("warenkorbinhalt");
+		
 			session.removeAttribute("warenkorb");
-			session.removeAttribute("warenkorbgesamtpreis");
+			
 			session.removeAttribute("warenversanddauer");
 		} else if ((Warenkorb) session.getAttribute("warenkorb") == null) {
 			System.out.println("Der Warenkorb ist leer oder loggen sie sich ein");

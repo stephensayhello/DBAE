@@ -102,8 +102,6 @@ public class Artikeluebersicht extends HttpServlet {
 		List<Produkt> produkte = (List<Produkt>) session.getAttribute("produktlistedb");
 
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
-		boolean ingroesseverfuegbar = false;
-
 		if (warenkorb == null) {
 			Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 			warenkorb = new Warenkorb(kunde);
@@ -134,7 +132,6 @@ public class Artikeluebersicht extends HttpServlet {
 		}
 
 		if (modalProdukt == null) {
-			ingroesseverfuegbar = false;
 			messages.add("Zur Zeit leider in der Groesse nicht lieferbar!");
 			System.out.println("das modal");
 			request.setAttribute("messages", messages);

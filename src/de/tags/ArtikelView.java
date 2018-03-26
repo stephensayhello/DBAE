@@ -1,12 +1,8 @@
 package de.tags;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.servlet.jsp.tagext.TagSupport;
 
-import de.classes.Bewertung;
 import de.classes.Hose;
 import de.classes.Produkt;
 import de.classes.Schuhe;
