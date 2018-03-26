@@ -57,8 +57,8 @@ public class ProduktUpdateOperations {
 		}else if(produkt instanceof Shirt){
 			ShirtOperations.entferneShirtmitId(produkt.getProdukt_id());
 		}
-		System.out.println("entferneprodukt");
-		BewertungsOperations.entferneBewertungmitProd_id(produkt.getProdukt_id());
+		
+		
 		Connection con = DBConnection.getConnection();
 		
 		try {

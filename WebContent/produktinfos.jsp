@@ -21,14 +21,6 @@
 				$("#anzeigen").click();
 			}
 		});
-
-		function onHidde() {
-			document.getElementById("unsichtbar").style.visibility = "hidden";
-		}
-
-		function onShow() {
-			document.getElementById().style.visibility = "visible";
-		}
 	</script>
 	<a:navKunde rolle="${rolle }"></a:navKunde>
 
@@ -37,7 +29,7 @@
 		<br /> <br />
 
 		<div class="table-responsive">
-			<table class="table">
+			<table class="table table-bordered table-striped">
 				<tr>
 
 					<th>Preis</th>
@@ -47,12 +39,10 @@
 					<th>Menge</th>
 					<th>Groesse</th>
 					<th>Status</th>
+					<th>Bearbeiten</th>
 
 				</tr>
 				<c:forEach var="produkt" items="${produkte}">
-
-
-
 					<tr>
 						<td>${produkt.preisineuro}</td>
 						<td>${produkt.name}</td>
@@ -61,30 +51,21 @@
 						<td>${produkt.menge}</td>
 						<td>${produkt.groesse}</td>
 						<td>${produkt.status}</td>
-
+						<td>
+							<form action="ProduktUebersichtServlet" method="get">
+								<button value="submit" class="button-dbae"><span class="glyphicon glyphicon-pencil"></span></button>
+								<input type="hidden" value="${produkt.produkt_id}"
+									name="auswahl">
+								<input type="hidden" value="id"
+									name="pruefe">
+							</form>
+						</td>
 					</tr>
-
-
-
-
-
 				</c:forEach>
 			</table>
 		</div>
 
 
-
-		<form action="ProduktUebersichtServlet" method="get">
-			<label for="auswahl" class="input-dbae">Produkt(Auswahl
-				anhand von Name und ID)</label> <select name="auswahl" class="input-dbae">
-				<c:forEach var="produkt" items="${ produkte}">
-					<option value="${produkt.produkt_id}">${produkt.name},
-						${produkt.produkt_id}</option>
-				</c:forEach>
-			</select>
-			<button value="submit" class="button-dbae">Bearbeiten</button>
-			<input type="hidden" value="id" name="pruefe">
-		</form>
 
 		<form action="ProduktUebersichtServlet" method="get">
 			<label for="auswahl" class="input-dbae">Artikel einer

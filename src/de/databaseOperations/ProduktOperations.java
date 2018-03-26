@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import de.classes.Admin;
-import de.classes.Bewertung;
 import de.classes.Hose;
 import de.classes.Nutzer;
 import de.classes.Produkt;
