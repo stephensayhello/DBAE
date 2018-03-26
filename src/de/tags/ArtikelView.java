@@ -60,6 +60,7 @@ public class ArtikelView extends TagSupport {
 	 */
 	private String getArtikelView() throws IOException {
 		String artikelview = ReadFromFile.readContentFromFile(pageContext, "artikel.html");
+
 		
 		String sterne = "";
 		int durchschnitt = BewertungsOperations.ladeDurschnitt(produkt.getArtikelnr());
