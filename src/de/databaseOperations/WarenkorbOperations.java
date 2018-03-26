@@ -54,7 +54,7 @@ public class WarenkorbOperations {
 	}
 	/**
 	 * DELETE
-	 * Diese methode l&oescht einen Warenkorb aus der DB.
+	 * Diese methode loescht einen Warenkorb aus der DB.
 	 * @param id Die zu entfernde ID
 	 */
 	public static void entferneWarenkorb(int id) {
@@ -86,7 +86,7 @@ public class WarenkorbOperations {
 	
 	/**
 	 * Diese Methode ordnet eine Liste von Produkten einen bestimmten Warenkorb zu.
-	 * @param warenkorb Der Warenkob der mit den Produkten verkn&uepft wird
+	 * @param warenkorb Der Warenkob der mit den Produkten verknuepft wird
 	 */
 	private static void anlegenWarenkorbProduktzuordnung(Warenkorb warenkorb) {
 
