@@ -42,7 +42,7 @@ public class SupportOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
+	
 		
 	}
 	/**
@@ -65,7 +65,7 @@ public class SupportOperations {
 			e.printStackTrace();
 		}
 		id++;
-		DBConnection.closeConnection();
+	
 		return id;
 	}
 	/**
@@ -84,7 +84,7 @@ public class SupportOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 DBConnection.closeConnection();
+	
 	}
 	
 	

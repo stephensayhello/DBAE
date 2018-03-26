@@ -3,10 +3,8 @@ package de.classes;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import de.databaseOperations.ProduktOperations;
-
 /**
- * Die Klasse bildet das Gegenstück zu entsprechenden Tabelle.
+ * Die Klasse bildet das Gegenstück zu der entsprechenden Tabelle.
  * 
  * @author Benjamin Gajewski	
  *
@@ -246,27 +244,7 @@ public class Produkt {
 		this.setImagePath(imagepath);
 	}
 
-	/**
-	 * Konstruktur f&uer neue Produkte.
-	 * @param name selbsterk&aerend
-	 * @param beschreibung selbsterk&aerend
-	 * @param preis selbsterk&aerend
-	 * @param menge selbsterk&aerend
-	 * @param artnr selbsterk&aerend
-	 * @param status Lieferbarkeit.
-	 */
-	public Produkt(String name, String beschreibung, double preis, int menge, int artnr,String status) {
 
-		this.setProdukt_id(ProduktOperations.hoechsteID());
-		this.name = name;
-		this.beschreibung = beschreibung;
-		this.preis = preis;
-		this.menge = menge;
-		this.anzahl=0;
-		this.setStatus(status);
-		this.setPreisineuro(preis);
-
-	}
 
 	
 	

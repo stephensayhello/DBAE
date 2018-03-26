@@ -6,14 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import de.classes.Nutzer;
 import de.datenbank.DBConnection;
+
 /**
-* 
-* Diese Klasse verwaltet NutzerOperationen
-* @see {@link package-info}
-* 
-* @author Benjamin Gajewski
-*
-*/
+ * 
+ * Diese Klasse verwaltet NutzerOperationen
+ * 
+ * @see {@link package-info}
+ * 
+ * @author Benjamin Gajewski
+ *
+ */
 public class NutzerOperations {
 	/**
 	 * Statements
@@ -27,10 +29,13 @@ public class NutzerOperations {
 	private final static String MAX_NUTZER_ID = "SELECT MAX(nutzer_id) FROM nutzer;";
 	private final static String NUTZER_LOESCHEN = "DELETE FROM nutzer WHERE nutzer_id = ?";
 	private final static String NUTZER_NACH_ID = "SELECT * FROM nutzer WHERE nutzer_id =?";
-/**
- * Diese Methode legt einen neuen Nutzer in der DB an.
- * @param nutzer der neue @Nutzer
- */
+
+	/**
+	 * Diese Methode legt einen neuen Nutzer in der DB an.
+	 * 
+	 * @param nutzer
+	 *            der neue @Nutzer
+	 */
 	public static void anlegen(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
 
@@ -50,8 +55,10 @@ public class NutzerOperations {
 		}
 
 	}
+
 	/**
 	 * Diese methode ermittelt die H&oechste ID aus der DB.
+	 * 
 	 * @return H&oechste ID
 	 */
 	public static int hoechsteID() {
@@ -68,16 +75,17 @@ public class NutzerOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		id++;
-		DBConnection.closeConnection();
+
 		return id;
 	}
 
 	/**
-	 * SELECT 
-	 * Diese Methode holt einen Nutzer anhand der Mail aus der DB
-	 * @param email selbsterkl&aerend
+	 * SELECT Diese Methode holt einen Nutzer anhand der Mail aus der DB
+	 * 
+	 * @param email
+	 *            selbsterkl&aerend
 	 * @return Nutzerobjekt
 	 */
 	public static Nutzer nutzerAusDbHolen(String email) {
@@ -92,7 +100,6 @@ public class NutzerOperations {
 				int nutzer_id = rs.getInt(1);
 				String password = rs.getString(2);
 				String emailfromdb = rs.getString(3);
-			
 
 				Nutzer nutzer = new Nutzer(nutzer_id, password, emailfromdb);
 				con.close();
@@ -105,14 +112,16 @@ public class NutzerOperations {
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+
 		return null;
 
 	}
+
 	/**
-	 * SELECT 
-	 * Diese Methode holt einen Nutzer anhand der ID aus der DB
-	 * @param ID selbsterkl&aerend
+	 * SELECT Diese Methode holt einen Nutzer anhand der ID aus der DB
+	 * 
+	 * @param ID
+	 *            selbsterkl&aerend
 	 * @return Nutzerobjekt
 	 */
 	public static Nutzer nutzerAusDbHolen(int id) {
@@ -127,28 +136,27 @@ public class NutzerOperations {
 				int nutzer_id = rs.getInt(1);
 				String password = rs.getString(2);
 				String emailfromdb = rs.getString(3);
-			
 
 				Nutzer nutzer = new Nutzer(nutzer_id, password, emailfromdb);
 				con.close();
 				return nutzer;
 			}
-			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+
 		return null;
 
 	}
-	
-	
+
 	/**
 	 * Diese methode &ueberpr&ueft ob der Nutzer ein kunde ist
-	 * @param id - DB ID
+	 * 
+	 * @param id
+	 *            - DB ID
 	 * @return ist / ist nicht Kunde
 	 */
 	public static boolean nutzeristKunde(int id) {
@@ -166,19 +174,20 @@ public class NutzerOperations {
 			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+
 		return false;
 
 	}
-	
-	
+
 	/**
 	 * Diese methode &ueberpr&ueft ob der Nutzer ein Admin ist
-	 * @param id - DB ID
+	 * 
+	 * @param id
+	 *            - DB ID
 	 * @return ist / ist nicht Admin
 	 */
 	public static boolean nutzeristAdmin(int id) {
@@ -191,24 +200,27 @@ public class NutzerOperations {
 			if (rs.next()) {
 				int admin_id = rs.getInt(1);
 				con.close();
-				DBConnection.closeConnection();
-				return true;
-			} 
 
+				return true;
+			}
+			DBConnection.closeConnection();
 		} catch (
 
 		SQLException e) {
-		
+
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+		
 		return false;
 
 	}
+
 	/**
 	 * Diese Methode updatet die Daten eines Nutzers
-	 * @param nutzer der ge&aenderte Nutzer
+	 * 
+	 * @param nutzer
+	 *            der ge&aenderte Nutzer
 	 */
 	public static void nutzerDataUpdate(Nutzer nutzer) {
 		Connection con = DBConnection.getConnection();
@@ -223,28 +235,16 @@ public class NutzerOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
+		
 	}
+
+	
+
 	/**
 	 * Diese Methode l&oescht einen Nutzer aus der DB.
-	 * @param nutzer Nutzerobjekt @Nutzer
-	 */
-	public static void entferneNutzer(Nutzer nutzer) {
-		Connection con = DBConnection.getConnection();
-		 try {
-			PreparedStatement pst = con.prepareStatement(NUTZER_LOESCHEN);
-			pst.setInt(1, nutzer.getNutzer_id());
-			pst.execute();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 DBConnection.closeConnection();
-	}
-	/**
-	 * Diese Methode l&oescht einen Nutzer aus der DB.
-	 * @param id DB-Id
+	 * 
+	 * @param id
+	 *            DB-Id
 	 */
 	public static void entferneNutzermitID(int id) {
 		Connection con = DBConnection.getConnection();
@@ -259,25 +259,29 @@ public class NutzerOperations {
 		}
 		DBConnection.closeConnection();
 	}
+
 	/**
 	 * Diese Methode setzt dem Nutzer ein neues Passwort
-	 * @param pw vorbestimmtes Passwort
-	 * @param id Kunde, dessen Passwort angepasst wird
+	 * 
+	 * @param pw
+	 *            vorbestimmtes Passwort
+	 * @param id
+	 *            Kunde, dessen Passwort angepasst wird
 	 */
-	public static void setzeNeuesPasswort(String pw, int id){
+	public static void setzeNeuesPasswort(String pw, int id) {
 		Connection con = DBConnection.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(NUTZER_UPDATE_PASSWORT);
 			pst.setString(1, pw);
 			pst.setInt(2, id);
-			
+
 			pst.execute();
 			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
+		
 	}
 
 }

@@ -163,7 +163,7 @@ public class BestellungOperations {
 				bestellung.setKunde(kunde);
 
 			}
-			DBConnection.closeConnection();
+		
 			return bestellungen;
 
 		} catch (SQLException e) {
@@ -171,7 +171,7 @@ public class BestellungOperations {
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+		
 	return null;	
 	}
 
@@ -200,48 +200,18 @@ public class BestellungOperations {
 			}
 
 			con.close();
-			DBConnection.closeConnection();
+			
 			return teilbestellungen;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+		
 		return null;
 
 	}
 
-	/**
-	 * Diese Methode pr&ueft ob ein Kunde ein bestimmtes Produkt bewerten darf.
-	 * 
-	 * @param kunde der pr&uefende Kunde.
-	 * @param produkt_id das pruefende Produkt
-	 * @return hat / hat nicht das Produkt.
-	 */
-	public static boolean pruefeBestellungAufProdukt(Kunde kunde, int produkt_id) {
-		Connection con = DBConnection.getConnection();
-		boolean rueckgabe = false;
-		try {
-			PreparedStatement pst = con.prepareStatement(BESTELLUNG_AUF_PRODUKT_PRUEFEN);
-			pst.setInt(1, kunde.getNutzer_id());
-			pst.setInt(2, produkt_id);
-			ResultSet rs = pst.executeQuery();
-
-			if (!rs.next()) {
-				rueckgabe = false;
-			} else {
-				rueckgabe = true;
-			}
-			con.close();
-			DBConnection.closeConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DBConnection.closeConnection();
-		return rueckgabe;
-
-	}
+	
 
 }

@@ -1,12 +1,8 @@
 package de.servlets;
 
 import java.io.IOException;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import de.classes.Hose;
 import de.classes.Kunde;
 import de.classes.Produkt;
-import de.classes.Produktgruppe;
 import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.classes.Warenkorb;

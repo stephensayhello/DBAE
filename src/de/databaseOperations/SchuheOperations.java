@@ -52,29 +52,13 @@ public class SchuheOperations {
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+		
 		return null;
 	}
 	
+	
 	/**
-	 * Diese Methode l&oescht einen bestimmten Schuhe aus der DB.
-	 * @param schuhe das zul&oeschende Produkt
-	 */
-	public static void entferneSchuhe(Schuhe schuhe) {
-		Connection con = DBConnection.getConnection();
-		try {
-			PreparedStatement pst = con.prepareStatement(SCHUHE_LOESCHEN);
-			pst.setInt(1, schuhe.getProdukt_id());
-			pst.execute();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DBConnection.closeConnection();
-	}
-	/**
-	 * Diese methode l&oescht ein Schuh anhand der ID aus der DB.
+	 * Diese methode l&oescht ein Paar Schuh anhand der ID aus der DB.
 	 * @param id
 	 */
 	public static void entferneSchuhemitId(int id) {

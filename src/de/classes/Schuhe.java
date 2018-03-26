@@ -59,22 +59,7 @@ public class Schuhe extends Produkt {
 		this.groesse = groesse;
 	}
 
-	/**
-	 * Konstruktor.
-	 * @param id {@inheritDoc @Produkt}
-	 * @param name {@inheritDoc @Produkt}
-	 * @param beschreibung {@inheritDoc @Produkt}
-	 * @param preis {@inheritDoc @Produkt}
-	 * @param groesse Schuhgr&oesse
-	 * @param menge {@inheritDoc @Produkt }
-	 * @param artnr {@inheritDoc @Produkt}
-	 * @param anzahl {@inheritDoc @Produkt}
-	 * @param status {@inheritDoc @Produkt}
-	 */
-	public Schuhe(String name, String beschreibung, double preis, int groesse, int menge, int artnr, String status) {
-		super(name, beschreibung, preis, menge, artnr, status);
-		this.groesse = groesse;
-	}
+
 
 	
 }

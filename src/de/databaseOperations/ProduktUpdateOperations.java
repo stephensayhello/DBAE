@@ -72,7 +72,6 @@ public class ProduktUpdateOperations {
 			e.printStackTrace();
 		}
 		
-			DBConnection.closeConnection();
 	}
 	
 
@@ -114,7 +113,6 @@ public class ProduktUpdateOperations {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			DBConnection.closeConnection();
 		}
 	}
 	
@@ -140,7 +138,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 
 	/**
@@ -165,7 +162,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -189,7 +185,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -203,7 +198,7 @@ public class ProduktUpdateOperations {
 			PreparedStatement pst = con.prepareStatement(PRODUKT_UPDATE_MENGE);
 
 			pst.setInt(1, menge);
-			;
+			
 			pst.setInt(2, id);
 
 			pst.execute();
@@ -212,7 +207,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -254,7 +248,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -296,7 +289,6 @@ public class ProduktUpdateOperations {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			DBConnection.closeConnection();
 		}
 	}
 	
@@ -323,7 +315,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -349,7 +340,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -375,7 +365,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -399,7 +388,6 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	
 	/**
@@ -423,7 +411,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
+	
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -447,95 +435,12 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 	}
 	
-	/**
-	 * Diese Methode sucht anhand einer Artikelnummer die dazugeh&oerige Produkt-Id raus.
-	 * @param artikelnummer Index.
-	 * @return @Produkt_id
-	 */
-	public static int sucheProduktIDanhandArtikelNr(int artikelnummer) {
-		Connection con = DBConnection.getConnection();
-		int produkt_id = 1;
-		try {
-			PreparedStatement pst = con.prepareStatement(PRODUKTID_DURCH_ARTIKELNUMMER);
-			pst.setInt(1, artikelnummer);
-			ResultSet rs = pst.executeQuery();
-			if(rs.next()) {
-				produkt_id = rs.getInt(1);
-			} else if(!rs.next()) {
-				produkt_id = 1;
-			}
-			con.close();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		DBConnection.closeConnection();
-		return produkt_id;
-	}
 	
-	/**
-	 * Diese Methode ermittelt eine zuf&aellige ID f&uer das Tagesangebot
-	 * @return Zufallsid
-	 */
-	public static int zufallsID() {
-		Connection con = DBConnection.getConnection();
-		int randomZahl = 1;
-		int hoechsteID = 1;
-		
-		try {
-			PreparedStatement pst = con.prepareStatement(HOECHSTE_ID_ZUFALL);
-			ResultSet rs = pst.executeQuery();
-			rs.next();
-			hoechsteID = rs.getInt(1);
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		randomZahl = (int) (Math.random() * hoechsteID + 1);
-		if(checkID(randomZahl)) {
-			return randomZahl;
-		} else if(!checkID(randomZahl)) {
-			zufallsID();
-		}
-		return 0;
-		
-	}
 	
-	/**
-	 * Diese Methode checkt ob eine Id in der Tabelle vorhanden ist.
-	 * @zufallsID
-	 * @param id untersuchende ID
-	 * @return ist / ist nicht vorhanden.
-	 */
-	private static boolean checkID(int id) {
-		Connection con = DBConnection.getConnection();
 	
-		try {
-			PreparedStatement pst = con.prepareStatement(HILFS_LOGIK);
-			pst.setInt(1, id);
-			ResultSet rs = pst.executeQuery();
-			if(rs.next()) {
-				System.out.println(rs.getInt(1));
-				con.close();
-				return true;
-				
-			} else if(!rs.next()) {
-				con.close();
-				return false;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		DBConnection.closeConnection();
-		return false;
-	}
+	
+	
 	
 }

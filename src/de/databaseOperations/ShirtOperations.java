@@ -44,32 +44,16 @@ public class ShirtOperations {
 
 			}
 			con.close();
-			DBConnection.closeConnection();
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+	
 		return null;
 	}
-	/**
-	 * Diese Methode l&oescht ein Shirt aus der DB.
-	 * @param shirt das l&oeschende Objekt der Instanz @shirt
-	 */
-	public static void entferneShirt(Shirt shirt) {
-		Connection con = DBConnection.getConnection();
-		 try {
-			PreparedStatement pst = con.prepareStatement(SHIRT_LOESCHEN);
-			pst.setInt(1, shirt.getProdukt_id());
-			pst.execute();
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 DBConnection.closeConnection();
-	}
+	
 	/**
 	 * Diese Methode l&oescht ein Shirt anhand der ID aus der DB
 	 * @param id DB-id
@@ -85,6 +69,6 @@ public class ShirtOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
+	
 	}
 }

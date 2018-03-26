@@ -1,6 +1,5 @@
 package de.classes;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Bewertung {
@@ -14,16 +13,7 @@ public class Bewertung {
 	private Kunde kunde;
 	private Produkt produkt;
 
-	public Bewertung(int bewertungsid, int artikelnr, int kundennr, int punkte, String datum, String text) {
-		super();
-		this.bewertungsid = bewertungsid;
-		this.artikelnr = artikelnr;
-		this.kundennr = kundennr;
-		this.punkte = punkte;
-		this.text = text;
-		this.datum = datum;
-	}
-	
+
 	
 	public Bewertung(int bewertungsid, int artikelnr, int kundennr, int punkte, String text) {
 		super();

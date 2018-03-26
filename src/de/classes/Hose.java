@@ -60,23 +60,7 @@ public class Hose extends Produkt {
 		this.setPreismitanzahl(anzahl * preis);
 
 	}
-	/**
-	 * Konstruktur 
-	 * @see {@link @Produkt}
-	 * @param id {@inheritDoc @Produkt}
-	 * @param name {@inheritDoc @Produkt}
-	 * @param beschreibung {@inheritDoc @Produkt}
-	 * @param preis {@inheritDoc @Produkt}
-	 * @param groesse Hosengrösse
-	 * @param menge {@inheritDoc @Produkt}
-	 * @param artnr {@inheritDoc @Produkt}
-	 * @param versanddauer {@inheritDoc @Produkt}
-	 * @param status {@inheritDoc @Produkt}
-	 */
-	public Hose(String name, String beschreibung, double preis, int groesse, int menge, int artnr, String status) {
-		super(name, beschreibung, preis, menge, artnr, status);
-		this.groesse = groesse;
-	}
+	
 
 	
 }

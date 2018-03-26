@@ -241,38 +241,7 @@ public class ProduktOperations {
 		return id;
 	}
 
-	/**
-	 * 
-	 * Diese Methode liefert zu einem Produkt Daten aus der DB dazu.
-	 * 
-	 * @param produkt
-	 * @return
-	 */
-	public static Produkt zeigeProdukt(Produkt produkt) {
-		Connection con = DBConnection.getConnection();
-
-		try {
-			PreparedStatement pst = con.prepareStatement(PRODUKT_ZEIGEN_NACH_NAME);
-			pst.setString(1, produkt.getName());
-
-			ResultSet rs = pst.executeQuery();
-			rs.next();
-
-			if (rs.next()) {
-				produkt.setPreis(rs.getDouble(1));
-				produkt.setMenge(rs.getInt(2));
-				produkt.setBeschreibung(rs.getString(1));
-
-			}
-			con.close();
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return produkt;
-	}
-
+	
 	
 	/**
 	 * Diese Methode liefert eine Liste aller Produkte aus der DB.
@@ -494,7 +463,7 @@ public class ProduktOperations {
 					return ShirtOperations.holeShirtausdb(produkt);
 				}
 				con.close();
-				DBConnection.closeConnection();
+				
 				return produkt;
 			}
 

@@ -25,9 +25,6 @@ public class Warenkorb {
 	 */
 	private Kunde kunde;
 	
-	 private String gesamtpreisineuro;
-	 // Getter und Setter
-	 
 	 public Kunde getKunde() {
 			return kunde;
 		}
@@ -56,20 +53,8 @@ public class Warenkorb {
 			this.warenkorb_id = warenkorb_id;
 		}
 		public void setGesamtpreisineuro(String gesamtpreisineuro) {
-			
-			this.gesamtpreisineuro = gesamtpreisineuro;
 		}
-	/**
-	* Konstruktor 
-	* DB-Id wird aus der 
-	* @param kunde Kundenobjekt @Kunde
-	* @param produkte Produkt im Warenkorb @Produkt
-	*/
-	public Warenkorb(Kunde kunde,List<Produkt> produkte){
-	    this.setWarenkorb_id(WarenkorbOperations.hoechsteID());
-		this.setKunde(kunde);
-		this.produkte = produkte;
-	}
+
 	/**
 	* Konstruktor 
 	* DB-Id wird aus der 
@@ -127,7 +112,7 @@ public class Warenkorb {
 	
 	
 	/**
-	 * Diese Methode berechnet den Gesamtrpeis aller Produkte in Euro als String.
+	 * Diese Methode berechnet den Gesamtpreis aller Produkte in Euro als String.
 	 * @return Gesamtpreis f&uer Html Ausgabe.
 	 */
 	public String getGesamtpreisineuro() {

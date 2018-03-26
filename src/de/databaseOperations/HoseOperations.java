@@ -52,24 +52,7 @@ public class HoseOperations {
 
 	}
 	
-	/**
-	 * @see @ProduktOperations
-	 * Diese Methode &loescht ein Produkt aus der DB.
-	 * @param hose
-	 */
-	public static void entferneHose(Hose hose) {
-		Connection con = DBConnection.getConnection();
-		 try {
-			PreparedStatement pst = con.prepareStatement(HOSE_LOESCHEN);
-			pst.setInt(1, hose.getProdukt_id());
-			pst.execute();
-			con.close();
-			DBConnection.closeConnection();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	/**
 	 * @see @ProduktOperations
 	 * Diese Methode &loescht ein Produkt aus der DB.

@@ -53,17 +53,20 @@
 							PLATZHALTER6
 								
 							</div>
+						<form action="Artikeluebersicht" method="post">
 							<p>PLATZHALTER2</p>
 							<h3 class="cost">PLATZHALTER4</h3>
 							<div class="row">
 								<div class="col-md-6 col-sm-6 col-xs-6">
 									<select class="form-control" name="groesse">
-										<option value=0 selected="">Größe</option> 
-												PLATZHALTERGROESSE
+										<option value=0 selected="">Groesse</option>
+										PLATZHALTERGROESSE
 
 									</select>
 								</div>
+
 								<div class="col-md-6 col-sm-6 col-xs-6">
+
 									<select class="form-control" name="menge">
 										<option value="0" selected="">Menge</option>
 										<option value="1">1</option>
@@ -73,11 +76,12 @@
 										<option value="5">5</option>
 									</select>
 								</div>
+
 								<!-- end col -->
 							</div>
 							<div class="space-ten"></div>
 							<div class="btn-ground">
-							<form action="Artikeluebersicht" method="post">
+
 								<button type="submit" class="button-dbae"
 									style="margin-top: 15px;">
 									<span class="glyphicon glyphicon-shopping-cart"></span> In den
@@ -85,8 +89,13 @@
 								</button>
 								<input type="text" value="PLATZHALTER3" id="hiddenfield"
 									name="artnr">
-									</form>
-								<form action="BewertungsuebersichtServlet" method="get">
+						</form>
+
+
+
+
+
+						<form action="BewertungsuebersichtServlet" method="get">
 								<button type="submit" class="btn btn-primary">
 									Bewertungen einsehen
 								</button>

@@ -40,7 +40,7 @@ class info {
 	 * Diese Methode sucht die höchste ID aus der DB und erhöht sie um eins. 
 	 *@return id 
 	 */
-	public static int hoechstID() throws SQLException {
+	public static int hoechstwID() throws SQLException {
 		Connection con = DBConnection.getConnection();
 		/**
 		 * Das PreparedStatemet und die ? werden gesetzt. 

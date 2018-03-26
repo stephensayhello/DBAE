@@ -88,9 +88,7 @@ public class SupportAnfrage {
 	 * Diese Methoden l&oescht eine Supportanfrage aus der Liste.
 	 * @param support
 	 */
-	private void removeAnfrage(SupportAnfrage anfrage) {
-		this.anfragen.remove(anfrage);
-	}
+	
 	
 	
 	
