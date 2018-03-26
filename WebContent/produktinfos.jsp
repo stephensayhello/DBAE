@@ -25,8 +25,8 @@
 	<a:navKunde rolle="${rolle }"></a:navKunde>
 
 	<div class="container">
-		<h1>Produktübersicht</h1>
-		<br /> <br />
+		<h1>Produktuebersicht</h1>
+		
 
 		<div class="table-responsive">
 			<table class="table table-bordered table-striped">
