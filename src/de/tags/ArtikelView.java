@@ -80,29 +80,29 @@ public class ArtikelView extends TagSupport {
 			+ "<span class='glyphicon glyphicon-star'></span>"
 			+ "<span class='glyphicon glyphicon-star-empty'></span>";
 		} else if(anzahlSterne == 3) {
-			fuerSix = "<p><span class='glyphicon glyphicon-star'></span>"
-					+ "<p><span class='glyphicon glyphicon-star'></span>"
-					+ "<p><span class='glyphicon glyphicon-star'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>";
+			fuerSix = "<span class='glyphicon glyphicon-star'></span>"
+					+ "<span class='glyphicon glyphicon-star'></span>"
+					+ "<span class='glyphicon glyphicon-star'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>";
 		} else if(anzahlSterne == 2) {
-			fuerSix = "<p><span class='glyphicon glyphicon-star'></span>"
-					+ "<p><span class='glyphicon glyphicon-star'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>";
+			fuerSix = "<span class='glyphicon glyphicon-star'></span>"
+					+ "<span class='glyphicon glyphicon-star'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>";
 		} else if(anzahlSterne == 1) {
-			fuerSix = "<p><span class='glyphicon glyphicon-star'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>";
+			fuerSix = "<span class='glyphicon glyphicon-star'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>";
 		} else if(anzahlSterne == 0) {
-			fuerSix = "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>"
-					+ "<p><span class='glyphicon glyphicon-star-empty'></span>";
+			fuerSix = "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>"
+					+ "<span class='glyphicon glyphicon-star-empty'></span>";
 		}
 		
 		
