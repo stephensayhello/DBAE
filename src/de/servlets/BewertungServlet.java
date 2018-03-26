@@ -48,54 +48,26 @@ public class BewertungServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Daten beschaffen
-		String punkteRe = request.getParameter("punkte");
-		String artikelNr = request.getParameter("artikelnr");
-		int artikelnr = 0;
+
 		HttpSession session = request.getSession();
-		List<String> messages = new ArrayList<>();
-		session.setAttribute("messages", messages);
+		
+		int punkte = Integer.parseInt(request.getParameter("punkte"));
+		int artikelNr = Integer.parseInt(request.getParameter("artnr"));
+		String kommentar = request.getParameter("bewertung");
+		int artikelnr = 0;
+
 		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 		
-		// Prüfungen
-		int punkte = 1;
-		String kommentar = request.getParameter("bewertung");
-		if(!punkteRe.contains("") && !artikelNr.contains("")) {
-			try {
-				punkte = Integer.parseInt(punkteRe);
-				artikelnr = Integer.parseInt(artikelNr);
-			} catch(NumberFormatException nfe) {
-				System.out.println(nfe.toString());
-			}
-			
-		int produkt_id = ProduktUpdateOperations.sucheProduktIDanhandArtikelNr(artikelnr);	
+		List<String> messages = new ArrayList<>();
+		session.setAttribute("messages", messages);
 		
-		if(BestellungOperations.pruefeBestellungAufProdukt(kunde, produkt_id)) {
-			
-			if(kunde == null) {
-				messages.add("Nur eingeloggte Kunden können bewerten !");
-				request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
-				
-			} else if(!BewertungsOperations.prufeaufVorhandeneBestellung(kunde.getNutzer_id(), produkt_id)) {
-				messages.add("Bewertungen dürfen pro Produkt nur einmal gemacht werden!");
-				request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
-			} else {
-				Bewertung bewertung = new Bewertung(punkte, kunde.getNutzer_id(), produkt_id, kommentar );
-				BewertungsOperations.neueBewertung(bewertung);
-				messages.add("Ihre Bewertung wurde eingepflegt!");
-				request.getRequestDispatcher("index.jsp").forward(request, response);
-			}
-			
-			
-		} else if(!BestellungOperations.pruefeBestellungAufProdukt(kunde, produkt_id)) {
-			messages.add("Sie müssen das Produkt erwerben, um es zu bewerten!");
-			request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
-		} else {
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
+		Bewertung bewertung = new Bewertung(BewertungsOperations.hoechsteBewertungsID(), artikelNr, kunde.getNutzer_id(), punkte, kommentar);	
+		
+		BewertungsOperations.bewertungAnlegen(bewertung);
+		
+		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 		
 		
 		
-		}
 	}
 }

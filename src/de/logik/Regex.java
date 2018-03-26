@@ -13,7 +13,7 @@ public class Regex {
 	private final static String HAUSNUMMER_REGEX = "[0-9]+[a-zA-Z]?";
 	private final static String POSTLEITZAHL_REGEX = "[0-9]{5}";
 	private final static String EMAIL_REGEX = "([0-9a-zA-Z.])+[@][0-9a-zA-Z]+[.][a-z]{1,3}";
-	private final static String PASSWORT_REGEX = "([a-zA-Z_0-9?!]){8,255}";
+	private final static String PASSWORT_REGEX = "([a-zA-Z_0-9?!-]){8,255}";
 	private final static String NUR_ZAHLEN_REGEX = "^[-1]*||[0-9]{1,45}$";
 	private final static String NUR_DOUBLE_REGEX = "/^[0-9]+(\\.[0-9]+)?$";
 	

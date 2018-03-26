@@ -42,6 +42,7 @@ public class NutzerOperations {
 
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -69,7 +70,7 @@ public class NutzerOperations {
 		}
 	
 		id++;
-		
+		DBConnection.closeConnection();
 		return id;
 	}
 
@@ -95,6 +96,7 @@ public class NutzerOperations {
 
 				Nutzer nutzer = new Nutzer(nutzer_id, password, emailfromdb);
 				con.close();
+				DBConnection.closeConnection();
 				return nutzer;
 			}
 
@@ -103,7 +105,7 @@ public class NutzerOperations {
 			e.printStackTrace();
 
 		}
-
+		DBConnection.closeConnection();
 		return null;
 
 	}
@@ -131,13 +133,14 @@ public class NutzerOperations {
 				con.close();
 				return nutzer;
 			}
+			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
-
+		DBConnection.closeConnection();
 		return null;
 
 	}
@@ -160,13 +163,14 @@ public class NutzerOperations {
 				con.close();
 				return true;
 			}
-			
+			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 
 		}
+		DBConnection.closeConnection();
 		return false;
 
 	}
@@ -187,8 +191,9 @@ public class NutzerOperations {
 			if (rs.next()) {
 				int admin_id = rs.getInt(1);
 				con.close();
+				DBConnection.closeConnection();
 				return true;
-			}
+			} 
 
 		} catch (
 
@@ -197,7 +202,7 @@ public class NutzerOperations {
 			e.printStackTrace();
 
 		}
-		
+		DBConnection.closeConnection();
 		return false;
 
 	}
@@ -218,6 +223,7 @@ public class NutzerOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode l&oescht einen Nutzer aus der DB.
@@ -234,6 +240,7 @@ public class NutzerOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode l&oescht einen Nutzer aus der DB.
@@ -250,6 +257,7 @@ public class NutzerOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode setzt dem Nutzer ein neues Passwort
@@ -269,7 +277,7 @@ public class NutzerOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		DBConnection.closeConnection();
 	}
 
 }

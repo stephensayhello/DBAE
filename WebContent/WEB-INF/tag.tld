@@ -5,7 +5,7 @@
 	<tlib-version>1.0</tlib-version>
 	<jsp-version>2.0</jsp-version>
 	<short-name>Partial Tags</short-name>
-	
+
 	<tag>
 		<name>bootstrap</name>
 		<tag-class>de.tags.Bootstrap</tag-class>
@@ -23,7 +23,7 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-		<tag>
+	<tag>
 		<name>artikel</name>
 		<tag-class>de.tags.ArtikelView</tag-class>
 		<attribute>
@@ -31,34 +31,36 @@
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
-		<attribute>	
+		<attribute>
 			<name>bewertungen</name>
 			<required>false</required>
 		</attribute>
 	</tag>
-	
-	<tag>
-		<name>tagesangebot</name>
-	<tag-class>de.tags.TagesAngebot</tag-class>
-	<attribute>
-		<name>produkt</name>
-		<required>true</required>
-		<rtexprvalue>true</rtexprvalue>
-	</attribute>
-	</tag>
-	
+
 	<tag>
 		<name>navKunde</name>
 		<tag-class>de.tags.NavKunde</tag-class>
 		<attribute>
-		<name>rolle</name>
-		<required>true</required>
-		<rtexprvalue>true</rtexprvalue>
+			<name>rolle</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-	
+
+	<tag>
+		<name>bewertungsBox</name>
+		<tag-class>de.tags.BewertungsBox</tag-class>
+		<attribute>
+			<name>bewertung</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
 	<tag>
 		<name>footer</name>
 		<tag-class>de.tags.Footer</tag-class>
 	</tag>
+
+
 </taglib>

@@ -18,7 +18,7 @@ import de.classes.Produkt;
 import de.classes.Warenkorb;
 import de.databaseOperations.BestellungOperations;
 import de.utilities.CreatePDF;
-import de.utilities.mail;
+import de.utilities.Mail;
 
 /**
  * Dieses Servlet liefert die Logik für den Warenkorb dazu.
@@ -68,7 +68,7 @@ public class WarenkorbServlet extends HttpServlet {
 			Bestellung bestellung = new Bestellung(warenkorbinhalt, kunde);
 			BestellungOperations.bestellunganlegen(bestellung);
 			
-			mail.SendMailTLS(kunde.getEmail(), "Ihre Bestellung", "Vielen Dank für ihre Bestellung!");
+			Mail.SendMailTLS(kunde.getEmail(), "Ihre Bestellung", "Vielen Dank für ihre Bestellung!");
 			
 			session.removeAttribute("warenkorbinhalt");
 			session.removeAttribute("warenkorb");

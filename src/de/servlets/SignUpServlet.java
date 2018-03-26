@@ -15,7 +15,7 @@ import de.classes.Kunde;
 import de.databaseOperations.KundenOperations;
 import de.logik.Regex;
 import de.utilities.SaltedHash;
-import de.utilities.mail;
+import de.utilities.Mail;
 
 /**
  * @author Benjamin Gajewski
@@ -94,7 +94,7 @@ public class SignUpServlet extends HttpServlet {
 				String saltedHashPassword = SaltedHash.getSaltedHash(passwort);
 				Kunde kunde = new Kunde(saltedHashPassword, email, adresse, vorname, nachname);
 				KundenOperations.anlegen(kunde);
-				mail.SendMailTLS(kunde.getEmail(), "Ihre Registrierung bei SportWeb", text);
+				Mail.SendMailTLS(kunde.getEmail(), "Ihre Registrierung bei SportWeb", text);
 				messages.add("Ihre Registrierung war erfolgreich. Checken Sie Ihren Mail Account.");
 			} catch (Exception e) {
 				messages.add("Es ist ein Fehler bei der Registrierung aufgetreten. Bitte Admin kontaktieren.");

@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.classes.Admin;
 import de.classes.Adresse;
 import de.classes.Kunde;
 import de.classes.Nutzer;
@@ -54,6 +52,7 @@ public class KundenOperations {
 
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -85,7 +84,7 @@ public class KundenOperations {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		DBConnection.closeConnection();
 		return true;
 
 	}
@@ -108,10 +107,12 @@ public class KundenOperations {
 				String vorname = rs.getString(3);
 				String nachname= rs.getString(4);
 			    Adresse adresse = AdresseOperations.adresseAusDbHolen(adress_id);
-				Kunde kunde = new Kunde(nutzer.getNutzer_id(), nutzer.getPasswort(), nutzer.getEmail(), adresse, vorname, nachname);
-				return kunde;
+			    Kunde kunde = new Kunde(nutzer.getNutzer_id(), nutzer.getPasswort(), nutzer.getEmail(), adresse, vorname, nachname);
+			    DBConnection.closeConnection();
+			    return kunde;
 			}
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,6 +138,7 @@ public class KundenOperations {
 			pst.execute();
 			
 			con.close();
+			DBConnection.closeConnection();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -165,6 +167,7 @@ public class KundenOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode holt alle vorhanden Kunden aus der DB.
@@ -199,9 +202,7 @@ public class KundenOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+		DBConnection.closeConnection();
 		return kunden;
 	}
 }

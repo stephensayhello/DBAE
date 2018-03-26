@@ -13,7 +13,6 @@ import java.util.List;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import de.classes.Admin;
-import de.classes.Bewertung;
 import de.classes.Hose;
 import de.classes.Nutzer;
 import de.classes.Produkt;
@@ -90,12 +89,13 @@ public class ProduktOperations {
 				return shirt;
 			}
 			con.close();
+			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-
+		DBConnection.closeConnection();
 		return null;
 
 	}
@@ -121,7 +121,7 @@ public class ProduktOperations {
 		}
 
 		id++;
-
+		DBConnection.closeConnection();
 		return id;
 	}
 	
@@ -314,6 +314,7 @@ public class ProduktOperations {
 
 			}
 			con.close();
+			DBConnection.closeConnection();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -368,7 +369,7 @@ public class ProduktOperations {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		DBConnection.closeConnection();
 		return produkte;
 	}
 	/**
@@ -424,6 +425,7 @@ public class ProduktOperations {
 			e.printStackTrace();
 
 		}
+		DBConnection.closeConnection();
 		return false;
 
 	}
@@ -452,6 +454,7 @@ public class ProduktOperations {
 			e.printStackTrace();
 
 		}
+		DBConnection.closeConnection();
 		return false;
 
 	}
@@ -491,6 +494,7 @@ public class ProduktOperations {
 					return ShirtOperations.holeShirtausdb(produkt);
 				}
 				con.close();
+				DBConnection.closeConnection();
 				return produkt;
 			}
 
@@ -499,7 +503,7 @@ public class ProduktOperations {
 			e.printStackTrace();
 
 		}
-
+		DBConnection.closeConnection();
 		return null;
 
 	}

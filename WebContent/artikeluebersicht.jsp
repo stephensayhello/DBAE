@@ -41,7 +41,7 @@
 			<label class="checkbox-inline"><input type="checkbox" name="Produkt" value="2"> Hosen<br></label>
 			<label class="checkbox-inline"><input type="checkbox" name="Produkt" value="3"> Shirts<br></label>
 			<br>
-			<input class="btn" type="submit" value="absenden" style="margin:10px;">
+			<input class="button-dbae" type="submit" value="absenden" style="margin:10px;">
 		</form>
 	</div>
 

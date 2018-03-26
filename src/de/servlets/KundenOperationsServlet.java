@@ -16,7 +16,7 @@ import de.classes.Nutzer;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
 import de.utilities.SaltedHash;
-import de.utilities.mail;
+import de.utilities.Mail;
 
 /**
  * Dieses Servlet bietet die M&oeglichkeit die Kundendaten zu ver&anendern.

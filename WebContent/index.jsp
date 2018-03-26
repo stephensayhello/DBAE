@@ -31,12 +31,6 @@ Ihren persönlichen Gutscheincode.
 <br />
 
 
-<p> - ... Oder werfen Sie einen Blcik auf unserer Tagesangebot: 
-		 Nur begrenzt gültig innerhalb von 24 Std. Sie sparen bis zu 25 % gegenüber dem UVP.	
-		 <br />
-<form action="TagesAngebotServlet" method="post">
-<button class="button-dbae">zum Tagesangebot</button>
-</form>
 </div>
 <a:footer></a:footer>
 </body>

@@ -49,7 +49,7 @@ public class WarenkorbOperations {
 		}
 
 		id++;
-
+		DBConnection.closeConnection();
 		return id;
 	}
 	/**
@@ -80,7 +80,7 @@ public class WarenkorbOperations {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		DBConnection.closeConnection();
 
 	}
 	
@@ -130,7 +130,7 @@ public class WarenkorbOperations {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		DBConnection.closeConnection();
 		anlegenWarenkorbProduktzuordnung(warenkorb);
 	}
 	/**
@@ -158,7 +158,7 @@ public class WarenkorbOperations {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		DBConnection.closeConnection();
 		return warenkorb;
 	}
 	
@@ -192,7 +192,7 @@ public class WarenkorbOperations {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		DBConnection.closeConnection();
 		return produkte;
 	}
 

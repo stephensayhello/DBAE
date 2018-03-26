@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import de.classes.Kunde;
 import de.classes.SupportAnfrage;
 import de.databaseOperations.SupportOperations;
-import de.utilities.mail;
+import de.utilities.Mail;
 
 /**
  * @author Paul Blanke
@@ -59,7 +59,7 @@ public class SupportAnfrageServlet extends HttpServlet {
 		// Logik
 		messages.add(ausgabe);
 		SupportOperations.speichereSupportAnfrage(support);
-		mail.SendMailTLS("Message.RecipientType.TO", "SupportAnfrage",  anfragetext);
+		Mail.SendMailTLS("Message.RecipientType.TO", "SupportAnfrage",  anfragetext);
 		request.setAttribute("messages", messages);
 		
 		request.getRequestDispatcher("contact.jsp").forward(request, response);

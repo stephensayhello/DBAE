@@ -1,207 +1,116 @@
 package de.classes;
 
-import de.databaseOperations.BewertsDurchschnittOperations;
-import de.databaseOperations.BewertungsOperations;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-/***
- * Diese Klasse bildet Produktbewertungen ab.
- * @author Paul Blanke
- *
- */
 public class Bewertung {
-	/**
-	 * zählt die Anzahl der Bewertungen.
-	 */
 
-	/**
-	 * DB-ID.
-	 */
-	private int bewertung_id;
-	/**
-	 * Höhe der Bewertung.
-	 */
-	private int punkte;
-	
-	/**
-	 * Das bewertete Produkt.
-	 */
-	private int produkt_id;
-	/**
-	 * Der Kunde, der die Bewertung vorgenommen hat.
-	 */
+	private int bewertungsid;
+	private int artikelnr;
 	private int kundennr;
-	/**
-	 * Der Text der Bewertung.
-	 */
-	private String kommentar;
-	
-	
-	
-	// get und Set Methoden 
-	public int getBewertung_id() {
-		return bewertung_id;
-	}
+	private int punkte;
+	private String text;
+	private String datum;
+	private Kunde kunde;
+	private Produkt produkt;
 
-	public void setBewertung_id(int bewertung_id) {
-		this.bewertung_id = bewertung_id;
-	}
-
-	public int getPunkte() {
-		return punkte;
-	}
-	
-	public void setPunkte(int punkte) {
+	public Bewertung(int bewertungsid, int artikelnr, int kundennr, int punkte, String datum, String text) {
+		super();
+		this.bewertungsid = bewertungsid;
+		this.artikelnr = artikelnr;
+		this.kundennr = kundennr;
 		this.punkte = punkte;
+		this.text = text;
+		this.datum = datum;
 	}
 	
 	
+	public Bewertung(int bewertungsid, int artikelnr, int kundennr, int punkte, String text) {
+		super();
+		this.bewertungsid = bewertungsid;
+		this.artikelnr = artikelnr;
+		this.kundennr = kundennr;
+		this.punkte = punkte;
+		this.text = text;
+		this.datum = new Date().toString();
+	}
 	
-	
-	public int getProdukt_id() {
-		return produkt_id;
+	public Bewertung(int bewertungsid, Produkt produkt, Kunde kunde, int punkte, String datum, String text) {
+		super();
+		this.bewertungsid = bewertungsid;
+		this.setProdukt(produkt);
+		this.kunde = kunde;
+		this.punkte = punkte;
+		this.text = text;
+		this.datum = new Date().toString();
 	}
 
-	public void setProdukt_id(int produkt_id) {
-		this.produkt_id = produkt_id;
+	public int getBewertungsid() {
+		return bewertungsid;
+	}
+
+	public void setBewertungsid(int bewertungsid) {
+		this.bewertungsid = bewertungsid;
+	}
+
+	public int getArtikelnr() {
+		return artikelnr;
+	}
+
+	public void setArtikelnr(int artikelnr) {
+		this.artikelnr = artikelnr;
 	}
 
 	public int getKundennr() {
 		return kundennr;
 	}
 
-
-
 	public void setKundennr(int kundennr) {
 		this.kundennr = kundennr;
 	}
 
-
-	public String getKommentar() {
-		return kommentar;
+	public int getPunkte() {
+		return punkte;
 	}
 
-	public void setKommentar(String kommentar) {
-		this.kommentar = kommentar;
+	public void setPunkte(int punkte) {
+		this.punkte = punkte;
 	}
 
-	public Bewertung() {
-		
+	public String getText() {
+		return text;
 	}
-	/**
- 	* Konstruktur 
- 	* @param punkte Höhe der Bewertung
- 	* @param produkt_id die Produkt-ID.
- 	* @param kundennr Die Kundennr.
- 	*/
-	public Bewertung(int punkte, int produkt_id, int kundennr) {
-	
-		this.bewertung_id = BewertungsOperations.hoechsteID();
-		this.produkt_id = produkt_id;
-		this.kundennr = kundennr;
-		
-		if(0 < punkte  && punkte <= 5) {
-			this.punkte = punkte;
-		} else {
-			this.punkte = 5;
-		}
-		this.kommentar = "";
+
+	public void setText(String text) {
+		this.text = text;
 	}
-	
+
+	public String getDatum() {
+		return datum;
+	}
+
+	public void setDatum(String datum) {
+		this.datum = datum;
+	}
 
 
-	/**
-	 * Konstruktur
-	 * @param punkte Höhe der Bewertung.
-	 * @param produkt Gegenstand der Bewertung
-	 * @param kunde   Auslöser der Bewertung.
-	 */
-	public Bewertung(int punkte, Produkt produkt, Kunde kunde) {
-		this.bewertung_id = BewertungsOperations.hoechsteID();
-		this.produkt_id = produkt.getProdukt_id();
-		this.kundennr = kunde.getNutzer_id();
-		
-		if(0 < punkte  && punkte <= 5) {
-			this.punkte = punkte;
-		} else {
-			this.punkte = 5;
-		}
-		this.kommentar = "";
-		
+	public Kunde getKunde() {
+		return kunde;
 	}
-	
-	/**
-	 * Konstruktur
-	 * @param punkte Höhe der Bewertung.
-	 * @param produkt Gegenstand der Bewertung
-	 * @param kunde   Auslöser der Bewertung.
-	 * @param kommentar Beschreibung.
-	 */
-	public Bewertung(int punkte, Produkt produkt, Kunde kunde, String kommentar) {
-		this.bewertung_id = BewertungsOperations.hoechsteID();
-		this.produkt_id = produkt.getProdukt_id();
-		this.kundennr = kunde.getNutzer_id();
-		
-		if(0 < punkte  && punkte <= 5) {
-			this.punkte = punkte;
-		} else {
-			this.punkte = 5;
-		}
-		this.kommentar = kommentar;
-		
+
+
+	public void setKunde(Kunde kunde) {
+		this.kunde = kunde;
 	}
-	
-	
-	
-	/**
- 	* Konstruktur 
- 	* @param punkte Höhe der Bewertung
- 	* @param produkt_id die Produkt-ID.
- 	* @param kundennr Die Kundennr.
- 	* @param kommentar Der Inhalt.
- 	*/
-	public Bewertung(int punkte, int kundennr, int produkt_id, String kommentar) {
-		
-		this.bewertung_id = BewertungsOperations.hoechsteID();
-		this.produkt_id = produkt_id;
-		this.kundennr = kundennr;
-		
-		if(0 < punkte  && punkte <= 5) {
-			this.punkte = punkte;
-		} else {
-			this.punkte = 5;
-		}
-		this.kommentar = kommentar;
+
+
+	public Produkt getProdukt() {
+		return produkt;
 	}
-	/**
- 	* Konstruktur 
- 	* @param punkte Höhe der Bewertung
- 	* @param produkt_id die Produkt-ID.
- 	* @param kundennr Die Kundennr.
- 	* @param kommentar Der Inhalt.
- 	*/
-	public Bewertung(int bewertung_id, int kundennr, int produkt_id, int punkte, String kommentar) {
-		
-		this.bewertung_id = bewertung_id;
-		this.produkt_id = produkt_id;
-		this.kundennr = kundennr;
-		
-		if(0 < punkte  && punkte <= 5) {
-			this.punkte = punkte;
-		} else {
-			this.punkte = 5;
-		}
-		this.kommentar = kommentar;
-	}
-	
-	
-	/**
-	 * Diese Methode leitet an die DBOperationsklasse weiter.
-	 * @see
-	 * {@link BewertDurchschnittOperations}
-	 * @return den Durchschnitt der Bewertungen
-	 */
-	public int ermitteleDurchschnitt() {
-		 return BewertsDurchschnittOperations.ermitteleneDurchschnitt(this.getProdukt_id());
+
+
+	public void setProdukt(Produkt produkt) {
+		this.produkt = produkt;
 	}
 
 }

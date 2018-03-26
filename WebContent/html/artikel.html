@@ -14,20 +14,15 @@
 			<p>
 			PLATZHALTER6
 			
-<!-- 				<span class="glyphicon glyphicon-star"></span>  -->
-<!-- 				<span class="glyphicon glyphicon-star"></span>  -->
-<!-- 				<span class="glyphicon glyphicon-star"></span> <span -->
-<!-- 					class="glyphicon glyphicon-star"></span> <span -->
-<!-- 					class="glyphicon glyphicon-star"></span> -->
 			</p>
 		</div>
 		<div class="space-ten"></div>
 		<div class="btn-ground text-center">
-			<button type="button" class="btn btn-primary" data-toggle="modal"
+			<button type="button" class="button-dbae" data-toggle="modal"
 				data-target="#PLATZHALTER0a">
 				<i class="fa fa-search"></i> Produkt bewerten
 			</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal"
+			<button type="button" class="button-dbae" data-toggle="modal"
 				data-target="#PLATZHALTER0">
 				<i class="fa fa-search"></i> Schnellansicht
 			</button>
@@ -36,7 +31,6 @@
 	</div>
 </div>
 
-<form action="Artikeluebersicht" method="post">
 	<div class="modal fade product_view" id="PLATZHALTER0">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -83,13 +77,23 @@
 							</div>
 							<div class="space-ten"></div>
 							<div class="btn-ground">
-								<button type="submit" class="btn btn-primary"
+							<form action="Artikeluebersicht" method="post">
+								<button type="submit" class="button-dbae"
 									style="margin-top: 15px;">
 									<span class="glyphicon glyphicon-shopping-cart"></span> In den
 									Warenkorb
 								</button>
 								<input type="text" value="PLATZHALTER3" id="hiddenfield"
 									name="artnr">
+									</form>
+								<form action="BewertungsuebersichtServlet" method="get">
+								<button type="submit" class="btn btn-primary">
+									Bewertungen einsehen
+								</button>
+								<input type="text" value="PLATZHALTER3" id="hiddenfield"
+									name="artnr">
+								
+								</form>
 							</div>
 						</div>
 					</div>
@@ -97,7 +101,7 @@
 			</div>
 		</div>
 	</div>
-</form>
+
 <form action="BewertungServlet" method="post">
 	<div class="modal fade product_view" id="PLATZHALTER0a">
 		<div class="modal-dialog">

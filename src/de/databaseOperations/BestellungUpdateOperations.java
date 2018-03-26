@@ -33,6 +33,7 @@ public class BestellungUpdateOperations {
 
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

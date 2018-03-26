@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import de.classes.Kunde;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
+import de.utilities.Mail;
 import de.utilities.SaltedHash;
-import de.utilities.mail;
+
 import de.utilities.randomStringGenerator;
 
 /**
@@ -49,7 +50,8 @@ public class KundeBearbeitenServlet extends HttpServlet {
 		try {
 			newPwhashed = SaltedHash.getSaltedHash(newRandomPw);
 			NutzerOperations.setzeNeuesPasswort(newPwhashed, kunde.getNutzer_id());
-			mail.SendMailTLS(kunde.getEmail(),"Neues Passwort!  ", newRandomPw);
+			System.out.println(kunde);
+			Mail.SendMailTLS(kunde.getEmail(), "New Password", newRandomPw);
 			messages.add("Das passwort des Accounts: " + kunde.getEmail() + "  wurde geändert und der Nutzer wurde benachrichtigt.");
 			request.setAttribute("messages", messages);
 		} catch (Exception e) {
