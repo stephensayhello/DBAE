@@ -52,6 +52,7 @@ public class SchuheOperations {
 			e.printStackTrace();
 
 		}
+		DBConnection.closeConnection();
 		return null;
 	}
 	
@@ -70,6 +71,7 @@ public class SchuheOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese methode l&oescht ein Schuh anhand der ID aus der DB.
@@ -86,5 +88,6 @@ public class SchuheOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 }

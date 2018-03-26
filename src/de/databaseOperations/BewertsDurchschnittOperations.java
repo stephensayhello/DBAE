@@ -16,8 +16,8 @@ public class BewertsDurchschnittOperations {
 	/**
 	 * Statements
 	 */
-	public final static String DURCHSCHNITT_PRO_PRODUKT = "SELECT * FROM bewertung WHERE produkt_id = ?;";
-	private final static String DURCHSCHNITT_BEWERTUNG = "SELECT score FROM bewertungs_durchschnitt WHERE artikelnr = ?;";
+	private final static String DURCHSCHNITT_PRO_PRODUKT = "SELECT * FROM bewertung WHERE produkt_id = ?;";
+	
 	/**
 	 * Diese Methode ermittelt den Durchschnitt anhand einer produkt_id
 	 * @param produkt_id Grundlage der Berechnung.
@@ -52,7 +52,7 @@ public class BewertsDurchschnittOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		DBConnection.closeConnection();
 		return sum;
 	}
 	

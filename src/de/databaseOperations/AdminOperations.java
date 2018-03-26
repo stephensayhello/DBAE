@@ -36,7 +36,9 @@ public class AdminOperations {
 				
 
 				Admin admin = new Admin(nutzer.getNutzer_id(), nutzer.getEmail(), nutzer.getPasswort(), name);
+				
 				con.close();
+				DBConnection.closeConnection();
 				return admin;
 			}	
 
@@ -45,7 +47,7 @@ public class AdminOperations {
 			e.printStackTrace();
 
 		}
-
+		DBConnection.closeConnection();
 		return null;
 
 	}
@@ -61,6 +63,7 @@ public class AdminOperations {
 			pst.setInt(1, admin.getNutzer_id());
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

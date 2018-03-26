@@ -52,6 +52,7 @@ public class BestellungOperations {
 			rs.next();
 			id = rs.getInt(1);
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,6 +85,7 @@ public class BestellungOperations {
 
 			}
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -105,6 +107,7 @@ public class BestellungOperations {
 
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		anlegen(bestellung);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -160,7 +163,7 @@ public class BestellungOperations {
 				bestellung.setKunde(kunde);
 
 			}
-
+			DBConnection.closeConnection();
 			return bestellungen;
 
 		} catch (SQLException e) {
@@ -168,6 +171,7 @@ public class BestellungOperations {
 			e.printStackTrace();
 
 		}
+		DBConnection.closeConnection();
 	return null;	
 	}
 
@@ -196,13 +200,14 @@ public class BestellungOperations {
 			}
 
 			con.close();
+			DBConnection.closeConnection();
 			return teilbestellungen;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
-
+		DBConnection.closeConnection();
 		return null;
 
 	}
@@ -229,10 +234,12 @@ public class BestellungOperations {
 				rueckgabe = true;
 			}
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 		return rueckgabe;
 
 	}

@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import de.classes.Admin;
-import de.classes.Adresse;
 import de.classes.Hose;
-import de.classes.Kunde;
 import de.classes.Produkt;
 import de.datenbank.DBConnection;
 /**
@@ -42,6 +38,7 @@ public class HoseOperations {
 				Hose hose = new Hose(ho_id, produkt.getName(), produkt.getBeschreibung(), produkt.getPreis(), groesse,
 						produkt.getMenge(), produkt.getArtikelnr(),produkt.getAnzahl(),produkt.getVersanddauer(),produkt.getStatus(), produkt.getImagePath());
 				con.close();
+				DBConnection.closeConnection();
 				return hose;
 			}
 
@@ -50,7 +47,7 @@ public class HoseOperations {
 			e.printStackTrace();
 
 		}
-
+		DBConnection.closeConnection();
 		return null;
 
 	}
@@ -67,6 +64,7 @@ public class HoseOperations {
 			pst.setInt(1, hose.getProdukt_id());
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,6 +82,7 @@ public class HoseOperations {
 			pst.setInt(1, id);
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

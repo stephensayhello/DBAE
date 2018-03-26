@@ -44,11 +44,13 @@ public class ShirtOperations {
 
 			}
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
+		DBConnection.closeConnection();
 		return null;
 	}
 	/**
@@ -66,6 +68,7 @@ public class ShirtOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode l&oescht ein Shirt anhand der ID aus der DB
@@ -82,5 +85,6 @@ public class ShirtOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 }

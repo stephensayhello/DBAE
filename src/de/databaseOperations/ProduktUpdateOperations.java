@@ -71,6 +71,8 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+			DBConnection.closeConnection();
 	}
 	
 
@@ -112,6 +114,7 @@ public class ProduktUpdateOperations {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			DBConnection.closeConnection();
 		}
 	}
 	
@@ -137,6 +140,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 
 	/**
@@ -161,6 +165,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -184,6 +189,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -206,6 +212,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -247,6 +254,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -288,6 +296,7 @@ public class ProduktUpdateOperations {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			DBConnection.closeConnection();
 		}
 	}
 	
@@ -314,6 +323,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -339,6 +349,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -364,6 +375,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -387,6 +399,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	
 	/**
@@ -410,6 +423,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB
@@ -433,6 +447,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 	}
 	
 	/**
@@ -458,6 +473,7 @@ public class ProduktUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBConnection.closeConnection();
 		return produkt_id;
 	}
 	
@@ -518,7 +534,7 @@ public class ProduktUpdateOperations {
 		}
 		
 		
-		
+		DBConnection.closeConnection();
 		return false;
 	}
 	

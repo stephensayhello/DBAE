@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.classes.Produkt;
 import de.classes.Bewertung;
 import de.classes.Kunde;
 import de.datenbank.DBConnection;
@@ -59,9 +57,11 @@ public class BewertungsOperations {
 			bewertung.setPunkte(rs.getInt(4));
 			bewertung.setKommentar(rs.getString(5)); 
 			con.close();
+			DBConnection.closeConnection();
 			return bewertung;
 			} else {
 				con.close();
+				DBConnection.closeConnection();
 				return null;
 			}
 			
@@ -70,7 +70,7 @@ public class BewertungsOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		DBConnection.closeConnection();
 		return null;
 	}
 	
@@ -94,7 +94,7 @@ public class BewertungsOperations {
 			}
 			
 			while(rs.next()) {
-				int id = rs.getInt(1);
+			
 				bewertung = new Bewertung(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
 				bewertungen.add(bewertung);
 			}
@@ -104,7 +104,7 @@ public class BewertungsOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		DBConnection.closeConnection();
 		return bewertungen;
 	}
 	
@@ -128,6 +128,7 @@ public class BewertungsOperations {
 			e.printStackTrace();
 		}
 		id+= 1;
+		DBConnection.closeConnection();
 		return id;
 	}
 	
@@ -149,6 +150,7 @@ public class BewertungsOperations {
 			pst.setString(5, bewertung.getKommentar());
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -163,6 +165,7 @@ public class BewertungsOperations {
 			pst.setInt(1, bewertung.getBewertung_id());
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -176,6 +179,7 @@ public class BewertungsOperations {
 			pst.setInt(1, prod_id);
 			pst.execute();
 			con.close();
+			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -209,7 +213,7 @@ public class BewertungsOperations {
 		}
 		
 		
-		
+		DBConnection.closeConnection();
 		return rueckgabe;
 	}
 	
@@ -234,7 +238,7 @@ public class BewertungsOperations {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-					
+			DBConnection.closeConnection();	
 			
 		return bewertProdukt;
 	}
@@ -258,11 +262,13 @@ public class BewertungsOperations {
 					bewertung = new Bewertung(rs.getInt(1), rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getString(5));
 					return bewertung;
 				}
+				con.close();
+				DBConnection.closeConnection();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			DBConnection.closeConnection();
 			return null;
 		
 	
