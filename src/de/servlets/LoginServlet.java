@@ -81,8 +81,7 @@ public class LoginServlet extends HttpServlet {
 				String fehler = "passwort falsch";
 				messages.add(fehler);
 				request.getRequestDispatcher("login.jsp").forward(request, response);
-			}
-			if (NutzerOperations.nutzeristKunde(nutzer.getNutzer_id())) {
+			}else if (NutzerOperations.nutzeristKunde(nutzer.getNutzer_id())) {
 
 				Kunde kunde = KundenOperations.kundeausdbholen(nutzer);
 
