@@ -59,15 +59,15 @@
 
 			<div class="container">
 				<label for="fileUpload" class="customFileUpload"> <input
-					type="file" id="fileUpload" name="uploadFile" /></label> 
+					type="file" id="fileUpload" name="uploadFile" required/></label> 
 			</div>
 
 
 			<div class="prod0">
 				<label for="p_name">Bezeichnung</label> <input class="input-dbae"
-					type="text" name="p_name" size=3> <label
+					type="text" name="p_name" size=3 required> <label
 					for="p_beschreibung">Beschreibung</label> <input class="input-dbae"
-					type="text" name="p_beschreibung" size=3>
+					type="text" name="p_beschreibung" size=3 required>
 
 
 
@@ -76,7 +76,7 @@
 
 
 				<label for="p_preis">Preis</label> <input class="input-dbae"
-					type="number" step="0.01" name="p_preis" size=3>
+					type="number" step="0.01" name="p_preis" size=3 required>
 
 
 			</div>
@@ -86,7 +86,7 @@
 			<div class="prod2">
 				<label for="p_kategorie">Kategorie</label> <select
 					name="p_kategorie" class="form-control" id="p_kategorie"
-					onchange="adjustSizeForProduct(this.value)">
+					onchange="adjustSizeForProduct(this.value)" required>
 					<option value=0></option>
 					<option value=1>Shirt</option>
 					<option value=2>Hose</option>
