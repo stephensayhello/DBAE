@@ -16,7 +16,7 @@ import de.databaseOperations.NutzerOperations;
 import de.utilities.Mail;
 import de.utilities.SaltedHash;
 
-import de.utilities.randomStringGenerator;
+import de.utilities.RandomStringGenerator;
 
 /**
  * @author Stephen galla
@@ -45,14 +45,14 @@ public class KundeBearbeitenServlet extends HttpServlet {
 		String auswahl = request.getParameter("auswahlkunde");
 		int kundenauswahl = Integer.parseInt(auswahl);
 		Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen(kundenauswahl));
-		String newRandomPw = randomStringGenerator.generateString();
+		String newRandomPw = RandomStringGenerator.generateString();
 		String newPwhashed;
 		try {
 			newPwhashed = SaltedHash.getSaltedHash(newRandomPw);
 			NutzerOperations.setzeNeuesPasswort(newPwhashed, kunde.getNutzer_id());
 			System.out.println(kunde);
 			Mail.SendMailTLS(kunde.getEmail(), "New Password", newRandomPw);
-			messages.add("Das passwort des Accounts: " + kunde.getEmail() + "  wurde geändert und der Nutzer wurde benachrichtigt.");
+			messages.add("Das passwort des Accounts: " + kunde.getEmail() + "  wurde geï¿½ndert und der Nutzer wurde benachrichtigt.");
 			request.setAttribute("messages", messages);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

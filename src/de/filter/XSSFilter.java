@@ -78,21 +78,9 @@ class XSSRequestWrapper extends HttpServletRequestWrapper implements HttpServlet
 			str = scriptPattern.matcher(str).replaceAll("");
 			scriptPattern = Pattern.compile("<script>", Pattern.CASE_INSENSITIVE);
 			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("SELECT *", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
 			scriptPattern = Pattern.compile("function", Pattern.CASE_INSENSITIVE);
 			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("Delete", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("Insert into", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");scriptPattern = Pattern.compile("SELECT *", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("function", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("Delete * FROM", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
-			scriptPattern = Pattern.compile("Insert into", Pattern.CASE_INSENSITIVE);
-			str = scriptPattern.matcher(str).replaceAll("");
+			
 			
 			
 			
