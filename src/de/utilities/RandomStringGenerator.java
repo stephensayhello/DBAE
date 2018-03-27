@@ -5,7 +5,7 @@ import java.util.UUID;
  * @author Benjamin Gajewski
  *
  */
-public class randomStringGenerator {
+public class RandomStringGenerator {
   
 	/**
 	 * Diese Methode generiet einen Zufallskey f&uer das Zur&uecksetzen der Passw&oerter.

@@ -11,9 +11,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 /**
- * Größtenteils von https://www.mkyong.com/java/javamail-api-sending-email-via-gmail-smtp-example/
- * übernommen.
- * Methoden und Übergabeparameter leicht verändert.
+ * Grï¿½ï¿½tenteils von https://www.mkyong.com/java/javamail-api-sending-email-via-gmail-smtp-example/
+ * ï¿½bernommen.
+ * Methoden und ï¿½bergabeparameter leicht verï¿½ndert.
  * 
  * Diese Klasse versendet eine Mail an die E-mail Adresse: sportweb233@gmail.com
  * @author Benjamin Gajewski
@@ -28,7 +28,7 @@ public class Mail {
 	/**
  	* Diese Methode versendete eine Mail. Als erstes wird eine Verbindung mit den Server hergestellt und dann wird
  	* die Mail angeschickt.
- 	* @param recipient Empfänger
+ 	* @param recipient Empfï¿½nger
  	* @param subject Betreff
  	* @param text Beschreibung
  	*/
