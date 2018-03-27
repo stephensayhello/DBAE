@@ -30,10 +30,19 @@ public class BewertungsuebersichtServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 * Diese methode zeigt zu einem bestimmten Produkt alle vorhanden Bewertungen an.
+	 * Diese Methode wird nicht genutzt.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doPost(request, response);
+	
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Diese methode zeigt zu einem bestimmten Produkt alle vorhanden Bewertungen an.
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		int artikelnr = Integer.parseInt(request.getParameter("artnr"));
 		List<Bewertung> bewertungen = BewertungsOperations.ladeBewertungen(artikelnr);
 		if(!bewertungen.isEmpty()) {
@@ -43,14 +52,6 @@ public class BewertungsuebersichtServlet extends HttpServlet {
 		request.setAttribute("bewertungen", bewertungen);
 		request.getRequestDispatcher("bewertungsuebersicht.jsp").forward(request, response);
 	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-		// Wird nicht genutzt
 	
 	
 	}
