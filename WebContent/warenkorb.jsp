@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="css/generalLayout.css">
 <meta name="author"
 	content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
-<title>Ihr Warenkorb</title>
+<title>Warenkorb</title>
+<link rel="icon" href="img/Logo.png">
 <a:bootstrap></a:bootstrap>
 </head>
 <body>

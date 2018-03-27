@@ -7,7 +7,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
-<title>Neue Produkt einpflegen(Admin)</title>
+<title>Neues Produkt einpflegen(Admin)</title>
+<link rel="icon" href="img/Logo.png">
 <link rel="stylesheet" href="css/generalLayout.css">
 <link rel="stylesheet" href="css/produkt_anlegen.css">
 

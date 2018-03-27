@@ -2,14 +2,15 @@
 	pageEncoding="Windows-1252"%>
 <%@  taglib prefix="a" uri="/WEB-INF/tag.tld"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="css/generalLayout.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
-<title>Insert title here</title>
+<title>login</title>
+<link rel="icon" href="img/Logo.png">
 <a:bootstrap></a:bootstrap>
 </head>
 <body>

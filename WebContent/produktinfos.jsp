@@ -9,6 +9,7 @@
 <meta name="author"
 	content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <title>Produktinfos</title>
+<link rel="icon" href="img/Logo.png">
 <link rel="stylesheet" href="css/generalLayout.css">
 <link rel="stylesheet" href="css/produkt_anlegen.css">
 <a:bootstrap></a:bootstrap>

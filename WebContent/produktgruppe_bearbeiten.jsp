@@ -11,6 +11,7 @@
 <meta name="author"
 	content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <title>Produkt bearbeiten (Admin)</title>
+<link rel="icon" href="img/Logo.png">
 <a:bootstrap></a:bootstrap>
 
 </head>

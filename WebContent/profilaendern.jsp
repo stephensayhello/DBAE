@@ -12,6 +12,7 @@
 <meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 
 <title>Profil Aendern</title>
+<link rel="icon" href="img/Logo.png">
 <a:bootstrap></a:bootstrap>
 </head>
 <body>

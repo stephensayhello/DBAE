@@ -12,6 +12,7 @@
 	content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Datenschutz</title>
+<link rel="icon" href="img/Logo.png">
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
