@@ -36,8 +36,6 @@ public class BestellungOperations {
 	private final static String BESTELLUNG_MIT_BSTNR_AUS_DB_HOLEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt "
 			+ "ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE bstnr = ?;";
 	private final static String BSTNR_MIT_KUNDENNR_AUS_DB_HOLEN = "SELECT * FROM bestellung WHERE kundennr = ? ORDER BY bstnr ASC;";
-	private final static String BESTELLUNG_AUF_PRODUKT_PRUEFEN = "SELECT * FROM bestellung_produktzuordnung inner join produkt "
-			+ "ON(bestellung_produktzuordnung.produkt_id = produkt.produkt_id) WHERE kundennr = ?, produkt_id = ? ";
 	/**
 	 * Diese Methode liefert die höchste ID aus der DB und erhöht sie um eins.
 	 * @return neue ID zu speichern in der DB

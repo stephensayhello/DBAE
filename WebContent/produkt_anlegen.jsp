@@ -58,7 +58,7 @@
 			<hr>
 
 			<div class="container">
-				<label for="fileUpload" class="customFileUpload"> <input
+				<label for="fileUpload" class="customFileUpload">Bild auswaehlen: <input
 					type="file" id="fileUpload" name="uploadFile" /></label> 
 			</div>
 

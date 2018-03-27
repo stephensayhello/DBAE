@@ -15,9 +15,9 @@ import de.databaseOperations.ProduktUpdateOperations;
 import de.logik.Regex;
 
 /**
- * @author Benjamin Gajewski
- * Dieses Servlet bietet die Möglichkeit and, dass der Admin die Produkte selber ändern kann.
- * Servlet implementation class ProduktBearbeitenServlet
+ * @author Benjamin Gajewski Dieses Servlet bietet die Möglichkeit and, dass der
+ *         Admin die Produkte selber ändern kann. Servlet implementation class
+ *         ProduktBearbeitenServlet
  */
 @WebServlet("/ProduktBearbeitenServlet")
 public class ProduktBearbeitenServlet extends HttpServlet {
@@ -42,13 +42,12 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		String rolle = (String) session.getAttribute("rolle");
 		request.setAttribute("messages", messages);
-		
+
 		// logik
 		if (rolle != null) {
 			if (rolle.contains("admin")) {
 
 				Produkt produkt = (Produkt) session.getAttribute("produkt");
-				System.out.println(produkt);
 				ProduktUpdateOperations.entferneProdukt(produkt);
 				session.removeAttribute("produkt");
 				messages.add("Das Produkt wurde aus den Sortiment entfernt !");
@@ -71,7 +70,6 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<>();
 		String rolle = (String) session.getAttribute("rolle");
-		request.setAttribute("messages", messages);
 		// logik
 		if (rolle.contains("admin")) {
 
@@ -90,17 +88,16 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 				String mengeS = request.getParameter("menge");
 				String status = request.getParameter("status");
 
-				System.out.println("bearbeitenservlet");
-				System.out.println(versanddauer);
-				System.out.println(mengeS);
-				System.out.println(status);
-				System.out.println(mengeS.equals(""));
-
 				boolean mengenfeldgeprueft = Regex.pruefeNurZahlen(mengeS);
 				boolean versanddauerfeldgeprueft = Regex.pruefeNurZahlen(versanddauer);
-				System.out.println(mengenfeldgeprueft);
-				System.out.println(versanddauerfeldgeprueft);
-				if (mengenfeldgeprueft && versanddauerfeldgeprueft) {
+
+				if (mengeS.equals("") || versanddauer.equals("")) {
+					int versanddauergeprueft = -1;
+					int mengegeprueft = -1;
+					ProduktUpdateOperations.updateProdukt(produkt.getProdukt_id(), mengegeprueft, versanddauergeprueft,
+							status);
+					messages.add("Die Daten wurden erfolgreich aktualisiert.");
+				} else if (mengenfeldgeprueft && versanddauerfeldgeprueft) {
 
 					int versanddauergeprueft = Integer.parseInt(versanddauer);
 					int mengegeprueft = Integer.parseInt(mengeS);
@@ -108,13 +105,6 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 							status);
 					messages.add("Die Daten wurden erfolgreich aktualisiert.");
 
-				} else if (mengeS.equals("") && versanddauer.equals("")) {
-					int versanddauergeprueft = -1;
-					int mengegeprueft = -1;
-					System.out.println(mengegeprueft);
-					ProduktUpdateOperations.updateProdukt(produkt.getProdukt_id(), mengegeprueft, versanddauergeprueft,
-							status);
-					messages.add("Die Daten wurden erfolgreich aktualisiert.");
 				} else {
 					messages.add("Keine Zahlen eingegeben!");
 				}

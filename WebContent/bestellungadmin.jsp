@@ -29,37 +29,45 @@
 
 
 
-		<table class="table">
+		
 			<c:forEach var="bestellung" items="${Bestellungen}">
+			<h2>Bestellnummer: ${bestellung.bestellnummer}</h2>
+			<table class="table table-bordered table-striped">
 				<tr>
-					<td><p id="wichtig">
-							<b>Bestellnummer: ${bestellung.bestellnummer}</b>
-						</p>
-						<br> <b>Datum: ${bestellung.datefromdb}</b><br>
-						<br> <b>Kundennummer: ${bestellung.kunde.nutzer_id}</b><br>
-						<br> <b>Status: ${bestellung.bearbeitungsstatus}</b><br>
-						<br> <b>Name: ${bestellung.kunde.vorname} ${bestellung.kunde.nachname}</b><br>
-						<br> <b>Anschrift: ${bestellung.kunde.adresse.strasse}${bestellung.kunde.adresse.hausnummer}${bestellung.kunde.adresse.plz}${bestellung.kunde.adresse.ort}</b><br>
+					<td colspan="5"><p id="wichtig">
+					<table class="table table-bordered">
+						<tr><td>Datum:</td> <td>${bestellung.datefromdb}</td></tr>
+						<tr><td>Kundennummer:</td> <td> ${bestellung.kunde.nutzer_id}</td></tr>
+						<tr><td>Status:</td> <td> ${bestellung.bearbeitungsstatus}</td></tr>
+						<tr><td>Name:</td> <td> ${bestellung.kunde.vorname} ${bestellung.kunde.nachname}</td></tr>
+						<tr><td>Anschrift:</td> <td> ${bestellung.kunde.adresse.strasse}${bestellung.kunde.adresse.hausnummer}${bestellung.kunde.adresse.plz}${bestellung.kunde.adresse.ort}</td></tr>
+						</table>
+						<h3>Produkte</h3>
 						</td>
 						
 				</tr>
 
-
+				<th>Name</th>
+				<th>Preis</th>
+				<th>Artikelnr</th>
+				<th>Anzahl</th>
+				<th>Größe</th>
 				<c:forEach var="produkt" items="${bestellung.bestellliste}">
 					<tr>
-						<td>Name: ${produkt.name}</td>
-						<td>Preis: ${produkt.preismitanzahlineuro}</td>
-						<td>Artikelnr.: ${produkt.artikelnr}</td>
-						<td>Anzahl: ${produkt.anzahl}</td>
-						<td>Größe: ${produkt.groesse}</td>
+						<td>${produkt.name}</td>
+						<td>${produkt.preismitanzahlineuro}</td>
+						<td>${produkt.artikelnr}</td>
+						<td>${produkt.anzahl}</td>
+						<td>${produkt.groesse}</td>
 					</tr>
+		
 
 
-
-
+				
 				</c:forEach>
+				</table>
 			</c:forEach>
-		</table>
+		
 
 	
 	<form action="AdminBestelluebersichtServlet" method="get">

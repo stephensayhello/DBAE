@@ -13,7 +13,7 @@
 <a:bootstrap></a:bootstrap>
 </head>
 <body>
-
+	<a:modal messages="${messages}"></a:modal>
 	<a:navKunde rolle="${rolle }"></a:navKunde>
 	<div class = "container">
 		<h1 class="header">Produkt bearbeiten</h1>
@@ -29,9 +29,9 @@
 <p>Preis: ${produkt.preis }</p><br>
 				 <label
 					for="menge"><b>Menge:</b></label><input class="input-dbae"
-					type="text" placeholder="${produkt.menge}" name="menge">  <label
+					type="text" value="${produkt.menge}" name="menge">  <label
 					for="versanddauer"><b>Versanddauer:</b></label><input
-					class="input-dbae" placeholder="${produkt.versanddauer }" type="text" name="versanddauer">
+					class="input-dbae" value="${produkt.versanddauer }" type="text" name="versanddauer">
 					<label for="status"><b>Status</b></label>
 					<select class="input-dbae" name = "status">
 						<option value="nix" class="input-dbae">Status</option>

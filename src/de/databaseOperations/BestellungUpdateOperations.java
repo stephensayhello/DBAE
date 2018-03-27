@@ -3,7 +3,9 @@ package de.databaseOperations;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
+import de.classes.Bestellung;
 import de.classes.Kunde;
 import de.datenbank.DBConnection;
 
@@ -19,6 +21,7 @@ public class BestellungUpdateOperations {
 	 */
 	private final static String UPDATE_BEARBEITUNGSSTATUS = "UPDATE bestellung SET status = ? WHERE bstnr =?;";
 	private final static String BESTELLUNG_LOESCHEN = "DELETE FROM bestellung WHERE kundennr=?;";
+	private final static String BESTELLUNG_PRODUKTZUORDNUNG_LOESCHEN = "DELETE FROM bestellung_produktzuordnung WHERE bstnr=?;";
 	
 
 	/**
@@ -46,6 +49,14 @@ public class BestellungUpdateOperations {
 	}
 
 	public static void entferneBestellungmitKundennr(int id) {
+		
+		List<Bestellung> bestellungen = BestellungOperations.bestelldatumundBstnrMitKnrAusDbholen(id);
+		
+		for (Bestellung bestellung : bestellungen) {
+			entferneBestellungProduktzuo(bestellung.getBestellnummer());
+		}
+		
+		
 		Connection con = DBConnection.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(BESTELLUNG_LOESCHEN);
@@ -54,10 +65,27 @@ public class BestellungUpdateOperations {
 			con.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
+	
+	}
+	
+	public static void entferneBestellungProduktzuo (int bstnr) {
+
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(BESTELLUNG_PRODUKTZUORDNUNG_LOESCHEN);
+			pst.setInt(1, bstnr);
+			pst.execute();
+			con.close();
+
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	
+		
 	}
 
 }

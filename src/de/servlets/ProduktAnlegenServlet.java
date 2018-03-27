@@ -5,6 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
 import de.classes.Hose;
 import de.classes.Produkt;
 import de.classes.Schuhe;
@@ -81,21 +87,24 @@ public class ProduktAnlegenServlet extends HttpServlet {
 		int kategorie = Integer.parseInt(request.getParameter("p_kategorie"));
 
 		double preis = Double.parseDouble(request.getParameter("p_preis"));
+		
        String[] groessearray = new String[10];
-       String[] mengearray = new String[10];
-       String[] versanddauerarray = new String[10];
+       
 		 groessearray = request.getParameterValues("checkGroesse");
-		 mengearray = request.getParameterValues("inputMenge");
-		 versanddauerarray = request.getParameterValues("p_versanddauer");
-
+		 List<String> mengearray  = new ArrayList<String>(Arrays.asList(request.getParameterValues("inputMenge")));
+		 List<String> versanddauerarray = new ArrayList<String>(Arrays.asList(request.getParameterValues("p_versanddauer")));
+		 
+		 mengearray.removeAll(Arrays.asList("", null));
+		 versanddauerarray.removeAll(Arrays.asList("", null));
+		 
 		int artikelnr = ProduktOperations.hoechsteartikelnr();
 		Produkt produkt = null;
 		for (int i = 0; i < groessearray.length; i++) {
 
-			if (mengearray[i]!=null && versanddauerarray[i]!=null) {
+			if (mengearray.get(i)!=null && versanddauerarray.get(i)!=null) {
 				String groesse = groessearray[i];
-				int menge = Integer.parseInt(mengearray[i]);
-				int versanddauer = Integer.parseInt(versanddauerarray[i]);
+				int menge = Integer.parseInt(mengearray.get(i));
+				int versanddauer = Integer.parseInt(versanddauerarray.get(i));
 
 				if (kategorie == 1) {
 					produkt = new Shirt(ProduktOperations.hoechsteID(), p_name, beschreibung, preis, groesse, menge,

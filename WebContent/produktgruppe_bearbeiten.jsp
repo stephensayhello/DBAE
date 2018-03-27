@@ -8,11 +8,14 @@
 
 <link rel="stylesheet" href="css/generalLayout.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
+<meta name="author"
+	content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
 <title>Produkt bearbeiten (Admin)</title>
 <a:bootstrap></a:bootstrap>
+
 </head>
 <body>
+	<a:modal messages="${messages}"></a:modal>
 
 	<a:navKunde rolle="${rolle }"></a:navKunde>
 	<div class="container">
@@ -26,14 +29,11 @@
 
 
 				<label for="name"><b>Name:</b></label><input class="input-dbae"
-					type="text" placeholder="${produkt.name}" name="name"> 
-					<label
+					type="text" value="${produkt.name}" name="name"> <label
 					for="preis"><b>Preis:</b></label><input class="input-dbae"
-					type="number" placeholder="${produkt.name}" name="preis"> 
-					
-					<label	for="anfragetext"><br>Beschreibung:</br></label>
-				<textarea rows="5" cols="5" name="beschreibung"
-					placeholder="${produkt.beschreibung}" class="input-dbae"></textarea>
+					type="number" value="${produkt.preis}" name="preis"> <label
+					for="anfragetext"><br>Beschreibung:</br></label>
+				<textarea rows="5" cols="5" name="beschreibung" class="input-dbae">${produkt.beschreibung}</textarea>
 
 
 
@@ -52,6 +52,6 @@
 	</div>
 
 
-<a:footer></a:footer>
+	<a:footer></a:footer>
 </body>
 </html>

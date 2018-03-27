@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.datenbank.DBConnection;
@@ -23,6 +26,7 @@ public class SchuheOperations {
 	 */
 	private final static String HOLE_SCHUHE_NACH_SCHID = "SELECT * FROM schuhe WHERE sch_id = ?;";
 	private final static String SCHUHE_LOESCHEN = "DELETE FROM schuhe WHERE sch_id = ?;";
+	private final static String LADE_GROESSE_NACH_ART = "select groesse from schuhe inner join produkt on(produkt.produkt_id = schuhe.sch_id) where artikelnr = ?";
 	/**
 	 * Select Diese Methode holt ein Produkt von Typ Schuhe aus der DB.
 	 * @param produkt das rauszuholende Produkt
@@ -54,6 +58,27 @@ public class SchuheOperations {
 		}
 		
 		return null;
+	}
+	
+	public static List<Object> ladeSchuheGroessen(int artnr) {
+		List<Object> groessen = new ArrayList<>();
+		Connection con = DBConnection.getConnection();
+
+		try {
+
+			PreparedStatement pst = con.prepareStatement(LADE_GROESSE_NACH_ART);
+			pst.setInt(1, artnr);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				groessen.add(rs.getObject(1));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return groessen;
 	}
 	
 	
