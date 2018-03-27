@@ -16,7 +16,7 @@
 	<a:navKunde rolle="${rolle }"></a:navKunde>
 	<a:modal messages="${messages}"></a:modal>
 	<c:choose>
-		<c:when test="${not empty warenkorbinhalt}">
+		<c:when test="${not empty warenkorb.inhalt}">
 			<div class="container">
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered">
@@ -30,7 +30,7 @@
 							<th>Status</th>
 
 						</tr>
-						<c:forEach var="produkt" items="${warenkorbinhalt}">
+						<c:forEach var="produkt" items="${warenkorb.inhalt}">
 
 
 

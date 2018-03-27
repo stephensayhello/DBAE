@@ -79,7 +79,7 @@ public class ProduktUebersichtServlet extends HttpServlet {
 			}
 		} else {
 			messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
-			session.setAttribute("messages", messages);
+			request.setAttribute("messages", messages);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 
@@ -95,7 +95,7 @@ public class ProduktUebersichtServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String rolle = (String) session.getAttribute("rolle");
 		List<String> messages = new ArrayList<>();
-		session.setAttribute("messages", messages);
+		request.setAttribute("messages", messages);
 		// logik
 		System.out.println(rolle);
 		if (rolle != null) {

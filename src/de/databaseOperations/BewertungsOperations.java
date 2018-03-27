@@ -17,6 +17,10 @@ import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
 
+/**
+ * @author Paul Blanke
+ *
+ */
 public class BewertungsOperations {
 	
 	private final static String MAX_BEWERTUNGSID = "SELECT MAX(bewertungsid) FROM bewertung;";

@@ -14,21 +14,25 @@
 <body>
 <a:navKunde rolle="${rolle }"></a:navKunde>
 <a:modal messages="${messages}"></a:modal>
-<form action="ProfilServlet" method="post" style="border: 1px solid #ccc">
+
 		<div class="container">
 			<h1>Profil</h1>
 			<p>Btte geben Sie ihr Passwort ein, um ihr Profil einzusehen.</p>
 			<hr>
 			<div class="login">
+			<form action="ProfilServlet" method="post" style="border: 1px solid #ccc">
 				 <label
 					for="psw"><b>Password:</b></label> <input class="input-dbae"
-					type="password" placeholder="Enter Password" name="psw" required>
+					type="password" placeholder = "Enter Password" name="psw" required>
 				<div class="clearfix">
 
 					<button type="submit" class="button-dbae">Login</button>
 				</div>
+					</form>
+				
+		
 			</div>
-			
+			</div>
 			<a:footer></a:footer>
 </body>
 </html>

@@ -18,9 +18,8 @@ public class Test {
 
 	public static void main(String[]args) {
 		
-		Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen(1));
-		String pwd = kunde.getPasswort();
-		System.out.println(SaltedHash.isPwdEqual("90322b84-c10a-4e36-9f17-3f49f54dda07", pwd));
+		int durchschnittgerundet = (int) Math.round(3.4);
+		System.out.println(durchschnittgerundet);
 		
 		
 	}

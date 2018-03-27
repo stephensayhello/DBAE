@@ -89,9 +89,7 @@ public class LoginServlet extends HttpServlet {
 
 				if (warenkorb != null) {
 					session.setAttribute("warenkorb", warenkorb);
-					session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
-					session.setAttribute("warenkorbgesamtpreis",
-							NumberFormat.getCurrencyInstance(Locale.GERMANY).format(warenkorb.getGesamtpreis()));
+					
 					WarenkorbOperations.entferneWarenkorb(warenkorb.getWarenkorb_id());
 				}
 

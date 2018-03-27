@@ -59,10 +59,10 @@ public class ArtikelView extends TagSupport {
 
 		
 		String sterne = "";
-		int durchschnitt = BewertungsOperations.ladeDurschnitt(produkt.getArtikelnr());
-		
+		double durchschnitt = BewertungsOperations.ladeDurschnitt(produkt.getArtikelnr());
+		int durchschnittgerundet = (int) Math.round(durchschnitt);
 		for (int i = 1; i <= 5; i++) {
-			if(i <= durchschnitt) {
+			if(i <= durchschnittgerundet) {
 				sterne += "<span class='glyphicon glyphicon-star'></span>";
 			} else {
 				sterne += "<span class='glyphicon glyphicon-star-empty'></span>";
