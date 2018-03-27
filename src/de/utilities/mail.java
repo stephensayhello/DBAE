@@ -20,9 +20,10 @@ import javax.mail.internet.MimeMessage;
  *
  */
 public class Mail {
-/**
- * Zugangsdaten
- */
+	
+	/**
+	 * Zugangsdaten
+	 */
 	private static final String USERNAME = "sportweb233@gmail.com";
 	private static final String PASSWORD = "Sportweb123";
 	/**
