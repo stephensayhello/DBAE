@@ -152,11 +152,12 @@ public class KundenOperations {
 	
 	/**
 	 * DELETE 
-	 * Diese methode l&oescht einen bestimmten Kunden aus der DB
+	 * Diese methode l&ouml;scht einen bestimmten Kunden aus der DB
 	 * @param kunde
 	 */
 	public static void entferneKunde(Kunde kunde) {
 		BewertungsOperations.entferneBewertungmitKundennr(kunde.getNutzer_id());
+		BestellungUpdateOperations.entferneBestellungmitKundennr(kunde.getNutzer_id());
 		Connection con = DBConnection.getConnection();
 		 try {
 			PreparedStatement pst = con.prepareStatement(KUNDE_LOESCHEN);

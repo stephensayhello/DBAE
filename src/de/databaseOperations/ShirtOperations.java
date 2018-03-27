@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import de.classes.Produkt;
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
@@ -21,6 +24,7 @@ public class ShirtOperations {
 	 */
 	private final static String HOLE_SHIRT_NACH_SHID = "SELECT * FROM shirt WHERE sh_id = ?;";
 	private final static String SHIRT_LOESCHEN = "DELETE FROM shirt WHERE sch_id= ?;";
+	private final static String LADE_GROESSE_NACH_ART = "select groesse from shirt inner join produkt on(produkt.produkt_id = shirt.sh_id) where artikelnr = ?";
 	/**
 	 * SELECT
 	 * Diese Methode holtb ein Produkt aus der DB
@@ -52,6 +56,29 @@ public class ShirtOperations {
 		}
 	
 		return null;
+	}
+	
+	
+
+	public static List<Object> ladeShirtGroessen(int artnr) {
+		List<Object> groessen = new ArrayList<>();
+		Connection con = DBConnection.getConnection();
+
+		try {
+
+			PreparedStatement pst = con.prepareStatement(LADE_GROESSE_NACH_ART);
+			pst.setInt(1, artnr);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				groessen.add(rs.getString(1));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return groessen;
 	}
 	
 	/**

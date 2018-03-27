@@ -121,15 +121,15 @@ public class Artikeluebersicht extends HttpServlet {
 					modalProdukt = produkt;
 				}
 			} else if (produkt instanceof Shirt) {
-				if (produkt.getArtikelnr() == artnr && ((Shirt) produkt).getGroesse() == groesse) {
+				
+				if (produkt.getArtikelnr() == artnr && ((Shirt) produkt).getGroesse().equals(groesse)) {
 					modalProdukt = produkt;
 				}
 			}
 		}
 
 		if (modalProdukt == null) {
-			messages.add("Zur Zeit leider in der Groesse nicht lieferbar!");
-			System.out.println("das modal");
+			messages.add("Zur Zeit leider nicht lieferbar!");
 			request.setAttribute("messages", messages);
 		} else {
 			modalProdukt.setAnzahl(menge);
@@ -150,10 +150,6 @@ public class Artikeluebersicht extends HttpServlet {
 
 			modalProdukt.setAnzahl(modalProdukt.getAnzahl());
 			modalProdukt.setPreismitanzahlineuro(modalProdukt.getPreis() * modalProdukt.getAnzahl());
-			System.out.println("anzahl und menge");
-			System.out.println(modalProdukt.getAnzahl());
-			System.out.println(modalProdukt.getMenge());
-			System.out.println(modalProdukt.getStatus());
 			if (modalProdukt.getStatus().equals("Lieferbar") && modalProdukt.getMenge() >= modalProdukt.getAnzahl()) {
 				if (!vorhanden) {
 					warenkorb.getInhalt().add(modalProdukt);

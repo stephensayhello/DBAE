@@ -1,6 +1,9 @@
 package de.tags;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.jsp.tagext.TagSupport;
 
 import de.classes.Hose;
@@ -8,6 +11,9 @@ import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.databaseOperations.BewertungsOperations;
+import de.databaseOperations.HoseOperations;
+import de.databaseOperations.SchuheOperations;
+import de.databaseOperations.ShirtOperations;
 import de.utilities.ReadFromFile;
 /**
  * Diese Klasse den Tag ArtikelView. Die Artikelview liefert einen 
@@ -88,15 +94,16 @@ public class ArtikelView extends TagSupport {
 		}
 		
 		String options = "";
-		String[] groessen = null;
+		List<Object> groessen = null;
 		
 		if(produkt instanceof Shirt) {
-			groessen = SHIRT_GROESSEN;
+			groessen = ShirtOperations.ladeShirtGroessen(produkt.getArtikelnr());
 		} else if(produkt instanceof Schuhe) {
-			groessen = SCHUHE_GROESSEN;
+			groessen = SchuheOperations.ladeSchuheGroessen(produkt.getArtikelnr());
 		} else if(produkt instanceof Hose) {
-			groessen = HOSE_GROESSEN;
+			groessen = HoseOperations.ladeHoseGroessen(produkt.getArtikelnr());
 		}
+		
 		
 		for (Object value : groessen) {
 			options += "<option value=" + value + ">" + value + "</option>";
