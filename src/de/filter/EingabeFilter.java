@@ -20,12 +20,12 @@ import javax.servlet.http.HttpServletRequestWrapper;
  * Zum gr&oessten Teil Analog zum Learnweb allerdings wurden weiteren Pr&uefungen erg&aenzt.
  */
 @WebFilter("/*")
-public class XSSFilter2 implements Filter {
+public class EingabeFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public XSSFilter2() {
+    public EingabeFilter() {
         // TODO Auto-generated constructor stub
     }
 

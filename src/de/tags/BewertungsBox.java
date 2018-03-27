@@ -7,7 +7,7 @@ import de.classes.Bewertung;
 import de.utilities.ReadFromFile;
 
 /**
- * Der tag liefert einen footer deer die Anforderung Daten bearbeiten.
+ * Der tag liefert einen footer der die Anforderung Daten bearbeiten.
  * @author Stephen Galla
  *
  */

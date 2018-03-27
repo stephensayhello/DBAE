@@ -7,7 +7,7 @@ import de.utilities.ReadFromFile;
 
 /**
  * Der tag liefert eine Navigationsleiste f&uer die Anforderung Daten bearbeiten.
- * @author Stephen Galla
+ * @author Paul blanke
  *
  */
 public class Profilnav extends TagSupport {

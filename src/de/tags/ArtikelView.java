@@ -10,7 +10,7 @@ import de.classes.Shirt;
 import de.databaseOperations.BewertungsOperations;
 import de.utilities.ReadFromFile;
 /**
- * Diese Klasse den Tag ArtikelView. Die Artikelvie liefert einen 
+ * Diese Klasse den Tag ArtikelView. Die Artikelview liefert einen 
  * &Ueberblick &ueber alle Artikel
  * @author Stephen Galla
  *
