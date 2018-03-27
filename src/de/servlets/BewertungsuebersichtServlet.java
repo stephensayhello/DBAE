@@ -14,6 +14,7 @@ import de.databaseOperations.BewertungsOperations;
 
 /**
  * Servlet implementation class BewertungsuebersichtServlet
+ * @author Paul Blanke
  */
 @WebServlet("/BewertungsuebersichtServlet")
 public class BewertungsuebersichtServlet extends HttpServlet {
@@ -29,6 +30,7 @@ public class BewertungsuebersichtServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Diese methode zeigt zu einem bestimmten Produkt alle vorhanden Bewertungen an.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -47,8 +49,8 @@ public class BewertungsuebersichtServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	
+		doGet(request, response);
+		// Wird nicht genutzt
 	
 	
 	}

@@ -29,7 +29,7 @@ public class Mail {
 	/**
  	* Diese Methode versendete eine Mail. Als erstes wird eine Verbindung mit den Server hergestellt und dann wird
  	* die Mail angeschickt.
- 	* @param recipient Empf�nger
+ 	* @param recipient Empfaenger
  	* @param subject Betreff
  	* @param text Beschreibung
  	*/

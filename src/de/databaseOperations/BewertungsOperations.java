@@ -10,29 +10,34 @@ import java.util.List;
 import org.postgresql.util.PSQLException;
 
 import de.classes.Bewertung;
-import de.classes.Hose;
+
 import de.classes.Kunde;
 import de.classes.Produkt;
-import de.classes.Schuhe;
-import de.classes.Shirt;
 import de.datenbank.DBConnection;
 
 /**
  * @author Paul Blanke
- *
+ * Diese Klasse liefert DB-Operations zu der Klasse @Bewertung
  */
 public class BewertungsOperations {
 	
+	/**
+	 * Statements
+	 */
 	private final static String MAX_BEWERTUNGSID = "SELECT MAX(bewertungsid) FROM bewertung;";
 	private static final String LADE_BEWERTUNG_ZU_ARTIKEL = "SELECT * FROM bewertung where artikelnr = ?;";
 	private static final String LADE_BEWERTUNGEN = "SELECT * FROM bewertung;";
 	private static final String BEWERTUNG_ANLEGEN = "INSERT INTO bewertung VALUES(?,?,?,?,?,?);";
-	private static final String BEWERTUNGEN_ZU_ARTIKEL_LOESCHEN = "DELETE FROM bewertung WHERE artikelnr = ?;";
 	private static final String BEWERTUNGEN_ZU_ARTIKEL_LOESCHEN_MIT_KUNDENNR = "DELETE FROM bewertung WHERE kundennr = ?;";
 	private static final String DURCHSCHNITTLICHE_BEWERTUNG_PRO_ARTIKEL = "SELECT AVG(punkte) FROM bewertung WHERE artikelnr = ? GROUP BY artikelnr;";
 
 	
-	
+	/**
+	 * Diese Methode ermittelt die durchschnittliche  Bewertung aus allen vorhanden
+	 * bestellung zu einem bestimmten Artikel.
+	 * @param artikelnr Artikel 
+	 * @return durchschnittliche Bewertung
+	 */
 	public static int ladeDurschnitt(int artikelnr) {
 		Connection con = DBConnection.getConnection();
 		int durschnitt = 0;
@@ -59,7 +64,10 @@ public class BewertungsOperations {
 	}
 	
 	
-	
+	/**
+	 * Diese methode legt eine neue @Bewertung in der DB an.
+	 * @param bewertung eine Instanz der Klasse @Bewertung
+	 */
 	public static void bewertungAnlegen(Bewertung bewertung) {
 		Connection con = DBConnection.getConnection();
 
@@ -81,7 +89,11 @@ public class BewertungsOperations {
 
 	}
 	
-	
+	/**
+	 * Diese Methode holt alle Bewertungen zu einem bestimmten Artikel aus der DB
+	 * @param artikelnr Artikel
+	 * @return alle @Bewertungen des Artikels.
+	 */
 	public static List<Bewertung> ladeBewertungen(int artikelnr) {
 		Connection con = DBConnection.getConnection();
 		List<Bewertung> bewertungen = new ArrayList<>();
@@ -114,7 +126,10 @@ public class BewertungsOperations {
 	
 	
 	
-	
+	/**
+	 * Ermittelt die hoechste ID aus der DB und erhoeht diese um eins.
+	 * @return neue DB-ID.
+	 */
 	public static int hoechsteBewertungsID() {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -136,7 +151,10 @@ public class BewertungsOperations {
 	}
 
 
-
+	/**
+	 * Diese methode liefert alle Bewertungen aus der DB.
+	 * @return alle Bewertungen
+	 */
 	public static List<Bewertung> ladeAlleBewertungen() {
 		Connection con = DBConnection.getConnection();
 		List<Bewertung> bewertungen = new ArrayList<>();
@@ -156,14 +174,20 @@ public class BewertungsOperations {
 				bewertungen.add(bewertung);
 			}
 			
-
 			con.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return bewertungen;
 	}
+	
+	
+	/**
+	 * Diese Methode loescht eine Bewertung aus der DB
+	 * @param id
+	 */
 	public static void entferneBewertungmitKundennr(int id) {
 		Connection con = DBConnection.getConnection();
 		 try {
@@ -176,7 +200,6 @@ public class BewertungsOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 DBConnection.closeConnection();
 	}
 	
 }

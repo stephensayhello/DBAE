@@ -4,22 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.classes.Adresse;
 import de.classes.Bestellung;
 import de.classes.Hose;
 import de.classes.Kunde;
-import de.classes.Nutzer;
 import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
-import sun.security.action.GetBooleanAction;
 
 /**
  * 

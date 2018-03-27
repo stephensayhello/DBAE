@@ -13,13 +13,13 @@ import javax.servlet.http.HttpSession;
 
 import de.classes.Bewertung;
 import de.classes.Kunde;
-import de.databaseOperations.BestellungOperations;
 import de.databaseOperations.BewertungsOperations;
-import de.databaseOperations.ProduktUpdateOperations;
+;
 
 /**
  * @author Paul Blanke Diese Servlet ermöglicht die Bewertung der Produkte auf
- *         den entsprechenden Seiten. Servlet implementation class
+ *         den entsprechenden Seiten. 
+ *         Servlet implementation class
  *         BewertungServlet
  */
 @WebServlet("/BewertungServlet")

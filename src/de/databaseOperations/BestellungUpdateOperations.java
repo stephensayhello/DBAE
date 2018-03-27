@@ -3,8 +3,6 @@ package de.databaseOperations;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
-import de.classes.Kunde;
 import de.datenbank.DBConnection;
 
 /**

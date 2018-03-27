@@ -2,7 +2,7 @@ package de.classes;
 /**
  * Diese Klasse präsentiert die Rolle des Admins.
  * @author Paul Blanke.
- * @see {@link Nutzer}
+ * @see @Nutzer
  *
  */
 public class Admin extends Nutzer {

@@ -3,18 +3,10 @@ package de.databaseOperations;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
-import java.sql.ResultSetMetaData;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
-import de.classes.Admin;
 import de.classes.Hose;
-import de.classes.Nutzer;
 import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.classes.Shirt;
