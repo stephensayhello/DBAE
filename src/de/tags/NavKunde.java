@@ -6,7 +6,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import de.utilities.ReadFromFile;
 
 /**
- * Dieser Tag liefert eine Navigationsleiste f&uer den Kunden.
+ * Dieser Tag liefert eine Navigationsleiste f&uumlr den Kunden.
  * @author Benjamin Gajewski
  *
  */

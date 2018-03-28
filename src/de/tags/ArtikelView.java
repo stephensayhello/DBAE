@@ -17,7 +17,7 @@ import de.databaseOperations.ShirtOperations;
 import de.utilities.ReadFromFile;
 /**
  * Diese Klasse den Tag ArtikelView. Die Artikelview liefert einen 
- * &Ueberblick &ueber alle Artikel
+ * &Uumlberblick &uumlber alle Artikel
  * @author Stephen Galla
  *
  */
@@ -31,11 +31,11 @@ public class ArtikelView extends TagSupport {
 	 */
 	private Produkt produkt;
 	/**
-	 * Ein Z&aehler
+	 * Ein Z&aumlhler
 	 */
 	public static int counter = 0;
 	/**
-	 * Diese Variablen enthalten Gr&oessen f&uer die Ausgabe
+	 * Diese Variablen enthalten Gr&oumlssen f&uumler die Ausgabe
 	 */
 	private static final String[] SHIRT_GROESSEN = { "S", "M", "L", "XL", "XXL" };
 	private static final String[] HOSE_GROESSEN = { "28", "30", "32", "34", "38", "40", "42" };

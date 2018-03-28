@@ -6,7 +6,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 import de.utilities.ReadFromFile;
 /**
- * Dieser Tag lifert das Adminmen&ue.
+ * Dieser Tag lifert das Adminmen&uuml.
  * @author Paul Blanke
  *
  */

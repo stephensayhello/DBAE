@@ -7,7 +7,9 @@ import de.classes.Bewertung;
 import de.utilities.ReadFromFile;
 
 /**
- * Der tag liefert einen footer der die Anforderung Daten bearbeiten.
+ * Der tag liefert die passende Anzahl an glyphicons f&uumlr die Darstellung der
+ * Bewertung in Sternen.
+ * 
  * @author Stephen Galla
  *
  */
@@ -32,22 +34,19 @@ public class BewertungsBox extends TagSupport {
 		box = box.replaceAll("PLATZHALTER2", bewertung.getKunde().getVorname());
 		box = box.replaceAll("PLATZHALTER3", bewertung.getKunde().getNachname());
 		box = box.replaceAll("PLATZHALTER4", bewertung.getText());
-		
+
 		String sterne = "";
-		
+
 		for (int i = 1; i <= 5; i++) {
-			if(i <= bewertung.getPunkte()) {
+			if (i <= bewertung.getPunkte()) {
 				sterne += "<span class='glyphicon glyphicon-star'></span>";
 			} else {
 				sterne += "<span class='glyphicon glyphicon-star-empty'></span>";
 			}
 		}
-		
-		
-		
-		
-		box = box.replaceAll("PLATZHALTER5",sterne);
-		
+
+		box = box.replaceAll("PLATZHALTER5", sterne);
+
 		return box;
 	}
 
