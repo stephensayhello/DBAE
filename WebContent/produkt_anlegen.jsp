@@ -111,6 +111,7 @@
 
 		</form>
 	</div>
+	<a:modal messages="messages"></a:modal>
 	<a:footer></a:footer>
 </body>
 </html>

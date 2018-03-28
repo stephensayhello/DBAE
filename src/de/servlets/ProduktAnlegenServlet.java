@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import de.classes.Hose;
 import de.classes.Produkt;
@@ -67,7 +66,7 @@ public class ProduktAnlegenServlet extends HttpServlet {
 		// https://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-jsp-servlet
 		Part filePart = request.getPart("uploadFile");
 		String name = (filePart.getHeader("Content-Disposition")).replaceFirst("(?i)^.*filename=\"([^\"]+)\".*$", "$1");
-
+		List<String> messages = new ArrayList();
 		File img = new File(name);
 
 		// https://www.mkyong.com/java/how-to-convert-inputstream-to-file-in-java/
@@ -130,7 +129,8 @@ public class ProduktAnlegenServlet extends HttpServlet {
 				}
 			}
 		}
-
+		messages.add("Das Produkt wurde erfolgreich angelegt.");
+		request.setAttribute("messages", messages);
 		request.getRequestDispatcher("produkt_anlegen.jsp").forward(request, response);
 
 	}
