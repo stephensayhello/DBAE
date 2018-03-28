@@ -43,6 +43,7 @@ public class LoginFilter implements Filter {
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 * Diese methode unterscheidet die Weiterleitung anhand der Rolle
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {

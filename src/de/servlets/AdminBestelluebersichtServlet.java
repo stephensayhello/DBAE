@@ -64,7 +64,7 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 
 	}
 
-	/**Updatet den Status der in den Tabellen zur Bestellung
+	/**Updatet den Status der Bestellungen
 	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -72,18 +72,14 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-	
+	// Daten holen
 		String bearbeitungsstatus = request.getParameter("status");
 		String auswahl = request.getParameter("auswahl");
 		int bstnr = Integer.parseInt(auswahl);
-		
+		// Logik
 		BestellungUpdateOperations.updateBestellungBearbeitungsstatus(bstnr, bearbeitungsstatus);
 		
 		request.getRequestDispatcher("bestellungadmin.jsp").forward(request, response);
-		
-		
-		
-		
 		
 
 	}

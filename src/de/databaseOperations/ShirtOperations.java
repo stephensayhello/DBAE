@@ -59,7 +59,11 @@ public class ShirtOperations {
 	}
 	
 	
-
+	/**
+	 * Diese Methode laedet die Groessen anhand der Artikelnummer
+	 * @param artnr Artikelnummer
+	 * @return liste von Groessen
+	 */
 	public static List<Object> ladeShirtGroessen(int artnr) {
 		List<Object> groessen = new ArrayList<>();
 		Connection con = DBConnection.getConnection();

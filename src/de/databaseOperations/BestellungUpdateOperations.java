@@ -20,7 +20,6 @@ public class BestellungUpdateOperations {
 	 */
 	private final static String UPDATE_BEARBEITUNGSSTATUS = "UPDATE bestellung SET status = ? WHERE bstnr =?;";
 	private final static String BESTELLUNG_LOESCHEN = "DELETE FROM bestellung WHERE kundennr=?;";
-	private final static String BESTELLUNG_LOESCHEN_MIT_BSTNR = "DELETE FROM bestellung WHERE bstnr=?;";
 	private final static String BESTELLUNG_PROD_ZUO_LOESCHEN = "DELETE FROM bestellung_produktzuordnung WHERE bstnr=?;";
 	private final static String BESTELLUNG_PROD_ZUO_LOESCHEN_MIT_PRODID = "DELETE FROM bestellung_produktzuordnung WHERE produkt_id=?;";
 
@@ -61,7 +60,10 @@ public class BestellungUpdateOperations {
 		}
 
 	}
-
+	/**
+	 * Diese methode entfernt eine Bestellung aus der tabelle bestellung_produkt_zuOdrnung
+	 * @param id ID der Bestellung
+	 */
 	public static void entferneBestellungmitKundennr(int id) {
 
 		List<Bestellung> bestellungen = BestellungOperations.bestelldatumundBstnrMitKnrAusDbholen(id);
@@ -84,7 +86,10 @@ public class BestellungUpdateOperations {
 		}
 
 	}
-
+	/**
+	 * Diese methode entfernt eine Bestellung aus der tabelle bestellung_produkt_zuOdrnung
+	 * @param id ID der Bestellung
+	 */
 	public static void entferneBestellungProdzuordnungmitID(int id) {
 
 		Connection con = DBConnection.getConnection();

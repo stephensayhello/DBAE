@@ -203,11 +203,11 @@ public class BewertungsOperations {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Diese methode l&oeumlscht eine Bewertung anhand einer Artikel Nr
+	 * @param artikelnr Artikel _nr
+	 */
 	public static void entferneBewertungmitArtikelnr(int artikelnr) {
-		
-		
-		
-		
 		
 		Connection con = DBConnection.getConnection();
 		try {

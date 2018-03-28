@@ -6,8 +6,9 @@ import java.sql.SQLException;
 
 /**
  * Class to connect to an Postgresql Server.
- * 
+ * Vorlage aus dem learnweb uebernommen
  * @author Jan Sarstedt
+ * @author (alle)
  *
  */
 public class DBConnection {

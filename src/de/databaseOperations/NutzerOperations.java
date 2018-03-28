@@ -47,7 +47,7 @@ public class NutzerOperations {
 
 			pst.execute();
 			con.close();
-			DBConnection.closeConnection();
+
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -103,7 +103,6 @@ public class NutzerOperations {
 
 				Nutzer nutzer = new Nutzer(nutzer_id, password, emailfromdb);
 				con.close();
-				DBConnection.closeConnection();
 				return nutzer;
 			}
 
@@ -171,8 +170,6 @@ public class NutzerOperations {
 				con.close();
 				return true;
 			}
-			DBConnection.closeConnection();
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();

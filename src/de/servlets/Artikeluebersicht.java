@@ -41,6 +41,7 @@ public class Artikeluebersicht extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// Daten holen
 		HttpSession session = request.getSession();
 		session.removeAttribute("produktlistedb");
 		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
@@ -50,7 +51,7 @@ public class Artikeluebersicht extends HttpServlet {
 		String[] checkboxkategorien = request.getParameterValues("Produkt");
 
 		List<Produkt> produktnachsortiment = new ArrayList<>();
-
+		// logik
 		int counter = 0;
 		for (int i = 0; i < produkte.size(); i++) {
 			if (!(counter == produkte.get(i).getArtikelnr())) {
@@ -105,12 +106,13 @@ public class Artikeluebersicht extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// Daten holen
 		session = request.getSession();
 		List<String> messages = new ArrayList<>();
 		List<Produkt> produkte = (List<Produkt>) session.getAttribute("produktlistedb");
 
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
+		
 		if (warenkorb == null) {
 			Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 			warenkorb = new Warenkorb(kunde);
@@ -121,7 +123,7 @@ public class Artikeluebersicht extends HttpServlet {
 		int menge = Integer.parseInt(request.getParameter("menge"));
 
 		String groesse = request.getParameter("groesse");
-
+		// logik
 		Produkt modalProdukt = null;
 		for (Produkt produkt : produkte) {
 			if (produkt instanceof Schuhe) {

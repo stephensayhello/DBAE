@@ -203,7 +203,6 @@ public class KundenOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
 		return kunden;
 	}
 }

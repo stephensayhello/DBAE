@@ -43,7 +43,6 @@ public class BestellungOperations {
 			rs.next();
 			id = rs.getInt(1);
 			con.close();
-			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,7 +75,6 @@ public class BestellungOperations {
 
 			}
 			con.close();
-			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -98,7 +96,6 @@ public class BestellungOperations {
 
 			pst.execute();
 			con.close();
-			DBConnection.closeConnection();
 		anlegen(bestellung);
 		} catch (SQLException e) {
 			e.printStackTrace();

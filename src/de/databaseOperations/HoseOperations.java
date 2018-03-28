@@ -9,8 +9,6 @@ import java.util.List;
 
 import de.classes.Hose;
 import de.classes.Produkt;
-import de.classes.Schuhe;
-import de.classes.Shirt;
 import de.datenbank.DBConnection;
 
 /**
@@ -62,7 +60,11 @@ public class HoseOperations {
 		return null;
 
 	}
-
+	/**
+	 * Diese Methode laedet eine Liste von Groessen aus der Db.
+	 * @param artnr Artikel nummer
+	 * @return liste von Grossen
+	 */
 	public static List<Object> ladeHoseGroessen(int artnr) {
 		List<Object> groessen = new ArrayList<>();
 		Connection con = DBConnection.getConnection();

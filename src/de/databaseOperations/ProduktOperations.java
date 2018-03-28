@@ -39,7 +39,11 @@ public class ProduktOperations {
 	private final static String ZEIGE_PRODUKT_NACH_ARTNR = "SELECT * FROM produkt WHERE artikelnr =?;";
 	private final static String ZAEHLE_ARTIKELNR = "SELECT COUNT (artikelnr) FROM produkt WHERE artikelnr=?;";
 	private final static String HOLE_PRODUKTID_MIT_ARTIKELNR = "SELECT produkt_id FROM produkt WHERE artikelnr=?;";
-
+	/**
+	 * Diese methode gibt die Gesamtanzahl an bestimmten Artikel zurueck.
+	 * @param artnr Artikel nummer
+	 * @return Anzahl der Artikelnummern
+	 */
 	public static int zaehleArtikelnummern(int artnr) {
 		Connection con = DBConnection.getConnection();
 
@@ -142,6 +146,12 @@ public class ProduktOperations {
 
 		return id;
 	}
+	
+	/**
+	 * Diese methode ermittelt eine produkt_id anhand einer Artikelnummer.
+	 * @param artnr Artikel Nummer
+	 * @return Produkt Nummer
+	 */
 	public static int holeProduktIDMitArtnr(int artnr) {
 		Connection con = DBConnection.getConnection();
 		int id = 0;
@@ -535,7 +545,7 @@ public class ProduktOperations {
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+		
 		return null;
 
 	}

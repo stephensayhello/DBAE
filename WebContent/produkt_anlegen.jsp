@@ -110,8 +110,8 @@
 
 
 		</form>
+		<a:modal messages="${messages}"></a:modal>
 	</div>
-	<a:modal messages="messages"></a:modal>
 	<a:footer></a:footer>
 </body>
 </html>

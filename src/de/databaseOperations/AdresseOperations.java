@@ -40,8 +40,7 @@ public class AdresseOperations {
 
 			pst.execute();
 			con.close();
-			DBConnection.closeConnection();
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +60,6 @@ public class AdresseOperations {
 			rs.next();
 			id = rs.getInt(1);
 			con.close();
-			DBConnection.closeConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +88,7 @@ public class AdresseOperations {
 			
 				Adresse adresse = new Adresse(id, strasse, hausnr, plz, ort);
 				con.close();
-				DBConnection.closeConnection();
+				
 				return adresse;
 			}
 
@@ -99,7 +97,7 @@ public class AdresseOperations {
 			e.printStackTrace();
 
 		}
-		DBConnection.closeConnection();
+		
 		return null;
 
 	}
@@ -139,7 +137,7 @@ public class AdresseOperations {
 			pst.setInt(1, adresse.getAdress_id());
 			pst.execute();
 			con.close();
-			DBConnection.closeConnection();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

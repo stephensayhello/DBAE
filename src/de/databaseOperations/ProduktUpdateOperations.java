@@ -76,7 +76,11 @@ public class ProduktUpdateOperations {
 		}
 
 	}
-
+	/**
+	 *
+	 * Diese Methode l&oescht ein Produkt.
+	 * @param produkt eine Instanz der Klasse @produkt
+	 */
 	public static void entferneProduktvollstaendig(Produkt produkt) {
 		System.out.println(produkt.getArtikelnr());
 		BewertungsOperations.entferneBewertungmitArtikelnr(produkt.getArtikelnr());
