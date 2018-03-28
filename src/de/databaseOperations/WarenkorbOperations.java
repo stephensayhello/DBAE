@@ -58,8 +58,7 @@ public class WarenkorbOperations {
 	 * @param id Die zu entfernde ID
 	 */
 	public static void entferneWarenkorb(int id) {
-		System.out.println("WARENKORB ID:");
-		System.out.println(id);
+		
 		
 		Connection con = DBConnection.getConnection();
 		

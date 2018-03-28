@@ -55,7 +55,7 @@ public class ProfilAendernServlet extends HttpServlet {
 		try {
 			plz = Integer.parseInt(request.getParameter("plz"));
 		} catch(NumberFormatException nfe) {
-			System.out.println("Fehler gefangen.");
+			nfe.printStackTrace();
 		}
 		
 		String ort = request.getParameter("ort");

@@ -354,7 +354,7 @@ public class ProduktOperations {
 		} catch (
 
 		SQLException e) {
-			System.out.println("Fehler");
+		
 			e.printStackTrace();
 
 		}
@@ -382,7 +382,7 @@ public class ProduktOperations {
 		} catch (
 
 		SQLException e) {
-			System.out.println("Fehler");
+		
 			e.printStackTrace();
 
 		}
@@ -411,7 +411,7 @@ public class ProduktOperations {
 		} catch (
 
 		SQLException e) {
-			System.out.println("Fehler");
+		
 			e.printStackTrace();
 
 		}

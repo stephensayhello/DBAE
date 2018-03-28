@@ -69,7 +69,6 @@ public class ProfilServlet extends HttpServlet {
 		if (SaltedHash.isPwdEqual(password, kunde.getPasswort())) {
 
 			session.setAttribute("kundeeingeloggt", kunde);
-			System.out.println("blabla");
 			request.getRequestDispatcher("profilinfos.jsp").forward(request, response);
 		} else {
 			String fehlermeldung = "Das eingegebene Passwort ist  falsch!";

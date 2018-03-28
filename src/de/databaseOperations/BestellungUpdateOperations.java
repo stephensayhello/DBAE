@@ -17,6 +17,7 @@ public class BestellungUpdateOperations {
 	 */
 	private final static String UPDATE_BEARBEITUNGSSTATUS = "UPDATE bestellung SET status = ? WHERE bstnr =?;";
 	private final static String BESTELLUNG_LOESCHEN = "DELETE FROM bestellung WHERE kundennr=?;";
+	private final static String BESTELLUNG_LOESCHEN_MIT_PRODID = "DELETE FROM bestellung WHERE kundennr=?;";
 	
 
 	/**

@@ -162,11 +162,10 @@ public class Produkt {
 		}
 	}
 	public String getPreismitanzahlineuro() {
-		System.out.println("preismitanzeur" + preismitanzahlineuro);
 		return preismitanzahlineuro;
 	}
 	public void setPreismitanzahlineuro(double preis) {
-		System.out.println("daqhhwqu");
+		
 		this.preismitanzahlineuro = NumberFormat.getCurrencyInstance(Locale.GERMANY).format(preis);
 	}
 	public String getPreisineuro() {
@@ -239,7 +238,7 @@ public class Produkt {
 		this.setPreismitanzahl(anzahl*preis);
 		this.setPreismitanzahlineuro(anzahl*preis);
 		this.setPreisineuro(preis);
-		System.out.println("blob");
+	
 		this.setVersanddauer(versanddauer);
 		this.setImagePath(imagepath);
 	}

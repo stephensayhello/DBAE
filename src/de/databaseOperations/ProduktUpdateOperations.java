@@ -60,7 +60,7 @@ public class ProduktUpdateOperations {
 			pst.setInt(1, produkt.getProdukt_id());
 			pst.execute();
 			con.close();
-			System.out.println("produkt entfernt");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

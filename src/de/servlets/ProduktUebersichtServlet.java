@@ -49,12 +49,11 @@ public class ProduktUebersichtServlet extends HttpServlet {
 		String auswahl = request.getParameter("auswahl");
 
 		if (pruefe.contains("id")) {
-			System.out.println("id");
+			
 
 			int produkt_id = 0;
 			try {
 				produkt_id = Integer.parseInt(auswahl);
-				System.out.println(produkt_id + "diese id");
 			} catch (NumberFormatException nfe) {
 
 			}
@@ -95,11 +94,9 @@ public class ProduktUebersichtServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
 		
-		System.out.println(rolle);
 
 		request.setAttribute("klick", "klick");
 		session.removeAttribute("messages");
-		System.out.println("srevlet angekommen, produktuebersichtservlet");
 		List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbank();
 		List<Produkt> produkteSortiertnachartnr = new ArrayList<>();
 
@@ -110,7 +107,6 @@ public class ProduktUebersichtServlet extends HttpServlet {
 				produkteSortiertnachartnr.add(produkte.get(i));
 			}
 		}
-		System.out.println("Testen");
 		session.removeAttribute("produkte");
 
 		session.setAttribute("produkte", produkte);
