@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class LoginFilter
  * @author Benjamin Gajewski
- * Dieser Filter filtert die *.jsp Seiten wo ein Eingaben erfolgen.
+ * Dieser Filter filtert die *.jsp Seiten und leitet unberechtigte Anfragen auf die artikeluebersicht.jsp um.
  */
 @WebFilter(urlPatterns = { "*.jsp" })
 public class LoginFilter implements Filter {

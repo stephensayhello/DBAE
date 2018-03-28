@@ -46,6 +46,7 @@ public class SignUpServlet extends HttpServlet {
 	}
 
 	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -63,7 +64,7 @@ public class SignUpServlet extends HttpServlet {
 		List<String> messages = new ArrayList<>();
 		
 		if (!Regex.pruefeRegexPasswort(passwort)) {
-			// die fehlermeldung muss noch näher erläutert werden!
+			
 			messages.add("Bitte passwort neu eingeben!");
 		} 
 

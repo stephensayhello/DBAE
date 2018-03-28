@@ -49,7 +49,7 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Daten holen
+		
 		HttpSession session = request.getSession();
 		session.removeAttribute("fruehereBestellungen");
 		String password = request.getParameter("psw");
@@ -59,7 +59,7 @@ public class ProfilServlet extends HttpServlet {
 		
 		session.setAttribute("fruehereBestellungen", bestellungen);
 		request.setAttribute("messages", messages);
-		// Logik
+		
 		if (kunde == null) {
 			String bitteinloggen = "Bitte loggen Sie sich ein, um ihr Profil sehen zu können.";
 			messages.add(bitteinloggen);

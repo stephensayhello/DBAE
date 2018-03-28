@@ -18,9 +18,9 @@ import de.databaseOperations.BestellungOperations;
 import de.utilities.Mail;
 
 /**
- * Dieses Servlet liefert die Logik für den Warenkorb dazu.
- * @author Benjamin Gajewski
- * Servlet implementation class WarenkorbServlet
+ * Dieses Servlet liefert die Logik für den Warenkorb.
+ * 
+ * @author Benjamin Gajewski Servlet implementation class WarenkorbServlet
  */
 @WebServlet("/WarenkorbServlet")
 public class WarenkorbServlet extends HttpServlet {
@@ -35,22 +35,23 @@ public class WarenkorbServlet extends HttpServlet {
 	}
 
 	/**
+	 * Hier wird der Warenkorb geleert.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Warenkob leeren
+
 		HttpSession session = request.getSession();
-		session.removeAttribute("warenkorbinhalt");
+
 		session.removeAttribute("warenkorb");
-		session.removeAttribute("warenkorbgesamtpreis");
+
 		session.removeAttribute("warenversanddauer");
 
 		request.getRequestDispatcher("warenkorb.jsp").forward(request, response);
 	}
 
-	/**
+	/**Bestellfunktion
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -61,15 +62,14 @@ public class WarenkorbServlet extends HttpServlet {
 		if ((Warenkorb) session.getAttribute("warenkorb") != null && kunde != null) {
 			Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
 			List<Produkt> warenkorbinhalt = warenkorb.getInhalt();
-				
+
 			Bestellung bestellung = new Bestellung(warenkorbinhalt, kunde);
 			BestellungOperations.bestellunganlegen(bestellung);
-			
+
 			Mail.SendMailTLS(kunde.getEmail(), "Ihre Bestellung", "Vielen Dank für ihre Bestellung!");
-			
-		
+
 			session.removeAttribute("warenkorb");
-			
+
 			session.removeAttribute("warenversanddauer");
 		} else if ((Warenkorb) session.getAttribute("warenkorb") == null) {
 			System.out.println("Der Warenkorb ist leer oder loggen sie sich ein");

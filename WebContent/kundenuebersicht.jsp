@@ -63,7 +63,7 @@
 						<td>${kunde.nutzer_id}</td>
 						<td>${kunde.nachname}</td>
 						<td>${kunde.email}</td>
-						<td>${kunde.adresse.strasse}${kunde.adresse.hausnummer}${kunde.adresse.plz}${kunde.adresse.ort}</td>
+						<td>${kunde.adresse.strasse} ${kunde.adresse.hausnummer},  ${kunde.adresse.plz}  ${kunde.adresse.ort}</td>
 						<td>
 							<form action="KundeBearbeitenServlet" method="get">
 								<button value="submit" class="button-dbae">

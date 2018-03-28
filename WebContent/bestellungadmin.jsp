@@ -9,8 +9,8 @@
 
 <link rel="stylesheet" href="css/bestellungadmin.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<title>Bestellungsuebersicht (admin)</title>
+<meta name="author" content="Paul Blanke, Stephen Galla, Benjamin Gajewski">
+<title>Bestellungsuebersicht(admin)</title>
 <link rel="icon" href="img/Logo.png">
 <a:bootstrap></a:bootstrap>
 </head>
@@ -41,7 +41,7 @@
 						<tr><td>Kundennummer:</td> <td> ${bestellung.kunde.nutzer_id}</td></tr>
 						<tr><td>Status:</td> <td> ${bestellung.bearbeitungsstatus}</td></tr>
 						<tr><td>Name:</td> <td> ${bestellung.kunde.vorname} ${bestellung.kunde.nachname}</td></tr>
-						<tr><td>Anschrift:</td> <td> ${bestellung.kunde.adresse.strasse}${bestellung.kunde.adresse.hausnummer}${bestellung.kunde.adresse.plz}${bestellung.kunde.adresse.ort}</td></tr>
+						<tr><td>Anschrift:</td> <td> ${bestellung.kunde.adresse.strasse} ${bestellung.kunde.adresse.hausnummer},  ${bestellung.kunde.adresse.plz} ${bestellung.kunde.adresse.ort}</td></tr>
 						</table>
 						<h3>Produkte</h3>
 						</td>

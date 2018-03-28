@@ -36,7 +36,7 @@ public class SupportAnfrageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// leere methode
+		
 		doPost(request, response);
 	}
 
@@ -44,7 +44,7 @@ public class SupportAnfrageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Daten holen
+	
 		String anfrage = request.getParameter("anfrage");
 		String anfragetext = request.getParameter("anfragetext");
 		String grund = request.getParameter("grund");
@@ -54,10 +54,10 @@ public class SupportAnfrageServlet extends HttpServlet {
 		SupportAnfrage support = new SupportAnfrage(anfrage, anfragetext, grund);
 		List<SupportAnfrage> supportAnfragen = support.getAnfragen();
 		session.setAttribute("anfragen", supportAnfragen);
-		// Logik
+		
 		messages.add(ausgabe);
 		SupportOperations.speichereSupportAnfrage(support);
-		Mail.SendMailTLS("Message.RecipientType.TO", "SupportAnfrage",  anfragetext);
+		Mail.SendMailTLS("admin@test.de", "SupportAnfrage",  anfragetext);
 		request.setAttribute("messages", messages);
 		
 		request.getRequestDispatcher("contact.jsp").forward(request, response);

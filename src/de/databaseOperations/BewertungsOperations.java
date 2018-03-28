@@ -75,6 +75,7 @@ public class BewertungsOperations {
 			PreparedStatement pst = con.prepareStatement(BEWERTUNG_ANLEGEN);
 			pst.setInt(1, bewertung.getBewertungsid());
 			pst.setInt(2, bewertung.getArtikelnr());
+			System.out.println(bewertung.getArtikelnr());
 			pst.setInt(3, bewertung.getKundennr());
 			pst.setInt(4, bewertung.getPunkte());
 			pst.setString(5, bewertung.getDatum().toString());

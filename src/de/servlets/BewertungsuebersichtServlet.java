@@ -14,46 +14,52 @@ import de.databaseOperations.BewertungsOperations;
 
 /**
  * Servlet implementation class BewertungsuebersichtServlet
+ * 
  * @author Paul Blanke
  */
 @WebServlet("/BewertungsuebersichtServlet")
 public class BewertungsuebersichtServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BewertungsuebersichtServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 * Diese Methode wird nicht genutzt.
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	
+	public BewertungsuebersichtServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 * Diese methode zeigt zu einem bestimmten Produkt alle vorhanden Bewertungen an.
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response) Diese Methode wird nicht genutzt.
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+
+	}
+
+	/**
+	 * Wird aufgerufen, wenn die Bewertungen zu einem entsprechenden Artikel
+	 * eingesehen werden sollen.
+	 * Gibt den Artikelnamen sowie alle Bewertungen zu dem Artikel zur&uumlck.
+	 * 
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 * 
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		int artikelnr = Integer.parseInt(request.getParameter("artnr"));
 		List<Bewertung> bewertungen = BewertungsOperations.ladeBewertungen(artikelnr);
-		if(!bewertungen.isEmpty()) {
+		if (!bewertungen.isEmpty()) {
 			request.setAttribute("artikelname", bewertungen.get(0).getProdukt().getName());
-		} 
-		
+		}
+
 		request.setAttribute("bewertungen", bewertungen);
 		request.getRequestDispatcher("bewertungsuebersicht.jsp").forward(request, response);
-	
-	
-	
+
 	}
 
 }

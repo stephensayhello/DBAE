@@ -13,13 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import de.classes.Bewertung;
 import de.classes.Kunde;
-import de.databaseOperations.BewertungsOperations;
-;
+import de.databaseOperations.BewertungsOperations;;
 
 /**
  * @author Paul Blanke Diese Servlet ermöglicht die Bewertung der Produkte auf
- *         den entsprechenden Seiten. 
- *         Servlet implementation class
+ *         den entsprechenden Seiten. Servlet implementation class
  *         BewertungServlet
  */
 @WebServlet("/BewertungServlet")
@@ -40,13 +38,15 @@ public class BewertungServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// To Post
-		// Wird nicht genutzt.
+
 		doPost(request, response);
 
 	}
 
 	/**
+	 * Wird aufgerufen, wenn ein Produkt bewertet wurde. Legt eine Bewertung mit
+	 * den aus der artikeluebersicht.jsp &uumlbergebenen Werten an.
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -56,18 +56,15 @@ public class BewertungServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
-		if (session.getAttribute("rolle")==null) {
+		if (session.getAttribute("rolle") == null) {
 			messages.add("Wenn Sie ein Produkt bewerten wollen, loggen Sie sich bitte ein.");
-            System.out.println("bewertunsservlet");
-            
+
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} else {
 			int punkte = Integer.parseInt(request.getParameter("punkte"));
 			int artikelNr = Integer.parseInt(request.getParameter("artnr"));
 			String kommentar = request.getParameter("bewertung");
 			Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
-
-		
 
 			Bewertung bewertung = new Bewertung(BewertungsOperations.hoechsteBewertungsID(), artikelNr,
 					kunde.getNutzer_id(), punkte, kommentar);

@@ -36,12 +36,6 @@ public class ProduktUpdateOperations {
 	private final static String PRODUKT_UPDATE_STATUS = "UPDATE produkt SET status = ? WHERE produkt_id =?;";
 
 	private final static String PRODUKT_LOESCHEN = "DELETE FROM produkt WHERE produkt_id = ?";
-	private final static String PRODUKTID_DURCH_ARTIKELNUMMER ="SELECT produkt_id WHERE artikelnr =?;";
-	
-	private final static String HOECHSTE_ID_ZUFALL = "SELECT MAX(produkt_id) FROM produkt;";
-	private final static String HILFS_LOGIK = "SELECT * FROM produkt WHERE produkt_id = ?;";
-	
-	
 	/**
 	 * Diese Methode entfernt ein Produkt aus der DB.
 	 * @param produkt das zu L&oeschende Produkt

@@ -1,11 +1,16 @@
 package testpackage;
 
+import java.util.List;
+
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import de.classes.Kunde;
+import de.classes.Produkt;
 import de.databaseOperations.BewertungsOperations;
 import de.databaseOperations.KundenOperations;
 import de.databaseOperations.NutzerOperations;
+import de.databaseOperations.ProduktOperations;
+import de.databaseOperations.ProduktUpdateOperations;
 import de.utilities.SaltedHash;
 
 /**
@@ -18,9 +23,11 @@ public class Test {
 
 	public static void main(String[]args) {
 		
-		int durchschnittgerundet = (int) Math.round(3.4);
-		System.out.println(durchschnittgerundet);
-		
+	List<Produkt> produkte = ProduktOperations.ladeProdukteAusDatenbankmitArtnr(5);
+	System.out.println(produkte);
+	for (Produkt produkt : produkte) {
+		ProduktUpdateOperations.entferneProdukt(produkt);
+	}
 		
 	}
 }

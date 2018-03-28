@@ -12,47 +12,51 @@ import de.classes.Warenkorb;
 import de.databaseOperations.WarenkorbOperations;
 
 /**
- * @author paul Blanke 
- * dieses Servlet loggt den Nutzer aus.
- * Der Warenkorb wird beim Ausloggen in die Db geschrieben und die Session wird entfernt. 
- * Servlet implementation class LogoutServlet
+ * @author paul Blanke dieses Servlet loggt den Nutzer aus. Der Warenkorb wird
+ *         beim Ausloggen in die Db geschrieben und die Session wird entfernt.
+ *         Servlet implementation class LogoutServlet
  */
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LogoutServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Daten holen
+	public LogoutServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		Warenkorb warenkorb = (Warenkorb) session.getAttribute("warenkorb");
-		if(warenkorb != null) {
+		if (warenkorb != null) {
 			WarenkorbOperations.anlegenWarenkorb(warenkorb);
+			System.out.println("Logoutservletwarenkorbprüfen");
+			System.out.println(warenkorb.getInhalt());
 		}
-		
+
 		session.invalidate();
 		request.getSession().removeAttribute("session");
 		request.getRequestDispatcher("artikeluebersicht.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		
-		// DoPost wird nicht verwendet
-		
-		
+
 	}
 
 }

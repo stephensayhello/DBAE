@@ -34,14 +34,17 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
+	/**Speichert alle Bestellungen aus der Db in der Session.
+	 * Setzt ein Attribut in die request, um ein weiteres Laden der bestellungadmin.jsp zu vermeiden.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+        
 		HttpSession session = request.getSession();
+		
 		request.setAttribute("klick", "klick");
 		List<Kunde> kunden = KundenOperations.holeAlleKunden();
 		
@@ -56,16 +59,13 @@ public class AdminBestelluebersichtServlet extends HttpServlet {
 		}
 		
 		session.setAttribute("Bestellungen", bestellungenvonallenkunden);
-		for (Bestellung bestellung : bestellungen) {
-			System.out.println("DIE BESTELLUNGEN");
-			System.out.println(bestellung.getBearbeitungsstatus());
-			System.out.println(bestellung.getBestellliste());
-		}
+	
 		request.getRequestDispatcher("bestellungadmin.jsp").forward(request, response);
 
 	}
 
-	/**
+	/**Updatet den Status der in den Tabellen zur Bestellung
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

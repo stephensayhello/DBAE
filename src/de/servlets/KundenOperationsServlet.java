@@ -18,79 +18,74 @@ import de.databaseOperations.NutzerOperations;
 /**
  * Dieses Servlet bietet die M&oeglichkeit die Kundendaten zu ver&anendern.
  * Servlet implementation class KundenOperationsServlet
+ * 
  * @author Stephen Galla
  */
 @WebServlet("/KundenOperationsServlet")
 public class KundenOperationsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public KundenOperationsServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Daten holen
-		HttpSession session = request.getSession();
-		String rolle = (String) session.getAttribute("rolle");
-		List<String> messages = new ArrayList<>();
-		session.setAttribute("messages", messages);
-		// prüfungen vornehmen
-		if(rolle!=null){
-		if(rolle.contains("admin")) {
-			request.setAttribute("klick", "show");
-			List<Kunde> kunden =  KundenOperations.holeAlleKunden();
-			session.setAttribute("kunden", kunden);
-			request.getRequestDispatcher("kundenuebersicht.jsp").forward(request, response);
-		}} else {
-			messages.add("Sie sind nicht berechtigt auf diese Funktionen zu zugreifen!! Bitte loggen Sie sich als Admin ein");
-			request.getRequestDispatcher("index.jsp").forward(request,response);
-		}
-		
-		
-		
+	public KundenOperationsServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Gibt alle Kunden aus der Db an die kundenuebersicht.jsp weiter. Setzt ein
+	 * Attribut in der request, damit die .jsp nicht ein weiteres Mal geladen
+	 * wird.
+	 * 
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	// Daten holen
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+
+		List<String> messages = new ArrayList<>();
+		session.setAttribute("messages", messages);
+
+		request.setAttribute("klick", "show");
+		List<Kunde> kunden = KundenOperations.holeAlleKunden();
+		session.setAttribute("kunden", kunden);
+		request.getRequestDispatcher("kundenuebersicht.jsp").forward(request, response);
+
+	}
+
+	/**
+	 * Bekommt aus der kundenuebersicht.jsp eine id &uumlbergeben und l&oumlscht
+	 * einen Kunden aus der Db.
+	 * 
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
 		String rolle = (String) session.getAttribute("rolle");
 		List<String> messages = new ArrayList<>();
-		session.setAttribute("messages", messages);
-		
-		// logik
-		if(rolle!=null){
-		if(rolle.contains("admin")) {
+		request.setAttribute("messages", messages);
+
+		if (rolle.contains("admin")) {
 			String auswahl = request.getParameter("auswahl");
 			int id = Integer.parseInt(auswahl);
 			Kunde kunde = KundenOperations.kundeausdbholen(NutzerOperations.nutzerAusDbHolen(id));
 			KundenOperations.entferneKunde(kunde);
 			messages.add("Kunde:" + kunde.getNutzer_id() + "wurde entfernt!");
-			
-			
-	
-				request.getRequestDispatcher("kundenuebersicht.jsp").forward(request, response);
-				
-			} else {
-				messages.add("Fehler passiert");
-				request.getRequestDispatcher("kundenuebersicht.jsp").forward(request, response);
-			}
-			
-		} else {
-			messages.add("Sie sind nicht berechtigt auf diese Funktionen zu zugreifen!! Bitte loggen Sie sich als Admin ein");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
-		
-	}
 
+			request.getRequestDispatcher("kundenuebersicht.jsp").forward(request, response);
+
+		} else {
+			messages.add("Fehler passiert");
+			request.getRequestDispatcher("kundenuebersicht.jsp").forward(request, response);
+		}
+
+	}
 
 }

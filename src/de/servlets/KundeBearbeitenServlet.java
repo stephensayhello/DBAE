@@ -19,28 +19,33 @@ import de.utilities.SaltedHash;
 import de.utilities.RandomStringGenerator;
 
 /**
- * @author Stephen galla
- * Dieses Servlet liefert die Logik f&uer die Funktionen des Admins einen kunden zu l&oeschen oder ihm
- * ein neues Passwort zu setzten.
- * Servlet implementation class KundeBearbeitenServlet
+ * @author Stephen galla Dieses Servlet liefert die Logik f&uumlr die Funktionen
+ *         des Admins,um einen Kunden zu l&oumlschen oder ihm ein neues
+ *         zuf&aumllliges Passwort zu setzten.<br>
+ *         Servlet implementation class KundeBearbeitenServlet
  */
 @WebServlet("/KundeBearbeitenServlet")
 public class KundeBearbeitenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public KundeBearbeitenServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Daten holen
+	public KundeBearbeitenServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Bekommt aus der kundenuebersicht.jsp die kundennummer &uumlbergeben und
+	 * sendet an die Kundenmail ein zuf&aumlllig generiertes Passwort.
+	 * 
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		List<String> messages = new ArrayList<>();
 		String auswahl = request.getParameter("auswahlkunde");
 		int kundenauswahl = Integer.parseInt(auswahl);
@@ -51,26 +56,27 @@ public class KundeBearbeitenServlet extends HttpServlet {
 			newPwhashed = SaltedHash.getSaltedHash(newRandomPw);
 			NutzerOperations.setzeNeuesPasswort(newPwhashed, kunde.getNutzer_id());
 			System.out.println(kunde);
-			Mail.SendMailTLS(kunde.getEmail(), "New Password", newRandomPw);
-			messages.add("Das passwort des Accounts: " + kunde.getEmail() + "  wurde ge�ndert und der Nutzer wurde benachrichtigt.");
+			Mail.SendMailTLS(kunde.getEmail(), "Neues Passwort", newRandomPw);
+			messages.add("Das passwort des Accounts: " + kunde.getEmail()
+					+ "  wurde geaendert und der Nutzer wurde benachrichtigt.");
 			request.setAttribute("messages", messages);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-		
+
 		request.getRequestDispatcher("kundenuebersicht.jsp").forward(request, response);
-		
-		
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// Diese Methode wird nicht genutzt :)
-		
+
 	}
 
 }

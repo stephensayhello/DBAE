@@ -19,7 +19,7 @@ import de.logik.Regex;
 /**
  * Servlet implementation class ProfilAendernServlet
  * @author Stephen Galla
- * Dieses Servlet bietet die entsprechende Logik für die Kundenfunktion Daten verändern an.
+ * Dieses Servlet bietet die entsprechende Logik für die Kundenfunktion "Daten ver&aumlndern" an.
  */
 @WebServlet("/ProfilAendernServlet")
 public class ProfilAendernServlet extends HttpServlet {
@@ -44,14 +44,14 @@ public class ProfilAendernServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Get Data
+	
 		String vorname = request.getParameter("vorname");
 		String nachname = request.getParameter("nachname");
 		String email = request.getParameter("mail");
 		String strasse = request.getParameter("strasse");
 		String hausnr = request.getParameter("hausnr");
 		int plz = 0;
-		// -> PLZ Fehler fangen.
+		
 		try {
 			plz = Integer.parseInt(request.getParameter("plz"));
 		} catch(NumberFormatException nfe) {
@@ -63,12 +63,12 @@ public class ProfilAendernServlet extends HttpServlet {
 		Kunde kunde = (Kunde) session.getAttribute("kundeeingeloggt");
 
 		List<String> messages = new ArrayList<>();
-		session.removeAttribute("kundeeingeloggt");
+		
 		
 		
 		if(vorname.equals("") && nachname.equals("") && email.equals("")  && strasse.equals("") 
 				&& hausnr.equals("") && ort.equals("")) {
-			// Mache Nichts keine Änderungen.
+			
 			messages.add("Sie haben Ihre Informationen nicht verändert.");
 			
 		} else if(strasse.equals("") && hausnr.equals("") && ort.equals("")) {

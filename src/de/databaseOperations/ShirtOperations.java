@@ -23,7 +23,7 @@ public class ShirtOperations {
 	 * Statements
 	 */
 	private final static String HOLE_SHIRT_NACH_SHID = "SELECT * FROM shirt WHERE sh_id = ?;";
-	private final static String SHIRT_LOESCHEN = "DELETE FROM shirt WHERE sch_id= ?;";
+	private final static String SHIRT_LOESCHEN = "DELETE FROM shirt WHERE sh_id= ?;";
 	private final static String LADE_GROESSE_NACH_ART = "select groesse from shirt inner join produkt on(produkt.produkt_id = shirt.sh_id) where artikelnr = ?";
 	/**
 	 * SELECT

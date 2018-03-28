@@ -32,7 +32,7 @@
 				<label for="name"><b>Name:</b></label><input class="input-dbae"
 					type="text" value="${produkt.name}" name="name"> <label
 					for="preis"><b>Preis:</b></label><input class="input-dbae"
-					type="number" value="${produkt.preis}" name="preis"> <label
+					type="text" value="${produkt.preis}" name="preis"> <label
 					for="anfragetext"><br>Beschreibung:</br></label>
 				<textarea rows="5" cols="5" name="beschreibung" class="input-dbae">${produkt.beschreibung}</textarea>
 

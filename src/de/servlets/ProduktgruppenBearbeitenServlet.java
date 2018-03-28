@@ -36,12 +36,14 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 	}
 
 	/**
+	 * L&aumld aus der Db.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Daten holen
+
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
 		List<Produkt> produkte = new ArrayList<>();
@@ -51,78 +53,58 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 		session.removeAttribute("messages");
 		session.setAttribute("messages", messages);
 
-		// logik
-		if (rolle != null) {
-			if (rolle.contains("admin")) {
-				produkte = ProduktOperations.ladeProdukteAusDatenbankmitArtnr(produkt.getArtikelnr());
-				for (Produkt produkt2 : produkte) {
-					ProduktUpdateOperations.entferneProdukt(produkt2);
-				}
-
-				messages.add("Artikel gelöscht!");
-				request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
-
-			}
-
-		} else {
-			messages.add("Bitte einloggen!");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-
+		produkte = ProduktOperations.ladeProdukteAusDatenbankmitArtnr(produkt.getArtikelnr());
+		for (Produkt produkt2 : produkte) {
+			ProduktUpdateOperations.entferneProdukt(produkt2);
 		}
+
+		messages.add("Artikel gelöscht!");
+		request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 
 	}
 
-	/**
+	/**Updatet einen Artikel.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Daten holen
+
 		HttpSession session = request.getSession();
 		List<String> messages = new ArrayList<String>();
 		String rolle = (String) session.getAttribute("rolle");
 		session.removeAttribute("messages");
 
-		// logik
-		if (rolle != null) {
-			if (rolle.contains("admin")) {
+		double preis1 = 0;
+		Produkt produkt = (Produkt) session.getAttribute("produkt");
+		session.removeAttribute("produkt");
+		String name = request.getParameter("name");
+		String preis = request.getParameter("preis");
+		String beschreibung = request.getParameter("beschreibung");
 
-				double preis1 = 0;
-				Produkt produkt = (Produkt) session.getAttribute("produkt");
-				session.removeAttribute("produkt");
-				String name = request.getParameter("name");
-				String preis = request.getParameter("preis");
-				String beschreibung = request.getParameter("beschreibung");
-
-				if (name.equals("") || preis.equals("") || beschreibung.equals("")) {
-					messages.add("Bitte alle Felder ausfüllen.");
-					request.setAttribute("messages", messages);
-					request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
-				} else {
-
-					if (produkt != null) {
-						if (Regex.pruefeNurDouble(preis)) {
-							preis1 = Double.parseDouble(preis);
-						}
-						ProduktUpdateOperations.updateProduktgruppemitArtikelnr(produkt.getArtikelnr(), name, preis1,
-								beschreibung);
-
-						messages.add("Alles in Butter!");
-
-					} else {
-						messages.add("fehler");
-
-					}
-					session.removeAttribute("produkte");
-					request.setAttribute("messages", messages);
-					request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
-				}
-			}
+		if (name.equals("") || preis.equals("") || beschreibung.equals("")) {
+			messages.add("Bitte alle Felder ausfüllen.");
+			request.setAttribute("messages", messages);
+			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
 		} else {
-			messages.add(" Sie haben nicht die Berechtigung für den Zugriff auf diese Funktionen.");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
-	}
 
+			if (produkt != null) {
+				if (Regex.pruefeNurDouble(preis)) {
+					preis1 = Double.parseDouble(preis);
+				}
+				ProduktUpdateOperations.updateProduktgruppemitArtikelnr(produkt.getArtikelnr(), name, preis1,
+						beschreibung);
+
+				messages.add("Alles in Butter!");
+
+			} else {
+				messages.add("fehler");
+
+			}
+			session.removeAttribute("produkte");
+			request.setAttribute("messages", messages);
+			request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
+		}
+
+	}
 }

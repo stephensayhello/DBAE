@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
  * Servlet Filter implementation class XSSFilter2
  * * @author paul Blanke
  * Diese Klasse Filtert die Eingabe nach XSS Angriffe
- * Zum gr&oessten Teil Analog zum Learnweb allerdings wurden weiteren Pr&uefungen erg&aenzt.
+ * Zum gr&oumlssten Teil Analog zum Learnweb allerdings wurden weiteren Pr&uumlfungen erg&aumlnzt.
  */
 @WebFilter("/*")
 public class EingabeFilter implements Filter {

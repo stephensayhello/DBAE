@@ -2,7 +2,6 @@ package de.utilities;
 
 import java.util.Properties;
 
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -10,29 +9,38 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 /**
- * Gr��tenteils von https://www.mkyong.com/java/javamail-api-sending-email-via-gmail-smtp-example/
- * �bernommen.
- * Methoden und �bergabeparameter leicht ver�ndert.
+ * Gr&oumlsstenteils von
+ * https://www.mkyong.com/java/javamail-api-sending-email-via-gmail-smtp-
+ * example/ &uumlbernommen. Methoden und &Uumlbergabeparameter leicht
+ * ver&aumlndert.
  * 
- * Diese Klasse versendet eine Mail an die E-mail Adresse: sportweb233@gmail.com
+ * Diese Klasse versendet eine Mail von der E-mail Adresse:
+ * sportweb233@gmail.com an einen &uumlbergebenen Empf&aumlnger.
+ * 
  * @author Benjamin Gajewski
  *
  */
 public class Mail {
-	
+
 	/**
 	 * Zugangsdaten
 	 */
 	private static final String USERNAME = "sportweb233@gmail.com";
 	private static final String PASSWORD = "Sportweb123";
+
 	/**
- 	* Diese Methode versendete eine Mail. Als erstes wird eine Verbindung mit den Server hergestellt und dann wird
- 	* die Mail angeschickt.
- 	* @param recipient Empfaenger
- 	* @param subject Betreff
- 	* @param text Beschreibung
- 	*/
+	 * Diese Methode versendete eine Mail. Als erstes wird eine Verbindung mit
+	 * den Server hergestellt und dann wird die Mail angeschickt.
+	 * 
+	 * @param recipient
+	 *            Empfaenger
+	 * @param subject
+	 *            Betreff
+	 * @param text
+	 *            Beschreibung
+	 */
 	public static void SendMailTLS(String recipient, String subject, String text) {
 
 		Properties props = new Properties();
@@ -62,5 +70,4 @@ public class Mail {
 		}
 	}
 
-	
 }

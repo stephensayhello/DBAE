@@ -28,6 +28,7 @@ import de.utilities.FileStorageInDropbox;
 
 /**
  * Servlet implementation class ProduktAnlegenServlet
+ * 
  * @author Benjamin Gajewski
  */
 @WebServlet("/ProduktAnlegenServlet")
@@ -53,6 +54,9 @@ public class ProduktAnlegenServlet extends HttpServlet {
 	}
 
 	/**
+	 * Läd ein Bild in die Dropbox. Legt einen neuen Artikel an und speichert
+	 * diesen entsprechend der in der produkt_anlegen.jsp ausgew&aumlhlten
+	 * Kriterien in die Db.
 	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -60,12 +64,12 @@ public class ProduktAnlegenServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//https://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-jsp-servlet
+		// https://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-jsp-servlet
 		Part filePart = request.getPart("uploadFile");
 		String name = (filePart.getHeader("Content-Disposition")).replaceFirst("(?i)^.*filename=\"([^\"]+)\".*$", "$1");
 
 		File img = new File(name);
-		
+
 		// https://www.mkyong.com/java/how-to-convert-inputstream-to-file-in-java/
 		InputStream stream = filePart.getInputStream();
 
@@ -87,21 +91,22 @@ public class ProduktAnlegenServlet extends HttpServlet {
 		int kategorie = Integer.parseInt(request.getParameter("p_kategorie"));
 
 		double preis = Double.parseDouble(request.getParameter("p_preis"));
-		
-       String[] groessearray = new String[10];
-       
-		 groessearray = request.getParameterValues("checkGroesse");
-		 List<String> mengearray  = new ArrayList<String>(Arrays.asList(request.getParameterValues("inputMenge")));
-		 List<String> versanddauerarray = new ArrayList<String>(Arrays.asList(request.getParameterValues("p_versanddauer")));
-		 
-		 mengearray.removeAll(Arrays.asList("", null));
-		 versanddauerarray.removeAll(Arrays.asList("", null));
-		 
+
+		String[] groessearray = new String[10];
+
+		groessearray = request.getParameterValues("checkGroesse");
+		List<String> mengearray = new ArrayList<String>(Arrays.asList(request.getParameterValues("inputMenge")));
+		List<String> versanddauerarray = new ArrayList<String>(
+				Arrays.asList(request.getParameterValues("p_versanddauer")));
+
+		mengearray.removeAll(Arrays.asList("", null));
+		versanddauerarray.removeAll(Arrays.asList("", null));
+
 		int artikelnr = ProduktOperations.hoechsteartikelnr();
 		Produkt produkt = null;
 		for (int i = 0; i < groessearray.length; i++) {
 
-			if (mengearray.get(i)!=null && versanddauerarray.get(i)!=null) {
+			if (mengearray.get(i) != null && versanddauerarray.get(i) != null) {
 				String groesse = groessearray[i];
 				int menge = Integer.parseInt(mengearray.get(i));
 				int versanddauer = Integer.parseInt(versanddauerarray.get(i));

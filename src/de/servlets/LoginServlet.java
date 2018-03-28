@@ -21,8 +21,8 @@ import de.utilities.SaltedHash;
 
 /**
  * @author Paul Blanke
- * Dieses Servlet &ueberpr&ueft den Login des kunden und gibt 
- * bei einer falschen Eingabe eine Fehlermeldung raus.
+ * Dieses Servlet &uumlberpr&uumlft den Login des Kunden und gibt 
+ * bei einer falschen Eingabe eine Fehlermeldung heraus.
  * Servlet implementation class LoginServlet
  */
 @WebServlet("/LoginServlet")
@@ -45,24 +45,28 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
-		// methode wird nicht verwendet
+		
 	}
 
 	/**
+	 * Vergleicht eingegebenes Passwort mit dem hash aus der Db.
+	 * Speichert den Nutzer entsprechend seiner Rolle in der Session ein.
+	 * 
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Daten holen
+	
 		String email = request.getParameter("email");
 		String password = request.getParameter("psw");
 		session = request.getSession();
 		Nutzer nutzer = NutzerOperations.nutzerAusDbHolen(email);
-		System.out.println(nutzer);
+		
 		List<String> messages = new ArrayList<>();
 		request.setAttribute("messages", messages);
-		// logik 
+	
 
 		if (session.getAttribute("kundeeingeloggt") != null) {
 

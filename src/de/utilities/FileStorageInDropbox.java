@@ -15,8 +15,10 @@ import com.dropbox.core.v2.files.UploadErrorException;
 import com.dropbox.core.v2.sharing.RequestedVisibility;
 import com.dropbox.core.v2.sharing.SharedLinkMetadata;
 import com.dropbox.core.v2.sharing.SharedLinkSettings;
+
 /**
  * Diese Klasse liest den Pfad gespeicherter Bilder aus DropBox raus.
+ * 
  * @author Benjamin Gajewski
  *
  */
@@ -28,16 +30,25 @@ public class FileStorageInDropbox {
 	private static final String PROJECT = "SportWeb/home";
 	private DbxRequestConfig config;
 	private DbxClientV2 client;
-	
+
 	public FileStorageInDropbox() {
 		config = new DbxRequestConfig(PROJECT);
 		client = new DbxClientV2(config, ACCESS_TOKEN);
 	}
-/**
- * Diese Methode l&aedet ein Bild ins Projokt
- * @param image Das File mit dem Bildernamen
- * @return Der Webpfad zum Bild.
- */
+
+	/**
+	 * Diese Methode l&aumld ein Bild in die Dropbox. 
+	 * 
+	 * 
+	 * Vgl.:
+	 * https://www.ibm.com/developerworks/community/blogs/2f9ef931-1ac3-4d9b-
+	 * a8ca-6e3f01b13889/entry/Dropbox_Java_SDK_API_to_Put_Get_Delete_File?lang=
+	 * en
+	 * 
+	 * @param image
+	 *            Das File mit dem Bildernamen
+	 * @return Der Webpfad zum Bild.
+	 */
 	public String uploadImage(File image) {
 
 		String publicPath = "";
@@ -59,11 +70,14 @@ public class FileStorageInDropbox {
 		}
 		return publicPath;
 	}
-/**
- * Diese Methode entfernt ein Bild aus der Dropbox, wenn das entsprechende Produkt
- * gel&oescht wurde
- * @param path Das zulo&oeschende Bild
- */
+
+	/**
+	 * Diese Methode entfernt ein Bild aus der Dropbox, wenn das entsprechende
+	 * Produkt gel&oumlscht wurde.
+	 * 
+	 * @param path
+	 *            Das zul&oumlschende Bild
+	 */
 	public void deleteFile(String path) {
 		try {
 			DeleteResult metadata = client.files().deleteV2(path);

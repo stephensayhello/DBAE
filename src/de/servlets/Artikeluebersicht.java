@@ -19,9 +19,10 @@ import de.classes.Warenkorb;
 import de.databaseOperations.ProduktOperations;
 
 /**
- * Dieses Servlet liefert Daten aus der DB f&uer die Artikel&uebersicht dazu.
- * @author Stephen Galla
- * Servlet implementation class Artikeluebersicht
+ * Dieses Servlet liefert Daten aus der DB f&uumlr die artikeluebersicht.jsp
+ * dazu.
+ * 
+ * @author Stephen Galla Servlet implementation class Artikeluebersicht
  */
 @WebServlet("/Artikeluebersicht")
 public class Artikeluebersicht extends HttpServlet {
@@ -29,9 +30,15 @@ public class Artikeluebersicht extends HttpServlet {
 	HttpSession session;
 
 	/**
+	 * Die Get Methode holt alle Daten aus der DB heraus und bringt die
+	 * entsprechenden Artikel(ein Produktobjekt stellvertretend f&uumlr den
+	 * Artikel) in die &Uumlbersicht. Sortiert die Produkte in die entsprechende
+	 * Liste, je nach gew&aumlhlten Kategorien in der Checkbox.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
-	 *      Die Get Methode holt alle Daten aus der DB heraus und bringt Sie in die Übersicht.
+	 * 
+	 * 
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -87,6 +94,13 @@ public class Artikeluebersicht extends HttpServlet {
 	}
 
 	/**
+	 * Die Post-Methode wird aufgerufen, wenn ein Produkt in den Warenkorb
+	 * gelegt wird. Es wird geprüft ob ein Produkt mit den entsprechenden
+	 * Eigenschaften in der Produktliste vorhanden ist. Der Warenkorb mit dem
+	 * Produkt in der entsprechenden Gr&oumlsse wird an die Session
+	 * angef&uumlgt.
+	 * 
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -109,7 +123,6 @@ public class Artikeluebersicht extends HttpServlet {
 
 		String groesse = request.getParameter("groesse");
 
-		// Produkt-ID für Artikel im Modal
 		Produkt modalProdukt = null;
 		for (Produkt produkt : produkte) {
 			if (produkt instanceof Schuhe) {
@@ -121,7 +134,7 @@ public class Artikeluebersicht extends HttpServlet {
 					modalProdukt = produkt;
 				}
 			} else if (produkt instanceof Shirt) {
-				
+
 				if (produkt.getArtikelnr() == artnr && ((Shirt) produkt).getGroesse().equals(groesse)) {
 					modalProdukt = produkt;
 				}
@@ -164,7 +177,6 @@ public class Artikeluebersicht extends HttpServlet {
 			request.setAttribute("messages", messages);
 		}
 		session.setAttribute("warenkorb", warenkorb);
-		session.setAttribute("warenkorbinhalt", warenkorb.getInhalt());
 
 		session.removeAttribute("warenversanddauer");
 		session.setAttribute("warenversanddauer", warenkorb.gethoechsteVersanddauer());

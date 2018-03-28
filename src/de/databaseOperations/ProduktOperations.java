@@ -29,7 +29,6 @@ public class ProduktOperations {
 	private final static String ANLEGEN_HOSE = "INSERT INTO hose VALUES (?,?)";
 	private final static String ANLEGEN_SHIRT = "INSERT INTO shirt VALUES (?,?)";
 	private final static String LADE_PRODUKTE = "SELECT * FROM produkt ORDER BY produkt_id ASC;";
-	private final static String PRODUKT_ZEIGEN_NACH_NAME = "SELECT * FROM produkt WHERE  name = ?;";
 	private final static String PRODUKT_ZEIGEN_NACH_ID = "SELECT * FROM produkt WHERE  produkt_id = ?;";
 	private final static String ZEIGE_SCHUHE_NACH_PRODUKTID = "SELECT sch_id FROM schuhe WHERE sch_id = ?;";
 	private final static String ZEIGE_SHIRT_NACH_PRODUKTID = "SELECT sh_id FROM shirt WHERE sh_id = ?;";
@@ -316,11 +315,11 @@ public class ProduktOperations {
 					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
 					produkte.add(schuhe);
 				}
-				if (produktistHose(produkt.getProdukt_id())) {
+				else if (produktistHose(produkt.getProdukt_id())) {
 					Hose hose = HoseOperations.hoseausdbholen(produkt);
 					produkte.add(hose);
 				}
-				if (produktistShirt(produkt.getProdukt_id())) {
+				else if (produktistShirt(produkt.getProdukt_id())) {
 					Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
 					produkte.add(shirt);
 				}
@@ -335,7 +334,7 @@ public class ProduktOperations {
 		return produkte;
 	}
 	/**
-	 * Diese Methode pr&ueft ob ein produkt zu der Klasse Shirts geh&oert.
+	 * Diese Methode pr&uumlft ob ein produkt zu der Klasse Shirts geh&oert.
 	 * @param id DB-ID.
 	 * @return ist / ist nicht eine Instanz der Klasse @Shirt
 	 */
