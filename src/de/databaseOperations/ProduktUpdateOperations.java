@@ -80,7 +80,7 @@ public class ProduktUpdateOperations {
 	
 	
 	public static void entferneProduktvollstaendig(Produkt produkt) {
-		
+		  System.out.println(produkt.getArtikelnr());
 			BewertungsOperations.entferneBewertungmitArtikelnr(produkt.getArtikelnr());
 			
 			

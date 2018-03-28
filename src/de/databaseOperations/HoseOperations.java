@@ -49,7 +49,7 @@ public class HoseOperations {
 						produkt.getMenge(), produkt.getArtikelnr(), produkt.getAnzahl(), produkt.getVersanddauer(),
 						produkt.getStatus(), produkt.getImagePath());
 				con.close();
-				DBConnection.closeConnection();
+				
 				return hose;
 			}
 
@@ -76,7 +76,7 @@ public class HoseOperations {
 			while(rs.next()) {
 				groessen.add(rs.getObject(1));
 			}
-
+           con.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -95,7 +95,7 @@ public class HoseOperations {
 			pst.setInt(1, id);
 			pst.execute();
 			con.close();
-			DBConnection.closeConnection();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
