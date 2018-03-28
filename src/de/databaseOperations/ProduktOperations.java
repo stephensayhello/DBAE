@@ -11,16 +11,18 @@ import de.classes.Produkt;
 import de.classes.Schuhe;
 import de.classes.Shirt;
 import de.datenbank.DBConnection;
+
 /**
-* 
-* Diese Klasse verwaltet ProduktOperationen 1 von 2.
-* @see {@link package-info}
-* 
-* @author Benjamin Gajewski
-*
-*/
+ * 
+ * Diese Klasse verwaltet ProduktOperationen 1 von 2.
+ * 
+ * @see {@link package-info}
+ * 
+ * @author Benjamin Gajewski
+ *
+ */
 public class ProduktOperations {
-	
+
 	/**
 	 * Statements
 	 */
@@ -35,13 +37,35 @@ public class ProduktOperations {
 	private final static String ZEIGE_HOSE_NACH_PRODUKTID = "SELECT ho_id FROM hose WHERE ho_id = ?;";
 	private final static String MAX_ARTNR = "SELECT MAX(artikelnr) FROM produkt;";
 	private final static String ZEIGE_PRODUKT_NACH_ARTNR = "SELECT * FROM produkt WHERE artikelnr =?;";
-	
+	private final static String ZAEHLE_ARTIKELNR = "SELECT COUNT artikelnr FROM produkt WHERE artikelnr=?;";
+	private final static String HOLE_PRODUKTID_MIT_ARTIKELNR = "SELECT produkt_id FROM produkt WHERE artikelnr=?;";
 
-	
+	public static int zaehleArtikelnummern(int artnr) {
+		Connection con = DBConnection.getConnection();
+
+		try {
+			PreparedStatement pst = con.prepareStatement(ZAEHLE_ARTIKELNR);
+			pst.setInt(1, artnr);
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			int zahl = rs.getInt(1);
+
+			con.close();
+			return zahl;
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+
+	}
 
 	/**
 	 * Diese Methode holt ein bestimmtes Produkt aus der DB.
-	 * @param artnr DB-ID.
+	 * 
+	 * @param artnr
+	 *            DB-ID.
 	 * @return Instanz der Klasse @Produkt
 	 */
 	public static Produkt ladeProduktausdb(int artnr) {
@@ -62,22 +86,22 @@ public class ProduktOperations {
 			int artikelnr = rs.getInt(6);
 			String status = rs.getString(8);
 			String pfad = rs.getString(9);
-			Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, artikelnr,status);
+			Produkt produkt = new Produkt(id, name, beschreibung, preis, menge, artnr, artikelnr, status);
 			produkt.setImagePath(pfad);
-			
+
 			if (produktistSchuhe(produkt.getProdukt_id())) {
 				Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
-				
+
 				return schuhe;
-				
+
 			} else if (produktistHose(produkt.getProdukt_id())) {
 				Hose hose = HoseOperations.hoseausdbholen(produkt);
-				
+
 				return hose;
-				
+
 			} else if (produktistShirt(produkt.getProdukt_id())) {
 				Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
-				
+
 				return shirt;
 			}
 			con.close();
@@ -91,9 +115,11 @@ public class ProduktOperations {
 		return null;
 
 	}
+
 	/**
-	 * SELECT
-	 * Diese Methode ermittelt die Höchste Artikelnummer aus der Db und erhöht sie um eins.
+	 * SELECT Diese Methode ermittelt die Höchste Artikelnummer aus der Db und
+	 * erhöht sie um eins.
+	 * 
 	 * @return neue DB-iD
 	 */
 	public static int hoechsteartikelnr() {
@@ -113,13 +139,35 @@ public class ProduktOperations {
 		}
 
 		id++;
-		DBConnection.closeConnection();
+
 		return id;
 	}
-	
+	public static int holeProduktIDMitArtnr(int artnr) {
+		Connection con = DBConnection.getConnection();
+		int id = 0;
+		try {
+			PreparedStatement pst = con.prepareStatement(HOLE_PRODUKTID_MIT_ARTIKELNR);
+			pst.setInt(1, artnr);
+			ResultSet rs = pst.executeQuery();
+			rs.next();
+			id = rs.getInt(1);
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		id++;
+		
+		return id;
+	}
+
 	/**
 	 * Diese Methode speichert eine neues Produkt in der DB.
-	 * @param produkt das neue objekt der Klasse @Produkt
+	 * 
+	 * @param produkt
+	 *            das neue objekt der Klasse @Produkt
 	 */
 	public static void anlegen(Produkt produkt) {
 		Connection con = DBConnection.getConnection();
@@ -151,9 +199,12 @@ public class ProduktOperations {
 		}
 
 	}
+
 	/**
 	 * Diese Methode speichert ein Produkt der Klasse Schuhe in der DB.
-	 * @param schuhe eine Instanz von @Schuhe
+	 * 
+	 * @param schuhe
+	 *            eine Instanz von @Schuhe
 	 */
 	private static void anlegenSchuhe(Schuhe schuhe) {
 		Connection con = DBConnection.getConnection();
@@ -171,9 +222,12 @@ public class ProduktOperations {
 		}
 
 	}
+
 	/**
 	 * Diese Methode speichert ein Produkt der Klasse Hose in der DB.
-	 * @param hose eine Instanz von @Hose
+	 * 
+	 * @param hose
+	 *            eine Instanz von @Hose
 	 */
 	private static void anlegenHose(Hose hose) {
 		Connection con = DBConnection.getConnection();
@@ -191,9 +245,12 @@ public class ProduktOperations {
 		}
 
 	}
+
 	/**
 	 * Diese Methode speichert ein Produkt der Klasse Shirt in der DB.
-	 * @param shirt eine Instanz von @Shirt
+	 * 
+	 * @param shirt
+	 *            eine Instanz von @Shirt
 	 */
 	private static void anlegenShirt(Shirt shirt) {
 		Connection con = DBConnection.getConnection();
@@ -210,8 +267,10 @@ public class ProduktOperations {
 		}
 
 	}
+
 	/**
 	 * Diese Methode liefert eine neue DB-Id.
+	 * 
 	 * @return neue DB-Id
 	 */
 	public static int hoechsteID() {
@@ -233,10 +292,9 @@ public class ProduktOperations {
 		return id;
 	}
 
-	
-	
 	/**
 	 * Diese Methode liefert eine Liste aller Produkte aus der DB.
+	 * 
 	 * @return alle produkte aus der DB.
 	 */
 	public static List<Produkt> ladeProdukteAusDatenbank() {
@@ -283,22 +341,24 @@ public class ProduktOperations {
 
 		return produkte;
 	}
+
 	/**
 	 * Diese methode liefert alle Produkt einer Produktgruppe aus der DB.
-	 * @param artikelnr DB-ID
-	 * @return Liste aller @Produkte aus der DB, die zu einer best. Gruppe
-	 * geh&oeren
+	 * 
+	 * @param artikelnr
+	 *            DB-ID
+	 * @return Liste aller @Produkte aus der DB, die zu einer best. Gruppe geh&oeren
 	 */
 	public static List<Produkt> ladeProdukteAusDatenbankmitArtnr(int artikelnr) {
-		
+
 		Connection con = DBConnection.getConnection();
 		List<Produkt> produkte = new ArrayList<Produkt>();
-		
+
 		try {
 			PreparedStatement pst = con.prepareStatement(ZEIGE_PRODUKT_NACH_ARTNR);
 			pst.setInt(1, artikelnr);
 			ResultSet rs = pst.executeQuery();
-			
+
 			while (rs.next()) {
 				double preis = rs.getDouble(1);
 				int menge = rs.getInt(2);
@@ -314,28 +374,29 @@ public class ProduktOperations {
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					Schuhe schuhe = SchuheOperations.holeSchuheausdb(produkt);
 					produkte.add(schuhe);
-				}
-				else if (produktistHose(produkt.getProdukt_id())) {
+				} else if (produktistHose(produkt.getProdukt_id())) {
 					Hose hose = HoseOperations.hoseausdbholen(produkt);
 					produkte.add(hose);
-				}
-				else if (produktistShirt(produkt.getProdukt_id())) {
+				} else if (produktistShirt(produkt.getProdukt_id())) {
 					Shirt shirt = ShirtOperations.holeShirtausdb(produkt);
 					produkte.add(shirt);
 				}
-				
+
 			}
 			con.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		DBConnection.closeConnection();
 		return produkte;
 	}
+
 	/**
 	 * Diese Methode pr&uumlft ob ein produkt zu der Klasse Shirts geh&oert.
-	 * @param id DB-ID.
+	 * 
+	 * @param id
+	 *            DB-ID.
 	 * @return ist / ist nicht eine Instanz der Klasse @Shirt
 	 */
 	public static boolean produktistShirt(int id) {
@@ -354,16 +415,19 @@ public class ProduktOperations {
 		} catch (
 
 		SQLException e) {
-		
+
 			e.printStackTrace();
 
 		}
 		return false;
 
 	}
+
 	/**
 	 * Diese Methode pr&ueft ob ein produkt zu der Klasse Hose geh&oert.
-	 * @param id DB-ID.
+	 * 
+	 * @param id
+	 *            DB-ID.
 	 * @return ist / ist nicht eine Instanz der Klasse @Hose
 	 */
 	public static boolean produktistHose(int id) {
@@ -382,7 +446,7 @@ public class ProduktOperations {
 		} catch (
 
 		SQLException e) {
-		
+
 			e.printStackTrace();
 
 		}
@@ -390,9 +454,12 @@ public class ProduktOperations {
 		return false;
 
 	}
+
 	/**
 	 * Diese Methode pr&ueft ob ein produkt zu der Klasse Schuhe geh&oert.
-	 * @param id DB-ID.
+	 * 
+	 * @param id
+	 *            DB-ID.
 	 * @return ist / ist nicht eine Instanz der Klasse @Schuhe
 	 */
 	public static boolean produktistSchuhe(int id) {
@@ -411,7 +478,7 @@ public class ProduktOperations {
 		} catch (
 
 		SQLException e) {
-		
+
 			e.printStackTrace();
 
 		}
@@ -419,11 +486,14 @@ public class ProduktOperations {
 		return false;
 
 	}
-/**
- * Diese Methode holt ein produkt anhand der ID aus der DB.
- * @param id DB-ID
- * @return Instanz der Klasse @Produkt
- */
+
+	/**
+	 * Diese Methode holt ein produkt anhand der ID aus der DB.
+	 * 
+	 * @param id
+	 *            DB-ID
+	 * @return Instanz der Klasse @Produkt
+	 */
 	public static Produkt produktausdbholen(int id) {
 		Connection con = DBConnection.getConnection();
 
@@ -443,7 +513,8 @@ public class ProduktOperations {
 				String status = rs.getString(8);
 				String pfad = rs.getString(9);
 
-				Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artnr, versanddauer, status);
+				Produkt produkt = new Produkt(produkt_id, name, beschreibung, preis, menge, artnr, versanddauer,
+						status);
 				produkt.setImagePath(pfad);
 				if (produktistSchuhe(produkt.getProdukt_id())) {
 					return SchuheOperations.holeSchuheausdb(produkt);
@@ -455,7 +526,7 @@ public class ProduktOperations {
 					return ShirtOperations.holeShirtausdb(produkt);
 				}
 				con.close();
-				
+
 				return produkt;
 			}
 

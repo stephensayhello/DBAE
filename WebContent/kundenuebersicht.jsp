@@ -21,13 +21,16 @@
 				$("#anzeigen").click();
 			}
 		});
-
-		function onHidde() {
-			document.getElementById("unsichtbar").style.visibility = "hidden";
-		}
-
-		function onShow() {
-			document.getElementById().style.visibility = "visible";
+	
+		
+		// Quelle: https://stackoverflow.com/questions/26401516/calling-javascript-validation-function-before-submiting-and-calling-servlet
+		function validateForm(event, form) {
+			event.preventDefault();
+		    if (confirm("Wollen Sie den Kunden wirklich löschen ?")) {
+		    	form.submit();
+		    } else {
+		       return false;
+		    }
 		}
 	</script>
 	<a:navKunde rolle="${rolle }"></a:navKunde>
@@ -63,7 +66,8 @@
 						<td>${kunde.nutzer_id}</td>
 						<td>${kunde.nachname}</td>
 						<td>${kunde.email}</td>
-						<td>${kunde.adresse.strasse} ${kunde.adresse.hausnummer},  ${kunde.adresse.plz}  ${kunde.adresse.ort}</td>
+						<td>${kunde.adresse.strasse}${kunde.adresse.hausnummer},
+							${kunde.adresse.plz} ${kunde.adresse.ort}</td>
 						<td>
 							<form action="KundeBearbeitenServlet" method="get">
 								<button value="submit" class="button-dbae">
@@ -78,7 +82,7 @@
 
 						</td>
 						<td>
-							<form action="KundenOperationsServlet" method="post">
+							<form action="KundenOperationsServlet" method="post" onSubmit="return validateForm(event, this)">
 								<button value="submit" class="button-dbae">
 									<span class="glyphicon glyphicon-trash"></span>
 								</button>

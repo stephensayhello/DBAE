@@ -20,7 +20,7 @@
 
 	<a:navKunde rolle="${rolle }"></a:navKunde>
 	<div class="container">
-		<h1 class="header">Produkt bearbeiten</h1>
+		<h1 class="header">Artikel bearbeiten</h1>
 		<p>Bitte ändern Sie das Produkt</p>
 
 		<hr>

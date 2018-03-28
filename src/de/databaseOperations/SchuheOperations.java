@@ -95,6 +95,6 @@ public class SchuheOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
+
 	}
 }

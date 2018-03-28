@@ -8,7 +8,7 @@ import java.util.UUID;
 public class RandomStringGenerator {
   
 	/**
-	 * Diese Methode generiet einen Zufallskey f&uer das Zur&uecksetzen der Passw&oerter.
+	 * Diese Methode generiet einen Zufallskey f&uumlr das Zur&uecksetzen der Passw&oumlrter.
 	 * @return
 	 */
     public static String generateString() {

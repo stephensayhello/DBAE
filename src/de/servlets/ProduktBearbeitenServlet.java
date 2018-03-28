@@ -44,11 +44,16 @@ public class ProduktBearbeitenServlet extends HttpServlet {
 		request.setAttribute("messages", messages);
 
 		Produkt produkt = (Produkt) session.getAttribute("produkt");
-		ProduktUpdateOperations.entferneProdukt(produkt);
+		boolean erfolg = ProduktUpdateOperations.entferneProdukt(produkt);
 		session.removeAttribute("produkt");
+		if(erfolg) {
 		messages.add("Das Produkt wurde aus dem Sortiment entfernt !");
-
 		request.getRequestDispatcher("produktinfos.jsp").forward(request, response);
+		}else {
+			messages.add("Produkt kann nicht entfernt werden!");
+			request.getRequestDispatcher("produkt_bearbeiten.jsp").forward(request, response);
+		}
+		
 
 	}
 

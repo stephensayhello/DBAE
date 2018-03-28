@@ -41,10 +41,7 @@ public class FileStorageInDropbox {
 	 * 
 	 * 
 	 * Vgl.:
-	 * https://www.ibm.com/developerworks/community/blogs/2f9ef931-1ac3-4d9b-
-	 * a8ca-6e3f01b13889/entry/Dropbox_Java_SDK_API_to_Put_Get_Delete_File?lang=
-	 * en
-	 * 
+	 * <a href="https://www.ibm.com/developerworks/community/blogs/2f9ef931-1ac3-4d9b-a8ca-6e3f01b13889/entry/Dropbox_Java_SDK_API_to_Put_Get_Delete_File?lang=en">Link</a> 
 	 * @param image
 	 *            Das File mit dem Bildernamen
 	 * @return Der Webpfad zum Bild.

@@ -29,6 +29,7 @@ public class BewertungsOperations {
 	private static final String LADE_BEWERTUNGEN = "SELECT * FROM bewertung;";
 	private static final String BEWERTUNG_ANLEGEN = "INSERT INTO bewertung VALUES(?,?,?,?,?,?);";
 	private static final String BEWERTUNGEN_ZU_ARTIKEL_LOESCHEN_MIT_KUNDENNR = "DELETE FROM bewertung WHERE kundennr = ?;";
+	private static final String BEWERTUNGEN_ZU_ARTIKEL_LOESCHEN_MIT_ARTIKELNR = "DELETE FROM bewertung WHERE artikelnr = ?;";
 	private static final String DURCHSCHNITTLICHE_BEWERTUNG_PRO_ARTIKEL = "SELECT AVG(punkte) FROM bewertung WHERE artikelnr = ? GROUP BY artikelnr;";
 
 	
@@ -194,6 +195,24 @@ public class BewertungsOperations {
 		 try {
 			PreparedStatement pst = con.prepareStatement(BEWERTUNGEN_ZU_ARTIKEL_LOESCHEN_MIT_KUNDENNR);
 			pst.setInt(1, id);
+			pst.execute();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void entferneBewertungmitArtikelnr(int artikelnr) {
+		
+		
+		
+		
+		
+		Connection con = DBConnection.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(BEWERTUNGEN_ZU_ARTIKEL_LOESCHEN_MIT_ARTIKELNR);
+			pst.setInt(1, artikelnr);
 			pst.execute();
 			con.close();
 			

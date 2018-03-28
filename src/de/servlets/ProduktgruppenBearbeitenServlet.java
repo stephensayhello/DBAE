@@ -55,7 +55,7 @@ public class ProduktgruppenBearbeitenServlet extends HttpServlet {
 
 		produkte = ProduktOperations.ladeProdukteAusDatenbankmitArtnr(produkt.getArtikelnr());
 		for (Produkt produkt2 : produkte) {
-			ProduktUpdateOperations.entferneProdukt(produkt2);
+			ProduktUpdateOperations.entferneProduktvollstaendig(produkt2);
 		}
 
 		messages.add("Artikel gelöscht!");

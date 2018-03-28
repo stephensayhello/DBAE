@@ -3,6 +3,9 @@ package de.databaseOperations;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+
+import de.classes.Bestellung;
 import de.datenbank.DBConnection;
 
 /**
@@ -17,12 +20,12 @@ public class BestellungUpdateOperations {
 	 */
 	private final static String UPDATE_BEARBEITUNGSSTATUS = "UPDATE bestellung SET status = ? WHERE bstnr =?;";
 	private final static String BESTELLUNG_LOESCHEN = "DELETE FROM bestellung WHERE kundennr=?;";
-	private final static String BESTELLUNG_LOESCHEN_MIT_PRODID = "DELETE FROM bestellung WHERE kundennr=?;";
-	
+	private final static String BESTELLUNG_LOESCHEN_MIT_BSTNR = "DELETE FROM bestellung WHERE bstnr=?;";
+	private final static String BESTELLUNG_PROD_ZUO_LOESCHEN = "DELETE FROM bestellung_produktzuordnung WHERE bstnr=?;";
+	private final static String BESTELLUNG_PROD_ZUO_LOESCHEN_MIT_PRODID = "DELETE FROM bestellung_produktzuordnung WHERE produkt_id=?;";
 
 	/**
-	 * Diese Methode updatet eine Bestellung und ver&andert den
-	 * Bestellungsstatus
+	 * Diese Methode updatet eine Bestellung und ver&andert den Bestellungsstatus
 	 * 
 	 * @param bstnr
 	 * @param status
@@ -37,18 +40,18 @@ public class BestellungUpdateOperations {
 
 			pst.execute();
 			con.close();
-			DBConnection.closeConnection();
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 	}
 
-	public static void entferneBestellungmitKundennr(int id) {
+	public static void entferneBestellungProdukzuordnungmitBstnr(int bstnr) {
 		Connection con = DBConnection.getConnection();
 		try {
-			PreparedStatement pst = con.prepareStatement(BESTELLUNG_LOESCHEN);
-			pst.setInt(1, id);
+			PreparedStatement pst = con.prepareStatement(BESTELLUNG_PROD_ZUO_LOESCHEN);
+			pst.setInt(1, bstnr);
 			pst.execute();
 			con.close();
 
@@ -56,7 +59,49 @@ public class BestellungUpdateOperations {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		DBConnection.closeConnection();
+
+	}
+
+	public static void entferneBestellungmitKundennr(int id) {
+
+		List<Bestellung> bestellungen = BestellungOperations.bestelldatumundBstnrMitKnrAusDbholen(id);
+		for (Bestellung bestellung : bestellungen) {
+			entferneBestellungProdukzuordnungmitBstnr(bestellung.getBestellnummer());
+		}
+
+		Connection con = DBConnection.getConnection();
+
+		try {
+			PreparedStatement pst = con.prepareStatement(BESTELLUNG_LOESCHEN);
+			pst.setInt(1, id);
+			pst.execute();
+
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void entferneBestellungProdzuordnungmitID(int id) {
+
+		Connection con = DBConnection.getConnection();
+
+		try {
+			PreparedStatement pst = con.prepareStatement(BESTELLUNG_PROD_ZUO_LOESCHEN_MIT_PRODID);
+
+			pst.setInt(1, id);
+			pst.execute();
+
+			con.close();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 
 }
