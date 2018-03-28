@@ -46,8 +46,43 @@ public class ProduktUpdateOperations {
 	 */
 	public static boolean entferneProdukt(Produkt produkt) {
 		int zahl = ProduktOperations.zaehleArtikelnummern(produkt.getArtikelnr());
-        if(zahl > 1) {		
-		
+		if (zahl > 1) {
+			BestellungUpdateOperations.entferneBestellungProdzuordnungmitID(produkt.getProdukt_id());
+			if (produkt instanceof Hose) {
+				HoseOperations.entferneHosemitid(produkt.getProdukt_id());
+
+			} else if (produkt instanceof Schuhe) {
+				SchuheOperations.entferneSchuhemitId(produkt.getProdukt_id());
+			} else if (produkt instanceof Shirt) {
+				ShirtOperations.entferneShirtmitId(produkt.getProdukt_id());
+			}
+
+			Connection con = DBConnection.getConnection();
+
+			try {
+				PreparedStatement pst = con.prepareStatement(PRODUKT_LOESCHEN);
+				pst.setInt(1, produkt.getProdukt_id());
+				pst.execute();
+				con.close();
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	public static void entferneProduktvollstaendig(Produkt produkt) {
+		System.out.println(produkt.getArtikelnr());
+		BewertungsOperations.entferneBewertungmitArtikelnr(produkt.getArtikelnr());
+
+		BestellungUpdateOperations.entferneBestellungProdzuordnungmitID(produkt.getProdukt_id());
+
 		if (produkt instanceof Hose) {
 			HoseOperations.entferneHosemitid(produkt.getProdukt_id());
 
@@ -64,53 +99,12 @@ public class ProduktUpdateOperations {
 			pst.setInt(1, produkt.getProdukt_id());
 			pst.execute();
 			con.close();
-		
 
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
-			return false;
 		}
-		return true;
-        }else {
-        	return false;
-        }
-        
 	}
-	
-	
-	public static void entferneProduktvollstaendig(Produkt produkt) {
-		  System.out.println(produkt.getArtikelnr());
-			BewertungsOperations.entferneBewertungmitArtikelnr(produkt.getArtikelnr());
-			
-			
-			BestellungUpdateOperations.entferneBestellungProdzuordnungmitID(produkt.getProdukt_id());
-			
-			if (produkt instanceof Hose) {
-				HoseOperations.entferneHosemitid(produkt.getProdukt_id());
-				
-			} else if (produkt instanceof Schuhe) {
-				SchuheOperations.entferneSchuhemitId(produkt.getProdukt_id());
-			} else if (produkt instanceof Shirt) {
-				ShirtOperations.entferneShirtmitId(produkt.getProdukt_id());
-			}
-			
-			Connection con = DBConnection.getConnection();
-			
-			try {
-				PreparedStatement pst = con.prepareStatement(PRODUKT_LOESCHEN);
-				pst.setInt(1, produkt.getProdukt_id());
-				pst.execute();
-				con.close();
-				
-				
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			}
-		}
-		
-	
 
 	/**
 	 * Diese Methode updatet eine Instanz @Produkt in der DB

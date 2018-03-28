@@ -15,6 +15,16 @@
 <a:bootstrap></a:bootstrap>
 
 </head>
+<script type="text/javascript">
+	function validateForm(event, form) {
+		event.preventDefault();
+		if (confirm("Wollen Sie den Artikel wirklich löschen ?")) {
+			form.submit();
+		} else {
+			return false;
+		}
+	}
+</script>
 <body>
 	<a:modal messages="${messages}"></a:modal>
 
@@ -46,7 +56,8 @@
 
 			</form>
 
-			<form action="ProduktgruppenBearbeitenServlet" method="get">
+			<form action="ProduktgruppenBearbeitenServlet" method="get"
+				onSubmit="return validateForm(event, this)">
 				<button type="submit" class="button-dbae">Produkt löschen</button>
 			</form>
 		</div>

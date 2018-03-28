@@ -37,7 +37,7 @@ public class ProduktOperations {
 	private final static String ZEIGE_HOSE_NACH_PRODUKTID = "SELECT ho_id FROM hose WHERE ho_id = ?;";
 	private final static String MAX_ARTNR = "SELECT MAX(artikelnr) FROM produkt;";
 	private final static String ZEIGE_PRODUKT_NACH_ARTNR = "SELECT * FROM produkt WHERE artikelnr =?;";
-	private final static String ZAEHLE_ARTIKELNR = "SELECT COUNT artikelnr FROM produkt WHERE artikelnr=?;";
+	private final static String ZAEHLE_ARTIKELNR = "SELECT COUNT (artikelnr) FROM produkt WHERE artikelnr=?;";
 	private final static String HOLE_PRODUKTID_MIT_ARTIKELNR = "SELECT produkt_id FROM produkt WHERE artikelnr=?;";
 
 	public static int zaehleArtikelnummern(int artnr) {

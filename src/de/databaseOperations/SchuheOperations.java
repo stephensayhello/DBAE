@@ -26,7 +26,7 @@ public class SchuheOperations {
 	 */
 	private final static String HOLE_SCHUHE_NACH_SCHID = "SELECT * FROM schuhe WHERE sch_id = ?;";
 	private final static String SCHUHE_LOESCHEN = "DELETE FROM schuhe WHERE sch_id = ?;";
-	private final static String LADE_GROESSE_NACH_ART = "select groesse from schuhe inner join produkt on(produkt.produkt_id = schuhe.sch_id) where artikelnr = ?";
+	private final static String LADE_GROESSE_NACH_ART = "SELECT groesse from schuhe inner join produkt on(produkt.produkt_id = schuhe.sch_id) where artikelnr = ?;";
 	/**
 	 * Select Diese Methode holt ein Produkt von Typ Schuhe aus der DB.
 	 * @param produkt das rauszuholende Produkt
